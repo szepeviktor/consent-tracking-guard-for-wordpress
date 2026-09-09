@@ -1,13 +1,13 @@
-# Cookie Consent CMP
+# Viktor's Consent and Tracking Guard for WordPress
 
-A simple cookie consent banner for WordPress, powered by Klaro and compatible with the WP Consent API.
+Controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync. Powered by Klaro.
 
 ## Installation
 
-1. Download the latest plugin ZIP from [Releases](https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress/releases).
+1. Download the latest plugin ZIP from [Releases](https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/releases).
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**.
 3. Upload the ZIP, install it, and activate the plugin.
-4. Go to **Settings → Cookie Consent CMP** to customize the banner and integrations.
+4. Go to **Settings → Viktor's Consent and Tracking Guard for WordPress** to customize the banner and integrations.
 
 Requires WordPress 6.4 or later and PHP 7.4 or later.
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp\Frontend;
+namespace SzepeViktor\ConsentTrackingGuard\Frontend;
 
 final class ConsentApiBridge
 {
@@ -151,7 +151,7 @@ final class ConsentApiBridge
         return [
             'expires' => isset($cookie['expires']) && is_string($cookie['expires'])
                 ? $cookie['expires']
-                : __('Varies', 'cookie-consent-cmp'),
+                : __('Varies', 'consent-tracking-guard-for-wordpress'),
             'function' => isset($cookie['function']) && is_string($cookie['function'])
                 ? $cookie['function']
                 : $description,
@@ -182,6 +182,6 @@ final class ConsentApiBridge
 
         return isset($service['title']) && is_string($service['title'])
             ? $service['title']
-            : __('Configured consent service.', 'cookie-consent-cmp');
+            : __('Configured consent service.', 'consent-tracking-guard-for-wordpress');
     }
 }

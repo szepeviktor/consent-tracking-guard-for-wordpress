@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp\Frontend;
+namespace SzepeViktor\ConsentTrackingGuard\Frontend;
 
-use SzepeViktor\CookieConsentCmp\Config;
-use SzepeViktor\CookieConsentCmp\Options;
+use SzepeViktor\ConsentTrackingGuard\Config;
+use SzepeViktor\ConsentTrackingGuard\Options;
 
 final class Assets
 {
@@ -49,22 +49,22 @@ final class Assets
     private function enqueueStyles(string $modalStyle): void
     {
         wp_enqueue_style(
-            'cookie-consent-cmp-klaro',
+            'consent-tracking-guard-for-wordpress-klaro',
             plugins_url('assets/css/klaro.css', Config::get('filePath')),
             [],
             Config::get('version')
         );
 
         wp_enqueue_style(
-            'cookie-consent-cmp-components',
+            'consent-tracking-guard-for-wordpress-components',
             plugins_url('assets/css/components.css', Config::get('filePath')),
-            ['cookie-consent-cmp-klaro'],
+            ['consent-tracking-guard-for-wordpress-klaro'],
             Config::get('version')
         );
 
         if (isset(self::MODAL_STYLE_STYLESHEETS[$modalStyle])) {
             wp_enqueue_style(
-                'cookie-consent-cmp-modal-style',
+                'consent-tracking-guard-for-wordpress-modal-style',
                 plugins_url(
                     sprintf(
                         'assets/css/modal-styles/%s',
@@ -72,7 +72,7 @@ final class Assets
                     ),
                     Config::get('filePath')
                 ),
-                ['cookie-consent-cmp-components'],
+                ['consent-tracking-guard-for-wordpress-components'],
                 Config::get('version')
             );
         }
@@ -84,7 +84,7 @@ final class Assets
     private function enqueueScripts(array $klaroConfig): void
     {
         wp_enqueue_script(
-            'cookie-consent-cmp-bootstrap',
+            'consent-tracking-guard-for-wordpress-bootstrap',
             plugins_url('assets/js/cmp-bootstrap.js', Config::get('filePath')),
             [],
             Config::get('version'),
@@ -92,17 +92,17 @@ final class Assets
         );
 
         wp_enqueue_script(
-            'cookie-consent-cmp-klaro',
+            'consent-tracking-guard-for-wordpress-klaro',
             plugins_url('assets/js/klaro.js', Config::get('filePath')),
             [],
             Config::get('version'),
             false
         );
 
-        wp_script_add_data('cookie-consent-cmp-klaro', 'defer', true);
+        wp_script_add_data('consent-tracking-guard-for-wordpress-klaro', 'defer', true);
 
         wp_add_inline_script(
-            'cookie-consent-cmp-klaro',
+            'consent-tracking-guard-for-wordpress-klaro',
             sprintf('window.klaroConfig = %s;', wp_json_encode($klaroConfig)),
             'before'
         );
@@ -112,9 +112,9 @@ final class Assets
         }
 
         wp_enqueue_script(
-            'cookie-consent-cmp-consent-api-bridge',
+            'consent-tracking-guard-for-wordpress-consent-api-bridge',
             plugins_url('assets/js/wp-consent-api-bridge.js', Config::get('filePath')),
-            ['cookie-consent-cmp-klaro', 'wp-consent-api'],
+            ['consent-tracking-guard-for-wordpress-klaro', 'wp-consent-api'],
             Config::get('version'),
             true
         );
@@ -125,7 +125,7 @@ final class Assets
         $attributes = [];
         $options = $this->options->all();
 
-        if ($handle !== 'cookie-consent-cmp-bootstrap') {
+        if ($handle !== 'consent-tracking-guard-for-wordpress-bootstrap') {
             return $tag;
         }
 
@@ -231,15 +231,15 @@ final class Assets
             ],
             'purposes' => $this->buildPurposeTranslations(),
             'purposeItem' => [
-                'service' => __('service', 'cookie-consent-cmp'),
-                'services' => __('services', 'cookie-consent-cmp'),
+                'service' => __('service', 'consent-tracking-guard-for-wordpress'),
+                'services' => __('services', 'consent-tracking-guard-for-wordpress'),
             ],
-            'ok' => __('OK', 'cookie-consent-cmp'),
-            'save' => __('Save', 'cookie-consent-cmp'),
-            'acceptAll' => __('Accept all', 'cookie-consent-cmp'),
-            'declineAll' => __('Decline all', 'cookie-consent-cmp'),
-            'decline' => __('Decline', 'cookie-consent-cmp'),
-            'close' => __('Close', 'cookie-consent-cmp'),
+            'ok' => __('OK', 'consent-tracking-guard-for-wordpress'),
+            'save' => __('Save', 'consent-tracking-guard-for-wordpress'),
+            'acceptAll' => __('Accept all', 'consent-tracking-guard-for-wordpress'),
+            'declineAll' => __('Decline all', 'consent-tracking-guard-for-wordpress'),
+            'decline' => __('Decline', 'consent-tracking-guard-for-wordpress'),
+            'close' => __('Close', 'consent-tracking-guard-for-wordpress'),
             'service' => $this->buildServiceTranslations(),
         ];
     }
@@ -255,11 +255,11 @@ final class Assets
     private function buildPurposeTranslations(): array
     {
         return [
-            'functional' => __('Functional', 'cookie-consent-cmp'),
-            'preferences' => __('Preferences', 'cookie-consent-cmp'),
-            'statistics-anonymous' => __('Anonymous statistics', 'cookie-consent-cmp'),
-            'statistics' => __('Statistics', 'cookie-consent-cmp'),
-            'marketing' => __('Marketing', 'cookie-consent-cmp'),
+            'functional' => __('Functional', 'consent-tracking-guard-for-wordpress'),
+            'preferences' => __('Preferences', 'consent-tracking-guard-for-wordpress'),
+            'statistics-anonymous' => __('Anonymous statistics', 'consent-tracking-guard-for-wordpress'),
+            'statistics' => __('Statistics', 'consent-tracking-guard-for-wordpress'),
+            'marketing' => __('Marketing', 'consent-tracking-guard-for-wordpress'),
         ];
     }
 
@@ -270,28 +270,28 @@ final class Assets
     {
         return [
             'disableAll' => [
-                'title' => __('Enable or disable all services', 'cookie-consent-cmp'),
+                'title' => __('Enable or disable all services', 'consent-tracking-guard-for-wordpress'),
                 'description' => __(
                     'Use this switch to change all optional services at once.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ],
             'optOut' => [
-                'title' => __('(opt-out)', 'cookie-consent-cmp'),
+                'title' => __('(opt-out)', 'consent-tracking-guard-for-wordpress'),
                 'description' => __(
                     'This service loads by default, but can be disabled later.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ],
             'required' => [
-                'title' => __('(required)', 'cookie-consent-cmp'),
+                'title' => __('(required)', 'consent-tracking-guard-for-wordpress'),
                 'description' => __(
                     'This service is required for the site to function.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ],
-            'purposes' => __('Purposes', 'cookie-consent-cmp'),
-            'purpose' => __('Purpose', 'cookie-consent-cmp'),
+            'purposes' => __('Purposes', 'consent-tracking-guard-for-wordpress'),
+            'purpose' => __('Purpose', 'consent-tracking-guard-for-wordpress'),
         ];
     }
 
@@ -372,7 +372,7 @@ final class Assets
     {
         return [
             'name' => 'klaro',
-            'title' => __('Cookie consent settings', 'cookie-consent-cmp'),
+            'title' => __('Cookie consent settings', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -383,14 +383,14 @@ final class Assets
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     'klaro',
-                    __('365 days', 'cookie-consent-cmp'),
-                    __('Stores the visitor’s consent choices.', 'cookie-consent-cmp')
+                    __('365 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the visitor’s consent choices.', 'consent-tracking-guard-for-wordpress')
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Cookie consent settings', 'cookie-consent-cmp'),
-                    'description' => __('Stores the visitor’s consent choice.', 'cookie-consent-cmp'),
+                    'title' => __('Cookie consent settings', 'consent-tracking-guard-for-wordpress'),
+                    'description' => __('Stores the visitor’s consent choice.', 'consent-tracking-guard-for-wordpress'),
                 ],
             ],
         ];
@@ -403,22 +403,22 @@ final class Assets
     {
         return $this->buildOptionalService(
             'google-tag-manager',
-            __('Google Tag Manager', 'cookie-consent-cmp'),
+            __('Google Tag Manager', 'consent-tracking-guard-for-wordpress'),
             'statistics',
             ['_ga', '^_ga_.*', '_gid', '^_gat.*'],
             [
                 $this->buildCookieInfo(
                     '_ga',
-                    __('2 years', 'cookie-consent-cmp'),
-                    __('Distinguishes visitors for analytics reporting.', 'cookie-consent-cmp')
+                    __('2 years', 'consent-tracking-guard-for-wordpress'),
+                    __('Distinguishes visitors for analytics reporting.', 'consent-tracking-guard-for-wordpress')
                 ),
                 $this->buildCookieInfo(
                     '_gid',
-                    __('24 hours', 'cookie-consent-cmp'),
-                    __('Distinguishes visitors for daily analytics reporting.', 'cookie-consent-cmp')
+                    __('24 hours', 'consent-tracking-guard-for-wordpress'),
+                    __('Distinguishes visitors for daily analytics reporting.', 'consent-tracking-guard-for-wordpress')
                 ),
             ],
-            __('Loads analytics tags managed through Google Tag Manager.', 'cookie-consent-cmp'),
+            __('Loads analytics tags managed through Google Tag Manager.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -430,22 +430,22 @@ final class Assets
     {
         return $this->buildOptionalService(
             'microsoft-clarity',
-            __('Microsoft Clarity', 'cookie-consent-cmp'),
+            __('Microsoft Clarity', 'consent-tracking-guard-for-wordpress'),
             'statistics',
             ['_clck', '_clsk'],
             [
                 $this->buildCookieInfo(
                     '_clck',
-                    __('1 year', 'cookie-consent-cmp'),
-                    __('Persists the Clarity visitor identifier and preferences.', 'cookie-consent-cmp')
+                    __('1 year', 'consent-tracking-guard-for-wordpress'),
+                    __('Persists the Clarity visitor identifier and preferences.', 'consent-tracking-guard-for-wordpress')
                 ),
                 $this->buildCookieInfo(
                     '_clsk',
-                    __('1 day', 'cookie-consent-cmp'),
-                    __('Groups Clarity page views into a recording session.', 'cookie-consent-cmp')
+                    __('1 day', 'consent-tracking-guard-for-wordpress'),
+                    __('Groups Clarity page views into a recording session.', 'consent-tracking-guard-for-wordpress')
                 ),
             ],
-            __('Measures how visitors use the site through session analytics.', 'cookie-consent-cmp'),
+            __('Measures how visitors use the site through session analytics.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -457,11 +457,11 @@ final class Assets
     {
         return $this->buildOptionalService(
             'hotjar',
-            __('Hotjar', 'cookie-consent-cmp'),
+            __('Hotjar', 'consent-tracking-guard-for-wordpress'),
             'statistics',
             $this->buildHotjarCookies(),
             $this->buildHotjarCookieInfo(),
-            __('Measures visitor behavior and collects usability feedback.', 'cookie-consent-cmp'),
+            __('Measures visitor behavior and collects usability feedback.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -497,23 +497,23 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 '_hjClosedSurveyInvites',
-                __('1 year', 'cookie-consent-cmp'),
-                __('Prevents a dismissed Hotjar survey invitation from reappearing.', 'cookie-consent-cmp')
+                __('1 year', 'consent-tracking-guard-for-wordpress'),
+                __('Prevents a dismissed Hotjar survey invitation from reappearing.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 '_hjDonePolls',
-                __('1 year', 'cookie-consent-cmp'),
-                __('Prevents a completed Hotjar poll from reappearing.', 'cookie-consent-cmp')
+                __('1 year', 'consent-tracking-guard-for-wordpress'),
+                __('Prevents a completed Hotjar poll from reappearing.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 '_hjMinimizedPolls',
-                __('1 year', 'cookie-consent-cmp'),
-                __('Keeps a minimized Hotjar poll minimized.', 'cookie-consent-cmp')
+                __('1 year', 'consent-tracking-guard-for-wordpress'),
+                __('Keeps a minimized Hotjar poll minimized.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 '_hjShownFeedbackMessage',
-                __('1 day', 'cookie-consent-cmp'),
-                __('Prevents repeated display of Hotjar feedback messaging.', 'cookie-consent-cmp')
+                __('1 day', 'consent-tracking-guard-for-wordpress'),
+                __('Prevents repeated display of Hotjar feedback messaging.', 'consent-tracking-guard-for-wordpress')
             ),
         ];
     }
@@ -525,22 +525,22 @@ final class Assets
     {
         return $this->buildOptionalService(
             'meta-pixel',
-            __('Meta Pixel', 'cookie-consent-cmp'),
+            __('Meta Pixel', 'consent-tracking-guard-for-wordpress'),
             'marketing',
             ['_fbp', '_fbc'],
             [
                 $this->buildCookieInfo(
                     '_fbp',
-                    __('90 days', 'cookie-consent-cmp'),
-                    __('Identifies browsers for Meta advertising measurement.', 'cookie-consent-cmp')
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Identifies browsers for Meta advertising measurement.', 'consent-tracking-guard-for-wordpress')
                 ),
                 $this->buildCookieInfo(
                     '_fbc',
-                    __('90 days', 'cookie-consent-cmp'),
-                    __('Stores the Meta advertising click identifier.', 'cookie-consent-cmp')
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the Meta advertising click identifier.', 'consent-tracking-guard-for-wordpress')
                 ),
             ],
-            __('Measures advertising performance and visitor actions for Meta.', 'cookie-consent-cmp'),
+            __('Measures advertising performance and visitor actions for Meta.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -552,22 +552,22 @@ final class Assets
     {
         return $this->buildOptionalService(
             'linkedin-insight-tag',
-            __('LinkedIn Insight Tag', 'cookie-consent-cmp'),
+            __('LinkedIn Insight Tag', 'consent-tracking-guard-for-wordpress'),
             'marketing',
             ['li_fat_id', 'li_giant'],
             [
                 $this->buildCookieInfo(
                     'li_fat_id',
-                    __('30 days', 'cookie-consent-cmp'),
-                    __('Stores the LinkedIn advertising click identifier.', 'cookie-consent-cmp')
+                    __('30 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the LinkedIn advertising click identifier.', 'consent-tracking-guard-for-wordpress')
                 ),
                 $this->buildCookieInfo(
                     'li_giant',
-                    __('7 days', 'cookie-consent-cmp'),
-                    __('Supports LinkedIn conversion attribution.', 'cookie-consent-cmp')
+                    __('7 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Supports LinkedIn conversion attribution.', 'consent-tracking-guard-for-wordpress')
                 ),
             ],
-            __('Measures LinkedIn campaign performance and website conversions.', 'cookie-consent-cmp'),
+            __('Measures LinkedIn campaign performance and website conversions.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -585,7 +585,7 @@ final class Assets
 
         return [
             'name' => 'polylang',
-            'title' => __('Polylang', 'cookie-consent-cmp'),
+            'title' => __('Polylang', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['preferences'],
             'default' => true,
             'required' => true,
@@ -596,19 +596,19 @@ final class Assets
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     $cookieName,
-                    __('1 year', 'cookie-consent-cmp'),
+                    __('1 year', 'consent-tracking-guard-for-wordpress'),
                     __(
                         'Stores the visitor’s last browsed language for Polylang and Polylang for WooCommerce.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     )
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Polylang', 'cookie-consent-cmp'),
+                    'title' => __('Polylang', 'consent-tracking-guard-for-wordpress'),
                     'description' => __(
                         'Remembers the selected language for multilingual content and translated WooCommerce flows.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     ),
                 ],
             ],
@@ -622,7 +622,7 @@ final class Assets
     {
         return [
             'name' => 'woocommerce',
-            'title' => __('WooCommerce', 'cookie-consent-cmp'),
+            'title' => __('WooCommerce', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -633,10 +633,10 @@ final class Assets
             'wpConsentCookies' => $this->buildWooCommerceFunctionalCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('WooCommerce', 'cookie-consent-cmp'),
+                    'title' => __('WooCommerce', 'consent-tracking-guard-for-wordpress'),
                     'description' => __(
                         'Keeps the shopping cart, checkout, customer session, and store notices working.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     ),
                 ],
             ],
@@ -668,28 +668,28 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 'woocommerce_cart_hash',
-                __('Session', 'cookie-consent-cmp'),
-                __('Helps WooCommerce detect cart changes.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Helps WooCommerce detect cart changes.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woocommerce_items_in_cart',
-                __('Session', 'cookie-consent-cmp'),
-                __('Helps WooCommerce keep cart data synchronized.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Helps WooCommerce keep cart data synchronized.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'wp_woocommerce_session_*',
-                __('2 days', 'cookie-consent-cmp'),
-                __('Stores a unique customer session identifier for cart and checkout data.', 'cookie-consent-cmp')
+                __('2 days', 'consent-tracking-guard-for-wordpress'),
+                __('Stores a unique customer session identifier for cart and checkout data.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woocommerce_recently_viewed',
-                __('Session', 'cookie-consent-cmp'),
-                __('Stores products viewed by the visitor.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Stores products viewed by the visitor.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'store_notice*',
-                __('Session', 'cookie-consent-cmp'),
-                __('Remembers dismissed WooCommerce store notices.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Remembers dismissed WooCommerce store notices.', 'consent-tracking-guard-for-wordpress')
             ),
         ];
     }
@@ -701,13 +701,13 @@ final class Assets
     {
         return $this->buildOptionalService(
             'woocommerce-attribution',
-            __('WooCommerce source attribution', 'cookie-consent-cmp'),
+            __('WooCommerce source attribution', 'consent-tracking-guard-for-wordpress'),
             'statistics',
             $this->buildWooCommerceAttributionCookies(),
             $this->buildWooCommerceAttributionCookieInfo(),
             __(
                 'Stores first-party source attribution data for WooCommerce order reporting.',
-                'cookie-consent-cmp'
+                'consent-tracking-guard-for-wordpress'
             ),
             $lang
         );
@@ -737,52 +737,52 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 'sbjs_current',
-                __('6 months', 'cookie-consent-cmp'),
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
                 __(
                     'Stores the visitor’s current traffic source for WooCommerce order attribution.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_current_add',
-                __('6 months', 'cookie-consent-cmp'),
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
                 __(
                     'Stores additional current traffic source details for WooCommerce order attribution.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_first',
-                __('6 months', 'cookie-consent-cmp'),
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
                 __(
                     'Stores the visitor’s first traffic source for WooCommerce order attribution.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_first_add',
-                __('6 months', 'cookie-consent-cmp'),
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
                 __(
                     'Stores additional first traffic source details for WooCommerce order attribution.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_migrations',
-                __('6 months', 'cookie-consent-cmp'),
-                __('Tracks Sourcebuster cookie format migrations.', 'cookie-consent-cmp')
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('Tracks Sourcebuster cookie format migrations.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'sbjs_session',
-                __('30 minutes', 'cookie-consent-cmp'),
-                __('Stores the visitor’s current source attribution session.', 'cookie-consent-cmp')
+                __('30 minutes', 'consent-tracking-guard-for-wordpress'),
+                __('Stores the visitor’s current source attribution session.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'sbjs_udata',
-                __('6 months', 'cookie-consent-cmp'),
+                __('6 months', 'consent-tracking-guard-for-wordpress'),
                 __(
                     'Stores visitor user-agent and page attribution details for WooCommerce order reporting.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 )
             ),
         ];
@@ -795,7 +795,7 @@ final class Assets
     {
         return [
             'name' => 'klaviyo',
-            'title' => __('Klaviyo', 'cookie-consent-cmp'),
+            'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['marketing'],
             'default' => true,
             'required' => true,
@@ -805,19 +805,19 @@ final class Assets
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     '__kla_id',
-                    __('2 years', 'cookie-consent-cmp'),
+                    __('2 years', 'consent-tracking-guard-for-wordpress'),
                     __(
                         'Stores Klaviyo visitor identity for email marketing, attribution, and WooCommerce tracking.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     )
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Klaviyo', 'cookie-consent-cmp'),
+                    'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
                     'description' => __(
                         'Supports Klaviyo email marketing attribution, forms, and WooCommerce activity tracking.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     ),
                 ],
             ],
@@ -831,7 +831,7 @@ final class Assets
     {
         return [
             'name' => 'woodmart',
-            'title' => __('WoodMart', 'cookie-consent-cmp'),
+            'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -842,10 +842,10 @@ final class Assets
             'wpConsentCookies' => $this->buildWoodMartCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('WoodMart', 'cookie-consent-cmp'),
+                    'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
                     'description' => __(
                         'Keeps WoodMart shop preferences, wishlist, compare, product history, and popups working.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     ),
                 ],
             ],
@@ -882,38 +882,38 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 'woodmart_recently_viewed_products',
-                __('7 days', 'cookie-consent-cmp'),
-                __('Stores products recently viewed by the visitor.', 'cookie-consent-cmp')
+                __('7 days', 'consent-tracking-guard-for-wordpress'),
+                __('Stores products recently viewed by the visitor.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_hash',
-                __('Session', 'cookie-consent-cmp'),
-                __('Checks whether the visitor’s WoodMart wishlist has changed.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Checks whether the visitor’s WoodMart wishlist has changed.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_count',
-                __('Session', 'cookie-consent-cmp'),
-                __('Stores the number of products in the visitor’s WoodMart wishlist.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Stores the number of products in the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_products',
-                __('Session', 'cookie-consent-cmp'),
-                __('Stores products added to the visitor’s WoodMart wishlist.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Stores products added to the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woodmart_compare_list',
-                __('Session', 'cookie-consent-cmp'),
-                __('Stores products added to the visitor’s WoodMart compare list.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Stores products added to the visitor’s WoodMart compare list.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'shop_view',
-                __('Session', 'cookie-consent-cmp'),
-                __('Remembers the visitor’s selected shop list or grid view.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Remembers the visitor’s selected shop list or grid view.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'woodmart_age_verify',
-                __('Session', 'cookie-consent-cmp'),
-                __('Remembers that the visitor passed the WoodMart age verification prompt.', 'cookie-consent-cmp')
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Remembers that the visitor passed the WoodMart age verification prompt.', 'consent-tracking-guard-for-wordpress')
             ),
         ];
     }
@@ -925,7 +925,7 @@ final class Assets
     {
         return [
             'name' => 'wordfence',
-            'title' => __('Wordfence', 'cookie-consent-cmp'),
+            'title' => __('Wordfence', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -936,10 +936,10 @@ final class Assets
             'wpConsentCookies' => $this->buildWordfenceCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('Wordfence', 'cookie-consent-cmp'),
+                    'title' => __('Wordfence', 'consent-tracking-guard-for-wordpress'),
                     'description' => __(
                         'Supports the Wordfence firewall, country blocking bypasses, login alerts, and plugin linking.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     ),
                 ],
             ],
@@ -968,28 +968,28 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 'wfwaf-authcookie-*',
-                __('12 hours', 'cookie-consent-cmp'),
-                __('Allows the Wordfence firewall to identify logged-in users and their roles.', 'cookie-consent-cmp')
+                __('12 hours', 'consent-tracking-guard-for-wordpress'),
+                __('Allows the Wordfence firewall to identify logged-in users and their roles.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'wfCBLBypass',
-                __('1 year', 'cookie-consent-cmp'),
-                __('Stores a country blocking bypass granted by a hidden access URL.', 'cookie-consent-cmp')
+                __('1 year', 'consent-tracking-guard-for-wordpress'),
+                __('Stores a country blocking bypass granted by a hidden access URL.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'wf_loginalerted_*',
-                __('1 year', 'cookie-consent-cmp'),
-                __('Remembers that a Wordfence new-device login alert has already been sent.', 'cookie-consent-cmp')
+                __('1 year', 'consent-tracking-guard-for-wordpress'),
+                __('Remembers that a Wordfence new-device login alert has already been sent.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'wf-plugin-link-token',
-                __('24 hours', 'cookie-consent-cmp'),
-                __('Tracks a Wordfence plugin license or account linking action.', 'cookie-consent-cmp')
+                __('24 hours', 'consent-tracking-guard-for-wordpress'),
+                __('Tracks a Wordfence plugin license or account linking action.', 'consent-tracking-guard-for-wordpress')
             ),
             $this->buildCookieInfo(
                 'wordfence_verifiedHuman',
-                __('24 hours', 'cookie-consent-cmp'),
-                __('Remembers that Wordfence has verified the visitor as human.', 'cookie-consent-cmp')
+                __('24 hours', 'consent-tracking-guard-for-wordpress'),
+                __('Remembers that Wordfence has verified the visitor as human.', 'consent-tracking-guard-for-wordpress')
             ),
         ];
     }
@@ -1001,11 +1001,11 @@ final class Assets
     {
         return $this->buildOptionalService(
             'youtube',
-            __('YouTube', 'cookie-consent-cmp'),
+            __('YouTube', 'consent-tracking-guard-for-wordpress'),
             'marketing',
             ['VISITOR_INFO1_LIVE', 'VISITOR_PRIVACY_METADATA', 'YSC', 'PREF'],
             $this->buildYouTubeCookieInfo(),
-            __('Loads embedded videos provided by YouTube.', 'cookie-consent-cmp'),
+            __('Loads embedded videos provided by YouTube.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }
@@ -1020,26 +1020,26 @@ final class Assets
         return [
             $this->buildCookieInfo(
                 'VISITOR_INFO1_LIVE',
-                __('180 days', 'cookie-consent-cmp'),
-                __('Measures bandwidth and player interface selection.', 'cookie-consent-cmp'),
+                __('180 days', 'consent-tracking-guard-for-wordpress'),
+                __('Measures bandwidth and player interface selection.', 'consent-tracking-guard-for-wordpress'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'VISITOR_PRIVACY_METADATA',
-                __('180 days', 'cookie-consent-cmp'),
-                __('Stores the visitor’s YouTube privacy state.', 'cookie-consent-cmp'),
+                __('180 days', 'consent-tracking-guard-for-wordpress'),
+                __('Stores the visitor’s YouTube privacy state.', 'consent-tracking-guard-for-wordpress'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'YSC',
-                __('Session', 'cookie-consent-cmp'),
-                __('Maintains YouTube video-view session data.', 'cookie-consent-cmp'),
+                __('Session', 'consent-tracking-guard-for-wordpress'),
+                __('Maintains YouTube video-view session data.', 'consent-tracking-guard-for-wordpress'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'PREF',
-                __('8 months', 'cookie-consent-cmp'),
-                __('Stores YouTube playback and display preferences.', 'cookie-consent-cmp'),
+                __('8 months', 'consent-tracking-guard-for-wordpress'),
+                __('Stores YouTube playback and display preferences.', 'consent-tracking-guard-for-wordpress'),
                 $domain
             ),
         ];

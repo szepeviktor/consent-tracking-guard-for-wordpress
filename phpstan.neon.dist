@@ -3,6 +3,6 @@ includes:
 parameters:
     phpVersion: 70400
     paths:
-        - cookie-consent-cmp.php
+        - consent-tracking-guard-for-wordpress.php
         - src/
     level: 5

@@ -2,8 +2,8 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Cookie Consent CMP 1.4.0\n"
-"Report-Msgid-Bugs-To: https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress/issues\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,33 +12,33 @@ msgstr ""
 "POT-Creation-Date: 2026-09-03T23:21:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: cookie-consent-cmp\n"
+"X-Domain: consent-tracking-guard-for-wordpress\n"
 
 #. Plugin Name of the plugin
-#: cookie-consent-cmp.php
+#: consent-tracking-guard-for-wordpress.php
 #: src/AdminPage.php:55
 #: src/AdminPage.php:56
 #: src/AdminPage.php:311
-msgid "Cookie Consent CMP"
+msgid "Viktor's Consent and Tracking Guard for WordPress"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: cookie-consent-cmp.php
-msgid "https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress"
+#: consent-tracking-guard-for-wordpress.php
+msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 msgstr ""
 
 #. Description of the plugin
-#: cookie-consent-cmp.php
-msgid "Klaro-based cookie consent banner with WP Consent API compatibility."
+#: consent-tracking-guard-for-wordpress.php
+msgid "Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync."
 msgstr ""
 
 #. Author of the plugin
-#: cookie-consent-cmp.php
+#: consent-tracking-guard-for-wordpress.php
 msgid "Viktor Szépe"
 msgstr ""
 
 #. Author URI of the plugin
-#: cookie-consent-cmp.php
+#: consent-tracking-guard-for-wordpress.php
 msgid "https://github.com/szepeviktor"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgid "Klaviyo disclosure"
 msgstr ""
 
 #: src/AdminPage.php:239
-msgid "Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside CMP control."
+msgid "Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside this plugin’s control."
 msgstr ""
 
 #: src/AdminPage.php:251
@@ -163,7 +163,7 @@ msgid "WP Consent API was not detected."
 msgstr ""
 
 #: src/AdminPage.php:344
-msgid "The CMP will still render, but the WordPress compatibility bridge will stay inactive"
+msgid "The consent controls will still render, but the WordPress compatibility bridge will stay inactive"
 msgstr ""
 
 #: src/AdminPage.php:348
@@ -175,7 +175,7 @@ msgid "Another plugin already provides the WP Consent API consent type."
 msgstr ""
 
 #: src/AdminPage.php:359
-msgid "Cookie Consent CMP preserves that value; verify that only one consent management platform"
+msgid "Viktor's Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform"
 msgstr ""
 
 #: src/AdminPage.php:363

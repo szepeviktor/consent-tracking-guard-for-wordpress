@@ -2,8 +2,8 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Cookie Consent CMP 1.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress/issues\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "Language: lv\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2026-09-03 16:07+0000\n"
 "X-Generator: Codex\n"
-"X-Domain: cookie-consent-cmp\n"
+"X-Domain: consent-tracking-guard-for-wordpress\n"
 
-msgid "Cookie Consent CMP"
-msgstr "Cookie Consent CMP"
+msgid "Viktor's Consent and Tracking Guard for WordPress"
+msgstr "Viktor's Consent and Tracking Guard for WordPress"
 
-msgid "https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress"
-msgstr "https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress"
+msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
+msgstr "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 
-msgid "Klaro-based cookie consent banner with WP Consent API compatibility."
+msgid "Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync."
 msgstr "Uz Klaro balstīts sīkdatņu piekrišanas baneris ar WP Consent API saderību."
 
 msgid "Viktor Szépe"
@@ -89,7 +89,7 @@ msgstr "Konfigurējiet piekrišanas tekstus un pakalpojumu sniedzēju ID, ko izm
 msgid "WP Consent API was not detected."
 msgstr "WP Consent API netika atrasts."
 
-msgid "The CMP will still render, but the WordPress compatibility bridge will stay inactive"
+msgid "The consent controls will still render, but the WordPress compatibility bridge will stay inactive"
 msgstr "CMP joprojām tiks attēlots, bet WordPress saderības tilts paliks neaktīvs"
 
 msgid "until the API plugin is available."
@@ -98,8 +98,8 @@ msgstr "līdz API spraudnis būs pieejams."
 msgid "Another plugin already provides the WP Consent API consent type."
 msgstr "Cits spraudnis jau nodrošina WP Consent API piekrišanas veidu."
 
-msgid "Cookie Consent CMP preserves that value; verify that only one consent management platform"
-msgstr "Cookie Consent CMP saglabā šo vērtību; pārbaudiet, vai tikai viena piekrišanas pārvaldības platforma"
+msgid "Viktor's Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform"
+msgstr "Viktor's Consent and Tracking Guard for WordPress saglabā šo vērtību; pārbaudiet, vai tikai viena piekrišanas pārvaldības platforma"
 
 msgid "controls the site."
 msgstr "kontrolē vietni."

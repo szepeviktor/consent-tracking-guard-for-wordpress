@@ -1,11 +1,11 @@
-.cookie-consent-cmp {
+.consent-tracking-guard-for-wordpress {
     position: fixed;
     left: calc(20px + env(safe-area-inset-left, 0px));
     bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     z-index: 980;
 }
 
-.cookie-consent-cmp .cmp-floating-settings {
+.consent-tracking-guard-for-wordpress .cmp-floating-settings {
     min-height: 44px;
     padding: 8px 12px;
     cursor: pointer;
@@ -52,7 +52,7 @@
 }
 
 @media (max-width: 700px) {
-    .cookie-consent-cmp {
+    .consent-tracking-guard-for-wordpress {
         left: calc(16px + env(safe-area-inset-left, 0px));
         bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     }

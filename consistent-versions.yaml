@@ -3,12 +3,12 @@ checks:
     normalize: version
     expected:
       reader: wordpress-plugin
-      file: cookie-consent-cmp.php
+      file: consent-tracking-guard-for-wordpress.php
       path: $.Version
     values:
       translation-template:
         reader: gettext
-        file: languages/cookie-consent-cmp.pot
+        file: languages/consent-tracking-guard-for-wordpress.pot
         path: $.project.version
       release-tag:
         reader: env
@@ -25,7 +25,7 @@ checks:
     values:
       plugin-header:
         reader: wordpress-plugin
-        file: cookie-consent-cmp.php
+        file: consent-tracking-guard-for-wordpress.php
         path: $['Requires PHP']
       github-actions:
         reader: yaml

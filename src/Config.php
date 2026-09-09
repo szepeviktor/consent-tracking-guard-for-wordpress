@@ -5,12 +5,12 @@
  *
  * @author Viktor Szépe <viktor@szepe.net>
  * @license GNU General Public License v2 or later
- * @link https://github.com/szepeviktor/cookie-consent-cmp-for-wordpress
+ * @link https://github.com/szepeviktor/consent-tracking-guard-for-wordpress
  */
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp;
+namespace SzepeViktor\ConsentTrackingGuard;
 
 use LogicException;
 

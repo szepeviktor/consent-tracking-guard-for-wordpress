@@ -26,7 +26,7 @@
             window.addEventListener('wp_consent_type_defined', function () {
                 window.bridgeFixture.windowConsentTypeEvents++;
             });
-            document.addEventListener('cookie_consent_cmp_sync_error', function (event) {
+            document.addEventListener('consent_tracking_guard_for_wordpress_sync_error', function (event) {
                 window.bridgeFixture.errors.push(event.detail.message);
             });
 

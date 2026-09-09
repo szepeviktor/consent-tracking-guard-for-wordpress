@@ -931,7 +931,7 @@
 
         label = getFloatingButtonLabel();
         container = document.createElement('div');
-        container.className = 'cookie-consent-cmp';
+        container.className = 'consent-tracking-guard-for-wordpress';
         button = document.createElement('button');
         button.id = 'cmp-floating-settings';
         button.className = 'cmp-floating-settings';

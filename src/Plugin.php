@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp;
+namespace SzepeViktor\ConsentTrackingGuard;
 
-use SzepeViktor\CookieConsentCmp\Frontend\Assets;
-use SzepeViktor\CookieConsentCmp\Frontend\ConsentApiBridge;
+use SzepeViktor\ConsentTrackingGuard\Frontend\Assets;
+use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 
 use function is_admin;
 use function load_plugin_textdomain;
@@ -35,7 +35,7 @@ final class Plugin
     public static function loadTextDomain(): void
     {
         load_plugin_textdomain(
-            'cookie-consent-cmp',
+            'consent-tracking-guard-for-wordpress',
             false,
             sprintf('%s/%s', dirname(Config::get('baseName')), 'languages')
         );

@@ -22,10 +22,10 @@
 
     function reportError(message) {
         if (window.console && typeof window.console.error === 'function') {
-            window.console.error('Cookie Consent CMP: ' + message);
+            window.console.error('Viktor\'s Consent and Tracking Guard for WordPress: ' + message);
         }
 
-        document.dispatchEvent(createEvent('cookie_consent_cmp_sync_error', {
+        document.dispatchEvent(createEvent('consent_tracking_guard_for_wordpress_sync_error', {
             message: message
         }));
     }

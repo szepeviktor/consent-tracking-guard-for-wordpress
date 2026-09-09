@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp;
+namespace SzepeViktor\ConsentTrackingGuard;
 
-use SzepeViktor\CookieConsentCmp\Frontend\ConsentApiBridge;
+use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 
 use function __;
 use function add_action;
@@ -26,12 +26,12 @@ use function submit_button;
 
 final class AdminPage
 {
-    public const MENU_SLUG = 'cookie-consent-cmp';
-    public const PAGE_SLUG = 'cookie-consent-cmp-page';
-    public const OPTION_GROUP = 'cookie_consent_cmp';
-    public const BANNER_SECTION = 'cookie-consent-cmp-banner';
-    public const DISPLAY_SECTION = 'cookie-consent-cmp-display';
-    public const INTEGRATIONS_SECTION = 'cookie-consent-cmp-integrations';
+    public const MENU_SLUG = 'consent-tracking-guard-for-wordpress';
+    public const PAGE_SLUG = 'consent-tracking-guard-for-wordpress-page';
+    public const OPTION_GROUP = 'consent_tracking_guard_for_wordpress';
+    public const BANNER_SECTION = 'consent-tracking-guard-for-wordpress-banner';
+    public const DISPLAY_SECTION = 'consent-tracking-guard-for-wordpress-display';
+    public const INTEGRATIONS_SECTION = 'consent-tracking-guard-for-wordpress-integrations';
 
     private Options $options;
 
@@ -52,8 +52,8 @@ final class AdminPage
     public function addSettingsPage(): void
     {
         add_options_page(
-            __('Cookie Consent CMP', 'cookie-consent-cmp'),
-            __('Cookie Consent CMP', 'cookie-consent-cmp'),
+            __('Viktor\'s Consent and Tracking Guard for WordPress', 'consent-tracking-guard-for-wordpress'),
+            __('Viktor\'s Consent and Tracking Guard for WordPress', 'consent-tracking-guard-for-wordpress'),
             'manage_options',
             self::MENU_SLUG,
             [$this, 'renderSettingsPage']
@@ -86,19 +86,19 @@ final class AdminPage
     {
         add_settings_section(
             self::BANNER_SECTION,
-            __('Banner copy', 'cookie-consent-cmp'),
+            __('Banner copy', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderBannerSection'],
             self::PAGE_SLUG
         );
         add_settings_section(
             self::DISPLAY_SECTION,
-            __('Display', 'cookie-consent-cmp'),
+            __('Display', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderDisplaySection'],
             self::PAGE_SLUG
         );
         add_settings_section(
             self::INTEGRATIONS_SECTION,
-            __('Integrations', 'cookie-consent-cmp'),
+            __('Integrations', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderIntegrationsSection'],
             self::PAGE_SLUG
         );
@@ -108,22 +108,22 @@ final class AdminPage
     {
         $this->addTextField(
             'notice_title',
-            __('Notice title', 'cookie-consent-cmp'),
+            __('Notice title', 'consent-tracking-guard-for-wordpress'),
             self::BANNER_SECTION
         );
         $this->addTextareaField(
             'notice_description',
-            __('Notice description', 'cookie-consent-cmp'),
+            __('Notice description', 'consent-tracking-guard-for-wordpress'),
             self::BANNER_SECTION
         );
         $this->addTextField(
             'modal_title',
-            __('Modal title', 'cookie-consent-cmp'),
+            __('Modal title', 'consent-tracking-guard-for-wordpress'),
             self::BANNER_SECTION
         );
         $this->addTextareaField(
             'modal_description',
-            __('Modal description', 'cookie-consent-cmp'),
+            __('Modal description', 'consent-tracking-guard-for-wordpress'),
             self::BANNER_SECTION
         );
     }
@@ -131,21 +131,21 @@ final class AdminPage
     private function addDisplayFields(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-modal-style',
-            __('Modal style', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-modal-style',
+            __('Modal style', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderModalStyleField'],
             self::PAGE_SLUG,
             self::DISPLAY_SECTION
         );
         add_settings_field(
-            'cookie-consent-cmp-enable-floating',
-            __('Floating privacy button', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-floating',
+            __('Floating privacy button', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::DISPLAY_SECTION,
             [
                 'name' => 'enable_floating',
-                'label' => __('Show a floating button that reopens the privacy settings.', 'cookie-consent-cmp'),
+                'label' => __('Show a floating button that reopens the privacy settings.', 'consent-tracking-guard-for-wordpress'),
             ]
         );
     }
@@ -154,32 +154,32 @@ final class AdminPage
     {
         $this->addTextField(
             'gtm_id',
-            __('Google Tag Manager ID', 'cookie-consent-cmp'),
+            __('Google Tag Manager ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'clarity_project_id',
-            __('Microsoft Clarity project ID', 'cookie-consent-cmp'),
+            __('Microsoft Clarity project ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'hotjar_id',
-            __('Hotjar site ID', 'cookie-consent-cmp'),
+            __('Hotjar site ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addNumberField(
             'hotjar_version',
-            __('Hotjar script version', 'cookie-consent-cmp'),
+            __('Hotjar script version', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'meta_pixel_id',
-            __('Meta Pixel ID', 'cookie-consent-cmp'),
+            __('Meta Pixel ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'linkedin_partner_id',
-            __('LinkedIn partner ID', 'cookie-consent-cmp'),
+            __('LinkedIn partner ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
         $this->addPolylangField();
@@ -193,8 +193,8 @@ final class AdminPage
     private function addPolylangField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-polylang',
-            __('Polylang disclosure', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-polylang',
+            __('Polylang disclosure', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -202,7 +202,7 @@ final class AdminPage
                 'name' => 'enable_polylang',
                 'label' => __(
                     'Show the Polylang language cookie for multilingual sites and WooCommerce shops.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -211,8 +211,8 @@ final class AdminPage
     private function addWooCommerceField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-woocommerce',
-            __('WooCommerce disclosure', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-woocommerce',
+            __('WooCommerce disclosure', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -220,7 +220,7 @@ final class AdminPage
                 'name' => 'enable_woocommerce',
                 'label' => __(
                     'Show WooCommerce cart, checkout, session, and source attribution cookies.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -229,16 +229,16 @@ final class AdminPage
     private function addKlaviyoField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-klaviyo',
-            __('Klaviyo disclosure', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-klaviyo',
+            __('Klaviyo disclosure', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
             [
                 'name' => 'enable_klaviyo',
                 'label' => __(
-                    'Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside CMP control.',
-                    'cookie-consent-cmp'
+                    'Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside this plugin’s control.',
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -247,8 +247,8 @@ final class AdminPage
     private function addWoodMartField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-woodmart',
-            __('WoodMart disclosure', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-woodmart',
+            __('WoodMart disclosure', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -256,7 +256,7 @@ final class AdminPage
                 'name' => 'enable_woodmart',
                 'label' => __(
                     'Show WoodMart cookies for wishlist, compare, product history, popups, and shop preferences.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -265,8 +265,8 @@ final class AdminPage
     private function addWordfenceField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-wordfence',
-            __('Wordfence disclosure', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-wordfence',
+            __('Wordfence disclosure', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -274,7 +274,7 @@ final class AdminPage
                 'name' => 'enable_wordfence',
                 'label' => __(
                     'Show Wordfence security cookies for the firewall, access controls, login alerts, and linking.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -283,8 +283,8 @@ final class AdminPage
     private function addYouTubeField(): void
     {
         add_settings_field(
-            'cookie-consent-cmp-enable-youtube',
-            __('YouTube blocking', 'cookie-consent-cmp'),
+            'consent-tracking-guard-for-wordpress-enable-youtube',
+            __('YouTube blocking', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -292,7 +292,7 @@ final class AdminPage
                 'name' => 'enable_youtube',
                 'label' => __(
                     'Block and replace YouTube embeds until marketing consent is granted.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
             ]
         );
@@ -308,12 +308,19 @@ final class AdminPage
 
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('Cookie Consent CMP', 'cookie-consent-cmp'); ?></h1>
+            <h1>
+                <?php
+                esc_html_e(
+                    'Viktor\'s Consent and Tracking Guard for WordPress',
+                    'consent-tracking-guard-for-wordpress'
+                );
+                ?>
+            </h1>
             <p>
                 <?php
                 esc_html_e(
                     'Configure the consent texts and vendor IDs used by the frontend Klaro banner.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 );
                 ?>
             </p>
@@ -340,12 +347,12 @@ final class AdminPage
         if (! $this->consentApiBridge->is_api_available()) {
             return sprintf(
                 '%s %s %s',
-                __('WP Consent API was not detected.', 'cookie-consent-cmp'),
+                __('WP Consent API was not detected.', 'consent-tracking-guard-for-wordpress'),
                 __(
-                    'The CMP will still render, but the WordPress compatibility bridge will stay inactive',
-                    'cookie-consent-cmp'
+                    'The consent controls will still render, but the WordPress compatibility bridge will stay inactive',
+                    'consent-tracking-guard-for-wordpress'
                 ),
-                __('until the API plugin is available.', 'cookie-consent-cmp')
+                __('until the API plugin is available.', 'consent-tracking-guard-for-wordpress')
             );
         }
 
@@ -355,12 +362,15 @@ final class AdminPage
 
         return sprintf(
             '%s %s %s',
-            __('Another plugin already provides the WP Consent API consent type.', 'cookie-consent-cmp'),
             __(
-                'Cookie Consent CMP preserves that value; verify that only one consent management platform',
-                'cookie-consent-cmp'
+                'Another plugin already provides the WP Consent API consent type.',
+                'consent-tracking-guard-for-wordpress'
             ),
-            __('controls the site.', 'cookie-consent-cmp')
+            __(
+                'Viktor\'s Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform',
+                'consent-tracking-guard-for-wordpress'
+            ),
+            __('controls the site.', 'consent-tracking-guard-for-wordpress')
         );
     }
 
@@ -370,23 +380,23 @@ final class AdminPage
             '%s %s',
             esc_html__(
                 'Set the text displayed in the consent notice and preferences dialog.',
-                'cookie-consent-cmp'
+                'consent-tracking-guard-for-wordpress'
             ),
             esc_html__(
                 'Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL.',
-                'cookie-consent-cmp'
+                'consent-tracking-guard-for-wordpress'
             )
         );
     }
 
     public function renderIntegrationsSection(): void
     {
-        esc_html_e('Enter only the services that this site uses.', 'cookie-consent-cmp');
+        esc_html_e('Enter only the services that this site uses.', 'consent-tracking-guard-for-wordpress');
     }
 
     public function renderDisplaySection(): void
     {
-        esc_html_e('Control how visitors can access their privacy settings.', 'cookie-consent-cmp');
+        esc_html_e('Control how visitors can access their privacy settings.', 'consent-tracking-guard-for-wordpress');
     }
 
     /**
@@ -444,12 +454,12 @@ final class AdminPage
     {
         $options = $this->options->all();
         $styles = [
-            Options::MODAL_STYLE_KLARO_DEFAULT => __('Klaro’s default', 'cookie-consent-cmp'),
-            Options::MODAL_STYLE_VIKTOR_DEFAULT => __('Viktor’s default', 'cookie-consent-cmp'),
-            Options::MODAL_STYLE_LIGHT => __('Light', 'cookie-consent-cmp'),
-            Options::MODAL_STYLE_DARK => __('Dark', 'cookie-consent-cmp'),
-            Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => __('Twenty Twenty-Five', 'cookie-consent-cmp'),
-            Options::MODAL_STYLE_COOKIENO => __('CookieNo', 'cookie-consent-cmp'),
+            Options::MODAL_STYLE_KLARO_DEFAULT => __('Klaro’s default', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_VIKTOR_DEFAULT => __('Viktor’s default', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_LIGHT => __('Light', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_DARK => __('Dark', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => __('Twenty Twenty-Five', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_COOKIENO => __('CookieNo', 'consent-tracking-guard-for-wordpress'),
         ];
 
         printf(
@@ -473,10 +483,10 @@ final class AdminPage
             esc_html(
                 sprintf(
                     '%s %s',
-                    __('Klaro’s default applies no custom modal theme;', 'cookie-consent-cmp'),
+                    __('Klaro’s default applies no custom modal theme;', 'consent-tracking-guard-for-wordpress'),
                     __(
                         'the component stylesheet only positions and styles plugin controls.',
-                        'cookie-consent-cmp'
+                        'consent-tracking-guard-for-wordpress'
                     )
                 )
             )
@@ -528,6 +538,6 @@ final class AdminPage
 
     private function fieldId(string $name): string
     {
-        return sprintf('cookie-consent-cmp-%s', str_replace('_', '-', $name));
+        return sprintf('consent-tracking-guard-for-wordpress-%s', str_replace('_', '-', $name));
     }
 }

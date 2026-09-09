@@ -1,5 +1,5 @@
 {
-  "name": "cookie-consent-cmp-for-wordpress-tests",
+  "name": "consent-tracking-guard-for-wordpress-tests",
   "private": true,
   "scripts": {
     "test:playwright": "playwright test"

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SzepeViktor\CookieConsentCmp;
+namespace SzepeViktor\ConsentTrackingGuard;
 
 final class Options
 {
-    public const OPTION_NAME = 'cookie_consent_cmp';
+    public const OPTION_NAME = 'consent_tracking_guard_for_wordpress';
     public const MODAL_STYLE_KLARO_DEFAULT = 'klaro-default';
     public const MODAL_STYLE_VIKTOR_DEFAULT = 'viktor-default';
     public const MODAL_STYLE_LIGHT = 'light';
@@ -43,19 +43,19 @@ final class Options
     public function defaults(): array
     {
         return [
-            'notice_title' => __('Privacy settings', 'cookie-consent-cmp'),
+            'notice_title' => __('Privacy settings', 'consent-tracking-guard-for-wordpress'),
             'notice_description' => sprintf(
                 '%s %s',
                 __(
                     'We use cookies for required functionality, statistics, and marketing.',
-                    'cookie-consent-cmp'
+                    'consent-tracking-guard-for-wordpress'
                 ),
-                __('You can update your choices at any time.', 'cookie-consent-cmp')
+                __('You can update your choices at any time.', 'consent-tracking-guard-for-wordpress')
             ),
-            'modal_title' => __('Privacy preferences', 'cookie-consent-cmp'),
+            'modal_title' => __('Privacy preferences', 'consent-tracking-guard-for-wordpress'),
             'modal_description' => __(
                 'Choose which categories of services may load on this site.',
-                'cookie-consent-cmp'
+                'consent-tracking-guard-for-wordpress'
             ),
             'modal_style' => self::MODAL_STYLE_KLARO_DEFAULT,
             'gtm_id' => '',

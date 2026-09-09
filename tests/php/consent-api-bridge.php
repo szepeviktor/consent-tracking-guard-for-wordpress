@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use SzepeViktor\CookieConsentCmp\Frontend\ConsentApiBridge;
+use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 
 $GLOBALS['consent_api_test_filters'] = [];
 $GLOBALS['consent_api_test_added_cookies'] = [];
@@ -60,7 +60,7 @@ function assert_same($expected, $actual, string $message): void
     }
 }
 
-$bridge = new ConsentApiBridge('cookie-consent-cmp/cookie-consent-cmp.php');
+$bridge = new ConsentApiBridge('consent-tracking-guard-for-wordpress/consent-tracking-guard-for-wordpress.php');
 $bridge->register();
 
 assert_same(

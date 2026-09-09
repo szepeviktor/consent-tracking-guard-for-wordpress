@@ -16,7 +16,7 @@ concurrency:
     cancel-in-progress: true
 
 env:
-    PLUGIN_SLUG: "cookie-consent-cmp"
+    PLUGIN_SLUG: "consent-tracking-guard-for-wordpress"
 
 jobs:
     version_check:
@@ -91,7 +91,7 @@ jobs:
                     --no-interaction \
                     --prefer-dist \
                     --optimize-autoloader
-                zip --recurse-paths "${ZIP_FILE}" cookie-consent-cmp.php assets/ languages/ src/ vendor/
+                zip --recurse-paths "${ZIP_FILE}" consent-tracking-guard-for-wordpress.php assets/ languages/ src/ vendor/
         -
             name: "Upload ZIP to release"
             env:
