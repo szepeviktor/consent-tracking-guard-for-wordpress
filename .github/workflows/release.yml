@@ -91,7 +91,9 @@ jobs:
                     --no-interaction \
                     --prefer-dist \
                     --optimize-autoloader
-                zip --recurse-paths "${ZIP_FILE}" consent-tracking-guard-for-wordpress.php wpml-config.xml assets/ languages/ src/ vendor/
+                mkdir "${PLUGIN_SLUG}"
+                cp --recursive consent-tracking-guard-for-wordpress.php wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
+                zip --recurse-paths "${ZIP_FILE}" "${PLUGIN_SLUG}"
         -
             name: "Upload ZIP to release"
             env:
