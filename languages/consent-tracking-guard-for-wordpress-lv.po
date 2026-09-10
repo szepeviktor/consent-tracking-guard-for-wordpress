@@ -29,6 +29,9 @@ msgstr "Viktor Szépe"
 msgid "https://github.com/szepeviktor"
 msgstr "https://github.com/szepeviktor"
 
+msgid "Consent & Tracking"
+msgstr "Consent & Tracking"
+
 msgid "Banner copy"
 msgstr "Banera teksts"
 
@@ -148,6 +151,9 @@ msgstr "Labi"
 
 msgid "Save"
 msgstr "Saglabāt"
+
+msgid "Learn more"
+msgstr "Uzzināt vairāk"
 
 msgid "Accept all"
 msgstr "Pieņemt visu"

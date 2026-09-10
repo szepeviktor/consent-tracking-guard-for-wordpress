@@ -53,7 +53,7 @@ final class AdminPage
     {
         add_options_page(
             __('Viktor\'s Consent and Tracking Guard for WordPress', 'consent-tracking-guard-for-wordpress'),
-            __('Viktor\'s Consent and Tracking Guard for WordPress', 'consent-tracking-guard-for-wordpress'),
+            __('Consent & Tracking', 'consent-tracking-guard-for-wordpress'),
             'manage_options',
             self::MENU_SLUG,
             [$this, 'renderSettingsPage']

@@ -224,6 +224,7 @@ final class Assets
             'consentNotice' => [
                 'title' => (string) $options['notice_title'],
                 'description' => $this->replacePrivacyPolicyShortcode((string) $options['notice_description']),
+                'learnMore' => __('Learn more', 'consent-tracking-guard-for-wordpress'),
             ],
             'consentModal' => [
                 'title' => (string) $options['modal_title'],
