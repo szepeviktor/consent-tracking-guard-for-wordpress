@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<wpml-config>
+    <admin-texts>
+        <key name="consent_tracking_guard_for_wordpress">
+            <key name="notice_title" />
+            <key name="notice_description" />
+            <key name="modal_title" />
+            <key name="modal_description" />
+        </key>
+    </admin-texts>
+</wpml-config>
