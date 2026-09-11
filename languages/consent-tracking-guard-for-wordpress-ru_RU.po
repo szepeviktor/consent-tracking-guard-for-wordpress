@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.1.1\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -367,3 +367,30 @@ msgstr "Предпочтения приватности"
 
 msgid "Choose which categories of services may load on this site."
 msgstr "Выберите, какие категории сервисов могут загружаться на этом сайте."
+
+msgid "There were changes since your last visit, please renew your consent."
+msgstr "Со времени вашего последнего посещения произошли изменения, обновите свое согласие."
+
+msgid "Testing mode!"
+msgstr "Режим тестирования!"
+
+msgid "Always"
+msgstr "Всегда"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "Do you want to load external content supplied by {title}?"
+msgstr "Хотите загрузить внешний контент, предоставленный {title}?"
+
+msgid "To agree to this service permanently, you must accept {title} in the {link}."
+msgstr "Чтобы постоянно согласиться на этот сервис, необходимо принять {title} в {link}."
+
+msgid "Consent Manager"
+msgstr "Менеджер согласия"
+
+msgid "Accept selected"
+msgstr "Принять выбранные"
+
+msgid "Realized with Klaro!"
+msgstr "Работает на Klaro!"

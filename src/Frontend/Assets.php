@@ -224,11 +224,29 @@ final class Assets
             'consentNotice' => [
                 'title' => (string) $options['notice_title'],
                 'description' => $this->replacePrivacyPolicyShortcode((string) $options['notice_description']),
+                'changeDescription' => __(
+                    'There were changes since your last visit, please renew your consent.',
+                    'consent-tracking-guard-for-wordpress'
+                ),
                 'learnMore' => __('Learn more', 'consent-tracking-guard-for-wordpress'),
+                'testing' => __('Testing mode!', 'consent-tracking-guard-for-wordpress'),
             ],
             'consentModal' => [
                 'title' => (string) $options['modal_title'],
                 'description' => $this->replacePrivacyPolicyShortcode((string) $options['modal_description']),
+            ],
+            'contextualConsent' => [
+                'acceptAlways' => __('Always', 'consent-tracking-guard-for-wordpress'),
+                'acceptOnce' => __('Yes', 'consent-tracking-guard-for-wordpress'),
+                'description' => __(
+                    'Do you want to load external content supplied by {title}?',
+                    'consent-tracking-guard-for-wordpress'
+                ),
+                'descriptionEmptyStore' => __(
+                    'To agree to this service permanently, you must accept {title} in the {link}.',
+                    'consent-tracking-guard-for-wordpress'
+                ),
+                'modalLinkText' => __('Consent Manager', 'consent-tracking-guard-for-wordpress'),
             ],
             'purposes' => $this->buildPurposeTranslations(),
             'purposeItem' => [
@@ -238,9 +256,11 @@ final class Assets
             'ok' => __('OK', 'consent-tracking-guard-for-wordpress'),
             'save' => __('Save', 'consent-tracking-guard-for-wordpress'),
             'acceptAll' => __('Accept all', 'consent-tracking-guard-for-wordpress'),
+            'acceptSelected' => __('Accept selected', 'consent-tracking-guard-for-wordpress'),
             'declineAll' => __('Decline all', 'consent-tracking-guard-for-wordpress'),
             'decline' => __('Decline', 'consent-tracking-guard-for-wordpress'),
             'close' => __('Close', 'consent-tracking-guard-for-wordpress'),
+            'poweredBy' => __('Realized with Klaro!', 'consent-tracking-guard-for-wordpress'),
             'service' => $this->buildServiceTranslations(),
         ];
     }

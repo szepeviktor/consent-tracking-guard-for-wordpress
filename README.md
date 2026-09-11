@@ -1,6 +1,7 @@
 # Viktor's Consent and Tracking Guard for WordPress
 
-Controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync. Powered by Klaro.
+Controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync.
+Powered by [Klaro](https://github.com/kiprotect/klaro).
 
 ## Installation
 
