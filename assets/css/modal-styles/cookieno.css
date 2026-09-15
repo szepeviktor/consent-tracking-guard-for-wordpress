@@ -39,7 +39,7 @@
 .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body {
     box-sizing: border-box !important;
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
     align-items: center !important;
     gap: 16px 24px !important;
     width: min(100%, 1180px) !important;
@@ -48,22 +48,55 @@
     padding: 18px 24px !important;
 }
 
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > * {
+    min-width: 0 !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > h2:first-child {
+    display: block !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > p {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
 .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body p {
     margin: 0;
     line-height: 1.55;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok {
-    display: flex;
+    display: flex !important;
+    flex: 0 0 auto;
+    grid-column: 2 !important;
+    grid-row: 1 / span 2 !important;
+    justify-self: end !important;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
+    min-width: max-content;
     margin: 0;
 }
 
 .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons {
-    display: flex;
+    display: flex !important;
+    flex: 0 0 auto;
     gap: 10px;
+    min-width: max-content;
     margin: 0;
 }
 
@@ -75,6 +108,7 @@
 
 .klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn,
 .klaro .cookie-modal button.cm-btn {
+    flex-shrink: 0;
     min-height: 44px;
     padding: 11px 18px;
     border: 2px solid #ff8a00;
@@ -83,6 +117,7 @@
     color: #ff8a00;
     font-weight: 700;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 .klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn-success,
@@ -137,24 +172,43 @@
     margin: 0 !important;
 }
 
-.klaro-consent-container .klaro-title {
+.klaro-consent-container .klaro-title,
+.klaro-consent-container .klaro-notice-group > h2:first-child {
     display: none !important;
 }
 
 .klaro-consent-container .klaro-notice-group {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    gap: 0 !important;
+    gap: 16px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+.klaro-consent-container .klaro-notice-group > * {
+    min-width: 0 !important;
 }
 
 .klaro-consent-container .klaro-notice-des {
     flex: 1 1 auto !important;
+    grid-column: 1 !important;
+    min-width: 0 !important;
     max-height: none !important;
     overflow: visible !important;
     color: #22180f !important;
     font-size: 14px !important;
     line-height: 24px !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro-consent-container .klaro-notice-des > p {
+    display: block !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
 }
 
 .klaro-consent-container .klaro-notice-des p {
@@ -170,11 +224,15 @@
 
 .klaro-consent-container .klaro-notice-btn-wrapper {
     display: flex !important;
+    flex: 0 0 auto !important;
+    grid-column: 2 !important;
+    justify-self: end !important;
     flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
     width: auto !important;
+    min-width: max-content !important;
     margin: 0 0 0 15px !important;
     padding: 0 !important;
 }
@@ -218,19 +276,47 @@
 }
 
 @media (max-width: 900px) {
+    .klaro-consent-container .klaro-notice-group {
+        grid-template-columns: 1fr !important;
+    }
+
+    .klaro-consent-container .klaro-notice-des,
+    .klaro-consent-container .klaro-notice-btn-wrapper {
+        grid-column: 1 !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper {
+        justify-self: stretch !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    .klaro-consent-container .klaro-btn.klaro-btn {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+    }
+}
+
+@media (max-width: 900px) {
     .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body {
         grid-template-columns: 1fr !important;
     }
 
     .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok,
     .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons {
+        grid-column: 1 !important;
+        grid-row: auto !important;
         width: 100% !important;
         justify-content: stretch !important;
+        min-width: 0 !important;
     }
 
     .klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn {
         flex: 1 1 0 !important;
         min-width: 0 !important;
+        white-space: normal !important;
     }
 }
 
