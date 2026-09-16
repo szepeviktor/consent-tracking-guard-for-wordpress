@@ -150,6 +150,10 @@ final class Assets
             $attributes['data-linkedin-partner-id'] = (string) $options['linkedin_partner_id'];
         }
 
+        if ((bool) $options['enable_klaviyo']) {
+            $attributes['data-klaviyo'] = 'true';
+        }
+
         if ((bool) $options['enable_youtube']) {
             $attributes['data-youtube-service'] = 'youtube';
         }
@@ -817,18 +821,26 @@ final class Assets
         return [
             'name' => 'klaviyo',
             'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
-            'purposes' => ['functional'],
-            'default' => true,
-            'required' => true,
+            'purposes' => ['marketing'],
+            'default' => false,
+            'required' => false,
             'optOut' => false,
             'onlyOnce' => true,
-            'cookies' => ['__kla_id'],
+            'cookies' => ['__kla_id', '__kla_off'],
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     '__kla_id',
                     __('2 years', 'consent-tracking-guard-for-wordpress'),
                     __(
                         'Stores Klaviyo visitor identity for email marketing, attribution, and WooCommerce tracking.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
+                ),
+                $this->buildCookieInfo(
+                    '__kla_off',
+                    __('Session', 'consent-tracking-guard-for-wordpress'),
+                    __(
+                        'Disables Klaviyo tracking until marketing consent is granted.',
                         'consent-tracking-guard-for-wordpress'
                     )
                 ),

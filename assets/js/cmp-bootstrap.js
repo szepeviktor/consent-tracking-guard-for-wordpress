@@ -7,6 +7,7 @@
         clarity: 'microsoft-clarity',
         metaPixel: 'meta-pixel',
         linkedinInsightTag: 'linkedin-insight-tag',
+        klaviyo: 'klaviyo',
         hotjar: 'hotjar',
         youtube: 'youtube'
     };
@@ -55,6 +56,33 @@
         return true;
     }
 
+    function setCookie(name, value, maxAge) {
+        var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; path=/; SameSite=Lax';
+
+        if (typeof maxAge === 'number') {
+            cookie += '; max-age=' + String(maxAge);
+        }
+
+        document.cookie = cookie;
+    }
+
+    function deleteCookie(name) {
+        var hostname = window.location.hostname;
+        var parts = hostname ? hostname.split('.') : [];
+        var domains = [null];
+        var index;
+
+        for (index = 0; index < parts.length - 1; index++) {
+            domains.push('.' + parts.slice(index).join('.'));
+        }
+
+        domains.forEach(function (domain) {
+            document.cookie = encodeURIComponent(name)
+                + '=; path=/; max-age=0; SameSite=Lax'
+                + (domain ? '; domain=' + domain : '');
+        });
+    }
+
     function createVendorRegistry() {
         var vendors = Object.create(null);
 
@@ -84,9 +112,15 @@
 
     function createConsentAwareVendor(serviceName, hooks) {
         var hasConsent = false;
+        var hasSynced = false;
 
         return {
             serviceName: serviceName,
+            init: function () {
+                if (typeof hooks.init === 'function') {
+                    hooks.init();
+                }
+            },
             syncManagerState: function (manager) {
                 if (typeof hooks.syncManagerState === 'function') {
                     hooks.syncManagerState(manager);
@@ -98,13 +132,16 @@
                         hooks.grant();
                         hasConsent = true;
                     }
+                    hasSynced = true;
                     return;
                 }
 
-                if (hasConsent) {
+                if (hasConsent || (!hasSynced && hooks.revokeOnInit)) {
                     hooks.revoke();
                     hasConsent = false;
                 }
+
+                hasSynced = true;
             }
         };
     }
@@ -548,6 +585,126 @@
         });
     }
 
+    function createKlaviyoVendor(options) {
+        var serviceName = options.serviceName || SERVICE_NAMES.klaviyo;
+
+        function withTracker(callback) {
+            window._learnq = window._learnq || [];
+            window._learnq.push(function (tracker) {
+                if (tracker) {
+                    callback(tracker);
+                }
+            });
+        }
+
+        function callIfAvailable(target, methodName) {
+            if (target && typeof target[methodName] === 'function') {
+                target[methodName]();
+            }
+        }
+
+        function removeStorageItem(storage, key) {
+            if (!storage || typeof storage.removeItem !== 'function') {
+                return;
+            }
+
+            try {
+                storage.removeItem(key);
+            } catch (error) {
+            }
+        }
+
+        function removeKlaviyoStorageItem(tracker, storageName, key) {
+            var storage = tracker ? tracker[storageName] : null;
+
+            if (storage && typeof storage.del === 'function') {
+                storage.del(key);
+                return;
+            }
+
+            removeStorageItem(
+                storageName === 'session_storage' ? window.sessionStorage : window.localStorage,
+                key
+            );
+        }
+
+        function getCompanyId(tracker) {
+            var scripts;
+            var index;
+            var match;
+
+            if (window.__klKey) {
+                return window.__klKey;
+            }
+
+            if (tracker && tracker.account_id) {
+                return tracker.account_id;
+            }
+
+            scripts = document.getElementsByTagName('script');
+
+            for (index = 0; index < scripts.length; index++) {
+                match = /\/\/static\.klaviyo\.com\/onsite\/js\/([^/?#]+)\/klaviyo\.js/.exec(
+                    scripts[index].src || ''
+                );
+
+                if (match) {
+                    return decodeURIComponent(match[1]);
+                }
+            }
+
+            return null;
+        }
+
+        function restartTracker(tracker) {
+            var companyId = getCompanyId(tracker);
+
+            tracker.is_tracking_on = true;
+
+            if (companyId && typeof tracker.account === 'function') {
+                tracker.account(companyId);
+            }
+
+            callIfAvailable(tracker, '_checkOrSetClientId');
+            callIfAvailable(tracker, 'trackActivity');
+            callIfAvailable(tracker, 'experimentEnsureServerSideKlaId');
+            callIfAvailable(tracker, 'initializeServerSideCookies');
+            callIfAvailable(tracker, 'initializeClientSession');
+        }
+
+        function stopTracker(tracker) {
+            tracker.is_tracking_on = false;
+            tracker.account_id = null;
+
+            if (typeof tracker.clearIdentity === 'function') {
+                tracker.clearIdentity();
+            }
+
+            removeKlaviyoStorageItem(tracker, 'local_storage', '__kl_key');
+            removeKlaviyoStorageItem(tracker, 'local_storage', '$referrer');
+            removeKlaviyoStorageItem(tracker, 'local_storage', '$last_referrer');
+            removeKlaviyoStorageItem(tracker, 'local_storage', '__kla_viewed');
+            removeKlaviyoStorageItem(tracker, 'local_storage', '__kla_viewed_reviewed_items');
+            removeKlaviyoStorageItem(tracker, 'session_storage', '_kx');
+        }
+
+        return createConsentAwareVendor(serviceName, {
+            revokeOnInit: true,
+            init: function () {
+                setCookie('__kla_off', 'true');
+            },
+            grant: function () {
+                setCookie('__kla_off', 'false');
+                withTracker(restartTracker);
+            },
+            revoke: function () {
+                setCookie('__kla_off', 'true');
+                deleteCookie('__kla_id');
+                withTracker(stopTracker);
+            }
+        });
+    }
+
     function createYouTubeVendor(options) {
         var serviceName = options.serviceName || SERVICE_NAMES.youtube;
         var consentGranted = false;
@@ -857,6 +1014,7 @@
         var clarityProjectId = script ? script.getAttribute('data-clarity-project-id') : null;
         var metaPixelId = script ? script.getAttribute('data-meta-pixel-id') : null;
         var linkedinPartnerId = script ? script.getAttribute('data-linkedin-partner-id') : null;
+        var klaviyoEnabled = script ? script.getAttribute('data-klaviyo') : null;
         var hotjarId = script ? script.getAttribute('data-hotjar-id') : null;
         var hotjarVersion = script ? script.getAttribute('data-hotjar-version') : null;
         var youtubeServiceName = script ? script.getAttribute('data-youtube-service') : null;
@@ -887,6 +1045,12 @@
             registry.register(createLinkedInInsightTagVendor({
                 serviceName: SERVICE_NAMES.linkedinInsightTag,
                 partnerId: linkedinPartnerId
+            }));
+        }
+
+        if (klaviyoEnabled !== null) {
+            registry.register(createKlaviyoVendor({
+                serviceName: SERVICE_NAMES.klaviyo
             }));
         }
 
