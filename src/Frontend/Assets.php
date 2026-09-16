@@ -607,7 +607,7 @@ final class Assets
         return [
             'name' => 'polylang',
             'title' => __('Polylang', 'consent-tracking-guard-for-wordpress'),
-            'purposes' => ['preferences'],
+            'purposes' => ['functional'],
             'default' => true,
             'required' => true,
             'optOut' => false,
@@ -817,7 +817,7 @@ final class Assets
         return [
             'name' => 'klaviyo',
             'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
-            'purposes' => ['marketing'],
+            'purposes' => ['functional'],
             'default' => true,
             'required' => true,
             'optOut' => false,
