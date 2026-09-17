@@ -6,6 +6,7 @@
         gtm: 'google-tag-manager',
         clarity: 'microsoft-clarity',
         metaPixel: 'meta-pixel',
+        facebookForWooCommerce: 'facebook-for-woocommerce',
         linkedinInsightTag: 'linkedin-insight-tag',
         klaviyo: 'klaviyo',
         hotjar: 'hotjar',
@@ -393,6 +394,48 @@
                 if (hasInitialized && typeof window.fbq === 'function') {
                     window.fbq('consent', 'revoke');
                 }
+            }
+        });
+    }
+
+    function createFacebookForWooCommerceVendor(options) {
+        var serviceName = options.serviceName || SERVICE_NAMES.facebookForWooCommerce;
+        var maxAttempts = 40;
+        var delayMs = 250;
+
+        function withSignals(callback, attempt) {
+            if (window.fbwcsignal) {
+                callback(window.fbwcsignal);
+                return;
+            }
+
+            if (attempt >= maxAttempts) {
+                return;
+            }
+
+            window.setTimeout(function () {
+                withSignals(callback, attempt + 1);
+            }, delayMs);
+        }
+
+        function callSignal(methodName) {
+            withSignals(function (signals) {
+                if (typeof signals[methodName] === 'function') {
+                    signals[methodName]();
+                }
+            }, 0);
+        }
+
+        return createConsentAwareVendor(serviceName, {
+            revokeOnInit: true,
+            init: function () {
+                callSignal('hold');
+            },
+            grant: function () {
+                callSignal('release');
+            },
+            revoke: function () {
+                callSignal('hold');
             }
         });
     }
@@ -1014,6 +1057,9 @@
         var clarityProjectId = script ? script.getAttribute('data-clarity-project-id') : null;
         var metaPixelId = script ? script.getAttribute('data-meta-pixel-id') : null;
         var linkedinPartnerId = script ? script.getAttribute('data-linkedin-partner-id') : null;
+        var facebookForWooCommerceServiceName = script
+            ? script.getAttribute('data-facebook-for-woocommerce-service')
+            : null;
         var klaviyoEnabled = script ? script.getAttribute('data-klaviyo') : null;
         var hotjarId = script ? script.getAttribute('data-hotjar-id') : null;
         var hotjarVersion = script ? script.getAttribute('data-hotjar-version') : null;
@@ -1045,6 +1091,12 @@
             registry.register(createLinkedInInsightTagVendor({
                 serviceName: SERVICE_NAMES.linkedinInsightTag,
                 partnerId: linkedinPartnerId
+            }));
+        }
+
+        if (facebookForWooCommerceServiceName !== null) {
+            registry.register(createFacebookForWooCommerceVendor({
+                serviceName: facebookForWooCommerceServiceName || SERVICE_NAMES.facebookForWooCommerce
             }));
         }
 

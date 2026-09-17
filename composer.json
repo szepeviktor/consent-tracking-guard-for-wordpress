@@ -28,7 +28,10 @@
         "make-pot": "wp i18n make-pot . languages/consent-tracking-guard-for-wordpress.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\"}'",
         "phpcs": "php8.5 vendor/bin/phpcs -s --standard=PSR12NeutronRuleset --exclude=PEAR.Functions.FunctionCallSignature src/ consent-tracking-guard-for-wordpress.php",
         "phpstan": "phpstan analyze --no-progress --error-format=raw",
-        "test:consent-api": "php tests/php/consent-api-bridge.php"
+        "test:consent-api": [
+            "php8.5 tests/php/consent-api-bridge.php",
+            "php8.5 tests/php/facebook-for-woocommerce-bridge.php"
+        ]
     },
     "config": {
         "allow-plugins": {

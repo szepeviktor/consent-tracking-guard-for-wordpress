@@ -16,7 +16,7 @@ concurrency:
     cancel-in-progress: true
 
 env:
-    PLUGIN_SLUG: "consent-tracking-guard-for-wordpress"
+    PLUGIN_SLUG: "viktors-consent-tracking-guard-for-wordpress"
 
 jobs:
     version_check:

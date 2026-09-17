@@ -142,7 +142,7 @@ final class Assets
             $attributes['data-hotjar-version'] = (string) $options['hotjar_version'];
         }
 
-        if ($options['meta_pixel_id'] !== '') {
+        if ($options['meta_pixel_id'] !== '' && ! (bool) $options['enable_facebook_for_woocommerce']) {
             $attributes['data-meta-pixel-id'] = (string) $options['meta_pixel_id'];
         }
 
@@ -152,6 +152,10 @@ final class Assets
 
         if ((bool) $options['enable_klaviyo']) {
             $attributes['data-klaviyo'] = 'true';
+        }
+
+        if ((bool) $options['enable_facebook_for_woocommerce']) {
+            $attributes['data-facebook-for-woocommerce-service'] = 'facebook-for-woocommerce';
         }
 
         if ((bool) $options['enable_youtube']) {
@@ -340,7 +344,7 @@ final class Assets
             $services[] = $this->buildHotjarService($lang);
         }
 
-        if ($options['meta_pixel_id'] !== '') {
+        if ($options['meta_pixel_id'] !== '' && ! (bool) $options['enable_facebook_for_woocommerce']) {
             $services[] = $this->buildMetaPixelService($lang);
         }
 
@@ -359,6 +363,10 @@ final class Assets
         if ((bool) $options['enable_woocommerce']) {
             $services[] = $this->buildWooCommerceFunctionalService($lang);
             $services[] = $this->buildWooCommerceAttributionService($lang);
+        }
+
+        if ((bool) $options['enable_facebook_for_woocommerce']) {
+            $services[] = $this->buildFacebookForWooCommerceService($lang);
         }
 
         if ((bool) $options['enable_klaviyo']) {
@@ -557,15 +565,65 @@ final class Assets
                 $this->buildCookieInfo(
                     '_fbp',
                     __('90 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Identifies browsers for Meta advertising measurement.', 'consent-tracking-guard-for-wordpress')
+                    __(
+                        'Identifies browsers for Meta advertising measurement.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
                 ),
                 $this->buildCookieInfo(
                     '_fbc',
                     __('90 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the Meta advertising click identifier.', 'consent-tracking-guard-for-wordpress')
+                    __(
+                        'Stores the Meta advertising click identifier.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
                 ),
             ],
             __('Measures advertising performance and visitor actions for Meta.', 'consent-tracking-guard-for-wordpress'),
+            $lang
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildFacebookForWooCommerceService(string $lang): array
+    {
+        return $this->buildOptionalService(
+            'facebook-for-woocommerce',
+            __('Meta for WooCommerce', 'consent-tracking-guard-for-wordpress'),
+            'marketing',
+            ['_fbp', '_fbc', 'wc_facebook_signals_state'],
+            [
+                $this->buildCookieInfo(
+                    '_fbp',
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __(
+                        'Identifies browsers for Meta advertising measurement.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
+                ),
+                $this->buildCookieInfo(
+                    '_fbc',
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __(
+                        'Stores the Meta advertising click identifier.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
+                ),
+                $this->buildCookieInfo(
+                    'wc_facebook_signals_state',
+                    __('Session', 'consent-tracking-guard-for-wordpress'),
+                    __(
+                        'Stores whether Meta for WooCommerce browser signals are held or released.',
+                        'consent-tracking-guard-for-wordpress'
+                    )
+                ),
+            ],
+            __(
+                'Measures WooCommerce product views, cart actions, and purchases for Meta advertising.',
+                'consent-tracking-guard-for-wordpress'
+            ),
             $lang
         );
     }
