@@ -7,6 +7,24 @@ use SzepeViktor\ConsentTrackingGuard\Options;
 
 $GLOBALS['facebook_for_woocommerce_bridge_options'] = [];
 $GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'] = false;
+$GLOBALS['facebook_for_woocommerce_bridge_actions'] = [];
+
+if (! defined('YEAR_IN_SECONDS')) {
+    define('YEAR_IN_SECONDS', 31536000);
+}
+
+if (! defined('COOKIEPATH')) {
+    define('COOKIEPATH', '/');
+}
+
+if (! defined('COOKIE_DOMAIN')) {
+    define('COOKIE_DOMAIN', '');
+}
+
+function add_action(string $hook, $callback, int $priority = 10): void
+{
+    $GLOBALS['facebook_for_woocommerce_bridge_actions'][$hook][$priority] = $callback;
+}
 
 function add_filter(string $hook, $callback): void
 {
@@ -27,6 +45,11 @@ function wp_has_consent(string $category): bool
 {
     return $category === 'marketing'
         && (bool) $GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'];
+}
+
+function is_ssl(): bool
+{
+    return true;
 }
 
 function sanitize_text_field(string $value): string
@@ -67,6 +90,12 @@ $bridge = new FacebookForWooCommerceBridge(new Options());
 $bridge->register();
 
 assert_same(
+    [$bridge, 'syncSignalsCookie'],
+    $GLOBALS['facebook_for_woocommerce_bridge_actions']['init'][0],
+    'Bridge must sync Meta for WooCommerce signals early.'
+);
+
+assert_same(
     false,
     $bridge->filterSignalsHeld(false),
     'Disabled bridge must preserve released signals.'
@@ -82,12 +111,28 @@ assert_same(
     'Enabled bridge must hold signals without marketing consent.'
 );
 
+$bridge->syncSignalsCookie();
+
+assert_same(
+    'held',
+    $_COOKIE['wc_facebook_signals_state'] ?? null,
+    'Enabled bridge must set Meta for WooCommerce signals to held without marketing consent.'
+);
+
 $_COOKIE['wp_consent_marketing'] = 'allow';
 
 assert_same(
     false,
     $bridge->filterSignalsHeld(false),
     'Explicit WP Consent API marketing cookie must release signals.'
+);
+
+$bridge->syncSignalsCookie();
+
+assert_same(
+    'active',
+    $_COOKIE['wc_facebook_signals_state'] ?? null,
+    'Marketing consent must release Meta for WooCommerce signals for the first rendered page.'
 );
 
 $_COOKIE['wp_consent_marketing'] = 'deny';
