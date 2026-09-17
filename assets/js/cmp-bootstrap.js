@@ -242,10 +242,15 @@
         };
     }
 
+    function isGoogleAnalyticsMeasurementId(tagId) {
+        return /^G-[A-Z0-9]+$/i.test(tagId);
+    }
+
     function createGtmVendor(options) {
         var serviceName = options.serviceName || SERVICE_NAMES.gtm;
         var gtmId = options.gtmId;
         var dataLayerName = options.dataLayerName || 'dataLayer';
+        var isMeasurementId = isGoogleAnalyticsMeasurementId(gtmId);
         var hasLoaded = false;
         var analyticsConsent = false;
         var marketingConsent = false;
@@ -272,6 +277,7 @@
         function load() {
             var dlParam;
             var scriptElement;
+            var scriptPath = isMeasurementId ? 'gtag/js' : 'gtm.js';
 
             if (hasLoaded) {
                 return;
@@ -279,10 +285,17 @@
 
             ensureRuntime();
             window.gtag('consent', 'default', buildGoogleConsentState(false, false));
-            window[dataLayerName].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
+
+            if (isMeasurementId) {
+                updateConsent();
+                window.gtag('js', new Date());
+                window.gtag('config', gtmId);
+            } else {
+                window[dataLayerName].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+            }
 
             dlParam = dataLayerName !== 'dataLayer'
                 ? '&l=' + encodeURIComponent(dataLayerName)
@@ -290,7 +303,9 @@
 
             scriptElement = document.createElement('script');
             scriptElement.async = true;
-            scriptElement.src = 'https://www.googletagmanager.com/gtm.js?id='
+            scriptElement.src = 'https://www.googletagmanager.com/'
+                + scriptPath
+                + '?id='
                 + encodeURIComponent(gtmId)
                 + dlParam;
 
