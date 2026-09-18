@@ -9,6 +9,12 @@ use SzepeViktor\ConsentTrackingGuard\Options;
 
 final class Assets
 {
+    private const KLAVIYO_SERVICE_NAME = 'klaviyo';
+    private const KLAVIYO_SCRIPT_HANDLES = [
+        'klaviyojs' => true,
+        'kl-identify-browser' => true,
+    ];
+
     private const MODAL_STYLE_STYLESHEETS = [
         Options::MODAL_STYLE_VIKTOR_DEFAULT => 'viktor-default.css',
         Options::MODAL_STYLE_LIGHT => 'light.css',
@@ -34,6 +40,7 @@ final class Assets
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 3);
+        add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
 
     public function enqueue(): void
@@ -117,6 +124,39 @@ final class Assets
             ['consent-tracking-guard-for-wordpress-klaro', 'wp-consent-api'],
             Config::get('version'),
             true
+        );
+    }
+
+    public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string
+    {
+        $options = $this->options->all();
+
+        if (! (bool) $options['enable_klaviyo']) {
+            return $tag;
+        }
+
+        if (
+            ! isset(self::KLAVIYO_SCRIPT_HANDLES[$handle])
+            && strpos($src, 'static.klaviyo.com/onsite/js/') === false
+            && strpos($src, 'static-tracking.klaviyo.com/onsite/js/') === false
+        ) {
+            return $tag;
+        }
+
+        $booleanAttributes = '';
+
+        foreach (['async', 'defer'] as $attribute) {
+            if (preg_match(sprintf('/\s%s(?:[\s=>]|$)/', preg_quote($attribute, '/')), $tag) === 1) {
+                $booleanAttributes .= sprintf(' %s', $attribute);
+            }
+        }
+
+        return sprintf(
+            '<script id="%s-js" type="text/plain" data-type="application/javascript" data-name="%s" data-src="%s"%s></script>',
+            esc_attr($handle),
+            esc_attr(self::KLAVIYO_SERVICE_NAME),
+            esc_url($src),
+            $booleanAttributes
         );
     }
 

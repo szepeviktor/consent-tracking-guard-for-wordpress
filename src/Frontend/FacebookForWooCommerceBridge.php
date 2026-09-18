@@ -34,6 +34,7 @@ final class FacebookForWooCommerceBridge
 
     public function register(): void
     {
+        // Meta for WooCommerce is not natively WP Consent API-compatible.
         add_action('init', [$this, 'syncSignalsCookie'], 0);
         add_filter('facebook_signals_held', [$this, 'filterSignalsHeld']);
     }
