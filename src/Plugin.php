@@ -29,7 +29,7 @@ final class Plugin
         (new Shortcodes())->register();
         (new Assets($options, $consentApiBridge))->register();
 
-        if (is_admin() && ! wp_doing_ajax()) {
+        if (is_admin() && ! wp_doing_ajax()) { // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed -- Admin boot reads clearer as a positive condition.
             (new AdminPage($options, $consentApiBridge))->boot();
         }
     }

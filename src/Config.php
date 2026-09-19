@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace SzepeViktor\ConsentTrackingGuard;
 
-use LogicException;
-
 /**
  * Immutable configuration.
  *
@@ -47,10 +45,10 @@ final class Config
      * @param TKey $name
      * @return ConfigShape[TKey]
      */
-    public static function get(string $name)
+    public static function get(string $name) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoReturnType -- PHPStan generic return type depends on the requested config key.
     {
         if (! isset(self::$container) || ! array_key_exists($name, self::$container)) {
-            throw new LogicException('Config is not initialized or the requested key does not exist.');
+            throw new \LogicException('Config is not initialized or the requested key does not exist.');
         }
 
         return self::$container[$name];

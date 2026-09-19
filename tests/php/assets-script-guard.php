@@ -8,9 +8,9 @@ use SzepeViktor\ConsentTrackingGuard\Options;
 
 $GLOBALS['assets_script_guard_options'] = [];
 
-function get_option(string $name, $default = false)
+function get_option(string $name, $defaultValue = false) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoReturnType -- WordPress stub returns the stored option type.
 {
-    return $GLOBALS['assets_script_guard_options'][$name] ?? $default;
+    return $GLOBALS['assets_script_guard_options'][$name] ?? $defaultValue;
 }
 
 function wp_parse_args($args, $defaults = ''): array
@@ -33,14 +33,14 @@ function esc_url(string $url): string
     return $url;
 }
 
-require dirname(__DIR__, 2) . '/src/Options.php';
-require dirname(__DIR__, 2) . '/src/Frontend/ConsentApiBridge.php';
-require dirname(__DIR__, 2) . '/src/Frontend/Assets.php';
+require sprintf('%s/src/Options.php', dirname(__DIR__, 2));
+require sprintf('%s/src/Frontend/ConsentApiBridge.php', dirname(__DIR__, 2));
+require sprintf('%s/src/Frontend/Assets.php', dirname(__DIR__, 2));
 
 function assert_same($expected, $actual, string $message): void
 {
     if ($expected !== $actual) {
-        fwrite(
+        fwrite( // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes assertion failures to STDERR.
             STDERR,
             sprintf(
                 "%s\nExpected: %s\nActual: %s\n",
@@ -49,7 +49,7 @@ function assert_same($expected, $actual, string $message): void
                 var_export($actual, true)
             )
         );
-        exit(1);
+        exit(1); // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Test script failure.
     }
 }
 
@@ -96,4 +96,4 @@ assert_same(
     'Disabled Klaviyo disclosure must not alter the script tag.'
 );
 
-fwrite(STDOUT, "Assets script guard PHP checks passed.\n");
+fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

@@ -171,7 +171,8 @@ final class ConsentApiBridge
     {
         if (isset($service['translations']) && is_array($service['translations'])) {
             foreach ($service['translations'] as $translation) {
-                if (is_array($translation)
+                if (
+                    is_array($translation)
                     && isset($translation['description'])
                     && is_string($translation['description'])
                 ) {

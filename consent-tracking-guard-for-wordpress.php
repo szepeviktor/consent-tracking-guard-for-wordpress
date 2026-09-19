@@ -30,16 +30,18 @@ use function plugin_basename;
 
 // Prevent direct execution.
 if (! defined('ABSPATH')) {
-    exit;
+    exit; // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Direct execution guard.
 }
 
 require sprintf('%s/vendor/autoload.php', __DIR__);
 
-Config::init([
+Config::init(
+    [
     'filePath' => __FILE__,
     'baseName' => plugin_basename(__FILE__),
     'slug' => 'consent-tracking-guard-for-wordpress',
     'version' => '2.2.7',
-]);
+    ]
+);
 
 add_action('plugins_loaded', [Plugin::class, 'boot'], 10, 0);

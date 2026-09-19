@@ -39,7 +39,7 @@ final class Assets
         $this->consent_api_bridge->register_services($this->build_services($lang));
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
-        add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 3);
+        add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
 
@@ -69,7 +69,7 @@ final class Assets
             Config::get('version')
         );
 
-        if (isset(self::MODAL_STYLE_STYLESHEETS[$modalStyle])) {
+        if (isset(self::MODAL_STYLE_STYLESHEETS[$modalStyle])) { // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed -- Conditional enqueue reads clearer here.
             wp_enqueue_style(
                 'consent-tracking-guard-for-wordpress-modal-style',
                 plugins_url(
@@ -143,24 +143,26 @@ final class Assets
             return $tag;
         }
 
-        $booleanAttributes = '';
+        $booleanAttributes = [];
 
         foreach (['async', 'defer'] as $attribute) {
-            if (preg_match(sprintf('/\s%s(?:[\s=>]|$)/', preg_quote($attribute, '/')), $tag) === 1) {
-                $booleanAttributes .= sprintf(' %s', $attribute);
+            if (preg_match(sprintf('/\s%s(?:[\s=>]|$)/', preg_quote($attribute, '/')), $tag) !== 1) {
+                continue;
             }
+
+            $booleanAttributes[] = sprintf(' %s', $attribute);
         }
 
         return sprintf(
-            '<script id="%s-js" type="text/plain" data-type="application/javascript" data-name="%s" data-src="%s"%s></script>',
+            '<script id="%s-js" type="text/plain" data-type="application/javascript" data-name="%s" data-src="%s"%s></script>', // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript -- Rewrites an already enqueued script tag for consent gating.
             esc_attr($handle),
             esc_attr(self::KLAVIYO_SERVICE_NAME),
             esc_url($src),
-            $booleanAttributes
+            implode('', $booleanAttributes)
         );
     }
 
-    public function filter_bootstrap_tag(string $tag, string $handle, string $src): string
+    public function filter_bootstrap_tag(string $tag, string $handle): string
     {
         $attributes = [];
         $options = $this->options->all();
@@ -212,8 +214,8 @@ final class Assets
 
         $htmlAttributes = [];
 
-        foreach ($attributes as $name => $value) {
-            $htmlAttributes[] = sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
+        foreach ($attributes as $name => $attributeValue) {
+            $htmlAttributes[] = sprintf(' %s="%s"', esc_attr($name), esc_attr($attributeValue));
         }
 
         return str_replace(
@@ -1215,13 +1217,13 @@ final class Assets
     private function buildCookieInfo(
         string $name,
         string $expires,
-        string $function,
+        string $cookieFunction,
         string $domain = ''
     ): array {
         $cookieInfo = [
             'name' => $name,
             'expires' => $expires,
-            'function' => $function,
+            'function' => $cookieFunction,
             'type' => 'HTTP',
         ];
 
@@ -1231,5 +1233,4 @@ final class Assets
 
         return $cookieInfo;
     }
-
 }

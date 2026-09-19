@@ -42,12 +42,12 @@ function __($text): string
     return $text;
 }
 
-require dirname(__DIR__, 2) . '/src/Frontend/ConsentApiBridge.php';
+require sprintf('%s/src/Frontend/ConsentApiBridge.php', dirname(__DIR__, 2));
 
 function assert_same($expected, $actual, string $message): void
 {
     if ($expected !== $actual) {
-        fwrite(
+        fwrite( // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes assertion failures to STDERR.
             STDERR,
             sprintf(
                 "%s\nExpected: %s\nActual: %s\n",
@@ -56,7 +56,7 @@ function assert_same($expected, $actual, string $message): void
                 var_export($actual, true)
             )
         );
-        exit(1);
+        exit(1); // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Test script failure.
     }
 }
 
@@ -69,7 +69,8 @@ assert_same(
     'Consent cookie expiration must match Klaro retention.'
 );
 
-$bridge->register_services([
+$bridge->register_services(
+    [
     [
         'name' => 'analytics',
         'purposes' => ['statistics'],
@@ -94,7 +95,8 @@ $bridge->register_services([
             ],
         ],
     ],
-]);
+    ]
+);
 
 assert_same(
     1,
@@ -112,4 +114,4 @@ assert_same(
     'Per-cookie expiry metadata must be preserved.'
 );
 
-fwrite(STDOUT, "ConsentApiBridge PHP integration checks passed.\n");
+fwrite(STDOUT, "ConsentApiBridge PHP integration checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

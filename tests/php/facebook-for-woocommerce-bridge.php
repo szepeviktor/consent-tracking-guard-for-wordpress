@@ -31,9 +31,9 @@ function add_filter(string $hook, $callback): void
     $GLOBALS['facebook_for_woocommerce_bridge_filters'][$hook] = $callback;
 }
 
-function get_option(string $name, $default = false)
+function get_option(string $name, $defaultValue = false) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoReturnType -- WordPress stub returns the stored option type.
 {
-    return $GLOBALS['facebook_for_woocommerce_bridge_options'][$name] ?? $default;
+    return $GLOBALS['facebook_for_woocommerce_bridge_options'][$name] ?? $defaultValue;
 }
 
 function wp_parse_args($args, $defaults = ''): array
@@ -52,14 +52,14 @@ function is_ssl(): bool
     return true;
 }
 
-function sanitize_text_field(string $value): string
+function sanitize_text_field(string $textFieldValue): string
 {
-    return trim($value);
+    return trim($textFieldValue);
 }
 
-function wp_unslash(string $value): string
+function wp_unslash(string $slashedValue): string
 {
-    return stripslashes($value);
+    return stripslashes($slashedValue);
 }
 
 function __($text): string
@@ -67,13 +67,13 @@ function __($text): string
     return $text;
 }
 
-require dirname(__DIR__, 2) . '/src/Options.php';
-require dirname(__DIR__, 2) . '/src/Frontend/FacebookForWooCommerceBridge.php';
+require sprintf('%s/src/Options.php', dirname(__DIR__, 2));
+require sprintf('%s/src/Frontend/FacebookForWooCommerceBridge.php', dirname(__DIR__, 2));
 
 function assert_same($expected, $actual, string $message): void
 {
     if ($expected !== $actual) {
-        fwrite(
+        fwrite( // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes assertion failures to STDERR.
             STDERR,
             sprintf(
                 "%s\nExpected: %s\nActual: %s\n",
@@ -82,7 +82,7 @@ function assert_same($expected, $actual, string $message): void
                 var_export($actual, true)
             )
         );
-        exit(1);
+        exit(1); // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Test script failure.
     }
 }
 
@@ -150,4 +150,4 @@ assert_same(
     'The bridge must not override an upstream hold decision.'
 );
 
-fwrite(STDOUT, "Meta for WooCommerce bridge PHP checks passed.\n");
+fwrite(STDOUT, "Meta for WooCommerce bridge PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

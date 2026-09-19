@@ -487,16 +487,16 @@ final class AdminPage
             esc_attr(Options::OPTION_NAME)
         );
 
-        foreach ($styles as $value => $label) {
+        foreach ($styles as $modalStyle => $label) {
             printf(
                 '<option value="%1$s" %2$s>%3$s</option>',
-                esc_attr($value),
-                selected((string) $options['modal_style'], $value, false),
+                esc_attr($modalStyle),
+                selected((string) $options['modal_style'], $modalStyle, false),
                 esc_html($label)
             );
         }
 
-        echo '</select>';
+        echo '</select>'; // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Closing select markup.
         printf(
             '<p class="description">%s</p>',
             esc_html(
@@ -539,13 +539,13 @@ final class AdminPage
         );
     }
 
-    private function renderInput(string $name, string $class, string $type, string $attributes = ''): void
+    private function renderInput(string $name, string $cssClass, string $type, string $attributes = ''): void
     {
         $options = $this->options->all();
 
         printf(
             '<input class="%1$s" id="%2$s" name="%3$s[%4$s]" type="%5$s" value="%6$s"%7$s>',
-            esc_attr($class),
+            esc_attr($cssClass),
             esc_attr($this->fieldId($name)),
             esc_attr(Options::OPTION_NAME),
             esc_attr($name),

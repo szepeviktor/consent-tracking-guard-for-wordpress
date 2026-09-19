@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruleset name="Consent Tracking Guard">
+    <description>PHPCS rules for Viktor's Consent and Tracking Guard for WordPress.</description>
+
+    <file>consent-tracking-guard-for-wordpress.php</file>
+    <file>src</file>
+    <file>tests/php</file>
+
+    <rule ref="PSR12NeutronRuleset">
+        <exclude name="PEAR.Commenting.FileComment.Missing"/>
+        <exclude name="PEAR.Commenting.ClassComment.Missing"/>
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidFunctionName.NotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+        <exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength"/>
+    </rule>
+    <rule ref="NeutronStandard.Globals.DisallowGlobalFunctions.GlobalFunctions">
+        <exclude-pattern>tests/php/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>tests/php/*</exclude-pattern>
+    </rule>
+    <rule ref="Generic.PHP.ForbiddenFunctions.Found">
+        <exclude-pattern>tests/php/facebook-for-woocommerce-bridge.php</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.WP.EnqueuedResources.NonEnqueuedScript">
+        <exclude-pattern>tests/php/assets-script-guard.php</exclude-pattern>
+    </rule>
+</ruleset>
