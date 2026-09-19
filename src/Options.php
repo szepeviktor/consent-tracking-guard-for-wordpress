@@ -118,14 +118,14 @@ final class Options
     }
 
     /**
-     * @param mixed $value
+     * @param mixed $modal_style
      */
-    private function sanitizeModalStyle($value): string
+    private function sanitizeModalStyle($modal_style): string
     {
-        if (! is_string($value) || ! in_array($value, self::MODAL_STYLES, true)) {
+        if (! is_string($modal_style) || ! in_array($modal_style, self::MODAL_STYLES, true)) {
             return self::MODAL_STYLE_KLARO_DEFAULT;
         }
 
-        return $value;
+        return $modal_style;
     }
 }
