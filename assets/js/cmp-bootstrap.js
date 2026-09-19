@@ -741,9 +741,14 @@
             removeKlaviyoStorageItem(tracker, 'local_storage', '__kl_key');
             removeKlaviyoStorageItem(tracker, 'local_storage', '$referrer');
             removeKlaviyoStorageItem(tracker, 'local_storage', '$last_referrer');
+            removeKlaviyoStorageItem(tracker, 'local_storage', 'klaviyoOnsite');
+            removeKlaviyoStorageItem(tracker, 'local_storage', 'kl-post-identification-sync');
+            removeKlaviyoStorageItem(tracker, 'local_storage', 'lastExternalReferrer');
+            removeKlaviyoStorageItem(tracker, 'local_storage', 'lastExternalReferrerTime');
             removeKlaviyoStorageItem(tracker, 'local_storage', '__kla_viewed');
             removeKlaviyoStorageItem(tracker, 'local_storage', '__kla_viewed_reviewed_items');
             removeKlaviyoStorageItem(tracker, 'session_storage', '_kx');
+            removeKlaviyoStorageItem(tracker, 'session_storage', 'klaviyoPagesVisitCountV2');
         }
 
         return createConsentAwareVendor(serviceName, {

@@ -158,3 +158,112 @@ test('holds and releases Meta for WooCommerce signals with marketing consent', a
     await expect.poll(() => page.evaluate(() => window.bootstrapFixture.signalCalls.slice(-1)[0]))
         .toBe('hold');
 });
+
+test('removes Klaviyo browser storage when consent is denied', async ({page}) => {
+    await page.goto('http://127.0.0.1:8765/harness.html');
+    await page.setContent(`
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>CMP bootstrap fixture</title>
+            <script>
+                [
+                    '__kl_key',
+                    '$referrer',
+                    '$last_referrer',
+                    'klaviyoOnsite',
+                    'kl-post-identification-sync',
+                    'lastExternalReferrer',
+                    'lastExternalReferrerTime',
+                    '__kla_viewed',
+                    '__kla_viewed_reviewed_items'
+                ].forEach(function (key) {
+                    window.localStorage.setItem(key, 'klaviyo-test-value');
+                });
+                window.sessionStorage.setItem('_kx', 'klaviyo-test-value');
+                window.sessionStorage.setItem('klaviyoPagesVisitCountV2', '["https://example.test/"]');
+                document.cookie = '__kla_id=abc123; path=/';
+
+                window.bootstrapFixture = {
+                    tracker: {
+                        account_id: 'PUBLIC_KEY',
+                        is_tracking_on: true,
+                        clearedIdentity: false,
+                        clearIdentity: function () {
+                            this.clearedIdentity = true;
+                        }
+                    },
+                    manager: {
+                        confirmed: true,
+                        consents: {
+                            klaviyo: false
+                        },
+                        config: {},
+                        getService: function (serviceName) {
+                            return {
+                                name: serviceName,
+                                purposes: ['marketing'],
+                                required: false,
+                                optOut: false
+                            };
+                        },
+                        watch: function (watcher) {
+                            this.watcher = watcher;
+                        }
+                    }
+                };
+                window._learnq = {
+                    push: function (callback) {
+                        callback(window.bootstrapFixture.tracker);
+                    }
+                };
+                window.klaro = {
+                    getManager: function () {
+                        return window.bootstrapFixture.manager;
+                    }
+                };
+            </script>
+        </head>
+        <body>
+            <script src="/assets/js/cmp-bootstrap.js" data-klaviyo="true"></script>
+        </body>
+        </html>
+    `);
+
+    await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
+
+    await expect.poll(() => page.evaluate(() => ({
+        cookies: document.cookie,
+        localStorage: {
+            klaviyoOnsite: window.localStorage.getItem('klaviyoOnsite'),
+            postIdentificationSync: window.localStorage.getItem('kl-post-identification-sync'),
+            lastExternalReferrer: window.localStorage.getItem('lastExternalReferrer'),
+            lastExternalReferrerTime: window.localStorage.getItem('lastExternalReferrerTime')
+        },
+        sessionStorage: {
+            klaviyoPagesVisitCountV2: window.sessionStorage.getItem('klaviyoPagesVisitCountV2')
+        },
+        tracker: {
+            accountId: window.bootstrapFixture.tracker.account_id,
+            isTrackingOn: window.bootstrapFixture.tracker.is_tracking_on,
+            clearedIdentity: window.bootstrapFixture.tracker.clearedIdentity
+        }
+    }))).toEqual({
+        cookies: '__kla_off=true',
+        localStorage: {
+            klaviyoOnsite: null,
+            postIdentificationSync: null,
+            lastExternalReferrer: null,
+            lastExternalReferrerTime: null
+        },
+        sessionStorage: {
+            klaviyoPagesVisitCountV2: null
+        },
+        tracker: {
+            accountId: null,
+            isTrackingOn: false,
+            clearedIdentity: true
+        }
+    });
+});
