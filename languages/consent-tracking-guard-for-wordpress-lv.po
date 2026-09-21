@@ -3,394 +3,883 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-"
+"for-wordpress/issues\n"
+"POT-Creation-Date: 2026-09-21T14:40:30+00:00\n"
+"PO-Revision-Date: 2026-09-21 14:40+0000\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2026-09-03 16:07+0000\n"
 "X-Generator: Codex\n"
 "X-Domain: consent-tracking-guard-for-wordpress\n"
 
+#. Plugin Name of the plugin
+#: consent-tracking-guard-for-wordpress.php src/AdminPage.php:55
+#: src/AdminPage.php:332
 msgid "Viktor's Consent and Tracking Guard for WordPress"
 msgstr "Viktor's Consent and Tracking Guard for WordPress"
 
+#. Plugin URI of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 msgstr "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 
-msgid "Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync."
-msgstr "Uz Klaro balstīts sīkdatņu piekrišanas baneris ar WP Consent API saderību."
+#. Description of the plugin
+#: consent-tracking-guard-for-wordpress.php
+msgid ""
+"Controls consent-aware tracking, service disclosures, embeds, and WP Consent "
+"API sync."
+msgstr ""
+"Uz Klaro balstīts sīkdatņu piekrišanas baneris ar WP Consent API saderību."
 
+#. Author of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "Viktor Szépe"
 msgstr "Viktor Szépe"
 
+#. Author URI of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "https://github.com/szepeviktor"
 msgstr "https://github.com/szepeviktor"
 
+#: src/AdminPage.php:56
 msgid "Consent & Tracking"
 msgstr "Consent & Tracking"
 
+#: src/AdminPage.php:89
 msgid "Banner copy"
 msgstr "Banera teksts"
 
+#: src/AdminPage.php:95
 msgid "Display"
 msgstr "Attēlošana"
 
+#: src/AdminPage.php:101
 msgid "Integrations"
 msgstr "Integrācijas"
 
+#: src/AdminPage.php:111
 msgid "Notice title"
 msgstr "Paziņojuma virsraksts"
 
+#: src/AdminPage.php:116
 msgid "Notice description"
 msgstr "Paziņojuma apraksts"
 
+#: src/AdminPage.php:121
 msgid "Modal title"
 msgstr "Modālā loga virsraksts"
 
+#: src/AdminPage.php:126
 msgid "Modal description"
 msgstr "Modālā loga apraksts"
 
+#: src/AdminPage.php:135
 msgid "Modal style"
 msgstr "Modālā loga stils"
 
+#: src/AdminPage.php:142
 msgid "Floating privacy button"
 msgstr "Peldošā privātuma poga"
 
+#: src/AdminPage.php:148
 msgid "Show a floating button that reopens the privacy settings."
 msgstr "Rādīt peldošu pogu, kas atkārtoti atver privātuma iestatījumus."
 
+#: src/AdminPage.php:157
 msgid "Google Tag Manager ID"
 msgstr "Google Tag Manager ID"
 
+#: src/AdminPage.php:162
 msgid "Microsoft Clarity project ID"
 msgstr "Microsoft Clarity projekta ID"
 
+#: src/AdminPage.php:167
 msgid "Hotjar site ID"
 msgstr "Hotjar vietnes ID"
 
+#: src/AdminPage.php:172
 msgid "Hotjar script version"
 msgstr "Hotjar skripta versija"
 
+#: src/AdminPage.php:177
 msgid "Meta Pixel ID"
 msgstr "Meta Pixel ID"
 
+#: src/AdminPage.php:182
 msgid "LinkedIn partner ID"
 msgstr "LinkedIn partnera ID"
 
+#: src/AdminPage.php:198
+msgid "Polylang disclosure"
+msgstr "Polylang informācija"
+
+#: src/AdminPage.php:204
+msgid ""
+"Show the Polylang language cookie for multilingual sites and WooCommerce "
+"shops."
+msgstr ""
+"Rādīt Polylang valodas sīkdatni daudzvalodu vietnēm un WooCommerce veikaliem."
+
+#: src/AdminPage.php:216
+msgid "WooCommerce disclosure"
+msgstr "WooCommerce informācija"
+
+#: src/AdminPage.php:222
+msgid ""
+"Show WooCommerce cart, checkout, session, and source attribution cookies."
+msgstr ""
+"Rādīt WooCommerce groza, norēķinu, sesijas un avota attiecināšanas sīkdatnes."
+
+#: src/AdminPage.php:234
+msgid "Meta for WooCommerce consent bridge"
+msgstr "Meta for WooCommerce piekrišanas tilts"
+
+#: src/AdminPage.php:240
+msgid "Hold Meta for WooCommerce tracking until marketing consent is granted."
+msgstr ""
+"Aizturēt Meta for WooCommerce izsekošanu, līdz tiek dota mārketinga "
+"piekrišana."
+
+#: src/AdminPage.php:252
+msgid "Klaviyo disclosure"
+msgstr "Klaviyo informācija"
+
+#: src/AdminPage.php:258
+msgid ""
+"Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking "
+"outside this plugin’s control."
+msgstr ""
+"Rādīt Klaviyo sīkdatnes, kad Klaviyo WooCommerce spraudnis ielādē "
+"izsekošanu ārpus šī spraudņa kontroles."
+
+#: src/AdminPage.php:270
+msgid "WoodMart disclosure"
+msgstr "WoodMart informācija"
+
+#: src/AdminPage.php:276
+msgid ""
+"Show WoodMart cookies for wishlist, compare, product history, popups, and "
+"shop preferences."
+msgstr ""
+"Rādīt WoodMart sīkdatnes vēlmju sarakstam, salīdzināšanai, produktu vēsturei, "
+"uznirstošajiem logiem un veikala preferencēm."
+
+#: src/AdminPage.php:288
+msgid "Wordfence disclosure"
+msgstr "Wordfence informācija"
+
+#: src/AdminPage.php:294
+msgid ""
+"Show Wordfence security cookies for the firewall, access controls, login "
+"alerts, and linking."
+msgstr ""
+"Rādīt Wordfence drošības sīkdatnes ugunsmūrim, piekļuves kontrolēm, "
+"pieteikšanās brīdinājumiem un sasaistīšanai."
+
+#: src/AdminPage.php:306
 msgid "YouTube blocking"
 msgstr "YouTube bloķēšana"
 
+#: src/AdminPage.php:312
 msgid "Block and replace YouTube embeds until marketing consent is granted."
-msgstr "Bloķēt un aizstāt YouTube iegultos elementus, līdz tiek dota mārketinga piekrišana."
+msgstr ""
+"Bloķēt un aizstāt YouTube iegultos elementus, līdz tiek dota mārketinga "
+"piekrišana."
 
-msgid "Configure the consent texts and vendor IDs used by the frontend Klaro banner."
-msgstr "Konfigurējiet piekrišanas tekstus un pakalpojumu sniedzēju ID, ko izmanto priekšpuses Klaro baneris."
+#: src/AdminPage.php:340
+msgid ""
+"Configure the consent texts and vendor IDs used by the frontend Klaro banner."
+msgstr ""
+"Konfigurējiet piekrišanas tekstus un pakalpojumu sniedzēju ID, ko izmanto "
+"priekšpuses Klaro baneris."
 
+#: src/AdminPage.php:369
 msgid "WP Consent API was not detected."
 msgstr "WP Consent API netika atrasts."
 
-msgid "The consent controls will still render, but the WordPress compatibility bridge will stay inactive"
-msgstr "CMP joprojām tiks attēlots, bet WordPress saderības tilts paliks neaktīvs"
+#: src/AdminPage.php:370
+msgid ""
+"The consent controls will still render, but the WordPress compatibility "
+"bridge will stay inactive"
+msgstr ""
+"CMP joprojām tiks attēlots, bet WordPress saderības tilts paliks neaktīvs"
 
+#: src/AdminPage.php:374
 msgid "until the API plugin is available."
 msgstr "līdz API spraudnis būs pieejams."
 
+#: src/AdminPage.php:384
 msgid "Another plugin already provides the WP Consent API consent type."
 msgstr "Cits spraudnis jau nodrošina WP Consent API piekrišanas veidu."
 
-msgid "Viktor's Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform"
-msgstr "Viktor's Consent and Tracking Guard for WordPress saglabā šo vērtību; pārbaudiet, vai tikai viena piekrišanas pārvaldības platforma"
+#: src/AdminPage.php:388
+msgid ""
+"Viktor's Consent and Tracking Guard for WordPress preserves that value; "
+"verify that only one consent management platform"
+msgstr ""
+"Viktor's Consent and Tracking Guard for WordPress saglabā šo vērtību; "
+"pārbaudiet, vai tikai viena piekrišanas pārvaldības platforma"
 
+#: src/AdminPage.php:392
 msgid "controls the site."
 msgstr "kontrolē vietni."
 
+#: src/AdminPage.php:400
 msgid "Set the text displayed in the consent notice and preferences dialog."
-msgstr "Iestatiet tekstu, kas tiek rādīts piekrišanas paziņojumā un preferenču dialogā."
+msgstr ""
+"Iestatiet tekstu, kas tiek rādīts piekrišanas paziņojumā un preferenču "
+"dialogā."
 
+#: src/AdminPage.php:404
+msgid ""
+"Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL."
+msgstr ""
+"Izmantojiet [privacy-policy], lai ievietotu WordPress konfigurēto privātuma "
+"politikas URL."
+
+#: src/AdminPage.php:413
 msgid "Enter only the services that this site uses."
 msgstr "Ievadiet tikai tos pakalpojumus, ko šī vietne izmanto."
 
+#: src/AdminPage.php:418
 msgid "Control how visitors can access their privacy settings."
-msgstr "Kontrolējiet, kā apmeklētāji var piekļūt saviem privātuma iestatījumiem."
+msgstr ""
+"Kontrolējiet, kā apmeklētāji var piekļūt saviem privātuma iestatījumiem."
 
+#: src/AdminPage.php:476
 msgid "Klaro’s default"
 msgstr "Klaro noklusējuma"
 
+#: src/AdminPage.php:477
 msgid "Viktor’s default"
 msgstr "Viktor noklusējuma"
 
+#: src/AdminPage.php:478
 msgid "Light"
 msgstr "Gaišs"
 
+#: src/AdminPage.php:479
 msgid "Dark"
 msgstr "Tumšs"
 
+#: src/AdminPage.php:480
 msgid "Twenty Twenty-Five"
 msgstr "Twenty Twenty-Five"
 
+#: src/AdminPage.php:481
 msgid "CookieNo"
 msgstr "CookieNo"
 
+#: src/AdminPage.php:505
 msgid "Klaro’s default applies no custom modal theme;"
 msgstr "Klaro noklusējums nepiemēro pielāgotu modālā loga tēmu;"
 
+#: src/AdminPage.php:506
 msgid "the component stylesheet only positions and styles plugin controls."
 msgstr "komponentu stilu lapa tikai novieto un noformē spraudņa vadīklas."
 
-msgid "service"
-msgstr "pakalpojums"
+#: src/Frontend/Assets.php:277
+msgid "There were changes since your last visit, please renew your consent."
+msgstr ""
+"Kopš pēdējā apmeklējuma ir veiktas izmaiņas, lūdzu, atjaunojiet piekrišanu."
 
-msgid "services"
-msgstr "pakalpojumi"
-
-msgid "OK"
-msgstr "Labi"
-
-msgid "Save"
-msgstr "Saglabāt"
-
+#: src/Frontend/Assets.php:281
 msgid "Learn more"
 msgstr "Uzzināt vairāk"
 
-msgid "Accept all"
-msgstr "Pieņemt visu"
-
-msgid "Decline all"
-msgstr "Noraidīt visu"
-
-msgid "Decline"
-msgstr "Noraidīt"
-
-msgid "Close"
-msgstr "Aizvērt"
-
-msgid "Functional"
-msgstr "Funkcionālās"
-
-msgid "Preferences"
-msgstr "Preferences"
-
-msgid "Anonymous statistics"
-msgstr "Anonīmā statistika"
-
-msgid "Statistics"
-msgstr "Statistika"
-
-msgid "Marketing"
-msgstr "Mārketings"
-
-msgid "Enable or disable all services"
-msgstr "Iespējot vai atspējot visus pakalpojumus"
-
-msgid "Use this switch to change all optional services at once."
-msgstr "Izmantojiet šo slēdzi, lai vienlaikus mainītu visus izvēles pakalpojumus."
-
-msgid "(opt-out)"
-msgstr "(atteikšanās)"
-
-msgid "This service loads by default, but can be disabled later."
-msgstr "Šis pakalpojums tiek ielādēts pēc noklusējuma, bet vēlāk to var atspējot."
-
-msgid "(required)"
-msgstr "(obligāts)"
-
-msgid "This service is required for the site to function."
-msgstr "Šis pakalpojums ir nepieciešams vietnes darbībai."
-
-msgid "Purposes"
-msgstr "Nolūki"
-
-msgid "Purpose"
-msgstr "Nolūks"
-
-msgid "Preference storage"
-msgstr "Preferenču glabāšana"
-
-msgid "Allows services that remember visitor preferences."
-msgstr "Atļauj pakalpojumus, kas atceras apmeklētāja preferences."
-
-msgid "Allows anonymous, first-party audience measurement."
-msgstr "Atļauj anonīmu pirmās puses auditorijas mērīšanu."
-
-msgid "Allows identifiable audience measurement and analytics."
-msgstr "Atļauj identificējamu auditorijas mērīšanu un analītiku."
-
-msgid "Allows advertising measurement and visitor profiling."
-msgstr "Atļauj reklāmas mērīšanu un apmeklētāju profilēšanu."
-
-msgid "Cookie consent settings"
-msgstr "Sīkdatņu piekrišanas iestatījumi"
-
-msgid "365 days"
-msgstr "365 dienas"
-
-msgid "Stores the visitor’s consent choices."
-msgstr "Saglabā apmeklētāja piekrišanas izvēles."
-
-msgid "Stores the visitor’s consent choice."
-msgstr "Saglabā apmeklētāja piekrišanas izvēli."
-
-msgid "Google Tag Manager"
-msgstr "Google Tag Manager"
-
-msgid "2 years"
-msgstr "2 gadi"
-
-msgid "Distinguishes visitors for analytics reporting."
-msgstr "Atšķir apmeklētājus analītikas pārskatiem."
-
-msgid "24 hours"
-msgstr "24 stundas"
-
-msgid "Distinguishes visitors for daily analytics reporting."
-msgstr "Atšķir apmeklētājus ikdienas analītikas pārskatiem."
-
-msgid "Loads analytics tags managed through Google Tag Manager."
-msgstr "Ielādē analītikas tagus, kas tiek pārvaldīti ar Google Tag Manager."
-
-msgid "Microsoft Clarity"
-msgstr "Microsoft Clarity"
-
-msgid "1 year"
-msgstr "1 gads"
-
-msgid "Persists the Clarity visitor identifier and preferences."
-msgstr "Saglabā Clarity apmeklētāja identifikatoru un preferences."
-
-msgid "1 day"
-msgstr "1 diena"
-
-msgid "Groups Clarity page views into a recording session."
-msgstr "Grupē Clarity lapu skatījumus ierakstīšanas sesijā."
-
-msgid "Measures how visitors use the site through session analytics."
-msgstr "Mēra, kā apmeklētāji izmanto vietni, izmantojot sesiju analītiku."
-
-msgid "Hotjar"
-msgstr "Hotjar"
-
-msgid "Measures visitor behavior and collects usability feedback."
-msgstr "Mēra apmeklētāju uzvedību un apkopo lietojamības atsauksmes."
-
-msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
-msgstr "Neļauj atkārtoti parādīties noraidītam Hotjar aptaujas uzaicinājumam."
-
-msgid "Prevents a completed Hotjar poll from reappearing."
-msgstr "Neļauj atkārtoti parādīties pabeigtai Hotjar aptaujai."
-
-msgid "Keeps a minimized Hotjar poll minimized."
-msgstr "Saglabā minimizētu Hotjar aptauju minimizētā stāvoklī."
-
-msgid "Prevents repeated display of Hotjar feedback messaging."
-msgstr "Novērš atkārtotu Hotjar atsauksmju ziņojumu rādīšanu."
-
-msgid "Meta Pixel"
-msgstr "Meta Pixel"
-
-msgid "90 days"
-msgstr "90 dienas"
-
-msgid "Identifies browsers for Meta advertising measurement."
-msgstr "Identificē pārlūkprogrammas Meta reklāmas mērīšanai."
-
-msgid "Stores the Meta advertising click identifier."
-msgstr "Saglabā Meta reklāmas klikšķa identifikatoru."
-
-msgid "Measures advertising performance and visitor actions for Meta."
-msgstr "Mēra reklāmas veiktspēju un apmeklētāju darbības Meta vajadzībām."
-
-msgid "LinkedIn Insight Tag"
-msgstr "LinkedIn Insight Tag"
-
-msgid "30 days"
-msgstr "30 dienas"
-
-msgid "Stores the LinkedIn advertising click identifier."
-msgstr "Saglabā LinkedIn reklāmas klikšķa identifikatoru."
-
-msgid "7 days"
-msgstr "7 dienas"
-
-msgid "Supports LinkedIn conversion attribution."
-msgstr "Atbalsta LinkedIn konversiju attiecināšanu."
-
-msgid "Measures LinkedIn campaign performance and website conversions."
-msgstr "Mēra LinkedIn kampaņu veiktspēju un vietnes konversijas."
-
-msgid "YouTube"
-msgstr "YouTube"
-
-msgid "Loads embedded videos provided by YouTube."
-msgstr "Ielādē YouTube nodrošinātos iegultos video."
-
-msgid "180 days"
-msgstr "180 dienas"
-
-msgid "Measures bandwidth and player interface selection."
-msgstr "Mēra joslas platumu un atskaņotāja saskarnes izvēli."
-
-msgid "Stores the visitor’s YouTube privacy state."
-msgstr "Saglabā apmeklētāja YouTube privātuma stāvokli."
-
-msgid "Session"
-msgstr "Sesija"
-
-msgid "Maintains YouTube video-view session data."
-msgstr "Uztur YouTube video skatīšanās sesijas datus."
-
-msgid "8 months"
-msgstr "8 mēneši"
-
-msgid "Stores YouTube playback and display preferences."
-msgstr "Saglabā YouTube atskaņošanas un attēlošanas preferences."
-
-msgid "Varies"
-msgstr "Atšķiras"
-
-msgid "Configured consent service."
-msgstr "Konfigurēts piekrišanas pakalpojums."
-
-msgid "Privacy settings"
-msgstr "Privātuma iestatījumi"
-
-msgid "We use cookies for required functionality, statistics, and marketing."
-msgstr "Mēs izmantojam sīkdatnes nepieciešamai funkcionalitātei, statistikai un mārketingam."
-
-msgid "You can update your choices at any time."
-msgstr "Savas izvēles varat atjaunināt jebkurā laikā."
-
-msgid "Privacy preferences"
-msgstr "Privātuma preferences"
-
-msgid "Choose which categories of services may load on this site."
-msgstr "Izvēlieties, kuru kategoriju pakalpojumi drīkst ielādēties šajā vietnē."
-
-msgid "There were changes since your last visit, please renew your consent."
-msgstr "Kopš pēdējā apmeklējuma ir veiktas izmaiņas, lūdzu, atjaunojiet piekrišanu."
-
+#: src/Frontend/Assets.php:282
 msgid "Testing mode!"
 msgstr "Testēšanas režīms!"
 
+#: src/Frontend/Assets.php:289
 msgid "Always"
 msgstr "Vienmēr"
 
+#: src/Frontend/Assets.php:290
 msgid "Yes"
 msgstr "Jā"
 
+#: src/Frontend/Assets.php:291
 msgid "Do you want to load external content supplied by {title}?"
 msgstr "Vai vēlaties ielādēt ārēju saturu, ko nodrošina {title}?"
 
-msgid "To agree to this service permanently, you must accept {title} in the {link}."
-msgstr "Lai pastāvīgi piekristu šim pakalpojumam, jums jāpieņem {title} sadaļā {link}."
+#: src/Frontend/Assets.php:295
+msgid ""
+"To agree to this service permanently, you must accept {title} in the {link}."
+msgstr ""
+"Lai pastāvīgi piekristu šim pakalpojumam, jums jāpieņem {title} sadaļā "
+"{link}."
 
+#: src/Frontend/Assets.php:299
 msgid "Consent Manager"
 msgstr "Piekrišanas pārvaldnieks"
 
+#: src/Frontend/Assets.php:303
+msgid "service"
+msgstr "pakalpojums"
+
+#: src/Frontend/Assets.php:304
+msgid "services"
+msgstr "pakalpojumi"
+
+#: src/Frontend/Assets.php:306
+msgid "OK"
+msgstr "Labi"
+
+#: src/Frontend/Assets.php:307
+msgid "Save"
+msgstr "Saglabāt"
+
+#: src/Frontend/Assets.php:308
+msgid "Accept all"
+msgstr "Pieņemt visu"
+
+#: src/Frontend/Assets.php:309
 msgid "Accept selected"
 msgstr "Pieņemt atlasīto"
 
+#: src/Frontend/Assets.php:310
+msgid "Decline all"
+msgstr "Noraidīt visu"
+
+#: src/Frontend/Assets.php:311
+msgid "Decline"
+msgstr "Noraidīt"
+
+#: src/Frontend/Assets.php:312
+msgid "Close"
+msgstr "Aizvērt"
+
+#: src/Frontend/Assets.php:313
 msgid "Realized with Klaro!"
 msgstr "Izveidots ar Klaro!"
+
+#: src/Frontend/Assets.php:329
+msgid "Functional"
+msgstr "Funkcionālās"
+
+#: src/Frontend/Assets.php:330
+msgid "Preferences"
+msgstr "Preferences"
+
+#: src/Frontend/Assets.php:331
+msgid "Anonymous statistics"
+msgstr "Anonīmā statistika"
+
+#: src/Frontend/Assets.php:332
+msgid "Statistics"
+msgstr "Statistika"
+
+#: src/Frontend/Assets.php:333
+msgid "Marketing"
+msgstr "Mārketings"
+
+#: src/Frontend/Assets.php:344
+msgid "Enable or disable all services"
+msgstr "Iespējot vai atspējot visus pakalpojumus"
+
+#: src/Frontend/Assets.php:345
+msgid "Use this switch to change all optional services at once."
+msgstr ""
+"Izmantojiet šo slēdzi, lai vienlaikus mainītu visus izvēles pakalpojumus."
+
+#: src/Frontend/Assets.php:351
+msgid "(opt-out)"
+msgstr "(atteikšanās)"
+
+#: src/Frontend/Assets.php:352
+msgid "This service loads by default, but can be disabled later."
+msgstr ""
+"Šis pakalpojums tiek ielādēts pēc noklusējuma, bet vēlāk to var atspējot."
+
+#: src/Frontend/Assets.php:358
+msgid "(required)"
+msgstr "(obligāts)"
+
+#: src/Frontend/Assets.php:359
+msgid "This service is required for the site to function."
+msgstr "Šis pakalpojums ir nepieciešams vietnes darbībai."
+
+#: src/Frontend/Assets.php:364
+msgid "Purposes"
+msgstr "Nolūki"
+
+#: src/Frontend/Assets.php:365
+msgid "Purpose"
+msgstr "Nolūks"
+
+#: src/Frontend/Assets.php:450 src/Frontend/Assets.php:467
+msgid "Cookie consent settings"
+msgstr "Sīkdatņu piekrišanas iestatījumi"
+
+#: src/Frontend/Assets.php:461
+msgid "365 days"
+msgstr "365 dienas"
+
+#: src/Frontend/Assets.php:462
+msgid "Stores the visitor’s consent choices."
+msgstr "Saglabā apmeklētāja piekrišanas izvēles."
+
+#: src/Frontend/Assets.php:468
+msgid "Stores the visitor’s consent choice."
+msgstr "Saglabā apmeklētāja piekrišanas izvēli."
+
+#: src/Frontend/Assets.php:481
+msgid "Google Tag Manager"
+msgstr "Google Tag Manager"
+
+#: src/Frontend/Assets.php:487 src/Frontend/Assets.php:933
+msgid "2 years"
+msgstr "2 gadi"
+
+#: src/Frontend/Assets.php:488
+msgid "Distinguishes visitors for analytics reporting."
+msgstr "Atšķir apmeklētājus analītikas pārskatiem."
+
+#: src/Frontend/Assets.php:492 src/Frontend/Assets.php:1119
+#: src/Frontend/Assets.php:1124
+msgid "24 hours"
+msgstr "24 stundas"
+
+#: src/Frontend/Assets.php:493
+msgid "Distinguishes visitors for daily analytics reporting."
+msgstr "Atšķir apmeklētājus ikdienas analītikas pārskatiem."
+
+#: src/Frontend/Assets.php:496
+msgid "Loads analytics tags managed through Google Tag Manager."
+msgstr "Ielādē analītikas tagus, kas tiek pārvaldīti ar Google Tag Manager."
+
+#: src/Frontend/Assets.php:508
+msgid "Microsoft Clarity"
+msgstr "Microsoft Clarity"
+
+#: src/Frontend/Assets.php:514 src/Frontend/Assets.php:575
+#: src/Frontend/Assets.php:580 src/Frontend/Assets.php:585
+#: src/Frontend/Assets.php:724 src/Frontend/Assets.php:1109
+#: src/Frontend/Assets.php:1114
+msgid "1 year"
+msgstr "1 gads"
+
+#: src/Frontend/Assets.php:515
+msgid "Persists the Clarity visitor identifier and preferences."
+msgstr "Saglabā Clarity apmeklētāja identifikatoru un preferences."
+
+#: src/Frontend/Assets.php:519 src/Frontend/Assets.php:590
+msgid "1 day"
+msgstr "1 diena"
+
+#: src/Frontend/Assets.php:520
+msgid "Groups Clarity page views into a recording session."
+msgstr "Grupē Clarity lapu skatījumus ierakstīšanas sesijā."
+
+#: src/Frontend/Assets.php:523
+msgid "Measures how visitors use the site through session analytics."
+msgstr "Mēra, kā apmeklētāji izmanto vietni, izmantojot sesiju analītiku."
+
+#: src/Frontend/Assets.php:535
+msgid "Hotjar"
+msgstr "Hotjar"
+
+#: src/Frontend/Assets.php:539
+msgid "Measures visitor behavior and collects usability feedback."
+msgstr "Mēra apmeklētāju uzvedību un apkopo lietojamības atsauksmes."
+
+#: src/Frontend/Assets.php:576
+msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
+msgstr "Neļauj atkārtoti parādīties noraidītam Hotjar aptaujas uzaicinājumam."
+
+#: src/Frontend/Assets.php:581
+msgid "Prevents a completed Hotjar poll from reappearing."
+msgstr "Neļauj atkārtoti parādīties pabeigtai Hotjar aptaujai."
+
+#: src/Frontend/Assets.php:586
+msgid "Keeps a minimized Hotjar poll minimized."
+msgstr "Saglabā minimizētu Hotjar aptauju minimizētā stāvoklī."
+
+#: src/Frontend/Assets.php:591
+msgid "Prevents repeated display of Hotjar feedback messaging."
+msgstr "Novērš atkārtotu Hotjar atsauksmju ziņojumu rādīšanu."
+
+#: src/Frontend/Assets.php:603
+msgid "Meta Pixel"
+msgstr "Meta Pixel"
+
+#: src/Frontend/Assets.php:609 src/Frontend/Assets.php:617
+#: src/Frontend/Assets.php:642 src/Frontend/Assets.php:650
+msgid "90 days"
+msgstr "90 dienas"
+
+#: src/Frontend/Assets.php:610 src/Frontend/Assets.php:643
+msgid "Identifies browsers for Meta advertising measurement."
+msgstr "Identificē pārlūkprogrammas Meta reklāmas mērīšanai."
+
+#: src/Frontend/Assets.php:618 src/Frontend/Assets.php:651
+msgid "Stores the Meta advertising click identifier."
+msgstr "Saglabā Meta reklāmas klikšķa identifikatoru."
+
+#: src/Frontend/Assets.php:624
+msgid "Measures advertising performance and visitor actions for Meta."
+msgstr "Mēra reklāmas veiktspēju un apmeklētāju darbības Meta vajadzībām."
+
+#: src/Frontend/Assets.php:636
+msgid "Meta for WooCommerce"
+msgstr "Meta for WooCommerce"
+
+#: src/Frontend/Assets.php:658 src/Frontend/Assets.php:796
+#: src/Frontend/Assets.php:801 src/Frontend/Assets.php:811
+#: src/Frontend/Assets.php:816 src/Frontend/Assets.php:941
+#: src/Frontend/Assets.php:1023 src/Frontend/Assets.php:1028
+#: src/Frontend/Assets.php:1033 src/Frontend/Assets.php:1038
+#: src/Frontend/Assets.php:1043 src/Frontend/Assets.php:1048
+#: src/Frontend/Assets.php:1168
+msgid "Session"
+msgstr "Sesija"
+
+#: src/Frontend/Assets.php:659
+msgid ""
+"Stores whether Meta for WooCommerce browser signals are held or released."
+msgstr ""
+"Saglabā, vai Meta for WooCommerce pārlūkprogrammas signāli tiek aizturēti vai "
+"atbrīvoti."
+
+#: src/Frontend/Assets.php:665
+msgid ""
+"Measures WooCommerce product views, cart actions, and purchases for Meta "
+"advertising."
+msgstr ""
+"Mēra WooCommerce produktu skatījumus, groza darbības un pirkumus Meta "
+"reklāmai."
+
+#: src/Frontend/Assets.php:680
+msgid "LinkedIn Insight Tag"
+msgstr "LinkedIn Insight Tag"
+
+#: src/Frontend/Assets.php:686
+msgid "30 days"
+msgstr "30 dienas"
+
+#: src/Frontend/Assets.php:687
+msgid "Stores the LinkedIn advertising click identifier."
+msgstr "Saglabā LinkedIn reklāmas klikšķa identifikatoru."
+
+#: src/Frontend/Assets.php:691 src/Frontend/Assets.php:1018
+msgid "7 days"
+msgstr "7 dienas"
+
+#: src/Frontend/Assets.php:692
+msgid "Supports LinkedIn conversion attribution."
+msgstr "Atbalsta LinkedIn konversiju attiecināšanu."
+
+#: src/Frontend/Assets.php:695
+msgid "Measures LinkedIn campaign performance and website conversions."
+msgstr "Mēra LinkedIn kampaņu veiktspēju un vietnes konversijas."
+
+#: src/Frontend/Assets.php:713 src/Frontend/Assets.php:733
+msgid "Polylang"
+msgstr "Polylang"
+
+#: src/Frontend/Assets.php:725
+msgid ""
+"Stores the visitor’s last browsed language for Polylang and Polylang for "
+"WooCommerce."
+msgstr ""
+"Saglabā apmeklētāja pēdējo pārlūkoto valodu Polylang un Polylang for "
+"WooCommerce vajadzībām."
+
+#: src/Frontend/Assets.php:734
+msgid ""
+"Remembers the selected language for multilingual content and translated "
+"WooCommerce flows."
+msgstr ""
+"Atceras atlasīto valodu daudzvalodu saturam un tulkotām WooCommerce plūsmām."
+
+#: src/Frontend/Assets.php:750 src/Frontend/Assets.php:761
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: src/Frontend/Assets.php:762
+msgid ""
+"Keeps the shopping cart, checkout, customer session, and store notices "
+"working."
+msgstr ""
+"Nodrošina iepirkumu groza, norēķinu, klienta sesijas un veikala paziņojumu "
+"darbību."
+
+#: src/Frontend/Assets.php:797
+msgid "Helps WooCommerce detect cart changes."
+msgstr "Palīdz WooCommerce noteikt groza izmaiņas."
+
+#: src/Frontend/Assets.php:802
+msgid "Helps WooCommerce keep cart data synchronized."
+msgstr "Palīdz WooCommerce sinhronizēt groza datus."
+
+#: src/Frontend/Assets.php:806
+msgid "2 days"
+msgstr "2 dienas"
+
+#: src/Frontend/Assets.php:807
+msgid "Stores a unique customer session identifier for cart and checkout data."
+msgstr "Saglabā unikālu klienta sesijas identifikatoru groza un norēķinu datiem."
+
+#: src/Frontend/Assets.php:812
+msgid "Stores products viewed by the visitor."
+msgstr "Saglabā apmeklētāja skatītos produktus."
+
+#: src/Frontend/Assets.php:817
+msgid "Remembers dismissed WooCommerce store notices."
+msgstr "Atceras noraidītos WooCommerce veikala paziņojumus."
+
+#: src/Frontend/Assets.php:829
+msgid "WooCommerce source attribution"
+msgstr "WooCommerce avota attiecināšana"
+
+#: src/Frontend/Assets.php:833
+msgid ""
+"Stores first-party source attribution data for WooCommerce order reporting."
+msgstr ""
+"Saglabā pirmās puses avota attiecināšanas datus WooCommerce pasūtījumu "
+"pārskatiem."
+
+#: src/Frontend/Assets.php:865 src/Frontend/Assets.php:873
+#: src/Frontend/Assets.php:881 src/Frontend/Assets.php:889
+#: src/Frontend/Assets.php:897 src/Frontend/Assets.php:907
+msgid "6 months"
+msgstr "6 mēneši"
+
+#: src/Frontend/Assets.php:866
+msgid ""
+"Stores the visitor’s current traffic source for WooCommerce order "
+"attribution."
+msgstr ""
+"Saglabā apmeklētāja pašreizējo datplūsmas avotu WooCommerce pasūtījumu "
+"attiecināšanai."
+
+#: src/Frontend/Assets.php:874
+msgid ""
+"Stores additional current traffic source details for WooCommerce order "
+"attribution."
+msgstr ""
+"Saglabā papildu pašreizējā datplūsmas avota informāciju WooCommerce "
+"pasūtījumu attiecināšanai."
+
+#: src/Frontend/Assets.php:882
+msgid ""
+"Stores the visitor’s first traffic source for WooCommerce order attribution."
+msgstr ""
+"Saglabā apmeklētāja pirmo datplūsmas avotu WooCommerce pasūtījumu "
+"attiecināšanai."
+
+#: src/Frontend/Assets.php:890
+msgid ""
+"Stores additional first traffic source details for WooCommerce order "
+"attribution."
+msgstr ""
+"Saglabā papildu pirmā datplūsmas avota informāciju WooCommerce pasūtījumu "
+"attiecināšanai."
+
+#: src/Frontend/Assets.php:898
+msgid "Tracks Sourcebuster cookie format migrations."
+msgstr "Izseko Sourcebuster sīkdatņu formāta migrācijas."
+
+#: src/Frontend/Assets.php:902
+msgid "30 minutes"
+msgstr "30 minūtes"
+
+#: src/Frontend/Assets.php:903
+msgid "Stores the visitor’s current source attribution session."
+msgstr "Saglabā apmeklētāja pašreizējo avota attiecināšanas sesiju."
+
+#: src/Frontend/Assets.php:908
+msgid ""
+"Stores visitor user-agent and page attribution details for WooCommerce order "
+"reporting."
+msgstr ""
+"Saglabā apmeklētāja lietotāja aģenta un lapas attiecināšanas informāciju "
+"WooCommerce pasūtījumu pārskatiem."
+
+#: src/Frontend/Assets.php:923 src/Frontend/Assets.php:950
+msgid "Klaviyo"
+msgstr "Klaviyo"
+
+#: src/Frontend/Assets.php:934
+msgid ""
+"Stores Klaviyo visitor identity for email marketing, attribution, and "
+"WooCommerce tracking."
+msgstr ""
+"Saglabā Klaviyo apmeklētāja identitāti e-pasta mārketingam, attiecināšanai "
+"un WooCommerce izsekošanai."
+
+#: src/Frontend/Assets.php:942
+msgid "Disables Klaviyo tracking until marketing consent is granted."
+msgstr ""
+"Atspējo Klaviyo izsekošanu, līdz tiek dota mārketinga piekrišana."
+
+#: src/Frontend/Assets.php:951
+msgid ""
+"Supports Klaviyo email marketing attribution, forms, and WooCommerce "
+"activity tracking."
+msgstr ""
+"Atbalsta Klaviyo e-pasta mārketinga attiecināšanu, veidlapas un WooCommerce "
+"aktivitāšu izsekošanu."
+
+#: src/Frontend/Assets.php:967 src/Frontend/Assets.php:978
+msgid "WoodMart"
+msgstr "WoodMart"
+
+#: src/Frontend/Assets.php:979
+msgid ""
+"Keeps WoodMart shop preferences, wishlist, compare, product history, and "
+"popups working."
+msgstr ""
+"Nodrošina WoodMart veikala preferenču, vēlmju saraksta, salīdzināšanas, "
+"produktu vēstures un uznirstošo logu darbību."
+
+#: src/Frontend/Assets.php:1019
+msgid "Stores products recently viewed by the visitor."
+msgstr "Saglabā apmeklētāja nesen skatītos produktus."
+
+#: src/Frontend/Assets.php:1024
+msgid "Checks whether the visitor’s WoodMart wishlist has changed."
+msgstr "Pārbauda, vai apmeklētāja WoodMart vēlmju saraksts ir mainījies."
+
+#: src/Frontend/Assets.php:1029
+msgid "Stores the number of products in the visitor’s WoodMart wishlist."
+msgstr "Saglabā produktu skaitu apmeklētāja WoodMart vēlmju sarakstā."
+
+#: src/Frontend/Assets.php:1034
+msgid "Stores products added to the visitor’s WoodMart wishlist."
+msgstr "Saglabā produktus, kas pievienoti apmeklētāja WoodMart vēlmju sarakstam."
+
+#: src/Frontend/Assets.php:1039
+msgid "Stores products added to the visitor’s WoodMart compare list."
+msgstr "Saglabā produktus, kas pievienoti apmeklētāja WoodMart salīdzināšanas sarakstam."
+
+#: src/Frontend/Assets.php:1044
+msgid "Remembers the visitor’s selected shop list or grid view."
+msgstr "Atceras apmeklētāja atlasīto veikala saraksta vai režģa skatu."
+
+#: src/Frontend/Assets.php:1049
+msgid "Remembers that the visitor passed the WoodMart age verification prompt."
+msgstr "Atceras, ka apmeklētājs ir izgājis WoodMart vecuma pārbaudes uzvedni."
+
+#: src/Frontend/Assets.php:1061 src/Frontend/Assets.php:1072
+msgid "Wordfence"
+msgstr "Wordfence"
+
+#: src/Frontend/Assets.php:1073
+msgid ""
+"Supports the Wordfence firewall, country blocking bypasses, login alerts, "
+"and plugin linking."
+msgstr ""
+"Atbalsta Wordfence ugunsmūri, valstu bloķēšanas apiešanu, pieteikšanās "
+"brīdinājumus un spraudņa sasaistīšanu."
+
+#: src/Frontend/Assets.php:1104
+msgid "12 hours"
+msgstr "12 stundas"
+
+#: src/Frontend/Assets.php:1105
+msgid ""
+"Allows the Wordfence firewall to identify logged-in users and their roles."
+msgstr ""
+"Ļauj Wordfence ugunsmūrim identificēt pieteikušos lietotājus un viņu lomas."
+
+#: src/Frontend/Assets.php:1110
+msgid "Stores a country blocking bypass granted by a hidden access URL."
+msgstr "Saglabā valsts bloķēšanas apiešanu, kas piešķirta ar slēptu piekļuves URL."
+
+#: src/Frontend/Assets.php:1115
+msgid ""
+"Remembers that a Wordfence new-device login alert has already been sent."
+msgstr ""
+"Atceras, ka Wordfence jaunas ierīces pieteikšanās brīdinājums jau ir nosūtīts."
+
+#: src/Frontend/Assets.php:1120
+msgid "Tracks a Wordfence plugin license or account linking action."
+msgstr "Izseko Wordfence spraudņa licences vai konta sasaistīšanas darbību."
+
+#: src/Frontend/Assets.php:1125
+msgid "Remembers that Wordfence has verified the visitor as human."
+msgstr "Atceras, ka Wordfence ir pārbaudījis apmeklētāju kā cilvēku."
+
+#: src/Frontend/Assets.php:1137
+msgid "YouTube"
+msgstr "YouTube"
+
+#: src/Frontend/Assets.php:1141
+msgid "Loads embedded videos provided by YouTube."
+msgstr "Ielādē YouTube nodrošinātos iegultos video."
+
+#: src/Frontend/Assets.php:1156 src/Frontend/Assets.php:1162
+msgid "180 days"
+msgstr "180 dienas"
+
+#: src/Frontend/Assets.php:1157
+msgid "Measures bandwidth and player interface selection."
+msgstr "Mēra joslas platumu un atskaņotāja saskarnes izvēli."
+
+#: src/Frontend/Assets.php:1163
+msgid "Stores the visitor’s YouTube privacy state."
+msgstr "Saglabā apmeklētāja YouTube privātuma stāvokli."
+
+#: src/Frontend/Assets.php:1169
+msgid "Maintains YouTube video-view session data."
+msgstr "Uztur YouTube video skatīšanās sesijas datus."
+
+#: src/Frontend/Assets.php:1174
+msgid "8 months"
+msgstr "8 mēneši"
+
+#: src/Frontend/Assets.php:1175
+msgid "Stores YouTube playback and display preferences."
+msgstr "Saglabā YouTube atskaņošanas un attēlošanas preferences."
+
+#: src/Frontend/ConsentApiBridge.php:154
+msgid "Varies"
+msgstr "Atšķiras"
+
+#: src/Frontend/ConsentApiBridge.php:186
+msgid "Configured consent service."
+msgstr "Konfigurēts piekrišanas pakalpojums."
+
+#: src/Options.php:46
+msgid "Privacy settings"
+msgstr "Privātuma iestatījumi"
+
+#: src/Options.php:49
+msgid "We use cookies for required functionality, statistics, and marketing."
+msgstr ""
+"Mēs izmantojam sīkdatnes nepieciešamai funkcionalitātei, statistikai un "
+"mārketingam."
+
+#: src/Options.php:53
+msgid "You can update your choices at any time."
+msgstr "Savas izvēles varat atjaunināt jebkurā laikā."
+
+#: src/Options.php:55
+msgid "Privacy preferences"
+msgstr "Privātuma preferences"
+
+#: src/Options.php:56
+msgid "Choose which categories of services may load on this site."
+msgstr ""
+"Izvēlieties, kuru kategoriju pakalpojumi drīkst ielādēties šajā vietnē."
+
+#~ msgid "Preference storage"
+#~ msgstr "Preferenču glabāšana"
+
+#~ msgid "Allows services that remember visitor preferences."
+#~ msgstr "Atļauj pakalpojumus, kas atceras apmeklētāja preferences."
+
+#~ msgid "Allows anonymous, first-party audience measurement."
+#~ msgstr "Atļauj anonīmu pirmās puses auditorijas mērīšanu."
+
+#~ msgid "Allows identifiable audience measurement and analytics."
+#~ msgstr "Atļauj identificējamu auditorijas mērīšanu un analītiku."
+
+#~ msgid "Allows advertising measurement and visitor profiling."
+#~ msgstr "Atļauj reklāmas mērīšanu un apmeklētāju profilēšanu."

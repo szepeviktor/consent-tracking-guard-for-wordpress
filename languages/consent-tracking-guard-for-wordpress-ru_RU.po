@@ -3,394 +3,898 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-"
+"for-wordpress/issues\n"
+"POT-Creation-Date: 2026-09-21T14:40:30+00:00\n"
+"PO-Revision-Date: 2026-09-21 14:40+0000\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2026-09-03 16:07+0000\n"
 "X-Generator: Codex\n"
 "X-Domain: consent-tracking-guard-for-wordpress\n"
 
+#. Plugin Name of the plugin
+#: consent-tracking-guard-for-wordpress.php src/AdminPage.php:55
+#: src/AdminPage.php:332
 msgid "Viktor's Consent and Tracking Guard for WordPress"
 msgstr "Viktor's Consent and Tracking Guard for WordPress"
 
+#. Plugin URI of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 msgstr "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 
-msgid "Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync."
-msgstr "Баннер согласия на использование файлов cookie на базе Klaro с совместимостью с WP Consent API."
+#. Description of the plugin
+#: consent-tracking-guard-for-wordpress.php
+msgid ""
+"Controls consent-aware tracking, service disclosures, embeds, and WP Consent "
+"API sync."
+msgstr ""
+"Баннер согласия на использование файлов cookie на базе Klaro с "
+"совместимостью с WP Consent API."
 
+#. Author of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "Viktor Szépe"
 msgstr "Viktor Szépe"
 
+#. Author URI of the plugin
+#: consent-tracking-guard-for-wordpress.php
 msgid "https://github.com/szepeviktor"
 msgstr "https://github.com/szepeviktor"
 
+#: src/AdminPage.php:56
 msgid "Consent & Tracking"
 msgstr "Consent & Tracking"
 
+#: src/AdminPage.php:89
 msgid "Banner copy"
 msgstr "Текст баннера"
 
+#: src/AdminPage.php:95
 msgid "Display"
 msgstr "Отображение"
 
+#: src/AdminPage.php:101
 msgid "Integrations"
 msgstr "Интеграции"
 
+#: src/AdminPage.php:111
 msgid "Notice title"
 msgstr "Заголовок уведомления"
 
+#: src/AdminPage.php:116
 msgid "Notice description"
 msgstr "Описание уведомления"
 
+#: src/AdminPage.php:121
 msgid "Modal title"
 msgstr "Заголовок модального окна"
 
+#: src/AdminPage.php:126
 msgid "Modal description"
 msgstr "Описание модального окна"
 
+#: src/AdminPage.php:135
 msgid "Modal style"
 msgstr "Стиль модального окна"
 
+#: src/AdminPage.php:142
 msgid "Floating privacy button"
 msgstr "Плавающая кнопка приватности"
 
+#: src/AdminPage.php:148
 msgid "Show a floating button that reopens the privacy settings."
-msgstr "Показывать плавающую кнопку, которая повторно открывает настройки приватности."
+msgstr ""
+"Показывать плавающую кнопку, которая повторно открывает настройки "
+"приватности."
 
+#: src/AdminPage.php:157
 msgid "Google Tag Manager ID"
 msgstr "ID Google Tag Manager"
 
+#: src/AdminPage.php:162
 msgid "Microsoft Clarity project ID"
 msgstr "ID проекта Microsoft Clarity"
 
+#: src/AdminPage.php:167
 msgid "Hotjar site ID"
 msgstr "ID сайта Hotjar"
 
+#: src/AdminPage.php:172
 msgid "Hotjar script version"
 msgstr "Версия скрипта Hotjar"
 
+#: src/AdminPage.php:177
 msgid "Meta Pixel ID"
 msgstr "ID Meta Pixel"
 
+#: src/AdminPage.php:182
 msgid "LinkedIn partner ID"
 msgstr "ID партнера LinkedIn"
 
+#: src/AdminPage.php:198
+msgid "Polylang disclosure"
+msgstr "Информация о Polylang"
+
+#: src/AdminPage.php:204
+msgid ""
+"Show the Polylang language cookie for multilingual sites and WooCommerce "
+"shops."
+msgstr ""
+"Показывать языковой cookie Polylang для многоязычных сайтов и магазинов "
+"WooCommerce."
+
+#: src/AdminPage.php:216
+msgid "WooCommerce disclosure"
+msgstr "Информация о WooCommerce"
+
+#: src/AdminPage.php:222
+msgid ""
+"Show WooCommerce cart, checkout, session, and source attribution cookies."
+msgstr ""
+"Показывать cookie корзины, оформления заказа, сеанса и атрибуции источника "
+"WooCommerce."
+
+#: src/AdminPage.php:234
+msgid "Meta for WooCommerce consent bridge"
+msgstr "Мост согласия Meta for WooCommerce"
+
+#: src/AdminPage.php:240
+msgid "Hold Meta for WooCommerce tracking until marketing consent is granted."
+msgstr ""
+"Удерживать отслеживание Meta for WooCommerce, пока не получено согласие на "
+"маркетинг."
+
+#: src/AdminPage.php:252
+msgid "Klaviyo disclosure"
+msgstr "Информация о Klaviyo"
+
+#: src/AdminPage.php:258
+msgid ""
+"Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking "
+"outside this plugin’s control."
+msgstr ""
+"Показывать cookie Klaviyo, когда плагин Klaviyo WooCommerce загружает "
+"отслеживание вне контроля этого плагина."
+
+#: src/AdminPage.php:270
+msgid "WoodMart disclosure"
+msgstr "Информация о WoodMart"
+
+#: src/AdminPage.php:276
+msgid ""
+"Show WoodMart cookies for wishlist, compare, product history, popups, and "
+"shop preferences."
+msgstr ""
+"Показывать cookie WoodMart для списка желаний, сравнения, истории товаров, "
+"всплывающих окон и предпочтений магазина."
+
+#: src/AdminPage.php:288
+msgid "Wordfence disclosure"
+msgstr "Информация о Wordfence"
+
+#: src/AdminPage.php:294
+msgid ""
+"Show Wordfence security cookies for the firewall, access controls, login "
+"alerts, and linking."
+msgstr ""
+"Показывать cookie безопасности Wordfence для файрвола, контроля доступа, "
+"уведомлений о входе и связывания."
+
+#: src/AdminPage.php:306
 msgid "YouTube blocking"
 msgstr "Блокировка YouTube"
 
+#: src/AdminPage.php:312
 msgid "Block and replace YouTube embeds until marketing consent is granted."
-msgstr "Блокировать и заменять встраивания YouTube, пока не получено согласие на маркетинг."
+msgstr ""
+"Блокировать и заменять встраивания YouTube, пока не получено согласие на "
+"маркетинг."
 
-msgid "Configure the consent texts and vendor IDs used by the frontend Klaro banner."
-msgstr "Настройте тексты согласия и ID поставщиков, используемые фронтенд-баннером Klaro."
+#: src/AdminPage.php:340
+msgid ""
+"Configure the consent texts and vendor IDs used by the frontend Klaro banner."
+msgstr ""
+"Настройте тексты согласия и ID поставщиков, используемые фронтенд-баннером "
+"Klaro."
 
+#: src/AdminPage.php:369
 msgid "WP Consent API was not detected."
 msgstr "WP Consent API не обнаружен."
 
-msgid "The consent controls will still render, but the WordPress compatibility bridge will stay inactive"
-msgstr "CMP все равно будет отображаться, но мост совместимости WordPress останется неактивным"
+#: src/AdminPage.php:370
+msgid ""
+"The consent controls will still render, but the WordPress compatibility "
+"bridge will stay inactive"
+msgstr ""
+"CMP все равно будет отображаться, но мост совместимости WordPress останется "
+"неактивным"
 
+#: src/AdminPage.php:374
 msgid "until the API plugin is available."
 msgstr "пока плагин API не станет доступен."
 
+#: src/AdminPage.php:384
 msgid "Another plugin already provides the WP Consent API consent type."
 msgstr "Другой плагин уже предоставляет тип согласия WP Consent API."
 
-msgid "Viktor's Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform"
-msgstr "Viktor's Consent and Tracking Guard for WordPress сохраняет это значение; проверьте, что только одна платформа управления согласием"
+#: src/AdminPage.php:388
+msgid ""
+"Viktor's Consent and Tracking Guard for WordPress preserves that value; "
+"verify that only one consent management platform"
+msgstr ""
+"Viktor's Consent and Tracking Guard for WordPress сохраняет это значение; "
+"проверьте, что только одна платформа управления согласием"
 
+#: src/AdminPage.php:392
 msgid "controls the site."
 msgstr "управляет сайтом."
 
+#: src/AdminPage.php:400
 msgid "Set the text displayed in the consent notice and preferences dialog."
-msgstr "Задайте текст, отображаемый в уведомлении о согласии и диалоге предпочтений."
+msgstr ""
+"Задайте текст, отображаемый в уведомлении о согласии и диалоге предпочтений."
 
+#: src/AdminPage.php:404
+msgid ""
+"Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL."
+msgstr ""
+"Используйте [privacy-policy], чтобы вставить настроенный в WordPress URL "
+"политики конфиденциальности."
+
+#: src/AdminPage.php:413
 msgid "Enter only the services that this site uses."
 msgstr "Укажите только те сервисы, которые использует этот сайт."
 
+#: src/AdminPage.php:418
 msgid "Control how visitors can access their privacy settings."
-msgstr "Управляйте тем, как посетители получают доступ к настройкам приватности."
+msgstr ""
+"Управляйте тем, как посетители получают доступ к настройкам приватности."
 
+#: src/AdminPage.php:476
 msgid "Klaro’s default"
 msgstr "По умолчанию Klaro"
 
+#: src/AdminPage.php:477
 msgid "Viktor’s default"
 msgstr "По умолчанию Viktor"
 
+#: src/AdminPage.php:478
 msgid "Light"
 msgstr "Светлый"
 
+#: src/AdminPage.php:479
 msgid "Dark"
 msgstr "Темный"
 
+#: src/AdminPage.php:480
 msgid "Twenty Twenty-Five"
 msgstr "Twenty Twenty-Five"
 
+#: src/AdminPage.php:481
 msgid "CookieNo"
 msgstr "CookieNo"
 
+#: src/AdminPage.php:505
 msgid "Klaro’s default applies no custom modal theme;"
-msgstr "Настройка Klaro по умолчанию не применяет пользовательскую тему модального окна;"
+msgstr ""
+"Настройка Klaro по умолчанию не применяет пользовательскую тему модального "
+"окна;"
 
+#: src/AdminPage.php:506
 msgid "the component stylesheet only positions and styles plugin controls."
-msgstr "таблица стилей компонентов только размещает и оформляет элементы управления плагина."
+msgstr ""
+"таблица стилей компонентов только размещает и оформляет элементы управления "
+"плагина."
 
-msgid "service"
-msgstr "сервис"
+#: src/Frontend/Assets.php:277
+msgid "There were changes since your last visit, please renew your consent."
+msgstr ""
+"Со времени вашего последнего посещения произошли изменения, обновите свое "
+"согласие."
 
-msgid "services"
-msgstr "сервисы"
-
-msgid "OK"
-msgstr "ОК"
-
-msgid "Save"
-msgstr "Сохранить"
-
+#: src/Frontend/Assets.php:281
 msgid "Learn more"
 msgstr "Подробнее"
 
-msgid "Accept all"
-msgstr "Принять все"
-
-msgid "Decline all"
-msgstr "Отклонить все"
-
-msgid "Decline"
-msgstr "Отклонить"
-
-msgid "Close"
-msgstr "Закрыть"
-
-msgid "Functional"
-msgstr "Функциональные"
-
-msgid "Preferences"
-msgstr "Предпочтения"
-
-msgid "Anonymous statistics"
-msgstr "Анонимная статистика"
-
-msgid "Statistics"
-msgstr "Статистика"
-
-msgid "Marketing"
-msgstr "Маркетинг"
-
-msgid "Enable or disable all services"
-msgstr "Включить или отключить все сервисы"
-
-msgid "Use this switch to change all optional services at once."
-msgstr "Используйте этот переключатель, чтобы изменить все необязательные сервисы сразу."
-
-msgid "(opt-out)"
-msgstr "(отказ)"
-
-msgid "This service loads by default, but can be disabled later."
-msgstr "Этот сервис загружается по умолчанию, но позже его можно отключить."
-
-msgid "(required)"
-msgstr "(обязательно)"
-
-msgid "This service is required for the site to function."
-msgstr "Этот сервис необходим для работы сайта."
-
-msgid "Purposes"
-msgstr "Цели"
-
-msgid "Purpose"
-msgstr "Цель"
-
-msgid "Preference storage"
-msgstr "Хранение предпочтений"
-
-msgid "Allows services that remember visitor preferences."
-msgstr "Разрешает сервисы, которые запоминают предпочтения посетителя."
-
-msgid "Allows anonymous, first-party audience measurement."
-msgstr "Разрешает анонимное измерение аудитории первой стороной."
-
-msgid "Allows identifiable audience measurement and analytics."
-msgstr "Разрешает идентифицируемое измерение аудитории и аналитику."
-
-msgid "Allows advertising measurement and visitor profiling."
-msgstr "Разрешает измерение рекламы и профилирование посетителей."
-
-msgid "Cookie consent settings"
-msgstr "Настройки согласия на cookie"
-
-msgid "365 days"
-msgstr "365 дней"
-
-msgid "Stores the visitor’s consent choices."
-msgstr "Сохраняет варианты согласия посетителя."
-
-msgid "Stores the visitor’s consent choice."
-msgstr "Сохраняет выбор согласия посетителя."
-
-msgid "Google Tag Manager"
-msgstr "Google Tag Manager"
-
-msgid "2 years"
-msgstr "2 года"
-
-msgid "Distinguishes visitors for analytics reporting."
-msgstr "Различает посетителей для аналитической отчетности."
-
-msgid "24 hours"
-msgstr "24 часа"
-
-msgid "Distinguishes visitors for daily analytics reporting."
-msgstr "Различает посетителей для ежедневной аналитической отчетности."
-
-msgid "Loads analytics tags managed through Google Tag Manager."
-msgstr "Загружает аналитические теги, управляемые через Google Tag Manager."
-
-msgid "Microsoft Clarity"
-msgstr "Microsoft Clarity"
-
-msgid "1 year"
-msgstr "1 год"
-
-msgid "Persists the Clarity visitor identifier and preferences."
-msgstr "Сохраняет идентификатор посетителя Clarity и предпочтения."
-
-msgid "1 day"
-msgstr "1 день"
-
-msgid "Groups Clarity page views into a recording session."
-msgstr "Группирует просмотры страниц Clarity в сеанс записи."
-
-msgid "Measures how visitors use the site through session analytics."
-msgstr "Измеряет, как посетители используют сайт, с помощью сеансовой аналитики."
-
-msgid "Hotjar"
-msgstr "Hotjar"
-
-msgid "Measures visitor behavior and collects usability feedback."
-msgstr "Измеряет поведение посетителей и собирает отзывы об удобстве использования."
-
-msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
-msgstr "Предотвращает повторное появление отклоненного приглашения к опросу Hotjar."
-
-msgid "Prevents a completed Hotjar poll from reappearing."
-msgstr "Предотвращает повторное появление завершенного опроса Hotjar."
-
-msgid "Keeps a minimized Hotjar poll minimized."
-msgstr "Сохраняет опрос Hotjar в свернутом состоянии."
-
-msgid "Prevents repeated display of Hotjar feedback messaging."
-msgstr "Предотвращает повторный показ сообщений обратной связи Hotjar."
-
-msgid "Meta Pixel"
-msgstr "Meta Pixel"
-
-msgid "90 days"
-msgstr "90 дней"
-
-msgid "Identifies browsers for Meta advertising measurement."
-msgstr "Идентифицирует браузеры для измерения рекламы Meta."
-
-msgid "Stores the Meta advertising click identifier."
-msgstr "Сохраняет идентификатор рекламного клика Meta."
-
-msgid "Measures advertising performance and visitor actions for Meta."
-msgstr "Измеряет эффективность рекламы и действия посетителей для Meta."
-
-msgid "LinkedIn Insight Tag"
-msgstr "LinkedIn Insight Tag"
-
-msgid "30 days"
-msgstr "30 дней"
-
-msgid "Stores the LinkedIn advertising click identifier."
-msgstr "Сохраняет идентификатор рекламного клика LinkedIn."
-
-msgid "7 days"
-msgstr "7 дней"
-
-msgid "Supports LinkedIn conversion attribution."
-msgstr "Поддерживает атрибуцию конверсий LinkedIn."
-
-msgid "Measures LinkedIn campaign performance and website conversions."
-msgstr "Измеряет эффективность кампаний LinkedIn и конверсии на сайте."
-
-msgid "YouTube"
-msgstr "YouTube"
-
-msgid "Loads embedded videos provided by YouTube."
-msgstr "Загружает встроенные видео, предоставленные YouTube."
-
-msgid "180 days"
-msgstr "180 дней"
-
-msgid "Measures bandwidth and player interface selection."
-msgstr "Измеряет пропускную способность и выбор интерфейса проигрывателя."
-
-msgid "Stores the visitor’s YouTube privacy state."
-msgstr "Сохраняет состояние приватности посетителя для YouTube."
-
-msgid "Session"
-msgstr "Сеанс"
-
-msgid "Maintains YouTube video-view session data."
-msgstr "Поддерживает данные сеанса просмотра видео YouTube."
-
-msgid "8 months"
-msgstr "8 месяцев"
-
-msgid "Stores YouTube playback and display preferences."
-msgstr "Сохраняет предпочтения воспроизведения и отображения YouTube."
-
-msgid "Varies"
-msgstr "Зависит"
-
-msgid "Configured consent service."
-msgstr "Настроенный сервис согласия."
-
-msgid "Privacy settings"
-msgstr "Настройки приватности"
-
-msgid "We use cookies for required functionality, statistics, and marketing."
-msgstr "Мы используем файлы cookie для необходимой функциональности, статистики и маркетинга."
-
-msgid "You can update your choices at any time."
-msgstr "Вы можете изменить свой выбор в любое время."
-
-msgid "Privacy preferences"
-msgstr "Предпочтения приватности"
-
-msgid "Choose which categories of services may load on this site."
-msgstr "Выберите, какие категории сервисов могут загружаться на этом сайте."
-
-msgid "There were changes since your last visit, please renew your consent."
-msgstr "Со времени вашего последнего посещения произошли изменения, обновите свое согласие."
-
+#: src/Frontend/Assets.php:282
 msgid "Testing mode!"
 msgstr "Режим тестирования!"
 
+#: src/Frontend/Assets.php:289
 msgid "Always"
 msgstr "Всегда"
 
+#: src/Frontend/Assets.php:290
 msgid "Yes"
 msgstr "Да"
 
+#: src/Frontend/Assets.php:291
 msgid "Do you want to load external content supplied by {title}?"
 msgstr "Хотите загрузить внешний контент, предоставленный {title}?"
 
-msgid "To agree to this service permanently, you must accept {title} in the {link}."
-msgstr "Чтобы постоянно согласиться на этот сервис, необходимо принять {title} в {link}."
+#: src/Frontend/Assets.php:295
+msgid ""
+"To agree to this service permanently, you must accept {title} in the {link}."
+msgstr ""
+"Чтобы постоянно согласиться на этот сервис, необходимо принять {title} в "
+"{link}."
 
+#: src/Frontend/Assets.php:299
 msgid "Consent Manager"
 msgstr "Менеджер согласия"
 
+#: src/Frontend/Assets.php:303
+msgid "service"
+msgstr "сервис"
+
+#: src/Frontend/Assets.php:304
+msgid "services"
+msgstr "сервисы"
+
+#: src/Frontend/Assets.php:306
+msgid "OK"
+msgstr "ОК"
+
+#: src/Frontend/Assets.php:307
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/Frontend/Assets.php:308
+msgid "Accept all"
+msgstr "Принять все"
+
+#: src/Frontend/Assets.php:309
 msgid "Accept selected"
 msgstr "Принять выбранные"
 
+#: src/Frontend/Assets.php:310
+msgid "Decline all"
+msgstr "Отклонить все"
+
+#: src/Frontend/Assets.php:311
+msgid "Decline"
+msgstr "Отклонить"
+
+#: src/Frontend/Assets.php:312
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/Frontend/Assets.php:313
 msgid "Realized with Klaro!"
 msgstr "Работает на Klaro!"
+
+#: src/Frontend/Assets.php:329
+msgid "Functional"
+msgstr "Функциональные"
+
+#: src/Frontend/Assets.php:330
+msgid "Preferences"
+msgstr "Предпочтения"
+
+#: src/Frontend/Assets.php:331
+msgid "Anonymous statistics"
+msgstr "Анонимная статистика"
+
+#: src/Frontend/Assets.php:332
+msgid "Statistics"
+msgstr "Статистика"
+
+#: src/Frontend/Assets.php:333
+msgid "Marketing"
+msgstr "Маркетинг"
+
+#: src/Frontend/Assets.php:344
+msgid "Enable or disable all services"
+msgstr "Включить или отключить все сервисы"
+
+#: src/Frontend/Assets.php:345
+msgid "Use this switch to change all optional services at once."
+msgstr ""
+"Используйте этот переключатель, чтобы изменить все необязательные сервисы "
+"сразу."
+
+#: src/Frontend/Assets.php:351
+msgid "(opt-out)"
+msgstr "(отказ)"
+
+#: src/Frontend/Assets.php:352
+msgid "This service loads by default, but can be disabled later."
+msgstr "Этот сервис загружается по умолчанию, но позже его можно отключить."
+
+#: src/Frontend/Assets.php:358
+msgid "(required)"
+msgstr "(обязательно)"
+
+#: src/Frontend/Assets.php:359
+msgid "This service is required for the site to function."
+msgstr "Этот сервис необходим для работы сайта."
+
+#: src/Frontend/Assets.php:364
+msgid "Purposes"
+msgstr "Цели"
+
+#: src/Frontend/Assets.php:365
+msgid "Purpose"
+msgstr "Цель"
+
+#: src/Frontend/Assets.php:450 src/Frontend/Assets.php:467
+msgid "Cookie consent settings"
+msgstr "Настройки согласия на cookie"
+
+#: src/Frontend/Assets.php:461
+msgid "365 days"
+msgstr "365 дней"
+
+#: src/Frontend/Assets.php:462
+msgid "Stores the visitor’s consent choices."
+msgstr "Сохраняет варианты согласия посетителя."
+
+#: src/Frontend/Assets.php:468
+msgid "Stores the visitor’s consent choice."
+msgstr "Сохраняет выбор согласия посетителя."
+
+#: src/Frontend/Assets.php:481
+msgid "Google Tag Manager"
+msgstr "Google Tag Manager"
+
+#: src/Frontend/Assets.php:487 src/Frontend/Assets.php:933
+msgid "2 years"
+msgstr "2 года"
+
+#: src/Frontend/Assets.php:488
+msgid "Distinguishes visitors for analytics reporting."
+msgstr "Различает посетителей для аналитической отчетности."
+
+#: src/Frontend/Assets.php:492 src/Frontend/Assets.php:1119
+#: src/Frontend/Assets.php:1124
+msgid "24 hours"
+msgstr "24 часа"
+
+#: src/Frontend/Assets.php:493
+msgid "Distinguishes visitors for daily analytics reporting."
+msgstr "Различает посетителей для ежедневной аналитической отчетности."
+
+#: src/Frontend/Assets.php:496
+msgid "Loads analytics tags managed through Google Tag Manager."
+msgstr "Загружает аналитические теги, управляемые через Google Tag Manager."
+
+#: src/Frontend/Assets.php:508
+msgid "Microsoft Clarity"
+msgstr "Microsoft Clarity"
+
+#: src/Frontend/Assets.php:514 src/Frontend/Assets.php:575
+#: src/Frontend/Assets.php:580 src/Frontend/Assets.php:585
+#: src/Frontend/Assets.php:724 src/Frontend/Assets.php:1109
+#: src/Frontend/Assets.php:1114
+msgid "1 year"
+msgstr "1 год"
+
+#: src/Frontend/Assets.php:515
+msgid "Persists the Clarity visitor identifier and preferences."
+msgstr "Сохраняет идентификатор посетителя Clarity и предпочтения."
+
+#: src/Frontend/Assets.php:519 src/Frontend/Assets.php:590
+msgid "1 day"
+msgstr "1 день"
+
+#: src/Frontend/Assets.php:520
+msgid "Groups Clarity page views into a recording session."
+msgstr "Группирует просмотры страниц Clarity в сеанс записи."
+
+#: src/Frontend/Assets.php:523
+msgid "Measures how visitors use the site through session analytics."
+msgstr ""
+"Измеряет, как посетители используют сайт, с помощью сеансовой аналитики."
+
+#: src/Frontend/Assets.php:535
+msgid "Hotjar"
+msgstr "Hotjar"
+
+#: src/Frontend/Assets.php:539
+msgid "Measures visitor behavior and collects usability feedback."
+msgstr ""
+"Измеряет поведение посетителей и собирает отзывы об удобстве использования."
+
+#: src/Frontend/Assets.php:576
+msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
+msgstr ""
+"Предотвращает повторное появление отклоненного приглашения к опросу Hotjar."
+
+#: src/Frontend/Assets.php:581
+msgid "Prevents a completed Hotjar poll from reappearing."
+msgstr "Предотвращает повторное появление завершенного опроса Hotjar."
+
+#: src/Frontend/Assets.php:586
+msgid "Keeps a minimized Hotjar poll minimized."
+msgstr "Сохраняет опрос Hotjar в свернутом состоянии."
+
+#: src/Frontend/Assets.php:591
+msgid "Prevents repeated display of Hotjar feedback messaging."
+msgstr "Предотвращает повторный показ сообщений обратной связи Hotjar."
+
+#: src/Frontend/Assets.php:603
+msgid "Meta Pixel"
+msgstr "Meta Pixel"
+
+#: src/Frontend/Assets.php:609 src/Frontend/Assets.php:617
+#: src/Frontend/Assets.php:642 src/Frontend/Assets.php:650
+msgid "90 days"
+msgstr "90 дней"
+
+#: src/Frontend/Assets.php:610 src/Frontend/Assets.php:643
+msgid "Identifies browsers for Meta advertising measurement."
+msgstr "Идентифицирует браузеры для измерения рекламы Meta."
+
+#: src/Frontend/Assets.php:618 src/Frontend/Assets.php:651
+msgid "Stores the Meta advertising click identifier."
+msgstr "Сохраняет идентификатор рекламного клика Meta."
+
+#: src/Frontend/Assets.php:624
+msgid "Measures advertising performance and visitor actions for Meta."
+msgstr "Измеряет эффективность рекламы и действия посетителей для Meta."
+
+#: src/Frontend/Assets.php:636
+msgid "Meta for WooCommerce"
+msgstr "Meta for WooCommerce"
+
+#: src/Frontend/Assets.php:658 src/Frontend/Assets.php:796
+#: src/Frontend/Assets.php:801 src/Frontend/Assets.php:811
+#: src/Frontend/Assets.php:816 src/Frontend/Assets.php:941
+#: src/Frontend/Assets.php:1023 src/Frontend/Assets.php:1028
+#: src/Frontend/Assets.php:1033 src/Frontend/Assets.php:1038
+#: src/Frontend/Assets.php:1043 src/Frontend/Assets.php:1048
+#: src/Frontend/Assets.php:1168
+msgid "Session"
+msgstr "Сеанс"
+
+#: src/Frontend/Assets.php:659
+msgid ""
+"Stores whether Meta for WooCommerce browser signals are held or released."
+msgstr ""
+"Сохраняет, удерживаются или передаются браузерные сигналы Meta for "
+"WooCommerce."
+
+#: src/Frontend/Assets.php:665
+msgid ""
+"Measures WooCommerce product views, cart actions, and purchases for Meta "
+"advertising."
+msgstr ""
+"Измеряет просмотры товаров WooCommerce, действия с корзиной и покупки для "
+"рекламы Meta."
+
+#: src/Frontend/Assets.php:680
+msgid "LinkedIn Insight Tag"
+msgstr "LinkedIn Insight Tag"
+
+#: src/Frontend/Assets.php:686
+msgid "30 days"
+msgstr "30 дней"
+
+#: src/Frontend/Assets.php:687
+msgid "Stores the LinkedIn advertising click identifier."
+msgstr "Сохраняет идентификатор рекламного клика LinkedIn."
+
+#: src/Frontend/Assets.php:691 src/Frontend/Assets.php:1018
+msgid "7 days"
+msgstr "7 дней"
+
+#: src/Frontend/Assets.php:692
+msgid "Supports LinkedIn conversion attribution."
+msgstr "Поддерживает атрибуцию конверсий LinkedIn."
+
+#: src/Frontend/Assets.php:695
+msgid "Measures LinkedIn campaign performance and website conversions."
+msgstr "Измеряет эффективность кампаний LinkedIn и конверсии на сайте."
+
+#: src/Frontend/Assets.php:713 src/Frontend/Assets.php:733
+msgid "Polylang"
+msgstr "Polylang"
+
+#: src/Frontend/Assets.php:725
+msgid ""
+"Stores the visitor’s last browsed language for Polylang and Polylang for "
+"WooCommerce."
+msgstr ""
+"Сохраняет последний просмотренный посетителем язык для Polylang и Polylang "
+"for WooCommerce."
+
+#: src/Frontend/Assets.php:734
+msgid ""
+"Remembers the selected language for multilingual content and translated "
+"WooCommerce flows."
+msgstr ""
+"Запоминает выбранный язык для многоязычного контента и переведенных сценариев "
+"WooCommerce."
+
+#: src/Frontend/Assets.php:750 src/Frontend/Assets.php:761
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: src/Frontend/Assets.php:762
+msgid ""
+"Keeps the shopping cart, checkout, customer session, and store notices "
+"working."
+msgstr ""
+"Обеспечивает работу корзины, оформления заказа, сеанса клиента и уведомлений "
+"магазина."
+
+#: src/Frontend/Assets.php:797
+msgid "Helps WooCommerce detect cart changes."
+msgstr "Помогает WooCommerce обнаруживать изменения в корзине."
+
+#: src/Frontend/Assets.php:802
+msgid "Helps WooCommerce keep cart data synchronized."
+msgstr "Помогает WooCommerce синхронизировать данные корзины."
+
+#: src/Frontend/Assets.php:806
+msgid "2 days"
+msgstr "2 дня"
+
+#: src/Frontend/Assets.php:807
+msgid "Stores a unique customer session identifier for cart and checkout data."
+msgstr "Сохраняет уникальный идентификатор сеанса клиента для данных корзины и оформления заказа."
+
+#: src/Frontend/Assets.php:812
+msgid "Stores products viewed by the visitor."
+msgstr "Сохраняет товары, просмотренные посетителем."
+
+#: src/Frontend/Assets.php:817
+msgid "Remembers dismissed WooCommerce store notices."
+msgstr "Запоминает закрытые уведомления магазина WooCommerce."
+
+#: src/Frontend/Assets.php:829
+msgid "WooCommerce source attribution"
+msgstr "Атрибуция источника WooCommerce"
+
+#: src/Frontend/Assets.php:833
+msgid ""
+"Stores first-party source attribution data for WooCommerce order reporting."
+msgstr ""
+"Сохраняет собственные данные атрибуции источника для отчетов по заказам "
+"WooCommerce."
+
+#: src/Frontend/Assets.php:865 src/Frontend/Assets.php:873
+#: src/Frontend/Assets.php:881 src/Frontend/Assets.php:889
+#: src/Frontend/Assets.php:897 src/Frontend/Assets.php:907
+msgid "6 months"
+msgstr "6 месяцев"
+
+#: src/Frontend/Assets.php:866
+msgid ""
+"Stores the visitor’s current traffic source for WooCommerce order "
+"attribution."
+msgstr ""
+"Сохраняет текущий источник трафика посетителя для атрибуции заказов "
+"WooCommerce."
+
+#: src/Frontend/Assets.php:874
+msgid ""
+"Stores additional current traffic source details for WooCommerce order "
+"attribution."
+msgstr ""
+"Сохраняет дополнительные сведения о текущем источнике трафика для атрибуции "
+"заказов WooCommerce."
+
+#: src/Frontend/Assets.php:882
+msgid ""
+"Stores the visitor’s first traffic source for WooCommerce order attribution."
+msgstr ""
+"Сохраняет первый источник трафика посетителя для атрибуции заказов "
+"WooCommerce."
+
+#: src/Frontend/Assets.php:890
+msgid ""
+"Stores additional first traffic source details for WooCommerce order "
+"attribution."
+msgstr ""
+"Сохраняет дополнительные сведения о первом источнике трафика для атрибуции "
+"заказов WooCommerce."
+
+#: src/Frontend/Assets.php:898
+msgid "Tracks Sourcebuster cookie format migrations."
+msgstr "Отслеживает миграции формата cookie Sourcebuster."
+
+#: src/Frontend/Assets.php:902
+msgid "30 minutes"
+msgstr "30 минут"
+
+#: src/Frontend/Assets.php:903
+msgid "Stores the visitor’s current source attribution session."
+msgstr "Сохраняет текущий сеанс атрибуции источника посетителя."
+
+#: src/Frontend/Assets.php:908
+msgid ""
+"Stores visitor user-agent and page attribution details for WooCommerce order "
+"reporting."
+msgstr ""
+"Сохраняет user-agent посетителя и сведения об атрибуции страницы для отчетов "
+"по заказам WooCommerce."
+
+#: src/Frontend/Assets.php:923 src/Frontend/Assets.php:950
+msgid "Klaviyo"
+msgstr "Klaviyo"
+
+#: src/Frontend/Assets.php:934
+msgid ""
+"Stores Klaviyo visitor identity for email marketing, attribution, and "
+"WooCommerce tracking."
+msgstr ""
+"Сохраняет идентификатор посетителя Klaviyo для email-маркетинга, атрибуции и "
+"отслеживания WooCommerce."
+
+#: src/Frontend/Assets.php:942
+msgid "Disables Klaviyo tracking until marketing consent is granted."
+msgstr ""
+"Отключает отслеживание Klaviyo, пока не получено согласие на маркетинг."
+
+#: src/Frontend/Assets.php:951
+msgid ""
+"Supports Klaviyo email marketing attribution, forms, and WooCommerce "
+"activity tracking."
+msgstr ""
+"Поддерживает атрибуцию email-маркетинга Klaviyo, формы и отслеживание "
+"активности WooCommerce."
+
+#: src/Frontend/Assets.php:967 src/Frontend/Assets.php:978
+msgid "WoodMart"
+msgstr "WoodMart"
+
+#: src/Frontend/Assets.php:979
+msgid ""
+"Keeps WoodMart shop preferences, wishlist, compare, product history, and "
+"popups working."
+msgstr ""
+"Обеспечивает работу предпочтений магазина WoodMart, списка желаний, "
+"сравнения, истории товаров и всплывающих окон."
+
+#: src/Frontend/Assets.php:1019
+msgid "Stores products recently viewed by the visitor."
+msgstr "Сохраняет товары, недавно просмотренные посетителем."
+
+#: src/Frontend/Assets.php:1024
+msgid "Checks whether the visitor’s WoodMart wishlist has changed."
+msgstr "Проверяет, изменился ли список желаний WoodMart у посетителя."
+
+#: src/Frontend/Assets.php:1029
+msgid "Stores the number of products in the visitor’s WoodMart wishlist."
+msgstr "Сохраняет количество товаров в списке желаний WoodMart у посетителя."
+
+#: src/Frontend/Assets.php:1034
+msgid "Stores products added to the visitor’s WoodMart wishlist."
+msgstr "Сохраняет товары, добавленные в список желаний WoodMart у посетителя."
+
+#: src/Frontend/Assets.php:1039
+msgid "Stores products added to the visitor’s WoodMart compare list."
+msgstr "Сохраняет товары, добавленные в список сравнения WoodMart у посетителя."
+
+#: src/Frontend/Assets.php:1044
+msgid "Remembers the visitor’s selected shop list or grid view."
+msgstr "Запоминает выбранный посетителем вид магазина: список или сетку."
+
+#: src/Frontend/Assets.php:1049
+msgid "Remembers that the visitor passed the WoodMart age verification prompt."
+msgstr "Запоминает, что посетитель прошел проверку возраста WoodMart."
+
+#: src/Frontend/Assets.php:1061 src/Frontend/Assets.php:1072
+msgid "Wordfence"
+msgstr "Wordfence"
+
+#: src/Frontend/Assets.php:1073
+msgid ""
+"Supports the Wordfence firewall, country blocking bypasses, login alerts, "
+"and plugin linking."
+msgstr ""
+"Поддерживает файрвол Wordfence, обход блокировки стран, уведомления о входе "
+"и связывание плагина."
+
+#: src/Frontend/Assets.php:1104
+msgid "12 hours"
+msgstr "12 часов"
+
+#: src/Frontend/Assets.php:1105
+msgid ""
+"Allows the Wordfence firewall to identify logged-in users and their roles."
+msgstr ""
+"Позволяет файрволу Wordfence идентифицировать вошедших пользователей и их "
+"роли."
+
+#: src/Frontend/Assets.php:1110
+msgid "Stores a country blocking bypass granted by a hidden access URL."
+msgstr "Сохраняет обход блокировки страны, предоставленный скрытым URL доступа."
+
+#: src/Frontend/Assets.php:1115
+msgid ""
+"Remembers that a Wordfence new-device login alert has already been sent."
+msgstr ""
+"Запоминает, что уведомление Wordfence о входе с нового устройства уже было "
+"отправлено."
+
+#: src/Frontend/Assets.php:1120
+msgid "Tracks a Wordfence plugin license or account linking action."
+msgstr "Отслеживает действие связывания лицензии плагина Wordfence или аккаунта."
+
+#: src/Frontend/Assets.php:1125
+msgid "Remembers that Wordfence has verified the visitor as human."
+msgstr "Запоминает, что Wordfence проверил посетителя как человека."
+
+#: src/Frontend/Assets.php:1137
+msgid "YouTube"
+msgstr "YouTube"
+
+#: src/Frontend/Assets.php:1141
+msgid "Loads embedded videos provided by YouTube."
+msgstr "Загружает встроенные видео, предоставленные YouTube."
+
+#: src/Frontend/Assets.php:1156 src/Frontend/Assets.php:1162
+msgid "180 days"
+msgstr "180 дней"
+
+#: src/Frontend/Assets.php:1157
+msgid "Measures bandwidth and player interface selection."
+msgstr "Измеряет пропускную способность и выбор интерфейса проигрывателя."
+
+#: src/Frontend/Assets.php:1163
+msgid "Stores the visitor’s YouTube privacy state."
+msgstr "Сохраняет состояние приватности посетителя для YouTube."
+
+#: src/Frontend/Assets.php:1169
+msgid "Maintains YouTube video-view session data."
+msgstr "Поддерживает данные сеанса просмотра видео YouTube."
+
+#: src/Frontend/Assets.php:1174
+msgid "8 months"
+msgstr "8 месяцев"
+
+#: src/Frontend/Assets.php:1175
+msgid "Stores YouTube playback and display preferences."
+msgstr "Сохраняет предпочтения воспроизведения и отображения YouTube."
+
+#: src/Frontend/ConsentApiBridge.php:154
+msgid "Varies"
+msgstr "Зависит"
+
+#: src/Frontend/ConsentApiBridge.php:186
+msgid "Configured consent service."
+msgstr "Настроенный сервис согласия."
+
+#: src/Options.php:46
+msgid "Privacy settings"
+msgstr "Настройки приватности"
+
+#: src/Options.php:49
+msgid "We use cookies for required functionality, statistics, and marketing."
+msgstr ""
+"Мы используем файлы cookie для необходимой функциональности, статистики и "
+"маркетинга."
+
+#: src/Options.php:53
+msgid "You can update your choices at any time."
+msgstr "Вы можете изменить свой выбор в любое время."
+
+#: src/Options.php:55
+msgid "Privacy preferences"
+msgstr "Предпочтения приватности"
+
+#: src/Options.php:56
+msgid "Choose which categories of services may load on this site."
+msgstr "Выберите, какие категории сервисов могут загружаться на этом сайте."
+
+#~ msgid "Preference storage"
+#~ msgstr "Хранение предпочтений"
+
+#~ msgid "Allows services that remember visitor preferences."
+#~ msgstr "Разрешает сервисы, которые запоминают предпочтения посетителя."
+
+#~ msgid "Allows anonymous, first-party audience measurement."
+#~ msgstr "Разрешает анонимное измерение аудитории первой стороной."
+
+#~ msgid "Allows identifiable audience measurement and analytics."
+#~ msgstr "Разрешает идентифицируемое измерение аудитории и аналитику."
+
+#~ msgid "Allows advertising measurement and visitor profiling."
+#~ msgstr "Разрешает измерение рекламы и профилирование посетителей."
