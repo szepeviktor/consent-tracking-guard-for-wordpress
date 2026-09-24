@@ -31,7 +31,8 @@
         "test:consent-api": [
             "php tests/php/assets-script-guard.php",
             "php tests/php/consent-api-bridge.php",
-            "php tests/php/facebook-for-woocommerce-bridge.php"
+            "php tests/php/facebook-for-woocommerce-bridge.php",
+            "php tests/php/pixelyoursite-bridge.php"
         ]
     },
     "config": {

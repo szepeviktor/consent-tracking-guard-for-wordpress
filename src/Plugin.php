@@ -7,6 +7,7 @@ namespace SzepeViktor\ConsentTrackingGuard;
 use SzepeViktor\ConsentTrackingGuard\Frontend\Assets;
 use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 use SzepeViktor\ConsentTrackingGuard\Frontend\FacebookForWooCommerceBridge;
+use SzepeViktor\ConsentTrackingGuard\Frontend\PixelYourSiteBridge;
 
 use function is_admin;
 use function load_plugin_textdomain;
@@ -26,6 +27,7 @@ final class Plugin
         $consentApiBridge = new ConsentApiBridge(Config::get('baseName'));
         $consentApiBridge->register();
         (new FacebookForWooCommerceBridge($options))->register();
+        (new PixelYourSiteBridge($options))->register();
         (new Shortcodes())->register();
         (new Assets($options, $consentApiBridge))->register();
 

@@ -185,6 +185,7 @@ final class AdminPage
         $this->addPolylangField();
         $this->addWooCommerceField();
         $this->addFacebookForWooCommerceField();
+        $this->addPixelYourSiteField();
         $this->addKlaviyoField();
         $this->addWoodMartField();
         $this->addWordfenceField();
@@ -239,6 +240,24 @@ final class AdminPage
                 'name' => 'enable_facebook_for_woocommerce',
                 'label' => __(
                     'Hold Meta for WooCommerce tracking until marketing consent is granted.',
+                    'consent-tracking-guard-for-wordpress'
+                ),
+            ]
+        );
+    }
+
+    private function addPixelYourSiteField(): void
+    {
+        add_settings_field(
+            'consent-tracking-guard-for-wordpress-enable-pixelyoursite',
+            __('PixelYourSite consent bridge', 'consent-tracking-guard-for-wordpress'),
+            [$this, 'renderCheckboxField'],
+            self::PAGE_SLUG,
+            self::INTEGRATIONS_SECTION,
+            [
+                'name' => 'enable_pixelyoursite',
+                'label' => __(
+                    'Control PixelYourSite browser pixels, server events, cookies, and Google Consent Mode values from this consent banner.',
                     'consent-tracking-guard-for-wordpress'
                 ),
             ]

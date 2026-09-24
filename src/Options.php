@@ -67,6 +67,7 @@ final class Options
             'enable_polylang' => 0,
             'enable_woocommerce' => 0,
             'enable_facebook_for_woocommerce' => 0,
+            'enable_pixelyoursite' => 0,
             'enable_klaviyo' => 0,
             'enable_woodmart' => 0,
             'enable_wordfence' => 0,
@@ -109,6 +110,7 @@ final class Options
             'enable_facebook_for_woocommerce' => (bool) (
                 $input['enable_facebook_for_woocommerce'] ?? false
             ) ? 1 : 0,
+            'enable_pixelyoursite' => (bool) ($input['enable_pixelyoursite'] ?? false) ? 1 : 0,
             'enable_klaviyo' => (bool) ($input['enable_klaviyo'] ?? false) ? 1 : 0,
             'enable_woodmart' => (bool) ($input['enable_woodmart'] ?? false) ? 1 : 0,
             'enable_wordfence' => (bool) ($input['enable_wordfence'] ?? false) ? 1 : 0,
