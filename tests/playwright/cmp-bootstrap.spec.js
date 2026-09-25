@@ -366,14 +366,6 @@ test('syncs Triple Whale plugin tracking consent', async ({page}) => {
             </script>
         </head>
         <body>
-            <script>
-                window.__ctgTriplePixelQueue = [];
-                window.TriplePixel = function () {
-                    window.__ctgTriplePixelQueue.push(arguments);
-                };
-                window.TriplePixel.q = window.__ctgTriplePixelQueue;
-                window.TriplePixel.__ctgTriplePixelShim = true;
-            </script>
             <script
                 src="/assets/js/cmp-bootstrap.js"
                 data-triple-whale-service="triple-whale-pixel"></script>
@@ -383,7 +375,7 @@ test('syncs Triple Whale plugin tracking consent', async ({page}) => {
 
     await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
     await page.waitForTimeout(300);
-    expect(await page.evaluate(() => window.__ctgTriplePixelQueue.length)).toBe(0);
+    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(false);
 
     await page.evaluate(() => {
         window.TriplePixel = function () {
@@ -402,6 +394,7 @@ test('syncs Triple Whale plugin tracking consent', async ({page}) => {
         window.bootstrapFixture.manager.trigger('applyConsents');
     });
 
+    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(true);
     await expect.poll(() => page.evaluate(() => (
         window.TriplePixel._q.map(function (entry) {
             return Array.from(entry);
@@ -422,6 +415,7 @@ test('syncs Triple Whale plugin tracking consent', async ({page}) => {
         window.bootstrapFixture.manager.trigger('applyConsents');
     });
 
+    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(false);
     await expect.poll(() => page.evaluate(() => (
         window.TriplePixel._q.map(function (entry) {
             return Array.from(entry);

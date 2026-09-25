@@ -142,25 +142,19 @@ assert_same(
 assert_same(
     'before',
     $GLOBALS['assets_script_guard_inline_scripts'][0][2],
-    'Triple Whale bridge must remove the temporary shim before the official snippet runs.'
+    'Triple Whale bridge must publish denied consent before the official snippet runs.'
 );
 
 assert_same(
     true,
-    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'delete window.TriplePixel') !== false,
-    'Triple Whale bridge must release the official loader by deleting its temporary shim.'
+    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'window.TriplePixelData.trackingConsent = false;') !== false,
+    'Triple Whale bridge must disable tracking before the official snippet reads TriplePixelData.'
 );
 
 assert_same(
-    'after',
-    $GLOBALS['assets_script_guard_inline_scripts'][1][2],
-    'Triple Whale bridge must replay queued calls after the official snippet runs.'
-);
-
-assert_same(
-    true,
-    strpos($GLOBALS['assets_script_guard_inline_scripts'][1][1], 'window.TriplePixel.apply(window, queue[index]);') !== false,
-    'Triple Whale bridge must replay queued inline calls into the official implementation.'
+    1,
+    count($GLOBALS['assets_script_guard_inline_scripts']),
+    'Triple Whale bridge must not register a legacy queue replay script.'
 );
 
 ob_start();
@@ -168,9 +162,15 @@ $assets->print_triple_whale_tracking_consent_shim();
 $shimOutput = ob_get_clean();
 
 assert_same(
+    false,
+    strpos($shimOutput, 'window.TriplePixel = shim;'),
+    'Triple Whale bridge must not print the legacy queue shim.'
+);
+
+assert_same(
     true,
-    strpos($shimOutput, 'shim.__ctgTriplePixelShim = true;') !== false,
-    'Triple Whale bridge must mark the temporary shim so the runtime bridge can ignore it.'
+    strpos($shimOutput, 'window.TriplePixelData.trackingConsent = false;') !== false,
+    'Triple Whale bridge must publish denied consent before early TriplePixel calls are queued.'
 );
 
 fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

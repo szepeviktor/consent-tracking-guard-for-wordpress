@@ -135,50 +135,35 @@ final class Assets
             return;
         }
 
+        /*
+         * Triple Whale has two different consent surfaces, and their timing is
+         * not equivalent. The public command
+         * `TriplePixel('trackingConsent', false)` is handled by the
+         * `TriplePixel` dispatcher only after the official snippet has loaded
+         * and installed that dispatcher. The vendor script's initial module
+         * body already starts its page-load flow before queued public commands
+         * can be replayed, so using the public command alone is too late for
+         * first-load blocking.
+         *
+         * The vendor script also checks
+         * `window.TriplePixelData.trackingConsent` inside its own tracking
+         * eligibility logic. When that property is exactly `false`, tracking
+         * is treated as disabled before the initial page-load work proceeds.
+         * Publishing this data object immediately before the official
+         * `triplewhale-pixel-snippet` handle runs gives the vendor script the
+         * earliest consent state it understands, without replacing
+         * `window.TriplePixel`, replaying a custom queue, or racing the
+         * official loader.
+         */
         wp_add_inline_script(
             'triplewhale-pixel-snippet',
             <<<'JS'
 (function () {
-    var queue = window.__ctgTriplePixelQueue || [];
-    var triplePixel = window.TriplePixel;
-
-    if (triplePixel && triplePixel.q && triplePixel.q !== queue) {
-        Array.prototype.push.apply(queue, triplePixel.q);
-    }
-
-    window.__ctgTriplePixelQueue = queue;
-
-    if (triplePixel && triplePixel.__ctgTriplePixelShim === true) {
-        try {
-            delete window.TriplePixel;
-        } catch (error) {
-            window.TriplePixel = undefined;
-        }
-    }
+    window.TriplePixelData = window.TriplePixelData || {};
+    window.TriplePixelData.trackingConsent = false;
 }());
 JS,
             'before'
-        );
-
-        wp_add_inline_script(
-            'triplewhale-pixel-snippet',
-            <<<'JS'
-(function () {
-    var queue = window.__ctgTriplePixelQueue || [];
-    var index;
-
-    if (typeof window.TriplePixel !== 'function' || window.TriplePixel.__ctgTriplePixelShim === true) {
-        return;
-    }
-
-    for (index = 0; index < queue.length; index++) {
-        window.TriplePixel.apply(window, queue[index]);
-    }
-
-    window.__ctgTriplePixelQueue = [];
-}());
-JS,
-            'after'
         );
     }
 
@@ -191,23 +176,11 @@ JS,
         echo <<<'HTML'
 <script>
 (function () {
-    var queue;
-    var shim;
-
-    if (typeof window.TriplePixel === 'function') {
-        return;
-    }
-
-    queue = window.__ctgTriplePixelQueue = window.__ctgTriplePixelQueue || [];
-    shim = function () {
-        queue.push(arguments);
-    };
-    shim.q = queue;
-    shim.__ctgTriplePixelShim = true;
-    window.TriplePixel = shim;
+    window.TriplePixelData = window.TriplePixelData || {};
+    window.TriplePixelData.trackingConsent = false;
 }());
 </script>
-HTML; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static inline bootstrap required before third-party inline calls.
+HTML; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static inline consent signal required before third-party inline calls.
     }
 
     public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string

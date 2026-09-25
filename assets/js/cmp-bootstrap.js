@@ -658,8 +658,14 @@
                 && window.TriplePixel.__ctgTriplePixelShim !== true;
         }
 
+        function setInitialConsent(consent) {
+            window.TriplePixelData = window.TriplePixelData || {};
+            window.TriplePixelData.trackingConsent = consent;
+        }
+
         function updateConsent(consent, attempt) {
             attempt = attempt || 1;
+            setInitialConsent(consent);
 
             if (isTriplePixelReady()) {
                 window.TriplePixel('trackingConsent', consent);
@@ -677,6 +683,9 @@
 
         return createConsentAwareVendor(serviceName, {
             revokeOnInit: true,
+            init: function () {
+                setInitialConsent(false);
+            },
             grant: function () {
                 updateConsent(true);
             },
