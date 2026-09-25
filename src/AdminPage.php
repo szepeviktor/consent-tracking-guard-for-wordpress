@@ -478,14 +478,13 @@ final class AdminPage
     public function renderTextareaField(array $args): void
     {
         $name = $args['name'];
-        $options = $this->options->all();
 
         printf(
             '<textarea class="large-text" id="%1$s" name="%2$s[%3$s]" rows="4">%4$s</textarea>',
             esc_attr($this->fieldId($name)),
             esc_attr(Options::OPTION_NAME),
             esc_attr($name),
-            esc_textarea((string) $options[$name])
+            esc_textarea((string) $this->options->get($name))
         );
     }
 
@@ -495,21 +494,19 @@ final class AdminPage
     public function renderCheckboxField(array $args): void
     {
         $name = $args['name'];
-        $options = $this->options->all();
 
         printf(
             '<label for="%1$s"><input id="%1$s" name="%2$s[%3$s]" type="checkbox" value="1" %4$s> %5$s</label>',
             esc_attr($this->fieldId($name)),
             esc_attr(Options::OPTION_NAME),
             esc_attr($name),
-            checked((bool) $options[$name], true, false),
+            checked($this->options->enabled($name), true, false),
             esc_html($args['label'])
         );
     }
 
     public function renderModalStyleField(): void
     {
-        $options = $this->options->all();
         $styles = [
             Options::MODAL_STYLE_KLARO_DEFAULT => __('Klaro’s default', 'consent-tracking-guard-for-wordpress'),
             Options::MODAL_STYLE_VIKTOR_DEFAULT => __('Viktor’s default', 'consent-tracking-guard-for-wordpress'),
@@ -529,7 +526,7 @@ final class AdminPage
             printf(
                 '<option value="%1$s" %2$s>%3$s</option>',
                 esc_attr($modalStyle),
-                selected((string) $options['modal_style'], $modalStyle, false),
+                selected((string) $this->options->get('modal_style'), $modalStyle, false),
                 esc_html($label)
             );
         }
@@ -579,8 +576,6 @@ final class AdminPage
 
     private function renderInput(string $name, string $cssClass, string $type, string $attributes = ''): void
     {
-        $options = $this->options->all();
-
         printf(
             '<input class="%1$s" id="%2$s" name="%3$s[%4$s]" type="%5$s" value="%6$s"%7$s>',
             esc_attr($cssClass),
@@ -588,7 +583,7 @@ final class AdminPage
             esc_attr(Options::OPTION_NAME),
             esc_attr($name),
             esc_attr($type),
-            esc_attr((string) $options[$name]),
+            esc_attr((string) $this->options->get($name)),
             $attributes
         );
     }

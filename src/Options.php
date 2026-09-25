@@ -38,6 +38,22 @@ final class Options
     }
 
     /**
+     * @return mixed|false
+     */
+    // phpcs:ignore NeutronStandard.Functions.TypeHint.NoReturnType -- PHP 7.4 has no native mixed return type.
+    public function get(string $name)
+    {
+        $options = $this->all();
+
+        return $options[$name] ?? false;
+    }
+
+    public function enabled(string $name): bool
+    {
+        return (bool) $this->get($name);
+    }
+
+    /**
      * @return array<string, mixed>
      */
     public function defaults(): array

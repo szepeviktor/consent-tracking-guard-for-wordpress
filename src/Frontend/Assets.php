@@ -47,8 +47,7 @@ final class Assets
 
     public function enqueue(): void
     {
-        $options = $this->options->all();
-        $modalStyle = (string) $options['modal_style'];
+        $modalStyle = (string) $this->options->get('modal_style');
         $klaroConfig = $this->build_klaro_config();
 
         $this->enqueueStyles($modalStyle);
@@ -131,9 +130,7 @@ final class Assets
 
     public function add_triple_whale_tracking_consent_stub(): void
     {
-        $options = $this->options->all();
-
-        if (! (bool) $options['enable_triple_whale']) {
+        if (! $this->options->enabled('enable_triple_whale')) {
             return;
         }
 
@@ -156,9 +153,7 @@ JS,
 
     public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string
     {
-        $options = $this->options->all();
-
-        if (! (bool) $options['enable_klaviyo']) {
+        if (! $this->options->enabled('enable_klaviyo')) {
             return $tag;
         }
 
@@ -192,50 +187,56 @@ JS,
     public function filter_bootstrap_tag(string $tag, string $handle): string
     {
         $attributes = [];
-        $options = $this->options->all();
 
         if ($handle !== 'consent-tracking-guard-for-wordpress-bootstrap') {
             return $tag;
         }
 
-        if ($options['gtm_id'] !== '') {
-            $attributes['data-gtm-id'] = (string) $options['gtm_id'];
+        $gtmId = (string) $this->options->get('gtm_id');
+        $clarityProjectId = (string) $this->options->get('clarity_project_id');
+        $hotjarId = (string) $this->options->get('hotjar_id');
+        $metaPixelId = (string) $this->options->get('meta_pixel_id');
+        $linkedinPartnerId = (string) $this->options->get('linkedin_partner_id');
+        $facebookForWooCommerceEnabled = $this->options->enabled('enable_facebook_for_woocommerce');
+
+        if ($gtmId !== '') {
+            $attributes['data-gtm-id'] = $gtmId;
         }
 
-        if ($options['clarity_project_id'] !== '') {
-            $attributes['data-clarity-project-id'] = (string) $options['clarity_project_id'];
+        if ($clarityProjectId !== '') {
+            $attributes['data-clarity-project-id'] = $clarityProjectId;
         }
 
-        if ($options['hotjar_id'] !== '') {
-            $attributes['data-hotjar-id'] = (string) $options['hotjar_id'];
-            $attributes['data-hotjar-version'] = (string) $options['hotjar_version'];
+        if ($hotjarId !== '') {
+            $attributes['data-hotjar-id'] = $hotjarId;
+            $attributes['data-hotjar-version'] = (string) $this->options->get('hotjar_version');
         }
 
-        if ($options['meta_pixel_id'] !== '' && ! (bool) $options['enable_facebook_for_woocommerce']) {
-            $attributes['data-meta-pixel-id'] = (string) $options['meta_pixel_id'];
+        if ($metaPixelId !== '' && ! $facebookForWooCommerceEnabled) {
+            $attributes['data-meta-pixel-id'] = $metaPixelId;
         }
 
-        if ($options['linkedin_partner_id'] !== '') {
-            $attributes['data-linkedin-partner-id'] = (string) $options['linkedin_partner_id'];
+        if ($linkedinPartnerId !== '') {
+            $attributes['data-linkedin-partner-id'] = $linkedinPartnerId;
         }
 
-        if ((bool) $options['enable_triple_whale']) {
+        if ($this->options->enabled('enable_triple_whale')) {
             $attributes['data-triple-whale-service'] = self::TRIPLE_WHALE_SERVICE_NAME;
         }
 
-        if ((bool) $options['enable_klaviyo']) {
+        if ($this->options->enabled('enable_klaviyo')) {
             $attributes['data-klaviyo'] = 'true';
         }
 
-        if ((bool) $options['enable_facebook_for_woocommerce']) {
+        if ($facebookForWooCommerceEnabled) {
             $attributes['data-facebook-for-woocommerce-service'] = 'facebook-for-woocommerce';
         }
 
-        if ((bool) $options['enable_youtube']) {
+        if ($this->options->enabled('enable_youtube')) {
             $attributes['data-youtube-service'] = 'youtube';
         }
 
-        if ((bool) $options['enable_floating']) {
+        if ($this->options->enabled('enable_floating')) {
             $attributes['data-floating'] = 'true';
         }
 
@@ -261,7 +262,6 @@ JS,
      */
     private function build_klaro_config(): array
     {
-        $options = $this->options->all();
         $lang = strtolower(substr(determine_locale(), 0, 2));
         $privacyPolicyUrl = esc_url_raw(get_privacy_policy_url());
 
@@ -283,7 +283,7 @@ JS,
             'groupByPurpose' => true,
             'lang' => $lang,
             'translations' => [
-                $lang => $this->buildTranslations($options),
+                $lang => $this->buildTranslations(),
             ],
             'services' => $this->build_services($lang),
         ];
@@ -296,15 +296,16 @@ JS,
     }
 
     /**
-     * @param array<string, mixed> $options
      * @return array<string, mixed>
      */
-    private function buildTranslations(array $options): array
+    private function buildTranslations(): array
     {
         return [
             'consentNotice' => [
-                'title' => (string) $options['notice_title'],
-                'description' => $this->replacePrivacyPolicyShortcode((string) $options['notice_description']),
+                'title' => (string) $this->options->get('notice_title'),
+                'description' => $this->replacePrivacyPolicyShortcode(
+                    (string) $this->options->get('notice_description')
+                ),
                 'changeDescription' => __(
                     'There were changes since your last visit, please renew your consent.',
                     'consent-tracking-guard-for-wordpress'
@@ -313,8 +314,10 @@ JS,
                 'testing' => __('Testing mode!', 'consent-tracking-guard-for-wordpress'),
             ],
             'consentModal' => [
-                'title' => (string) $options['modal_title'],
-                'description' => $this->replacePrivacyPolicyShortcode((string) $options['modal_description']),
+                'title' => (string) $this->options->get('modal_title'),
+                'description' => $this->replacePrivacyPolicyShortcode(
+                    (string) $this->options->get('modal_description')
+                ),
             ],
             'contextualConsent' => [
                 'acceptAlways' => __('Always', 'consent-tracking-guard-for-wordpress'),
@@ -402,34 +405,39 @@ JS,
      */
     private function build_services(string $lang): array
     {
-        $options = $this->options->all();
         $services = $this->buildCoreServices($lang);
+        $gtmId = (string) $this->options->get('gtm_id');
+        $clarityProjectId = (string) $this->options->get('clarity_project_id');
+        $hotjarId = (string) $this->options->get('hotjar_id');
+        $metaPixelId = (string) $this->options->get('meta_pixel_id');
+        $linkedinPartnerId = (string) $this->options->get('linkedin_partner_id');
+        $facebookForWooCommerceEnabled = $this->options->enabled('enable_facebook_for_woocommerce');
 
-        if ($options['gtm_id'] !== '') {
+        if ($gtmId !== '') {
             $services[] = $this->buildGoogleTagManagerService($lang);
         }
 
-        if ($options['clarity_project_id'] !== '') {
+        if ($clarityProjectId !== '') {
             $services[] = $this->buildMicrosoftClarityService($lang);
         }
 
-        if ($options['hotjar_id'] !== '') {
+        if ($hotjarId !== '') {
             $services[] = $this->buildHotjarService($lang);
         }
 
-        if ($options['meta_pixel_id'] !== '' && ! (bool) $options['enable_facebook_for_woocommerce']) {
+        if ($metaPixelId !== '' && ! $facebookForWooCommerceEnabled) {
             $services[] = $this->buildMetaPixelService($lang);
         }
 
-        if ($options['linkedin_partner_id'] !== '') {
+        if ($linkedinPartnerId !== '') {
             $services[] = $this->buildLinkedInService($lang);
         }
 
-        if ((bool) $options['enable_triple_whale']) {
+        if ($this->options->enabled('enable_triple_whale')) {
             $services[] = $this->buildTripleWhaleService($lang);
         }
 
-        if ((bool) $options['enable_polylang']) {
+        if ($this->options->enabled('enable_polylang')) {
             $polylangService = $this->buildPolylangService($lang);
 
             if ($polylangService !== null) {
@@ -437,28 +445,28 @@ JS,
             }
         }
 
-        if ((bool) $options['enable_woocommerce']) {
+        if ($this->options->enabled('enable_woocommerce')) {
             $services[] = $this->buildWooCommerceFunctionalService($lang);
             $services[] = $this->buildWooCommerceAttributionService($lang);
         }
 
-        if ((bool) $options['enable_facebook_for_woocommerce']) {
+        if ($facebookForWooCommerceEnabled) {
             $services[] = $this->buildFacebookForWooCommerceService($lang);
         }
 
-        if ((bool) $options['enable_klaviyo']) {
+        if ($this->options->enabled('enable_klaviyo')) {
             $services[] = $this->buildKlaviyoService($lang);
         }
 
-        if ((bool) $options['enable_woodmart']) {
+        if ($this->options->enabled('enable_woodmart')) {
             $services[] = $this->buildWoodMartService($lang);
         }
 
-        if ((bool) $options['enable_wordfence']) {
+        if ($this->options->enabled('enable_wordfence')) {
             $services[] = $this->buildWordfenceService($lang);
         }
 
-        if ((bool) $options['enable_youtube']) {
+        if ($this->options->enabled('enable_youtube')) {
             $services[] = $this->buildYouTubeService($lang);
         }
 

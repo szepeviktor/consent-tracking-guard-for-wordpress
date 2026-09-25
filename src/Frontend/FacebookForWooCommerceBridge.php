@@ -43,9 +43,7 @@ final class FacebookForWooCommerceBridge
 
     public function syncSignalsCookie(): void
     {
-        $options = $this->options->all();
-
-        if (! (bool) $options['enable_facebook_for_woocommerce']) {
+        if (! $this->options->enabled('enable_facebook_for_woocommerce')) {
             return;
         }
 
@@ -89,9 +87,7 @@ final class FacebookForWooCommerceBridge
      */
     public function filterSignalsHeld($held): bool
     {
-        $options = $this->options->all();
-
-        if (! (bool) $options['enable_facebook_for_woocommerce']) {
+        if (! $this->options->enabled('enable_facebook_for_woocommerce')) {
             return (bool) $held;
         }
 

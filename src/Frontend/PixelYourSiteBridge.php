@@ -244,8 +244,6 @@ final class PixelYourSiteBridge
 
     private function isEnabled(): bool
     {
-        $options = $this->options->all();
-
-        return (bool) $options['enable_pixelyoursite'];
+        return $this->options->enabled('enable_pixelyoursite');
     }
 }
