@@ -85,6 +85,17 @@
         });
     }
 
+    function clearStorage(storage, key) {
+        if (!storage || typeof storage.removeItem !== 'function') {
+            return;
+        }
+
+        try {
+            storage.removeItem(key);
+        } catch (error) {
+        }
+    }
+
     function createVendorRegistry() {
         var vendors = Object.create(null);
 
@@ -582,17 +593,6 @@
         var scriptVersion = options.scriptVersion || 6;
         var hasLoaded = false;
 
-        function clearStorage(storage, key) {
-            if (!storage || typeof storage.removeItem !== 'function') {
-                return;
-            }
-
-            try {
-                storage.removeItem(key);
-            } catch (error) {
-            }
-        }
-
         function ensureRuntime() {
             if (typeof window.hj === 'function') {
                 return;
@@ -645,6 +645,13 @@
         var serviceName = options.serviceName || SERVICE_NAMES.tripleWhalePixel;
         var retryDelay = options.retryDelay || 250;
         var maxAttempts = options.maxAttempts || 40;
+        var storageKeys = [
+            'TriplePixel',
+            'TriplePixelU',
+            'di_pmt_wt',
+            'configSecurityConfModel',
+            'no_track_triple'
+        ];
 
         function isTriplePixelReady() {
             return typeof window.TriplePixel === 'function'
@@ -674,6 +681,11 @@
                 updateConsent(true);
             },
             revoke: function () {
+                storageKeys.forEach(function (key) {
+                    deleteCookie(key);
+                    clearStorage(window.localStorage, key);
+                    clearStorage(window.sessionStorage, key);
+                });
                 updateConsent(false);
             }
         });

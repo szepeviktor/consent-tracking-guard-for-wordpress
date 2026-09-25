@@ -410,4 +410,33 @@ test('syncs Triple Whale plugin tracking consent', async ({page}) => {
         ['trackingConsent', false],
         ['trackingConsent', true]
     ]);
+
+    await page.evaluate(() => {
+        ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel', 'no_track_triple'].forEach((key) => {
+            document.cookie = `${encodeURIComponent(key)}=value; path=/; SameSite=Lax`;
+            localStorage.setItem(key, 'value');
+            sessionStorage.setItem(key, 'value');
+        });
+
+        window.bootstrapFixture.manager.consents['triple-whale-pixel'] = false;
+        window.bootstrapFixture.manager.trigger('applyConsents');
+    });
+
+    await expect.poll(() => page.evaluate(() => (
+        window.TriplePixel._q.map(function (entry) {
+            return Array.from(entry);
+        })
+    ))).toEqual([
+        ['trackingConsent', false],
+        ['trackingConsent', true],
+        ['trackingConsent', false]
+    ]);
+
+    expect(await page.evaluate(() => (
+        ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel', 'no_track_triple'].filter((key) => (
+            document.cookie.indexOf(encodeURIComponent(key) + '=') !== -1
+                || localStorage.getItem(key) !== null
+                || sessionStorage.getItem(key) !== null
+        ))
+    ))).toEqual([]);
 });
