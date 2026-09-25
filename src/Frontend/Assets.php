@@ -40,7 +40,8 @@ final class Assets
         $this->consent_api_bridge->register_services($this->build_services($lang));
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
-        add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_stub'], 101);
+        add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_handoff'], 101);
+        add_action('wp_head', [$this, 'print_triple_whale_tracking_consent_shim'], 0);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
@@ -128,7 +129,7 @@ final class Assets
         );
     }
 
-    public function add_triple_whale_tracking_consent_stub(): void
+    public function add_triple_whale_tracking_consent_handoff(): void
     {
         if (! $this->options->enabled('enable_triple_whale')) {
             return;
@@ -138,17 +139,75 @@ final class Assets
             'triplewhale-pixel-snippet',
             <<<'JS'
 (function () {
-    if (typeof window.TriplePixel !== 'function') {
-        window.TriplePixel = function () {
-            (window.TriplePixel.q = window.TriplePixel.q || []).push(arguments);
-        };
+    var queue = window.__ctgTriplePixelQueue || [];
+    var triplePixel = window.TriplePixel;
+
+    if (triplePixel && triplePixel.q && triplePixel.q !== queue) {
+        Array.prototype.push.apply(queue, triplePixel.q);
     }
 
-    window.TriplePixel('trackingConsent', false);
+    window.__ctgTriplePixelQueue = queue;
+
+    if (triplePixel && triplePixel.__ctgTriplePixelShim === true) {
+        try {
+            delete window.TriplePixel;
+        } catch (error) {
+            window.TriplePixel = undefined;
+        }
+    }
 }());
 JS,
             'before'
         );
+
+        wp_add_inline_script(
+            'triplewhale-pixel-snippet',
+            <<<'JS'
+(function () {
+    var queue = window.__ctgTriplePixelQueue || [];
+    var index;
+
+    if (typeof window.TriplePixel !== 'function' || window.TriplePixel.__ctgTriplePixelShim === true) {
+        return;
+    }
+
+    for (index = 0; index < queue.length; index++) {
+        window.TriplePixel.apply(window, queue[index]);
+    }
+
+    window.__ctgTriplePixelQueue = [];
+}());
+JS,
+            'after'
+        );
+    }
+
+    public function print_triple_whale_tracking_consent_shim(): void
+    {
+        if (! $this->options->enabled('enable_triple_whale')) {
+            return;
+        }
+
+        echo <<<'HTML'
+<script>
+(function () {
+    var queue;
+    var shim;
+
+    if (typeof window.TriplePixel === 'function') {
+        return;
+    }
+
+    queue = window.__ctgTriplePixelQueue = window.__ctgTriplePixelQueue || [];
+    shim = function () {
+        queue.push(arguments);
+    };
+    shim.q = queue;
+    shim.__ctgTriplePixelShim = true;
+    window.TriplePixel = shim;
+}());
+</script>
+HTML; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static inline bootstrap required before third-party inline calls.
     }
 
     public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string

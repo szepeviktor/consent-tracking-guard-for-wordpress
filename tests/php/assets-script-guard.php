@@ -109,36 +109,68 @@ $GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
 ];
 $GLOBALS['assets_script_guard_inline_scripts'] = [];
 
-$assets->add_triple_whale_tracking_consent_stub();
+$assets->add_triple_whale_tracking_consent_handoff();
 
 assert_same(
     [],
     $GLOBALS['assets_script_guard_inline_scripts'],
-    'Disabled Triple Whale bridge must not add a pre-consent stub.'
+    'Disabled Triple Whale bridge must not add a pre-consent handoff.'
+);
+
+ob_start();
+$assets->print_triple_whale_tracking_consent_shim();
+$shimOutput = ob_get_clean();
+
+assert_same(
+    '',
+    $shimOutput,
+    'Disabled Triple Whale bridge must not print the global shim.'
 );
 
 $GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
     'enable_triple_whale' => 1,
 ];
 
-$assets->add_triple_whale_tracking_consent_stub();
+$assets->add_triple_whale_tracking_consent_handoff();
 
 assert_same(
     'triplewhale-pixel-snippet',
     $GLOBALS['assets_script_guard_inline_scripts'][0][0],
-    'Triple Whale bridge must attach the stub to the official script handle.'
+    'Triple Whale bridge must attach the handoff to the official script handle.'
 );
 
 assert_same(
     'before',
     $GLOBALS['assets_script_guard_inline_scripts'][0][2],
-    'Triple Whale bridge must print the stub before the official snippet runs.'
+    'Triple Whale bridge must remove the temporary shim before the official snippet runs.'
 );
 
 assert_same(
     true,
-    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], "window.TriplePixel('trackingConsent', false);") !== false,
-    'Triple Whale bridge must queue denied tracking consent before the official snippet.'
+    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'delete window.TriplePixel') !== false,
+    'Triple Whale bridge must release the official loader by deleting its temporary shim.'
+);
+
+assert_same(
+    'after',
+    $GLOBALS['assets_script_guard_inline_scripts'][1][2],
+    'Triple Whale bridge must replay queued calls after the official snippet runs.'
+);
+
+assert_same(
+    true,
+    strpos($GLOBALS['assets_script_guard_inline_scripts'][1][1], 'window.TriplePixel.apply(window, queue[index]);') !== false,
+    'Triple Whale bridge must replay queued inline calls into the official implementation.'
+);
+
+ob_start();
+$assets->print_triple_whale_tracking_consent_shim();
+$shimOutput = ob_get_clean();
+
+assert_same(
+    true,
+    strpos($shimOutput, 'shim.__ctgTriplePixelShim = true;') !== false,
+    'Triple Whale bridge must mark the temporary shim so the runtime bridge can ignore it.'
 );
 
 fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

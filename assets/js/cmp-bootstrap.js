@@ -646,10 +646,15 @@
         var retryDelay = options.retryDelay || 250;
         var maxAttempts = options.maxAttempts || 40;
 
+        function isTriplePixelReady() {
+            return typeof window.TriplePixel === 'function'
+                && window.TriplePixel.__ctgTriplePixelShim !== true;
+        }
+
         function updateConsent(consent, attempt) {
             attempt = attempt || 1;
 
-            if (typeof window.TriplePixel === 'function') {
+            if (isTriplePixelReady()) {
                 window.TriplePixel('trackingConsent', consent);
                 return;
             }
