@@ -10,6 +10,7 @@ use SzepeViktor\ConsentTrackingGuard\Options;
 final class Assets
 {
     private const KLAVIYO_SERVICE_NAME = 'klaviyo';
+    private const TRIPLE_WHALE_SERVICE_NAME = 'triple-whale-pixel';
     private const KLAVIYO_SCRIPT_HANDLES = [
         'klaviyojs' => true,
         'kl-identify-browser' => true,
@@ -190,6 +191,10 @@ final class Assets
 
         if ($options['linkedin_partner_id'] !== '') {
             $attributes['data-linkedin-partner-id'] = (string) $options['linkedin_partner_id'];
+        }
+
+        if ((bool) $options['enable_triple_whale']) {
+            $attributes['data-triple-whale-service'] = self::TRIPLE_WHALE_SERVICE_NAME;
         }
 
         if ((bool) $options['enable_klaviyo']) {
@@ -392,6 +397,10 @@ final class Assets
 
         if ($options['linkedin_partner_id'] !== '') {
             $services[] = $this->buildLinkedInService($lang);
+        }
+
+        if ((bool) $options['enable_triple_whale']) {
+            $services[] = $this->buildTripleWhaleService($lang);
         }
 
         if ((bool) $options['enable_polylang']) {
@@ -693,6 +702,38 @@ final class Assets
                 ),
             ],
             __('Measures LinkedIn campaign performance and website conversions.', 'consent-tracking-guard-for-wordpress'),
+            $lang
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildTripleWhaleService(string $lang): array
+    {
+        return $this->buildOptionalService(
+            'triple-whale-pixel',
+            __('Triple Whale Pixel', 'consent-tracking-guard-for-wordpress'),
+            'marketing',
+            ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel'],
+            [
+                $this->buildCookieInfo(
+                    'TriplePixel',
+                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores Triple Whale pixel runtime and visit count data.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'TriplePixelU',
+                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores recent page visit details for Triple Whale attribution.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'di_pmt_wt',
+                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the Triple Whale browser profile identifier.', 'consent-tracking-guard-for-wordpress')
+                ),
+            ],
+            __('Measures visitor journeys, advertising attribution, and ecommerce events for Triple Whale.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }

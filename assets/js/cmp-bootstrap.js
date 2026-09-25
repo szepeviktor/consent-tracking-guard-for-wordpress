@@ -8,6 +8,7 @@
         metaPixel: 'meta-pixel',
         facebookForWooCommerce: 'facebook-for-woocommerce',
         linkedinInsightTag: 'linkedin-insight-tag',
+        tripleWhalePixel: 'triple-whale-pixel',
         klaviyo: 'klaviyo',
         hotjar: 'hotjar',
         youtube: 'youtube'
@@ -443,9 +444,6 @@
 
         return createConsentAwareVendor(serviceName, {
             revokeOnInit: true,
-            init: function () {
-                callSignal('hold');
-            },
             grant: function () {
                 callSignal('release');
             },
@@ -639,6 +637,39 @@
                 clearStorage(window.localStorage, '_hjUserAttributes');
                 clearStorage(window.localStorage, 'hjActiveViewportIds');
                 clearStorage(window.sessionStorage, 'hjViewportId');
+            }
+        });
+    }
+
+    function createTripleWhalePixelBridgeVendor(options) {
+        var serviceName = options.serviceName || SERVICE_NAMES.tripleWhalePixel;
+        var retryDelay = options.retryDelay || 250;
+        var maxAttempts = options.maxAttempts || 40;
+
+        function updateConsent(consent, attempt) {
+            attempt = attempt || 1;
+
+            if (typeof window.TriplePixel === 'function') {
+                window.TriplePixel('trackingConsent', consent);
+                return;
+            }
+
+            if (attempt >= maxAttempts) {
+                return;
+            }
+
+            window.setTimeout(function () {
+                updateConsent(consent, attempt + 1);
+            }, retryDelay);
+        }
+
+        return createConsentAwareVendor(serviceName, {
+            revokeOnInit: true,
+            grant: function () {
+                updateConsent(true);
+            },
+            revoke: function () {
+                updateConsent(false);
             }
         });
     }
@@ -1077,6 +1108,7 @@
         var clarityProjectId = script ? script.getAttribute('data-clarity-project-id') : null;
         var metaPixelId = script ? script.getAttribute('data-meta-pixel-id') : null;
         var linkedinPartnerId = script ? script.getAttribute('data-linkedin-partner-id') : null;
+        var tripleWhaleServiceName = script ? script.getAttribute('data-triple-whale-service') : null;
         var facebookForWooCommerceServiceName = script
             ? script.getAttribute('data-facebook-for-woocommerce-service')
             : null;
@@ -1111,6 +1143,12 @@
             registry.register(createLinkedInInsightTagVendor({
                 serviceName: SERVICE_NAMES.linkedinInsightTag,
                 partnerId: linkedinPartnerId
+            }));
+        }
+
+        if (tripleWhaleServiceName !== null) {
+            registry.register(createTripleWhalePixelBridgeVendor({
+                serviceName: tripleWhaleServiceName || SERVICE_NAMES.tripleWhalePixel
             }));
         }
 

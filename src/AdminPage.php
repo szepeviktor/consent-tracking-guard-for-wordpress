@@ -182,6 +182,7 @@ final class AdminPage
             __('LinkedIn partner ID', 'consent-tracking-guard-for-wordpress'),
             self::INTEGRATIONS_SECTION
         );
+        $this->addTripleWhaleField();
         $this->addPolylangField();
         $this->addWooCommerceField();
         $this->addFacebookForWooCommerceField();
@@ -258,6 +259,24 @@ final class AdminPage
                 'name' => 'enable_pixelyoursite',
                 'label' => __(
                     'Control PixelYourSite browser pixels, server events, cookies, and Google Consent Mode values from this consent banner.',
+                    'consent-tracking-guard-for-wordpress'
+                ),
+            ]
+        );
+    }
+
+    private function addTripleWhaleField(): void
+    {
+        add_settings_field(
+            'consent-tracking-guard-for-wordpress-enable-triple-whale',
+            __('Triple Whale Pixel consent bridge', 'consent-tracking-guard-for-wordpress'),
+            [$this, 'renderCheckboxField'],
+            self::PAGE_SLUG,
+            self::INTEGRATIONS_SECTION,
+            [
+                'name' => 'enable_triple_whale',
+                'label' => __(
+                    'Control the Triple Whale WooCommerce plugin pixel with marketing consent.',
                     'consent-tracking-guard-for-wordpress'
                 ),
             ]

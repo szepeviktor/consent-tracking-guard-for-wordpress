@@ -10,6 +10,10 @@ checks:
         reader: gettext
         file: languages/consent-tracking-guard-for-wordpress.pot
         path: $.project.version
+      config-init:
+        reader: php
+        file: consent-tracking-guard-for-wordpress.php
+        path: $.constants['SzepeViktor\\ConsentTrackingGuard\\VERSION']
       release-tag:
         reader: env
         variable: RELEASE_TAG

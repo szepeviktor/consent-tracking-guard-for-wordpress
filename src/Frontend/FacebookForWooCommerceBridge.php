@@ -19,6 +19,8 @@ use SzepeViktor\ConsentTrackingGuard\Options;
  */
 final class FacebookForWooCommerceBridge
 {
+    private const KLARO_SERVICE_NAME = 'facebook-for-woocommerce';
+
     private const SIGNALS_COOKIE_NAME = 'wc_facebook_signals_state';
 
     private const SIGNALS_STATE_ACTIVE = 'active';
@@ -106,8 +108,27 @@ final class FacebookForWooCommerceBridge
             return true;
         }
 
+        if ($this->hasKlaroServiceConsent(self::KLARO_SERVICE_NAME)) {
+            return true;
+        }
+
         return isset($_COOKIE['wp_consent_marketing'])
             && is_string($_COOKIE['wp_consent_marketing'])
             && strtolower(sanitize_text_field(wp_unslash($_COOKIE['wp_consent_marketing']))) === 'allow';
+    }
+
+    private function hasKlaroServiceConsent(string $serviceName): bool
+    {
+        if (! isset($_COOKIE['klaro']) || ! is_string($_COOKIE['klaro'])) {
+            return false;
+        }
+
+        // The Klaro cookie stores a JSON object of service decisions, often URL-encoded by the browser.
+        $cookieValue = rawurldecode(wp_unslash($_COOKIE['klaro'])); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Decoded as JSON and checked strictly, never output.
+        $consents = json_decode($cookieValue, true);
+
+        return is_array($consents)
+            && array_key_exists($serviceName, $consents)
+            && $consents[$serviceName] === true;
     }
 }

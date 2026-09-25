@@ -64,6 +64,7 @@ final class Options
             'hotjar_version' => 6,
             'meta_pixel_id' => '',
             'linkedin_partner_id' => '',
+            'enable_triple_whale' => 0,
             'enable_polylang' => 0,
             'enable_woocommerce' => 0,
             'enable_facebook_for_woocommerce' => 0,
@@ -105,6 +106,7 @@ final class Options
             'hotjar_version' => max(1, absint($input['hotjar_version'] ?? $defaults['hotjar_version'])),
             'meta_pixel_id' => sanitize_text_field($input['meta_pixel_id'] ?? ''),
             'linkedin_partner_id' => sanitize_text_field($input['linkedin_partner_id'] ?? ''),
+            'enable_triple_whale' => (bool) ($input['enable_triple_whale'] ?? false) ? 1 : 0,
             'enable_polylang' => (bool) ($input['enable_polylang'] ?? false) ? 1 : 0,
             'enable_woocommerce' => (bool) ($input['enable_woocommerce'] ?? false) ? 1 : 0,
             'enable_facebook_for_woocommerce' => (bool) (

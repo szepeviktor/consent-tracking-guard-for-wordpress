@@ -62,6 +62,11 @@ function wp_unslash(string $slashedValue): string
     return stripslashes($slashedValue);
 }
 
+function wp_json_encode($valueToEncode) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoArgumentType, NeutronStandard.Functions.TypeHint.NoReturnType -- WordPress stub mirrors core.
+{
+    return json_encode($valueToEncode); // phpcs:ignore WordPress.WP.AlternativeFunctions.json_encode_json_encode -- WordPress stub delegates to PHP in tests.
+}
+
 function __($text): string
 {
     return $text;
@@ -135,6 +140,32 @@ assert_same(
     'Marketing consent must release Meta for WooCommerce signals for the first rendered page.'
 );
 
+unset($_COOKIE['wp_consent_marketing']);
+$_COOKIE['klaro'] = rawurlencode((string) wp_json_encode(['facebook-for-woocommerce' => false]));
+
+assert_same(
+    true,
+    $bridge->filterSignalsHeld(false),
+    'Denied Klaro service consent must keep Meta for WooCommerce signals held.'
+);
+
+$_COOKIE['klaro'] = rawurlencode((string) wp_json_encode(['facebook-for-woocommerce' => true]));
+
+assert_same(
+    false,
+    $bridge->filterSignalsHeld(false),
+    'Allowed Klaro service consent must release Meta for WooCommerce signals.'
+);
+
+$bridge->syncSignalsCookie();
+
+assert_same(
+    'active',
+    $_COOKIE['wc_facebook_signals_state'] ?? null,
+    'Allowed Klaro service consent must sync Meta for WooCommerce signals to active.'
+);
+
+unset($_COOKIE['klaro']);
 $_COOKIE['wp_consent_marketing'] = 'deny';
 $GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'] = true;
 
