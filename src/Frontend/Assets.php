@@ -40,6 +40,7 @@ final class Assets
         $this->consent_api_bridge->register_services($this->build_services($lang));
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
+        add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_stub'], 101);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
@@ -125,6 +126,31 @@ final class Assets
             ['consent-tracking-guard-for-wordpress-klaro', 'wp-consent-api'],
             Config::get('version'),
             true
+        );
+    }
+
+    public function add_triple_whale_tracking_consent_stub(): void
+    {
+        $options = $this->options->all();
+
+        if (! (bool) $options['enable_triple_whale']) {
+            return;
+        }
+
+        wp_add_inline_script(
+            'triplewhale-pixel-snippet',
+            <<<'JS'
+(function () {
+    if (typeof window.TriplePixel !== 'function') {
+        window.TriplePixel = function () {
+            (window.TriplePixel.q = window.TriplePixel.q || []).push(arguments);
+        };
+    }
+
+    window.TriplePixel('trackingConsent', false);
+}());
+JS,
+            'before'
         );
     }
 

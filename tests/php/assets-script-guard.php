@@ -7,6 +7,7 @@ use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 use SzepeViktor\ConsentTrackingGuard\Options;
 
 $GLOBALS['assets_script_guard_options'] = [];
+$GLOBALS['assets_script_guard_inline_scripts'] = [];
 
 function get_option(string $name, $defaultValue = false) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoReturnType -- WordPress stub returns the stored option type.
 {
@@ -31,6 +32,13 @@ function esc_attr(string $text): string
 function esc_url(string $url): string
 {
     return $url;
+}
+
+function wp_add_inline_script(string $handle, string $scriptData, string $position = 'after'): bool
+{
+    $GLOBALS['assets_script_guard_inline_scripts'][] = [$handle, $scriptData, $position];
+
+    return true;
 }
 
 require sprintf('%s/src/Options.php', dirname(__DIR__, 2));
@@ -94,6 +102,43 @@ assert_same(
         'https://static.klaviyo.com/onsite/js/PUBLIC_API_KEY/klaviyo.js'
     ),
     'Disabled Klaviyo disclosure must not alter the script tag.'
+);
+
+$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
+    'enable_triple_whale' => 0,
+];
+$GLOBALS['assets_script_guard_inline_scripts'] = [];
+
+$assets->add_triple_whale_tracking_consent_stub();
+
+assert_same(
+    [],
+    $GLOBALS['assets_script_guard_inline_scripts'],
+    'Disabled Triple Whale bridge must not add a pre-consent stub.'
+);
+
+$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
+    'enable_triple_whale' => 1,
+];
+
+$assets->add_triple_whale_tracking_consent_stub();
+
+assert_same(
+    'triplewhale-pixel-snippet',
+    $GLOBALS['assets_script_guard_inline_scripts'][0][0],
+    'Triple Whale bridge must attach the stub to the official script handle.'
+);
+
+assert_same(
+    'before',
+    $GLOBALS['assets_script_guard_inline_scripts'][0][2],
+    'Triple Whale bridge must print the stub before the official snippet runs.'
+);
+
+assert_same(
+    true,
+    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], "window.TriplePixel('trackingConsent', false);") !== false,
+    'Triple Whale bridge must queue denied tracking consent before the official snippet.'
 );
 
 fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.
