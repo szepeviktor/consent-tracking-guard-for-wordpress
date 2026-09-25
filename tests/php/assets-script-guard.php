@@ -117,16 +117,6 @@ assert_same(
     'Disabled Triple Whale bridge must not add a pre-consent handoff.'
 );
 
-ob_start();
-$assets->print_triple_whale_tracking_consent_shim();
-$shimOutput = ob_get_clean();
-
-assert_same(
-    '',
-    $shimOutput,
-    'Disabled Triple Whale bridge must not print the global shim.'
-);
-
 $GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
     'enable_triple_whale' => 1,
 ];
@@ -157,20 +147,10 @@ assert_same(
     'Triple Whale bridge must not register a legacy queue replay script.'
 );
 
-ob_start();
-$assets->print_triple_whale_tracking_consent_shim();
-$shimOutput = ob_get_clean();
-
 assert_same(
     false,
-    strpos($shimOutput, 'window.TriplePixel = shim;'),
+    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'TriplePixel ='),
     'Triple Whale bridge must not print the legacy queue shim.'
-);
-
-assert_same(
-    true,
-    strpos($shimOutput, 'window.TriplePixelData.trackingConsent = false;') !== false,
-    'Triple Whale bridge must publish denied consent before early TriplePixel calls are queued.'
 );
 
 fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

@@ -41,7 +41,6 @@ final class Assets
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
         add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_handoff'], 101);
-        add_action('wp_head', [$this, 'print_triple_whale_tracking_consent_shim'], 0);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
@@ -165,22 +164,6 @@ final class Assets
 JS,
             'before'
         );
-    }
-
-    public function print_triple_whale_tracking_consent_shim(): void
-    {
-        if (! $this->options->enabled('enable_triple_whale')) {
-            return;
-        }
-
-        echo <<<'HTML'
-<script>
-(function () {
-    window.TriplePixelData = window.TriplePixelData || {};
-    window.TriplePixelData.trackingConsent = false;
-}());
-</script>
-HTML; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static inline consent signal required before third-party inline calls.
     }
 
     public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string
