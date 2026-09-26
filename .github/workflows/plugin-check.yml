@@ -21,7 +21,7 @@ jobs:
       - name: Build plugin
         run: |
           mkdir -p build/viktors-consent-tracking-guard-for-wordpress
-          cp consent-tracking-guard-for-wordpress.php readme.txt wpml-config.xml assets languages src build/viktors-consent-tracking-guard-for-wordpress/
+          cp -r consent-tracking-guard-for-wordpress.php wpml-config.xml assets languages src build/viktors-consent-tracking-guard-for-wordpress/
 
       - name: Run Plugin Check
         uses: wordpress/plugin-check-action@v1
