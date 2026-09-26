@@ -1,20 +1,35 @@
 # Viktor's Consent and Tracking Guard for WordPress
 
-Controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync.
+Viktor's Consent and Tracking Guard for WordPress is a consent management platform (CMP) for WordPress.
+It controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync.
 Powered by [Klaro](https://github.com/kiprotect/klaro).
 
-## Integrations
+## Compatibility
 
-This plugin includes consent-aware disclosures and bridges for common tracking services, embeds, and WordPress plugins.
-It has been checked with these WordPress plugin integrations.
+This CMP is built to work with WordPress consent and tracking compatibility requirements.
 
-- WP Consent API 2.0.1+ (`wp-consent-api`) - bridge implemented
+- Google Consent Mode v2
+- WP Consent API 2.0.1+ (`wp-consent-api`)
+- Multilingual sites
+- WooCommerce stores
+- YouTube embed blocking
+- Consent-aware script loading for Google Tag Manager, Microsoft Clarity, Hotjar, Meta Pixel, and LinkedIn Insight Tag
+
+## WordPress Plugin Integrations
+
+This plugin includes consent-aware disclosures and bridges for other WordPress plugins.
+It has been checked with these plugin integrations.
+
 - Klaviyo 3.8.3+ (`klaviyo`) - bridge implemented
 - Meta for WooCommerce 3.7.0+ (`facebook-for-woocommerce`) - bridge implemented
 - PixelYourSite 12.5.0+ (`pixelyoursite-pro`) - bridge implemented
 - Triple Whale Pixel for WooCommerce 1.0.4+ (`triplewhale-pixel-woo-extension`) - bridge implemented
 - GTM4WP (`duracelltomi-google-tag-manager`)
 - Site Kit by Google (`google-site-kit`)
+- Polylang (`polylang`)
+- WooCommerce (`woocommerce`)
+- WoodMart theme/plugin features
+- Wordfence (`wordfence`)
 
 ## Installation
 
