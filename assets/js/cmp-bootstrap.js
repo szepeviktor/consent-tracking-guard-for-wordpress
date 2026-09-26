@@ -65,7 +65,16 @@
             cookie += '; max-age=' + String(maxAge);
         }
 
+        if (window.location.protocol === 'https:') {
+            cookie += '; Secure';
+        }
+
         document.cookie = cookie;
+    }
+
+    function replaceCookie(name, value, maxAge) {
+        deleteCookie(name);
+        setCookie(name, value, maxAge);
     }
 
     function deleteCookie(name) {
@@ -429,6 +438,10 @@
         var serviceName = options.serviceName || SERVICE_NAMES.facebookForWooCommerce;
         var maxAttempts = 40;
         var delayMs = 250;
+        var signalsCookieName = 'wc_facebook_signals_state';
+        var activeSignalsState = 'active';
+        var heldSignalsState = 'held';
+        var signalsCookieMaxAge = 31536000;
 
         function withSignals(callback, attempt) {
             if (window.fbwcsignal) {
@@ -455,10 +468,15 @@
 
         return createConsentAwareVendor(serviceName, {
             revokeOnInit: true,
+            init: function () {
+                replaceCookie(signalsCookieName, heldSignalsState, signalsCookieMaxAge);
+            },
             grant: function () {
+                replaceCookie(signalsCookieName, activeSignalsState, signalsCookieMaxAge);
                 callSignal('release');
             },
             revoke: function () {
+                replaceCookie(signalsCookieName, heldSignalsState, signalsCookieMaxAge);
                 callSignal('hold');
             }
         });

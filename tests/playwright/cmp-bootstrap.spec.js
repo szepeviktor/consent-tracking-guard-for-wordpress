@@ -141,6 +141,8 @@ test('holds and releases Meta for WooCommerce signals with marketing consent', a
     await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
     await expect.poll(() => page.evaluate(() => window.bootstrapFixture.signalCalls))
         .toContain('hold');
+    await expect.poll(() => page.evaluate(() => document.cookie))
+        .toContain('wc_facebook_signals_state=held');
 
     await page.evaluate(() => {
         window.bootstrapFixture.manager.consents['facebook-for-woocommerce'] = true;
@@ -149,6 +151,8 @@ test('holds and releases Meta for WooCommerce signals with marketing consent', a
 
     await expect.poll(() => page.evaluate(() => window.bootstrapFixture.signalCalls))
         .toContain('release');
+    await expect.poll(() => page.evaluate(() => document.cookie))
+        .toContain('wc_facebook_signals_state=active');
 
     await page.evaluate(() => {
         window.bootstrapFixture.manager.consents['facebook-for-woocommerce'] = false;
@@ -157,6 +161,8 @@ test('holds and releases Meta for WooCommerce signals with marketing consent', a
 
     await expect.poll(() => page.evaluate(() => window.bootstrapFixture.signalCalls.slice(-1)[0]))
         .toBe('hold');
+    await expect.poll(() => page.evaluate(() => document.cookie))
+        .toContain('wc_facebook_signals_state=held');
 });
 
 test('does not hold Meta for WooCommerce signals when consent already exists', async ({page}) => {
@@ -215,6 +221,8 @@ test('does not hold Meta for WooCommerce signals when consent already exists', a
     await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
     await expect.poll(() => page.evaluate(() => window.bootstrapFixture.signalCalls))
         .toEqual(['release']);
+    await expect.poll(() => page.evaluate(() => document.cookie))
+        .toContain('wc_facebook_signals_state=active');
 });
 
 test('removes Klaviyo browser storage when consent is denied', async ({page}) => {

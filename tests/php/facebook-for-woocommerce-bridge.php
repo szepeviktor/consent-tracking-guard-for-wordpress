@@ -95,9 +95,9 @@ $bridge = new FacebookForWooCommerceBridge(new Options());
 $bridge->register();
 
 assert_same(
-    [$bridge, 'syncSignalsCookie'],
-    $GLOBALS['facebook_for_woocommerce_bridge_actions']['init'][0],
-    'Bridge must sync Meta for WooCommerce signals early.'
+    [],
+    $GLOBALS['facebook_for_woocommerce_bridge_actions'],
+    'Bridge must not sync Meta for WooCommerce signals through cache-sensitive PHP headers.'
 );
 
 assert_same(
@@ -116,28 +116,12 @@ assert_same(
     'Enabled bridge must hold signals without marketing consent.'
 );
 
-$bridge->syncSignalsCookie();
-
-assert_same(
-    'held',
-    $_COOKIE['wc_facebook_signals_state'] ?? null,
-    'Enabled bridge must set Meta for WooCommerce signals to held without marketing consent.'
-);
-
 $_COOKIE['wp_consent_marketing'] = 'allow';
 
 assert_same(
     false,
     $bridge->filterSignalsHeld(false),
     'Explicit WP Consent API marketing cookie must release signals.'
-);
-
-$bridge->syncSignalsCookie();
-
-assert_same(
-    'active',
-    $_COOKIE['wc_facebook_signals_state'] ?? null,
-    'Marketing consent must release Meta for WooCommerce signals for the first rendered page.'
 );
 
 unset($_COOKIE['wp_consent_marketing']);
@@ -155,14 +139,6 @@ assert_same(
     false,
     $bridge->filterSignalsHeld(false),
     'Allowed Klaro service consent must release Meta for WooCommerce signals.'
-);
-
-$bridge->syncSignalsCookie();
-
-assert_same(
-    'active',
-    $_COOKIE['wc_facebook_signals_state'] ?? null,
-    'Allowed Klaro service consent must sync Meta for WooCommerce signals to active.'
 );
 
 unset($_COOKIE['klaro']);

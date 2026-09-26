@@ -21,12 +21,6 @@ final class FacebookForWooCommerceBridge
 {
     private const KLARO_SERVICE_NAME = 'facebook-for-woocommerce';
 
-    private const SIGNALS_COOKIE_NAME = 'wc_facebook_signals_state';
-
-    private const SIGNALS_STATE_ACTIVE = 'active';
-
-    private const SIGNALS_STATE_HELD = 'held';
-
     private Options $options;
 
     public function __construct(Options $options)
@@ -37,49 +31,7 @@ final class FacebookForWooCommerceBridge
     public function register(): void
     {
         // Meta for WooCommerce is not natively WP Consent API-compatible.
-        add_action('init', [$this, 'syncSignalsCookie'], 0);
         add_filter('facebook_signals_held', [$this, 'filterSignalsHeld']);
-    }
-
-    public function syncSignalsCookie(): void
-    {
-        if (! $this->options->enabled('enable_facebook_for_woocommerce')) {
-            return;
-        }
-
-        $state = $this->hasMarketingConsent()
-            ? self::SIGNALS_STATE_ACTIVE
-            : self::SIGNALS_STATE_HELD;
-
-        if (
-            isset($_COOKIE[self::SIGNALS_COOKIE_NAME])
-            && is_string($_COOKIE[self::SIGNALS_COOKIE_NAME])
-            && $_COOKIE[self::SIGNALS_COOKIE_NAME] === $state
-        ) {
-            return;
-        }
-
-        if (! headers_sent()) {
-            $cookieOptions = [
-                'expires' => time() + YEAR_IN_SECONDS,
-                'path' => defined('COOKIEPATH') ? COOKIEPATH : '/',
-                'secure' => is_ssl(),
-                'httponly' => false,
-                'samesite' => 'Lax',
-            ];
-
-            if (defined('COOKIE_DOMAIN') && COOKIE_DOMAIN !== '') {
-                $cookieOptions['domain'] = COOKIE_DOMAIN;
-            }
-
-            setcookie(
-                self::SIGNALS_COOKIE_NAME,
-                $state,
-                $cookieOptions
-            );
-        }
-
-        $_COOKIE[self::SIGNALS_COOKIE_NAME] = $state;
     }
 
     /**

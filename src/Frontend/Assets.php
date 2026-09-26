@@ -713,7 +713,7 @@ JS,
                 ),
                 $this->buildCookieInfo(
                     'wc_facebook_signals_state',
-                    __('Session', 'consent-tracking-guard-for-wordpress'),
+                    __('1 year', 'consent-tracking-guard-for-wordpress'),
                     __(
                         'Stores whether Meta for WooCommerce browser signals are held or released.',
                         'consent-tracking-guard-for-wordpress'
