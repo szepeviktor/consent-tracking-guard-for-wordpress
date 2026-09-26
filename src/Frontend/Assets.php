@@ -10,6 +10,8 @@ use SzepeViktor\ConsentTrackingGuard\Options;
 final class Assets
 {
     private const KLAVIYO_SERVICE_NAME = 'klaviyo';
+    private const PIXELYOURSITE_STATISTICS_SERVICE_NAME = 'pixelyoursite-statistics';
+    private const PIXELYOURSITE_MARKETING_SERVICE_NAME = 'pixelyoursite-marketing';
     private const TRIPLE_WHALE_SERVICE_NAME = 'triple-whale-pixel';
     private const KLAVIYO_SCRIPT_HANDLES = [
         'klaviyojs' => true,
@@ -243,6 +245,11 @@ JS,
             $attributes['data-klaviyo'] = 'true';
         }
 
+        if ($this->options->enabled('enable_pixelyoursite')) {
+            $attributes['data-pixelyoursite-statistics-service'] = self::PIXELYOURSITE_STATISTICS_SERVICE_NAME;
+            $attributes['data-pixelyoursite-marketing-service'] = self::PIXELYOURSITE_MARKETING_SERVICE_NAME;
+        }
+
         if ($facebookForWooCommerceEnabled) {
             $attributes['data-facebook-for-woocommerce-service'] = 'facebook-for-woocommerce';
         }
@@ -471,6 +478,11 @@ JS,
 
         if ($this->options->enabled('enable_klaviyo')) {
             $services[] = $this->buildKlaviyoService($lang);
+        }
+
+        if ($this->options->enabled('enable_pixelyoursite')) {
+            $services[] = $this->buildPixelYourSiteStatisticsService($lang);
+            $services[] = $this->buildPixelYourSiteMarketingService($lang);
         }
 
         if ($this->options->enabled('enable_woodmart')) {
@@ -724,6 +736,87 @@ JS,
                 'Measures WooCommerce product views, cart actions, and purchases for Meta advertising.',
                 'consent-tracking-guard-for-wordpress'
             ),
+            $lang
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildPixelYourSiteStatisticsService(string $lang): array
+    {
+        return $this->buildOptionalService(
+            self::PIXELYOURSITE_STATISTICS_SERVICE_NAME,
+            __('PixelYourSite analytics', 'consent-tracking-guard-for-wordpress'),
+            'statistics',
+            [
+                'pys_first_visit',
+                'pys_landing_page',
+                'last_pys_landing_page',
+                'pysTrafficSource',
+                'last_pysTrafficSource',
+                'pys_start_session',
+                'pys_session_limit',
+                '^pys_utm_.*',
+                '^last_pys_utm_.*',
+            ],
+            [
+                $this->buildCookieInfo(
+                    'pys_first_visit',
+                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores whether this is the visitor’s first tracked visit.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'pys_landing_page',
+                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the landing page for analytics attribution.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'pysTrafficSource',
+                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores the traffic source for analytics attribution.', 'consent-tracking-guard-for-wordpress')
+                ),
+            ],
+            __('Allows PixelYourSite analytics tags and attribution cookies.', 'consent-tracking-guard-for-wordpress'),
+            $lang
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildPixelYourSiteMarketingService(string $lang): array
+    {
+        return $this->buildOptionalService(
+            self::PIXELYOURSITE_MARKETING_SERVICE_NAME,
+            __('PixelYourSite advertising', 'consent-tracking-guard-for-wordpress'),
+            'marketing',
+            [
+                '_fbp',
+                '_fbc',
+                'pbid',
+                'pys_advanced_form_data',
+                '^pys_.*id$',
+                '^last_pys_.*id$',
+            ],
+            [
+                $this->buildCookieInfo(
+                    '_fbp',
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Identifies browsers for Meta advertising measurement.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'pbid',
+                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores a PixelYourSite external identifier for advertising events.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'pys_advanced_form_data',
+                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores form-derived data used to improve advertising event matching.', 'consent-tracking-guard-for-wordpress')
+                ),
+            ],
+            __('Allows PixelYourSite advertising pixels, server events, and matching cookies.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }

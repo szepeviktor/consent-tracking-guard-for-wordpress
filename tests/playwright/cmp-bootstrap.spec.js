@@ -225,6 +225,159 @@ test('does not hold Meta for WooCommerce signals when consent already exists', a
         .toContain('wc_facebook_signals_state=active');
 });
 
+test('refreshes PixelYourSite through its AJAX-aware runtime after consent changes', async ({page}) => {
+    await page.goto('http://127.0.0.1:8765/harness.html');
+    await page.setContent(`
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>CMP bootstrap fixture</title>
+            <script>
+                window.bootstrapFixture = {
+                    calls: []
+                };
+                window.pysOptions = {
+                    gdpr: {
+                        all_disabled_by_api: true,
+                        facebook_disabled_by_api: true,
+                        analytics_disabled_by_api: true,
+                        google_ads_disabled_by_api: true,
+                        pinterest_disabled_by_api: true,
+                        bing_disabled_by_api: true,
+                        reddit_disabled_by_api: true,
+                        externalID_disabled_by_api: true,
+                        analytics_storage: {value: 'denied'},
+                        ad_storage: {value: 'denied'},
+                        ad_user_data: {value: 'denied'},
+                        ad_personalization: {value: 'denied'}
+                    },
+                    cookie: {
+                        disabled_all_cookie: true,
+                        disabled_start_session_cookie: true,
+                        disabled_advanced_form_data_cookie: true,
+                        disabled_landing_page_cookie: true,
+                        disabled_first_visit_cookie: true,
+                        disabled_trafficsource_cookie: true,
+                        disabled_utmTerms_cookie: true,
+                        disabled_utmId_cookie: true,
+                        externalID_disabled_by_api: true
+                    }
+                };
+                window.pys = {
+                    Utils: {
+                        manageCookies: function () {
+                            window.bootstrapFixture.calls.push('manageCookies');
+                        },
+                        loadPixels: function () {
+                            window.bootstrapFixture.calls.push('loadPixels');
+                        },
+                        pushConsent: function () {
+                            window.bootstrapFixture.calls.push('pushConsent');
+                        }
+                    },
+                    Facebook: {
+                        disable: function () {
+                            window.bootstrapFixture.calls.push('Facebook.disable');
+                        }
+                    },
+                    Analytics: {
+                        disable: function () {
+                            window.bootstrapFixture.calls.push('Analytics.disable');
+                        }
+                    },
+                    GTM: {
+                        disable: function () {
+                            window.bootstrapFixture.calls.push('GTM.disable');
+                        }
+                    }
+                };
+                window.bootstrapFixture.manager = {
+                    confirmed: true,
+                    consents: {
+                        'pixelyoursite-statistics': false,
+                        'pixelyoursite-marketing': false
+                    },
+                    config: {},
+                    getService: function (serviceName) {
+                        return {
+                            name: serviceName,
+                            purposes: [
+                                serviceName === 'pixelyoursite-statistics' ? 'statistics' : 'marketing'
+                            ],
+                            required: false,
+                            optOut: false
+                        };
+                    },
+                    watch: function (watcher) {
+                        this.watcher = watcher;
+                    },
+                    trigger: function (type) {
+                        this.watcher.update(this, type);
+                    }
+                };
+                window.klaro = {
+                    getManager: function () {
+                        return window.bootstrapFixture.manager;
+                    }
+                };
+            </script>
+        </head>
+        <body>
+            <script
+                src="/assets/js/cmp-bootstrap.js"
+                data-pixelyoursite-statistics-service="pixelyoursite-statistics"
+                data-pixelyoursite-marketing-service="pixelyoursite-marketing"></script>
+        </body>
+        </html>
+    `);
+
+    await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
+    await expect.poll(() => page.evaluate(() => window.bootstrapFixture.calls))
+        .toContain('Facebook.disable');
+
+    await page.evaluate(() => {
+        window.bootstrapFixture.calls = [];
+        window.bootstrapFixture.manager.consents['pixelyoursite-statistics'] = true;
+        window.bootstrapFixture.manager.trigger('applyConsents');
+    });
+
+    await expect.poll(() => page.evaluate(() => window.bootstrapFixture.calls))
+        .toEqual(['manageCookies', 'loadPixels']);
+
+    await page.evaluate(() => {
+        window.bootstrapFixture.calls = [];
+        window.bootstrapFixture.manager.consents['pixelyoursite-statistics'] = false;
+        Object.keys(window.pysOptions.gdpr).forEach((key) => {
+            if (typeof window.pysOptions.gdpr[key] === 'boolean') {
+                window.pysOptions.gdpr[key] = false;
+            }
+        });
+        Object.keys(window.pysOptions.cookie).forEach((key) => {
+            window.pysOptions.cookie[key] = false;
+        });
+        window.pysOptions.gdpr.analytics_storage.value = 'granted';
+        window.pysOptions.gdpr.ad_storage.value = 'granted';
+        window.bootstrapFixture.manager.trigger('applyConsents');
+    });
+
+    await expect.poll(() => page.evaluate(() => window.bootstrapFixture.calls))
+        .toEqual(['pushConsent', 'Facebook.disable', 'Analytics.disable', 'GTM.disable', 'manageCookies']);
+    await expect.poll(() => page.evaluate(() => ({
+        allDisabled: window.pysOptions.gdpr.all_disabled_by_api,
+        analyticsDisabled: window.pysOptions.gdpr.analytics_disabled_by_api,
+        adStorage: window.pysOptions.gdpr.ad_storage.value,
+        allCookiesDisabled: window.pysOptions.cookie.disabled_all_cookie,
+        landingPageCookieDisabled: window.pysOptions.cookie.disabled_landing_page_cookie
+    }))).toEqual({
+        allDisabled: true,
+        analyticsDisabled: true,
+        adStorage: 'denied',
+        allCookiesDisabled: true,
+        landingPageCookieDisabled: true
+    });
+});
+
 test('removes Klaviyo browser storage when consent is denied', async ({page}) => {
     await page.goto('http://127.0.0.1:8765/harness.html');
     await page.setContent(`

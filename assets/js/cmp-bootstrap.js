@@ -7,6 +7,8 @@
         clarity: 'microsoft-clarity',
         metaPixel: 'meta-pixel',
         facebookForWooCommerce: 'facebook-for-woocommerce',
+        pixelYourSiteStatistics: 'pixelyoursite-statistics',
+        pixelYourSiteMarketing: 'pixelyoursite-marketing',
         linkedinInsightTag: 'linkedin-insight-tag',
         tripleWhalePixel: 'triple-whale-pixel',
         klaviyo: 'klaviyo',
@@ -478,6 +480,126 @@
             revoke: function () {
                 replaceCookie(signalsCookieName, heldSignalsState, signalsCookieMaxAge);
                 callSignal('hold');
+            }
+        });
+    }
+
+    function createPixelYourSiteVendor(options) {
+        var serviceName = options.serviceName;
+        var maxAttempts = 40;
+        var delayMs = 250;
+
+        function withPixelYourSite(callback, attempt) {
+            if (window.pys && window.pys.Utils) {
+                callback(window.pys);
+                return;
+            }
+
+            if (attempt >= maxAttempts) {
+                return;
+            }
+
+            window.setTimeout(function () {
+                withPixelYourSite(callback, attempt + 1);
+            }, delayMs);
+        }
+
+        function callIfAvailable(target, methodName) {
+            if (target && typeof target[methodName] === 'function') {
+                target[methodName]();
+            }
+        }
+
+        function disablePixels(pys) {
+            [
+                'Facebook',
+                'Analytics',
+                'GTM',
+                'Pinterest',
+                'Bing',
+                'TikTok',
+                'Reddit'
+            ].forEach(function (pixelName) {
+                callIfAvailable(pys[pixelName], 'disable');
+            });
+        }
+
+        function denyConsentMode(options) {
+            [
+                'analytics_storage',
+                'ad_storage',
+                'ad_user_data',
+                'ad_personalization'
+            ].forEach(function (modeName) {
+                if (options.gdpr[modeName]) {
+                    options.gdpr[modeName].value = 'denied';
+                }
+            });
+        }
+
+        function blockGdprRuntime(pys) {
+            var options = window.pysOptions;
+
+            if (!options || !options.gdpr || !options.cookie) {
+                return;
+            }
+
+            [
+                'all_disabled_by_api',
+                'facebook_disabled_by_api',
+                'analytics_disabled_by_api',
+                'google_ads_disabled_by_api',
+                'pinterest_disabled_by_api',
+                'bing_disabled_by_api',
+                'reddit_disabled_by_api',
+                'externalID_disabled_by_api'
+            ].forEach(function (flagName) {
+                options.gdpr[flagName] = true;
+            });
+
+            [
+                'disabled_all_cookie',
+                'disabled_start_session_cookie',
+                'disabled_advanced_form_data_cookie',
+                'disabled_landing_page_cookie',
+                'disabled_first_visit_cookie',
+                'disabled_trafficsource_cookie',
+                'disabled_utmTerms_cookie',
+                'disabled_utmId_cookie',
+                'externalID_disabled_by_api'
+            ].forEach(function (flagName) {
+                options.cookie[flagName] = true;
+            });
+
+            denyConsentMode(options);
+
+            if (pys.Utils && typeof pys.Utils.pushConsent === 'function') {
+                pys.Utils.pushConsent();
+            }
+        }
+
+        function refreshCookies(pys) {
+            callIfAvailable(pys.Utils, 'manageCookies');
+        }
+
+        function loadPixels(pys) {
+            callIfAvailable(pys.Utils, 'loadPixels');
+        }
+
+        return createConsentAwareVendor(serviceName, {
+            revokeOnInit: true,
+            grant: function () {
+                withPixelYourSite(function (pys) {
+                    refreshCookies(pys);
+                    loadPixels(pys);
+                }, 0);
+            },
+            revoke: function () {
+                withPixelYourSite(function (pys) {
+                    blockGdprRuntime(pys);
+                    disablePixels(pys);
+                    refreshCookies(pys);
+                }, 0);
             }
         });
     }
@@ -1153,6 +1275,12 @@
         var metaPixelId = script ? script.getAttribute('data-meta-pixel-id') : null;
         var linkedinPartnerId = script ? script.getAttribute('data-linkedin-partner-id') : null;
         var tripleWhaleServiceName = script ? script.getAttribute('data-triple-whale-service') : null;
+        var pixelYourSiteStatisticsServiceName = script
+            ? script.getAttribute('data-pixelyoursite-statistics-service')
+            : null;
+        var pixelYourSiteMarketingServiceName = script
+            ? script.getAttribute('data-pixelyoursite-marketing-service')
+            : null;
         var facebookForWooCommerceServiceName = script
             ? script.getAttribute('data-facebook-for-woocommerce-service')
             : null;
@@ -1199,6 +1327,18 @@
         if (facebookForWooCommerceServiceName !== null) {
             registry.register(createFacebookForWooCommerceVendor({
                 serviceName: facebookForWooCommerceServiceName || SERVICE_NAMES.facebookForWooCommerce
+            }));
+        }
+
+        if (pixelYourSiteStatisticsServiceName !== null) {
+            registry.register(createPixelYourSiteVendor({
+                serviceName: pixelYourSiteStatisticsServiceName || SERVICE_NAMES.pixelYourSiteStatistics
+            }));
+        }
+
+        if (pixelYourSiteMarketingServiceName !== null) {
+            registry.register(createPixelYourSiteVendor({
+                serviceName: pixelYourSiteMarketingServiceName || SERVICE_NAMES.pixelYourSiteMarketing
             }));
         }
 

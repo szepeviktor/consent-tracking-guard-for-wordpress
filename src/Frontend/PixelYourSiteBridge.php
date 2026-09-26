@@ -41,6 +41,7 @@ final class PixelYourSiteBridge
 
     public function register(): void
     {
+        add_filter('pys_gdpr_ajax_enabled', [$this, 'filterGdprAjaxEnabled']);
         add_filter('pys_disable_by_gdpr', [$this, 'filterDisableAll']);
         add_filter('pys_disable_facebook_by_gdpr', [$this, 'filterDisableMarketing']);
         add_filter('pys_disable_tiktok_by_gdpr', [$this, 'filterDisableMarketing']);
@@ -72,6 +73,18 @@ final class PixelYourSiteBridge
     }
 
     /**
+     * @param mixed $enabled
+     */
+    public function filterGdprAjaxEnabled($enabled): bool
+    {
+        if (! $this->isEnabled()) {
+            return (bool) $enabled;
+        }
+
+        return true;
+    }
+
+    /**
      * @param mixed $disabled
      */
     public function filterDisableAll($disabled): bool
@@ -80,7 +93,7 @@ final class PixelYourSiteBridge
             return (bool) $disabled;
         }
 
-        if ($disabled) {
+        if ($disabled || ! $this->isPixelYourSiteGdprAjaxRequest()) {
             return true;
         }
 
@@ -117,6 +130,10 @@ final class PixelYourSiteBridge
             return false;
         }
 
+        if (! $this->isPixelYourSiteGdprAjaxRequest()) {
+            return false;
+        }
+
         return $this->hasConsent($this->categoryForPixel((string) $pixel));
     }
 
@@ -134,7 +151,7 @@ final class PixelYourSiteBridge
             return (bool) $disabled;
         }
 
-        if ($disabled) {
+        if ($disabled || ! $this->isPixelYourSiteGdprAjaxRequest()) {
             return true;
         }
 
@@ -150,7 +167,11 @@ final class PixelYourSiteBridge
             return (bool) $disabled;
         }
 
-        return (bool) $disabled || ! $this->hasAnyTrackingConsent();
+        if ($disabled || ! $this->isPixelYourSiteGdprAjaxRequest()) {
+            return true;
+        }
+
+        return ! $this->hasAnyTrackingConsent();
     }
 
     /**
@@ -162,7 +183,11 @@ final class PixelYourSiteBridge
             return (bool) $disabled;
         }
 
-        return (bool) $disabled || ! $this->hasAnyTrackingConsent();
+        if ($disabled || ! $this->isPixelYourSiteGdprAjaxRequest()) {
+            return true;
+        }
+
+        return ! $this->hasAnyTrackingConsent();
     }
 
     /**
@@ -190,7 +215,11 @@ final class PixelYourSiteBridge
             return (bool) $disabled;
         }
 
-        return (bool) $disabled || ! $this->hasConsent($category);
+        if ($disabled || ! $this->isPixelYourSiteGdprAjaxRequest()) {
+            return true;
+        }
+
+        return ! $this->hasConsent($category);
     }
 
     /**
@@ -200,6 +229,10 @@ final class PixelYourSiteBridge
     {
         if (! $this->isEnabled()) {
             return (bool) $mode;
+        }
+
+        if (! $this->isPixelYourSiteGdprAjaxRequest()) {
+            return false;
         }
 
         return $this->hasConsent($category);
@@ -217,7 +250,8 @@ final class PixelYourSiteBridge
             return true;
         }
 
-        return $this->hasConsentCookie($category);
+        return $this->hasConsentCookie($category)
+            || $this->hasKlaroConsentCookie($category);
     }
 
     private function hasConsentCookie(string $category): bool
@@ -227,6 +261,29 @@ final class PixelYourSiteBridge
         return isset($_COOKIE[$cookieName])
             && is_string($_COOKIE[$cookieName])
             && strtolower(sanitize_text_field(wp_unslash($_COOKIE[$cookieName]))) === 'allow';
+    }
+
+    private function hasKlaroConsentCookie(string $category): bool
+    {
+        if (! isset($_COOKIE['klaro']) || ! is_string($_COOKIE['klaro'])) {
+            return false;
+        }
+
+        $consents = json_decode(wp_unslash($_COOKIE['klaro']), true);
+
+        if (! is_array($consents)) {
+            return false;
+        }
+
+        if ($category === self::CATEGORY_STATISTICS) {
+            return (bool) ($consents['pixelyoursite-statistics'] ?? false);
+        }
+
+        if ($category === self::CATEGORY_MARKETING) {
+            return (bool) ($consents['pixelyoursite-marketing'] ?? false);
+        }
+
+        return false;
     }
 
     private function categoryForPixel(string $pixel): string
@@ -245,5 +302,14 @@ final class PixelYourSiteBridge
     private function isEnabled(): bool
     {
         return $this->options->enabled('enable_pixelyoursite');
+    }
+
+    private function isPixelYourSiteGdprAjaxRequest(): bool
+    {
+        // The action name only identifies PixelYourSite's public consent refresh endpoint.
+        return wp_doing_ajax()
+            && isset($_REQUEST['action']) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            && is_string($_REQUEST['action']) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            && sanitize_key(wp_unslash($_REQUEST['action'])) === 'pys_get_gdpr_filters_values'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     }
 }
