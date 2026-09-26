@@ -10,10 +10,11 @@ This CMP is built to work with WordPress consent and tracking compatibility requ
 
 - Google Consent Mode v2
 - WP Consent API 2.0.1+ (`wp-consent-api`)
+- Full-page caching support
 - Multilingual sites
 - WooCommerce stores
-- YouTube embed blocking
 - Consent-aware script loading for Google Tag Manager, Microsoft Clarity, Hotjar, Meta Pixel, and LinkedIn Insight Tag
+- YouTube embed blocking
 
 ## WordPress Plugin Integrations
 
@@ -28,8 +29,8 @@ It has been checked with these plugin integrations.
 - Site Kit by Google (`google-site-kit`)
 - Polylang (`polylang`)
 - WooCommerce (`woocommerce`)
-- WoodMart theme/plugin features
 - Wordfence (`wordfence`)
+- WoodMart theme
 
 ## Installation
 
