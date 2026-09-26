@@ -1,0 +1,30 @@
+name: Plugin Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Build plugin
+        run: |
+          mkdir -p build/viktors-consent-tracking-guard-for-wordpress
+          cp consent-tracking-guard-for-wordpress.php readme.txt wpml-config.xml assets languages src build/viktors-consent-tracking-guard-for-wordpress/
+
+      - name: Run Plugin Check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: build/viktors-login-probe-protection
+          repo-token: ''
