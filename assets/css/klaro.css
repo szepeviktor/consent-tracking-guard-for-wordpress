@@ -208,7 +208,7 @@ to create a white background.
 .klaro .cookie-notice .cm-list-label input:focus + .slider {
   box-shadow-color: #48dfb2;
   box-shadow-color: var(--green3, #48dfb2);
-  box-shadow: 0 0 1px var(--box-shadow-color, green3);
+  box-shadow: 0 0 1px var(--box-shadow-color, #48dfb2);
 }
 .klaro .cookie-modal .cm-list-label input:checked + .slider::before,
 .klaro .context-notice .cm-list-label input:checked + .slider::before,
