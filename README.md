@@ -8,11 +8,11 @@ Powered by [Klaro](https://github.com/kiprotect/klaro).
 This plugin includes consent-aware disclosures and bridges for common tracking services, embeds, and WordPress plugins.
 It has been checked with these WordPress plugin integrations.
 
-- WP Consent API (`wp-consent-api`) - bridge implemented
-- Klaviyo (`klaviyo`) - bridge implemented
-- Meta for WooCommerce (`facebook-for-woocommerce`) - bridge implemented
-- PixelYourSite (`pixelyoursite`) - bridge implemented
-- Triple Whale Pixel for WooCommerce (`triplewhale-pixel-woo-extension`) - bridge implemented
+- WP Consent API 2.0.1+ (`wp-consent-api`) - bridge implemented
+- Klaviyo 3.8.3+ (`klaviyo`) - bridge implemented
+- Meta for WooCommerce 3.7.0+ (`facebook-for-woocommerce`) - bridge implemented
+- PixelYourSite 12.5.0+ (`pixelyoursite-pro`) - bridge implemented
+- Triple Whale Pixel for WooCommerce 1.0.4+ (`triplewhale-pixel-woo-extension`) - bridge implemented
 - GTM4WP (`duracelltomi-google-tag-manager`)
 - Site Kit by Google (`google-site-kit`)
 
