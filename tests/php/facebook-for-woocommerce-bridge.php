@@ -6,7 +6,6 @@ use SzepeViktor\ConsentTrackingGuard\Frontend\FacebookForWooCommerceBridge;
 use SzepeViktor\ConsentTrackingGuard\Options;
 
 $GLOBALS['facebook_for_woocommerce_bridge_options'] = [];
-$GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'] = false;
 $GLOBALS['facebook_for_woocommerce_bridge_actions'] = [];
 
 if (! defined('YEAR_IN_SECONDS')) {
@@ -39,27 +38,6 @@ function get_option(string $name, $defaultValue = false) // phpcs:ignore Neutron
 function wp_parse_args($args, $defaults = ''): array
 {
     return array_merge((array) $defaults, (array) $args);
-}
-
-function wp_has_consent(string $category): bool
-{
-    return $category === 'marketing'
-        && (bool) $GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'];
-}
-
-function is_ssl(): bool
-{
-    return true;
-}
-
-function sanitize_text_field(string $textFieldValue): string
-{
-    return trim($textFieldValue);
-}
-
-function wp_unslash(string $slashedValue): string
-{
-    return stripslashes($slashedValue);
 }
 
 function wp_json_encode($valueToEncode) // phpcs:ignore NeutronStandard.Functions.TypeHint.NoArgumentType, NeutronStandard.Functions.TypeHint.NoReturnType -- WordPress stub mirrors core.
@@ -106,6 +84,12 @@ assert_same(
     'Disabled bridge must preserve released signals.'
 );
 
+assert_same(
+    true,
+    $bridge->filterSignalsHeld(true),
+    'Disabled bridge must preserve held signals.'
+);
+
 $GLOBALS['facebook_for_woocommerce_bridge_options'][Options::OPTION_NAME] = [
     'enable_facebook_for_woocommerce' => 1,
 ];
@@ -113,15 +97,15 @@ $GLOBALS['facebook_for_woocommerce_bridge_options'][Options::OPTION_NAME] = [
 assert_same(
     true,
     $bridge->filterSignalsHeld(false),
-    'Enabled bridge must hold signals without marketing consent.'
+    'Enabled bridge must hold signals without consulting visitor consent.'
 );
 
 $_COOKIE['wp_consent_marketing'] = 'allow';
 
 assert_same(
-    false,
+    true,
     $bridge->filterSignalsHeld(false),
-    'Explicit WP Consent API marketing cookie must release signals.'
+    'Explicit WP Consent API marketing cookie must not release signals in the PHP filter.'
 );
 
 unset($_COOKIE['wp_consent_marketing']);
@@ -136,19 +120,18 @@ assert_same(
 $_COOKIE['klaro'] = rawurlencode((string) wp_json_encode(['facebook-for-woocommerce' => true]));
 
 assert_same(
-    false,
+    true,
     $bridge->filterSignalsHeld(false),
-    'Allowed Klaro service consent must release Meta for WooCommerce signals.'
+    'Allowed Klaro service consent must not release signals in the PHP filter.'
 );
 
 unset($_COOKIE['klaro']);
 $_COOKIE['wp_consent_marketing'] = 'deny';
-$GLOBALS['facebook_for_woocommerce_bridge_has_marketing_consent'] = true;
 
 assert_same(
-    false,
+    true,
     $bridge->filterSignalsHeld(false),
-    'Runtime WP Consent API marketing consent must release signals.'
+    'Denied WP Consent API marketing cookie must keep Meta for WooCommerce signals held.'
 );
 
 assert_same(
