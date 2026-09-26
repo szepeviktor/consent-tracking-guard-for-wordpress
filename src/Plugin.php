@@ -9,6 +9,7 @@ use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 use SzepeViktor\ConsentTrackingGuard\Frontend\FacebookForWooCommerceBridge;
 use SzepeViktor\ConsentTrackingGuard\Frontend\PixelYourSiteBridge;
 
+use function add_action;
 use function is_admin;
 use function load_plugin_textdomain;
 use function wp_doing_ajax;
@@ -21,7 +22,7 @@ final class Plugin
 
     public static function boot(): void
     {
-        self::loadTextDomain();
+        add_action('init', [self::class, 'loadTextDomain'], 0, 0);
 
         $options = new Options();
         $consentApiBridge = new ConsentApiBridge(Config::get('baseName'));
