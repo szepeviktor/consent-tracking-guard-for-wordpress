@@ -26,5 +26,5 @@ jobs:
       - name: Run Plugin Check
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: build/viktors-login-probe-protection
+          build-dir: build/viktors-consent-tracking-guard-for-wordpress
           repo-token: ''
