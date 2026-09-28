@@ -12,6 +12,7 @@ final class Assets
     private const KLAVIYO_SERVICE_NAME = 'klaviyo';
     private const PIXELYOURSITE_STATISTICS_SERVICE_NAME = 'pixelyoursite-statistics';
     private const PIXELYOURSITE_MARKETING_SERVICE_NAME = 'pixelyoursite-marketing';
+    private const GOOGLE_SITE_KIT_SIGN_IN_SERVICE_NAME = 'google-site-kit-sign-in';
     private const TRIPLE_WHALE_SERVICE_NAME = 'triple-whale-pixel';
     private const KLAVIYO_SCRIPT_HANDLES = [
         'klaviyojs' => true,
@@ -476,6 +477,10 @@ JS,
             $services[] = $this->buildFacebookForWooCommerceService($lang);
         }
 
+        if ($this->options->enabled('enable_google_site_kit_sign_in')) {
+            $services[] = $this->buildGoogleSiteKitSignInService($lang);
+        }
+
         if ($this->options->enabled('enable_klaviyo')) {
             $services[] = $this->buildKlaviyoService($lang);
         }
@@ -819,6 +824,50 @@ JS,
             __('Allows PixelYourSite advertising pixels, server events, and matching cookies.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildGoogleSiteKitSignInService(string $lang): array
+    {
+        return [
+            'name' => self::GOOGLE_SITE_KIT_SIGN_IN_SERVICE_NAME,
+            'title' => __('Site Kit Sign in with Google', 'consent-tracking-guard-for-wordpress'),
+            'purposes' => ['functional'],
+            'default' => true,
+            'required' => true,
+            'optOut' => false,
+            'onlyOnce' => true,
+            'cookies' => ['g_state', 'googlesitekit_auth_nonce', 'googlesitekit_auth_redirect_to'],
+            'wpConsentCategory' => 'functional',
+            'wpConsentCookies' => [
+                $this->buildCookieInfo(
+                    'g_state',
+                    __('Up to 180 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores Google Identity Services prompt and sign-in state.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'googlesitekit_auth_nonce',
+                    __('15 minutes', 'consent-tracking-guard-for-wordpress'),
+                    __('Secures the Site Kit Sign in with Google authentication request.', 'consent-tracking-guard-for-wordpress')
+                ),
+                $this->buildCookieInfo(
+                    'googlesitekit_auth_redirect_to',
+                    __('5 minutes', 'consent-tracking-guard-for-wordpress'),
+                    __('Remembers where Site Kit should return the visitor after Google sign-in.', 'consent-tracking-guard-for-wordpress')
+                ),
+            ],
+            'translations' => [
+                $lang => [
+                    'title' => __('Site Kit Sign in with Google', 'consent-tracking-guard-for-wordpress'),
+                    'description' => __(
+                        'Supports Site Kit’s Google login button and One Tap sign-in.',
+                        'consent-tracking-guard-for-wordpress'
+                    ),
+                ],
+            ],
+        ];
     }
 
     /**

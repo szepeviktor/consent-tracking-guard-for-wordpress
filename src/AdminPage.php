@@ -186,6 +186,7 @@ final class AdminPage
         $this->addPolylangField();
         $this->addWooCommerceField();
         $this->addFacebookForWooCommerceField();
+        $this->addGoogleSiteKitSignInField();
         $this->addPixelYourSiteField();
         $this->addKlaviyoField();
         $this->addWoodMartField();
@@ -259,6 +260,24 @@ final class AdminPage
                 'name' => 'enable_pixelyoursite',
                 'label' => __(
                     'Control PixelYourSite browser pixels, server events, cookies, and Google Consent Mode values from this consent banner.',
+                    'consent-tracking-guard-for-wordpress'
+                ),
+            ]
+        );
+    }
+
+    private function addGoogleSiteKitSignInField(): void
+    {
+        add_settings_field(
+            'consent-tracking-guard-for-wordpress-enable-google-site-kit-sign-in',
+            __('Site Kit Sign in with Google disclosure', 'consent-tracking-guard-for-wordpress'),
+            [$this, 'renderCheckboxField'],
+            self::PAGE_SLUG,
+            self::INTEGRATIONS_SECTION,
+            [
+                'name' => 'enable_google_site_kit_sign_in',
+                'label' => __(
+                    'Show Site Kit’s Sign in with Google and One Tap cookies as required functional cookies.',
                     'consent-tracking-guard-for-wordpress'
                 ),
             ]

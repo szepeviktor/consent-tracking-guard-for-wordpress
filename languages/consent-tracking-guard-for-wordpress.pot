@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.4.6\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-21T14:40:30+00:00\n"
+"POT-Creation-Date: 2026-09-28T17:41:34+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: consent-tracking-guard-for-wordpress\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: consent-tracking-guard-for-wordpress.php
 #: src/AdminPage.php:55
-#: src/AdminPage.php:332
+#: src/AdminPage.php:389
 msgid "Viktor's Consent and Tracking Guard for WordPress"
 msgstr ""
 
@@ -109,651 +109,780 @@ msgstr ""
 msgid "LinkedIn partner ID"
 msgstr ""
 
-#: src/AdminPage.php:198
+#: src/AdminPage.php:201
 msgid "Polylang disclosure"
 msgstr ""
 
-#: src/AdminPage.php:204
+#: src/AdminPage.php:207
 msgid "Show the Polylang language cookie for multilingual sites and WooCommerce shops."
 msgstr ""
 
-#: src/AdminPage.php:216
+#: src/AdminPage.php:219
 msgid "WooCommerce disclosure"
 msgstr ""
 
-#: src/AdminPage.php:222
+#: src/AdminPage.php:225
 msgid "Show WooCommerce cart, checkout, session, and source attribution cookies."
 msgstr ""
 
-#: src/AdminPage.php:234
+#: src/AdminPage.php:237
 msgid "Meta for WooCommerce consent bridge"
 msgstr ""
 
-#: src/AdminPage.php:240
+#: src/AdminPage.php:243
 msgid "Hold Meta for WooCommerce tracking until marketing consent is granted."
 msgstr ""
 
-#: src/AdminPage.php:252
+#: src/AdminPage.php:255
+msgid "PixelYourSite consent bridge"
+msgstr ""
+
+#: src/AdminPage.php:261
+msgid "Control PixelYourSite browser pixels, server events, cookies, and Google Consent Mode values from this consent banner."
+msgstr ""
+
+#: src/AdminPage.php:273
+msgid "Site Kit Sign in with Google disclosure"
+msgstr ""
+
+#: src/AdminPage.php:279
+msgid "Show Site Kit’s Sign in with Google and One Tap cookies as required functional cookies."
+msgstr ""
+
+#: src/AdminPage.php:291
+msgid "Triple Whale Pixel consent bridge"
+msgstr ""
+
+#: src/AdminPage.php:297
+msgid "Control the Triple Whale WooCommerce plugin pixel with marketing consent."
+msgstr ""
+
+#: src/AdminPage.php:309
 msgid "Klaviyo disclosure"
 msgstr ""
 
-#: src/AdminPage.php:258
+#: src/AdminPage.php:315
 msgid "Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside this plugin’s control."
 msgstr ""
 
-#: src/AdminPage.php:270
+#: src/AdminPage.php:327
 msgid "WoodMart disclosure"
 msgstr ""
 
-#: src/AdminPage.php:276
+#: src/AdminPage.php:333
 msgid "Show WoodMart cookies for wishlist, compare, product history, popups, and shop preferences."
 msgstr ""
 
-#: src/AdminPage.php:288
+#: src/AdminPage.php:345
 msgid "Wordfence disclosure"
 msgstr ""
 
-#: src/AdminPage.php:294
+#: src/AdminPage.php:351
 msgid "Show Wordfence security cookies for the firewall, access controls, login alerts, and linking."
 msgstr ""
 
-#: src/AdminPage.php:306
+#: src/AdminPage.php:363
 msgid "YouTube blocking"
 msgstr ""
 
-#: src/AdminPage.php:312
+#: src/AdminPage.php:369
 msgid "Block and replace YouTube embeds until marketing consent is granted."
 msgstr ""
 
-#: src/AdminPage.php:340
+#: src/AdminPage.php:397
 msgid "Configure the consent texts and vendor IDs used by the frontend Klaro banner."
 msgstr ""
 
-#: src/AdminPage.php:369
+#: src/AdminPage.php:426
 msgid "WP Consent API was not detected."
 msgstr ""
 
-#: src/AdminPage.php:370
+#: src/AdminPage.php:427
 msgid "The consent controls will still render, but the WordPress compatibility bridge will stay inactive"
 msgstr ""
 
-#: src/AdminPage.php:374
+#: src/AdminPage.php:431
 msgid "until the API plugin is available."
 msgstr ""
 
-#: src/AdminPage.php:384
+#: src/AdminPage.php:441
 msgid "Another plugin already provides the WP Consent API consent type."
 msgstr ""
 
-#: src/AdminPage.php:388
+#: src/AdminPage.php:445
 msgid "Viktor's Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform"
 msgstr ""
 
-#: src/AdminPage.php:392
+#: src/AdminPage.php:449
 msgid "controls the site."
 msgstr ""
 
-#: src/AdminPage.php:400
+#: src/AdminPage.php:457
 msgid "Set the text displayed in the consent notice and preferences dialog."
 msgstr ""
 
-#: src/AdminPage.php:404
+#: src/AdminPage.php:461
 msgid "Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL."
 msgstr ""
 
-#: src/AdminPage.php:413
+#: src/AdminPage.php:470
 msgid "Enter only the services that this site uses."
 msgstr ""
 
-#: src/AdminPage.php:418
+#: src/AdminPage.php:475
 msgid "Control how visitors can access their privacy settings."
 msgstr ""
 
-#: src/AdminPage.php:476
+#: src/AdminPage.php:530
 msgid "Klaro’s default"
 msgstr ""
 
-#: src/AdminPage.php:477
+#: src/AdminPage.php:531
 msgid "Viktor’s default"
 msgstr ""
 
-#: src/AdminPage.php:478
+#: src/AdminPage.php:532
 msgid "Light"
 msgstr ""
 
-#: src/AdminPage.php:479
+#: src/AdminPage.php:533
 msgid "Dark"
 msgstr ""
 
-#: src/AdminPage.php:480
+#: src/AdminPage.php:534
 msgid "Twenty Twenty-Five"
 msgstr ""
 
-#: src/AdminPage.php:481
+#: src/AdminPage.php:535
 msgid "CookieNo"
 msgstr ""
 
-#: src/AdminPage.php:505
+#: src/AdminPage.php:559
 msgid "Klaro’s default applies no custom modal theme;"
 msgstr ""
 
-#: src/AdminPage.php:506
+#: src/AdminPage.php:560
 msgid "the component stylesheet only positions and styles plugin controls."
 msgstr ""
 
-#: src/Frontend/Assets.php:277
+#: src/Frontend/Assets.php:332
 msgid "There were changes since your last visit, please renew your consent."
 msgstr ""
 
-#: src/Frontend/Assets.php:281
+#: src/Frontend/Assets.php:336
 msgid "Learn more"
 msgstr ""
 
-#: src/Frontend/Assets.php:282
+#: src/Frontend/Assets.php:337
 msgid "Testing mode!"
 msgstr ""
 
-#: src/Frontend/Assets.php:289
+#: src/Frontend/Assets.php:346
 msgid "Always"
 msgstr ""
 
-#: src/Frontend/Assets.php:290
+#: src/Frontend/Assets.php:347
 msgid "Yes"
 msgstr ""
 
-#: src/Frontend/Assets.php:291
+#: src/Frontend/Assets.php:348
 msgid "Do you want to load external content supplied by {title}?"
 msgstr ""
 
-#: src/Frontend/Assets.php:295
+#: src/Frontend/Assets.php:352
 msgid "To agree to this service permanently, you must accept {title} in the {link}."
 msgstr ""
 
-#: src/Frontend/Assets.php:299
+#: src/Frontend/Assets.php:356
 msgid "Consent Manager"
 msgstr ""
 
-#: src/Frontend/Assets.php:303
+#: src/Frontend/Assets.php:360
 msgid "service"
 msgstr ""
 
-#: src/Frontend/Assets.php:304
+#: src/Frontend/Assets.php:361
 msgid "services"
 msgstr ""
 
-#: src/Frontend/Assets.php:306
+#: src/Frontend/Assets.php:363
 msgid "OK"
 msgstr ""
 
-#: src/Frontend/Assets.php:307
+#: src/Frontend/Assets.php:364
 msgid "Save"
 msgstr ""
 
-#: src/Frontend/Assets.php:308
+#: src/Frontend/Assets.php:365
 msgid "Accept all"
 msgstr ""
 
-#: src/Frontend/Assets.php:309
+#: src/Frontend/Assets.php:366
 msgid "Accept selected"
 msgstr ""
 
-#: src/Frontend/Assets.php:310
+#: src/Frontend/Assets.php:367
 msgid "Decline all"
 msgstr ""
 
-#: src/Frontend/Assets.php:311
+#: src/Frontend/Assets.php:368
 msgid "Decline"
 msgstr ""
 
-#: src/Frontend/Assets.php:312
+#: src/Frontend/Assets.php:369
 msgid "Close"
 msgstr ""
 
-#: src/Frontend/Assets.php:313
+#: src/Frontend/Assets.php:370
 msgid "Realized with Klaro!"
 msgstr ""
 
-#: src/Frontend/Assets.php:329
+#: src/Frontend/Assets.php:386
 msgid "Functional"
 msgstr ""
 
-#: src/Frontend/Assets.php:330
+#: src/Frontend/Assets.php:387
 msgid "Preferences"
 msgstr ""
 
-#: src/Frontend/Assets.php:331
+#: src/Frontend/Assets.php:388
 msgid "Anonymous statistics"
 msgstr ""
 
-#: src/Frontend/Assets.php:332
+#: src/Frontend/Assets.php:389
 msgid "Statistics"
 msgstr ""
 
-#: src/Frontend/Assets.php:333
+#: src/Frontend/Assets.php:390
 msgid "Marketing"
 msgstr ""
 
-#: src/Frontend/Assets.php:344
+#: src/Frontend/Assets.php:401
 msgid "Enable or disable all services"
 msgstr ""
 
-#: src/Frontend/Assets.php:345
+#: src/Frontend/Assets.php:402
 msgid "Use this switch to change all optional services at once."
 msgstr ""
 
-#: src/Frontend/Assets.php:351
+#: src/Frontend/Assets.php:408
 msgid "(opt-out)"
 msgstr ""
 
-#: src/Frontend/Assets.php:352
+#: src/Frontend/Assets.php:409
 msgid "This service loads by default, but can be disabled later."
 msgstr ""
 
-#: src/Frontend/Assets.php:358
+#: src/Frontend/Assets.php:415
 msgid "(required)"
 msgstr ""
 
-#: src/Frontend/Assets.php:359
+#: src/Frontend/Assets.php:416
 msgid "This service is required for the site to function."
 msgstr ""
 
-#: src/Frontend/Assets.php:364
+#: src/Frontend/Assets.php:421
 msgid "Purposes"
 msgstr ""
 
-#: src/Frontend/Assets.php:365
+#: src/Frontend/Assets.php:422
 msgid "Purpose"
 msgstr ""
 
-#: src/Frontend/Assets.php:450
-#: src/Frontend/Assets.php:467
+#: src/Frontend/Assets.php:525
+#: src/Frontend/Assets.php:542
 msgid "Cookie consent settings"
 msgstr ""
 
-#: src/Frontend/Assets.php:461
+#: src/Frontend/Assets.php:536
 msgid "365 days"
 msgstr ""
 
-#: src/Frontend/Assets.php:462
+#: src/Frontend/Assets.php:537
 msgid "Stores the visitor’s consent choices."
 msgstr ""
 
-#: src/Frontend/Assets.php:468
+#: src/Frontend/Assets.php:543
 msgid "Stores the visitor’s consent choice."
 msgstr ""
 
-#: src/Frontend/Assets.php:481
+#: src/Frontend/Assets.php:556
 msgid "Google Tag Manager"
 msgstr ""
 
-#: src/Frontend/Assets.php:487
-#: src/Frontend/Assets.php:933
+#: src/Frontend/Assets.php:562
+#: src/Frontend/Assets.php:1165
 msgid "2 years"
 msgstr ""
 
-#: src/Frontend/Assets.php:488
+#: src/Frontend/Assets.php:563
 msgid "Distinguishes visitors for analytics reporting."
 msgstr ""
 
-#: src/Frontend/Assets.php:492
-#: src/Frontend/Assets.php:1119
-#: src/Frontend/Assets.php:1124
+#: src/Frontend/Assets.php:567
+#: src/Frontend/Assets.php:1351
+#: src/Frontend/Assets.php:1356
 msgid "24 hours"
 msgstr ""
 
-#: src/Frontend/Assets.php:493
+#: src/Frontend/Assets.php:568
 msgid "Distinguishes visitors for daily analytics reporting."
 msgstr ""
 
-#: src/Frontend/Assets.php:496
+#: src/Frontend/Assets.php:571
 msgid "Loads analytics tags managed through Google Tag Manager."
 msgstr ""
 
-#: src/Frontend/Assets.php:508
+#: src/Frontend/Assets.php:583
 msgid "Microsoft Clarity"
 msgstr ""
 
-#: src/Frontend/Assets.php:514
-#: src/Frontend/Assets.php:575
-#: src/Frontend/Assets.php:580
-#: src/Frontend/Assets.php:585
-#: src/Frontend/Assets.php:724
-#: src/Frontend/Assets.php:1109
-#: src/Frontend/Assets.php:1114
+#: src/Frontend/Assets.php:589
+#: src/Frontend/Assets.php:650
+#: src/Frontend/Assets.php:655
+#: src/Frontend/Assets.php:660
+#: src/Frontend/Assets.php:733
+#: src/Frontend/Assets.php:956
+#: src/Frontend/Assets.php:1341
+#: src/Frontend/Assets.php:1346
 msgid "1 year"
 msgstr ""
 
-#: src/Frontend/Assets.php:515
+#: src/Frontend/Assets.php:590
 msgid "Persists the Clarity visitor identifier and preferences."
 msgstr ""
 
-#: src/Frontend/Assets.php:519
-#: src/Frontend/Assets.php:590
+#: src/Frontend/Assets.php:594
+#: src/Frontend/Assets.php:665
 msgid "1 day"
 msgstr ""
 
-#: src/Frontend/Assets.php:520
+#: src/Frontend/Assets.php:595
 msgid "Groups Clarity page views into a recording session."
 msgstr ""
 
-#: src/Frontend/Assets.php:523
+#: src/Frontend/Assets.php:598
 msgid "Measures how visitors use the site through session analytics."
 msgstr ""
 
-#: src/Frontend/Assets.php:535
+#: src/Frontend/Assets.php:610
 msgid "Hotjar"
 msgstr ""
 
-#: src/Frontend/Assets.php:539
+#: src/Frontend/Assets.php:614
 msgid "Measures visitor behavior and collects usability feedback."
 msgstr ""
 
-#: src/Frontend/Assets.php:576
+#: src/Frontend/Assets.php:651
 msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
 msgstr ""
 
-#: src/Frontend/Assets.php:581
+#: src/Frontend/Assets.php:656
 msgid "Prevents a completed Hotjar poll from reappearing."
 msgstr ""
 
-#: src/Frontend/Assets.php:586
+#: src/Frontend/Assets.php:661
 msgid "Keeps a minimized Hotjar poll minimized."
 msgstr ""
 
-#: src/Frontend/Assets.php:591
+#: src/Frontend/Assets.php:666
 msgid "Prevents repeated display of Hotjar feedback messaging."
 msgstr ""
 
-#: src/Frontend/Assets.php:603
+#: src/Frontend/Assets.php:678
 msgid "Meta Pixel"
 msgstr ""
 
-#: src/Frontend/Assets.php:609
-#: src/Frontend/Assets.php:617
-#: src/Frontend/Assets.php:642
-#: src/Frontend/Assets.php:650
+#: src/Frontend/Assets.php:684
+#: src/Frontend/Assets.php:692
+#: src/Frontend/Assets.php:717
+#: src/Frontend/Assets.php:725
+#: src/Frontend/Assets.php:810
 msgid "90 days"
 msgstr ""
 
-#: src/Frontend/Assets.php:610
-#: src/Frontend/Assets.php:643
+#: src/Frontend/Assets.php:685
+#: src/Frontend/Assets.php:718
+#: src/Frontend/Assets.php:811
 msgid "Identifies browsers for Meta advertising measurement."
 msgstr ""
 
-#: src/Frontend/Assets.php:618
-#: src/Frontend/Assets.php:651
+#: src/Frontend/Assets.php:693
+#: src/Frontend/Assets.php:726
 msgid "Stores the Meta advertising click identifier."
 msgstr ""
 
-#: src/Frontend/Assets.php:624
+#: src/Frontend/Assets.php:699
 msgid "Measures advertising performance and visitor actions for Meta."
 msgstr ""
 
-#: src/Frontend/Assets.php:636
+#: src/Frontend/Assets.php:711
 msgid "Meta for WooCommerce"
 msgstr ""
 
-#: src/Frontend/Assets.php:658
-#: src/Frontend/Assets.php:796
-#: src/Frontend/Assets.php:801
-#: src/Frontend/Assets.php:811
-#: src/Frontend/Assets.php:816
-#: src/Frontend/Assets.php:941
-#: src/Frontend/Assets.php:1023
-#: src/Frontend/Assets.php:1028
-#: src/Frontend/Assets.php:1033
-#: src/Frontend/Assets.php:1038
-#: src/Frontend/Assets.php:1043
-#: src/Frontend/Assets.php:1048
-#: src/Frontend/Assets.php:1168
-msgid "Session"
-msgstr ""
-
-#: src/Frontend/Assets.php:659
+#: src/Frontend/Assets.php:734
 msgid "Stores whether Meta for WooCommerce browser signals are held or released."
 msgstr ""
 
-#: src/Frontend/Assets.php:665
+#: src/Frontend/Assets.php:740
 msgid "Measures WooCommerce product views, cart actions, and purchases for Meta advertising."
 msgstr ""
 
-#: src/Frontend/Assets.php:680
-msgid "LinkedIn Insight Tag"
+#: src/Frontend/Assets.php:755
+msgid "PixelYourSite analytics"
 msgstr ""
 
-#: src/Frontend/Assets.php:686
-msgid "30 days"
+#: src/Frontend/Assets.php:771
+#: src/Frontend/Assets.php:776
+#: src/Frontend/Assets.php:781
+#: src/Frontend/Assets.php:815
+#: src/Frontend/Assets.php:820
+msgid "Configured in PixelYourSite"
 msgstr ""
 
-#: src/Frontend/Assets.php:687
-msgid "Stores the LinkedIn advertising click identifier."
+#: src/Frontend/Assets.php:772
+msgid "Stores whether this is the visitor’s first tracked visit."
 msgstr ""
 
-#: src/Frontend/Assets.php:691
-#: src/Frontend/Assets.php:1018
-msgid "7 days"
+#: src/Frontend/Assets.php:777
+msgid "Stores the landing page for analytics attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:692
-msgid "Supports LinkedIn conversion attribution."
+#: src/Frontend/Assets.php:782
+msgid "Stores the traffic source for analytics attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:695
-msgid "Measures LinkedIn campaign performance and website conversions."
-msgstr ""
-
-#: src/Frontend/Assets.php:713
-#: src/Frontend/Assets.php:733
-msgid "Polylang"
-msgstr ""
-
-#: src/Frontend/Assets.php:725
-msgid "Stores the visitor’s last browsed language for Polylang and Polylang for WooCommerce."
-msgstr ""
-
-#: src/Frontend/Assets.php:734
-msgid "Remembers the selected language for multilingual content and translated WooCommerce flows."
-msgstr ""
-
-#: src/Frontend/Assets.php:750
-#: src/Frontend/Assets.php:761
-msgid "WooCommerce"
-msgstr ""
-
-#: src/Frontend/Assets.php:762
-msgid "Keeps the shopping cart, checkout, customer session, and store notices working."
+#: src/Frontend/Assets.php:785
+msgid "Allows PixelYourSite analytics tags and attribution cookies."
 msgstr ""
 
 #: src/Frontend/Assets.php:797
-msgid "Helps WooCommerce detect cart changes."
+msgid "PixelYourSite advertising"
 msgstr ""
 
-#: src/Frontend/Assets.php:802
-msgid "Helps WooCommerce keep cart data synchronized."
+#: src/Frontend/Assets.php:816
+msgid "Stores a PixelYourSite external identifier for advertising events."
 msgstr ""
 
-#: src/Frontend/Assets.php:806
-msgid "2 days"
+#: src/Frontend/Assets.php:821
+msgid "Stores form-derived data used to improve advertising event matching."
 msgstr ""
 
-#: src/Frontend/Assets.php:807
-msgid "Stores a unique customer session identifier for cart and checkout data."
+#: src/Frontend/Assets.php:824
+msgid "Allows PixelYourSite advertising pixels, server events, and matching cookies."
 msgstr ""
 
-#: src/Frontend/Assets.php:812
-msgid "Stores products viewed by the visitor."
+#: src/Frontend/Assets.php:836
+#: src/Frontend/Assets.php:863
+msgid "Site Kit Sign in with Google"
 msgstr ""
 
-#: src/Frontend/Assets.php:817
-msgid "Remembers dismissed WooCommerce store notices."
+#: src/Frontend/Assets.php:847
+msgid "Up to 180 days"
 msgstr ""
 
-#: src/Frontend/Assets.php:829
-msgid "WooCommerce source attribution"
+#: src/Frontend/Assets.php:848
+msgid "Stores Google Identity Services prompt and sign-in state."
 msgstr ""
 
-#: src/Frontend/Assets.php:833
-msgid "Stores first-party source attribution data for WooCommerce order reporting."
+#: src/Frontend/Assets.php:852
+msgid "15 minutes"
 msgstr ""
 
-#: src/Frontend/Assets.php:865
-#: src/Frontend/Assets.php:873
-#: src/Frontend/Assets.php:881
-#: src/Frontend/Assets.php:889
-#: src/Frontend/Assets.php:897
+#: src/Frontend/Assets.php:853
+msgid "Secures the Site Kit Sign in with Google authentication request."
+msgstr ""
+
+#: src/Frontend/Assets.php:857
+msgid "5 minutes"
+msgstr ""
+
+#: src/Frontend/Assets.php:858
+msgid "Remembers where Site Kit should return the visitor after Google sign-in."
+msgstr ""
+
+#: src/Frontend/Assets.php:864
+msgid "Supports Site Kit’s Google login button and One Tap sign-in."
+msgstr ""
+
+#: src/Frontend/Assets.php:880
+msgid "LinkedIn Insight Tag"
+msgstr ""
+
+#: src/Frontend/Assets.php:886
+msgid "30 days"
+msgstr ""
+
+#: src/Frontend/Assets.php:887
+msgid "Stores the LinkedIn advertising click identifier."
+msgstr ""
+
+#: src/Frontend/Assets.php:891
+#: src/Frontend/Assets.php:1250
+msgid "7 days"
+msgstr ""
+
+#: src/Frontend/Assets.php:892
+msgid "Supports LinkedIn conversion attribution."
+msgstr ""
+
+#: src/Frontend/Assets.php:895
+msgid "Measures LinkedIn campaign performance and website conversions."
+msgstr ""
+
 #: src/Frontend/Assets.php:907
-msgid "6 months"
+msgid "Triple Whale Pixel"
 msgstr ""
 
-#: src/Frontend/Assets.php:866
-msgid "Stores the visitor’s current traffic source for WooCommerce order attribution."
-msgstr ""
-
-#: src/Frontend/Assets.php:874
-msgid "Stores additional current traffic source details for WooCommerce order attribution."
-msgstr ""
-
-#: src/Frontend/Assets.php:882
-msgid "Stores the visitor’s first traffic source for WooCommerce order attribution."
-msgstr ""
-
-#: src/Frontend/Assets.php:890
-msgid "Stores additional first traffic source details for WooCommerce order attribution."
-msgstr ""
-
-#: src/Frontend/Assets.php:898
-msgid "Tracks Sourcebuster cookie format migrations."
-msgstr ""
-
-#: src/Frontend/Assets.php:902
-msgid "30 minutes"
-msgstr ""
-
-#: src/Frontend/Assets.php:903
-msgid "Stores the visitor’s current source attribution session."
-msgstr ""
-
-#: src/Frontend/Assets.php:908
-msgid "Stores visitor user-agent and page attribution details for WooCommerce order reporting."
-msgstr ""
-
+#: src/Frontend/Assets.php:913
+#: src/Frontend/Assets.php:918
 #: src/Frontend/Assets.php:923
-#: src/Frontend/Assets.php:950
-msgid "Klaviyo"
+msgid "Persistent"
 msgstr ""
 
-#: src/Frontend/Assets.php:934
-msgid "Stores Klaviyo visitor identity for email marketing, attribution, and WooCommerce tracking."
+#: src/Frontend/Assets.php:914
+msgid "Stores Triple Whale pixel runtime and visit count data."
 msgstr ""
 
-#: src/Frontend/Assets.php:942
-msgid "Disables Klaviyo tracking until marketing consent is granted."
+#: src/Frontend/Assets.php:919
+msgid "Stores recent page visit details for Triple Whale attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:951
-msgid "Supports Klaviyo email marketing attribution, forms, and WooCommerce activity tracking."
+#: src/Frontend/Assets.php:924
+msgid "Stores the Triple Whale browser profile identifier."
 msgstr ""
 
-#: src/Frontend/Assets.php:967
-#: src/Frontend/Assets.php:978
-msgid "WoodMart"
+#: src/Frontend/Assets.php:927
+msgid "Measures visitor journeys, advertising attribution, and ecommerce events for Triple Whale."
 msgstr ""
 
-#: src/Frontend/Assets.php:979
-msgid "Keeps WoodMart shop preferences, wishlist, compare, product history, and popups working."
+#: src/Frontend/Assets.php:945
+#: src/Frontend/Assets.php:965
+msgid "Polylang"
 msgstr ""
 
-#: src/Frontend/Assets.php:1019
-msgid "Stores products recently viewed by the visitor."
+#: src/Frontend/Assets.php:957
+msgid "Stores the visitor’s last browsed language for Polylang and Polylang for WooCommerce."
 msgstr ""
 
-#: src/Frontend/Assets.php:1024
-msgid "Checks whether the visitor’s WoodMart wishlist has changed."
+#: src/Frontend/Assets.php:966
+msgid "Remembers the selected language for multilingual content and translated WooCommerce flows."
+msgstr ""
+
+#: src/Frontend/Assets.php:982
+#: src/Frontend/Assets.php:993
+msgid "WooCommerce"
+msgstr ""
+
+#: src/Frontend/Assets.php:994
+msgid "Keeps the shopping cart, checkout, customer session, and store notices working."
+msgstr ""
+
+#: src/Frontend/Assets.php:1028
+#: src/Frontend/Assets.php:1033
+#: src/Frontend/Assets.php:1043
+#: src/Frontend/Assets.php:1048
+#: src/Frontend/Assets.php:1173
+#: src/Frontend/Assets.php:1255
+#: src/Frontend/Assets.php:1260
+#: src/Frontend/Assets.php:1265
+#: src/Frontend/Assets.php:1270
+#: src/Frontend/Assets.php:1275
+#: src/Frontend/Assets.php:1280
+#: src/Frontend/Assets.php:1400
+msgid "Session"
 msgstr ""
 
 #: src/Frontend/Assets.php:1029
-msgid "Stores the number of products in the visitor’s WoodMart wishlist."
+msgid "Helps WooCommerce detect cart changes."
 msgstr ""
 
 #: src/Frontend/Assets.php:1034
-msgid "Stores products added to the visitor’s WoodMart wishlist."
+msgid "Helps WooCommerce keep cart data synchronized."
+msgstr ""
+
+#: src/Frontend/Assets.php:1038
+msgid "2 days"
 msgstr ""
 
 #: src/Frontend/Assets.php:1039
-msgid "Stores products added to the visitor’s WoodMart compare list."
+msgid "Stores a unique customer session identifier for cart and checkout data."
 msgstr ""
 
 #: src/Frontend/Assets.php:1044
-msgid "Remembers the visitor’s selected shop list or grid view."
+msgid "Stores products viewed by the visitor."
 msgstr ""
 
 #: src/Frontend/Assets.php:1049
-msgid "Remembers that the visitor passed the WoodMart age verification prompt."
+msgid "Remembers dismissed WooCommerce store notices."
 msgstr ""
 
 #: src/Frontend/Assets.php:1061
-#: src/Frontend/Assets.php:1072
-msgid "Wordfence"
+msgid "WooCommerce source attribution"
 msgstr ""
 
-#: src/Frontend/Assets.php:1073
-msgid "Supports the Wordfence firewall, country blocking bypasses, login alerts, and plugin linking."
+#: src/Frontend/Assets.php:1065
+msgid "Stores first-party source attribution data for WooCommerce order reporting."
 msgstr ""
 
-#: src/Frontend/Assets.php:1104
-msgid "12 hours"
-msgstr ""
-
+#: src/Frontend/Assets.php:1097
 #: src/Frontend/Assets.php:1105
-msgid "Allows the Wordfence firewall to identify logged-in users and their roles."
+#: src/Frontend/Assets.php:1113
+#: src/Frontend/Assets.php:1121
+#: src/Frontend/Assets.php:1129
+#: src/Frontend/Assets.php:1139
+msgid "6 months"
 msgstr ""
 
-#: src/Frontend/Assets.php:1110
-msgid "Stores a country blocking bypass granted by a hidden access URL."
+#: src/Frontend/Assets.php:1098
+msgid "Stores the visitor’s current traffic source for WooCommerce order attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:1115
-msgid "Remembers that a Wordfence new-device login alert has already been sent."
+#: src/Frontend/Assets.php:1106
+msgid "Stores additional current traffic source details for WooCommerce order attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:1120
-msgid "Tracks a Wordfence plugin license or account linking action."
+#: src/Frontend/Assets.php:1114
+msgid "Stores the visitor’s first traffic source for WooCommerce order attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:1125
-msgid "Remembers that Wordfence has verified the visitor as human."
+#: src/Frontend/Assets.php:1122
+msgid "Stores additional first traffic source details for WooCommerce order attribution."
 msgstr ""
 
-#: src/Frontend/Assets.php:1137
-msgid "YouTube"
+#: src/Frontend/Assets.php:1130
+msgid "Tracks Sourcebuster cookie format migrations."
 msgstr ""
 
-#: src/Frontend/Assets.php:1141
-msgid "Loads embedded videos provided by YouTube."
+#: src/Frontend/Assets.php:1134
+msgid "30 minutes"
 msgstr ""
 
-#: src/Frontend/Assets.php:1156
-#: src/Frontend/Assets.php:1162
-msgid "180 days"
+#: src/Frontend/Assets.php:1135
+msgid "Stores the visitor’s current source attribution session."
 msgstr ""
 
-#: src/Frontend/Assets.php:1157
-msgid "Measures bandwidth and player interface selection."
+#: src/Frontend/Assets.php:1140
+msgid "Stores visitor user-agent and page attribution details for WooCommerce order reporting."
 msgstr ""
 
-#: src/Frontend/Assets.php:1163
-msgid "Stores the visitor’s YouTube privacy state."
+#: src/Frontend/Assets.php:1155
+#: src/Frontend/Assets.php:1182
+msgid "Klaviyo"
 msgstr ""
 
-#: src/Frontend/Assets.php:1169
-msgid "Maintains YouTube video-view session data."
+#: src/Frontend/Assets.php:1166
+msgid "Stores Klaviyo visitor identity for email marketing, attribution, and WooCommerce tracking."
 msgstr ""
 
 #: src/Frontend/Assets.php:1174
+msgid "Disables Klaviyo tracking until marketing consent is granted."
+msgstr ""
+
+#: src/Frontend/Assets.php:1183
+msgid "Supports Klaviyo email marketing attribution, forms, and WooCommerce activity tracking."
+msgstr ""
+
+#: src/Frontend/Assets.php:1199
+#: src/Frontend/Assets.php:1210
+msgid "WoodMart"
+msgstr ""
+
+#: src/Frontend/Assets.php:1211
+msgid "Keeps WoodMart shop preferences, wishlist, compare, product history, and popups working."
+msgstr ""
+
+#: src/Frontend/Assets.php:1251
+msgid "Stores products recently viewed by the visitor."
+msgstr ""
+
+#: src/Frontend/Assets.php:1256
+msgid "Checks whether the visitor’s WoodMart wishlist has changed."
+msgstr ""
+
+#: src/Frontend/Assets.php:1261
+msgid "Stores the number of products in the visitor’s WoodMart wishlist."
+msgstr ""
+
+#: src/Frontend/Assets.php:1266
+msgid "Stores products added to the visitor’s WoodMart wishlist."
+msgstr ""
+
+#: src/Frontend/Assets.php:1271
+msgid "Stores products added to the visitor’s WoodMart compare list."
+msgstr ""
+
+#: src/Frontend/Assets.php:1276
+msgid "Remembers the visitor’s selected shop list or grid view."
+msgstr ""
+
+#: src/Frontend/Assets.php:1281
+msgid "Remembers that the visitor passed the WoodMart age verification prompt."
+msgstr ""
+
+#: src/Frontend/Assets.php:1293
+#: src/Frontend/Assets.php:1304
+msgid "Wordfence"
+msgstr ""
+
+#: src/Frontend/Assets.php:1305
+msgid "Supports the Wordfence firewall, country blocking bypasses, login alerts, and plugin linking."
+msgstr ""
+
+#: src/Frontend/Assets.php:1336
+msgid "12 hours"
+msgstr ""
+
+#: src/Frontend/Assets.php:1337
+msgid "Allows the Wordfence firewall to identify logged-in users and their roles."
+msgstr ""
+
+#: src/Frontend/Assets.php:1342
+msgid "Stores a country blocking bypass granted by a hidden access URL."
+msgstr ""
+
+#: src/Frontend/Assets.php:1347
+msgid "Remembers that a Wordfence new-device login alert has already been sent."
+msgstr ""
+
+#: src/Frontend/Assets.php:1352
+msgid "Tracks a Wordfence plugin license or account linking action."
+msgstr ""
+
+#: src/Frontend/Assets.php:1357
+msgid "Remembers that Wordfence has verified the visitor as human."
+msgstr ""
+
+#: src/Frontend/Assets.php:1369
+msgid "YouTube"
+msgstr ""
+
+#: src/Frontend/Assets.php:1373
+msgid "Loads embedded videos provided by YouTube."
+msgstr ""
+
+#: src/Frontend/Assets.php:1388
+#: src/Frontend/Assets.php:1394
+msgid "180 days"
+msgstr ""
+
+#: src/Frontend/Assets.php:1389
+msgid "Measures bandwidth and player interface selection."
+msgstr ""
+
+#: src/Frontend/Assets.php:1395
+msgid "Stores the visitor’s YouTube privacy state."
+msgstr ""
+
+#: src/Frontend/Assets.php:1401
+msgid "Maintains YouTube video-view session data."
+msgstr ""
+
+#: src/Frontend/Assets.php:1406
 msgid "8 months"
 msgstr ""
 
-#: src/Frontend/Assets.php:1175
+#: src/Frontend/Assets.php:1407
 msgid "Stores YouTube playback and display preferences."
 msgstr ""
 
@@ -765,22 +894,22 @@ msgstr ""
 msgid "Configured consent service."
 msgstr ""
 
-#: src/Options.php:46
+#: src/Options.php:62
 msgid "Privacy settings"
 msgstr ""
 
-#: src/Options.php:49
+#: src/Options.php:65
 msgid "We use cookies for required functionality, statistics, and marketing."
 msgstr ""
 
-#: src/Options.php:53
+#: src/Options.php:69
 msgid "You can update your choices at any time."
 msgstr ""
 
-#: src/Options.php:55
+#: src/Options.php:71
 msgid "Privacy preferences"
 msgstr ""
 
-#: src/Options.php:56
+#: src/Options.php:72
 msgid "Choose which categories of services may load on this site."
 msgstr ""

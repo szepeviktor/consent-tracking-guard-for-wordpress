@@ -25,8 +25,8 @@ It has been checked with these plugin integrations.
 - Meta for WooCommerce 3.7.0+ (`facebook-for-woocommerce`) - bridge implemented
 - PixelYourSite 12.5.0+ (`pixelyoursite-pro`) - bridge implemented
 - Triple Whale Pixel for WooCommerce 1.0.4+ (`triplewhale-pixel-woo-extension`) - bridge implemented
+- Site Kit by Google (`google-site-kit`) - Sign in with Google disclosure implemented
 - GTM4WP (`duracelltomi-google-tag-manager`)
-- Site Kit by Google (`google-site-kit`)
 - Polylang (`polylang`)
 - WooCommerce (`woocommerce`)
 - Wordfence (`wordfence`)
