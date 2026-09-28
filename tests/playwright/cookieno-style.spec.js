@@ -149,3 +149,97 @@ test('lets sites recolor the Cookieno accent with one CSS custom property', asyn
         consentButtonBorderColor: 'rgb(0, 87, 255)'
     });
 });
+
+test('wraps Cookieno modal footer buttons only when they do not fit', async ({page}) => {
+    await page.setContent(`
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="http://127.0.0.1:8765/assets/css/klaro.css">
+            <link rel="stylesheet" href="http://127.0.0.1:8765/assets/css/modal-styles/cookieno.css">
+            <style>
+                .theme-kit button {
+                    display: inline-flex;
+                    min-height: 42px;
+                    padding: 11px 34px;
+                    border-radius: 12px;
+                    background: #eb6b56;
+                }
+            </style>
+        </head>
+        <body class="theme-kit">
+            <div class="klaro">
+                <div class="cookie-modal">
+                    <div class="cm-bg"></div>
+                    <div class="cm-modal cm-klaro">
+                        <div class="cm-header">
+                            <button title="Close" aria-label="Close" type="button" class="hide">
+                                <svg width="12" height="12" viewBox="0 0 12 12">
+                                    <line x1="1" y1="11" x2="11" y2="1" stroke-width="1"></line>
+                                    <line x1="1" y1="1" x2="11" y2="11" stroke-width="1"></line>
+                                </svg>
+                            </button>
+                            <h1 class="title">Privacy preferences</h1>
+                        </div>
+                        <div class="cm-body">
+                            <p>Choose which services may load on this site.</p>
+                        </div>
+                        <div class="cm-footer">
+                            <div class="cm-footer-buttons">
+                                <button class="cm-btn cm-btn-danger" type="button">Reject</button>
+                                <button class="cm-btn cm-btn-success" type="button">Accept selected</button>
+                                <button class="cm-btn cm-btn-success-var" type="button">Accept all</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+    `);
+
+    await page.setViewportSize({width: 360, height: 740});
+
+    let layout = await page.evaluate(() => {
+        const viewportWidth = document.documentElement.clientWidth;
+        const modal = document.querySelector('.cm-modal').getBoundingClientRect();
+        const close = document.querySelector('.hide').getBoundingClientRect();
+        const closeStyle = getComputedStyle(document.querySelector('.hide'));
+        const buttons = [...document.querySelectorAll('.cm-footer-buttons .cm-btn')]
+            .map((button) => button.getBoundingClientRect());
+
+        return {
+            closeHeight: close.height,
+            closePadding: closeStyle.padding,
+            closeWidth: close.width,
+            modalRight: modal.right,
+            rows: new Set(buttons.map((button) => Math.round(button.top))).size,
+            viewportWidth
+        };
+    });
+
+    expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.closeWidth).toBe(32);
+    expect(layout.closeHeight).toBe(32);
+    expect(layout.closePadding).toBe('0px');
+    expect(layout.rows).toBeGreaterThan(1);
+
+    await page.setViewportSize({width: 1024, height: 740});
+
+    layout = await page.evaluate(() => {
+        const viewportWidth = document.documentElement.clientWidth;
+        const modal = document.querySelector('.cm-modal').getBoundingClientRect();
+        const buttons = [...document.querySelectorAll('.cm-footer-buttons .cm-btn')]
+            .map((button) => button.getBoundingClientRect());
+
+        return {
+            modalRight: modal.right,
+            rows: new Set(buttons.map((button) => Math.round(button.top))).size,
+            viewportWidth
+        };
+    });
+
+    expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.rows).toBe(1);
+});
