@@ -488,7 +488,7 @@ final class AdminPage
      */
     public function renderNumberField(array $args): void
     {
-        $this->renderInput($args['name'], 'small-text', 'number', ' min="1"');
+        $this->renderInput($args['name'], 'small-text', 'number', ['min' => '1']);
     }
 
     /**
@@ -593,7 +593,10 @@ final class AdminPage
         );
     }
 
-    private function renderInput(string $name, string $cssClass, string $type, string $attributes = ''): void
+    /**
+     * @param array<string, string> $attributes
+     */
+    private function renderInput(string $name, string $cssClass, string $type, array $attributes = []): void
     {
         printf(
             '<input class="%1$s" id="%2$s" name="%3$s[%4$s]" type="%5$s" value="%6$s"%7$s>',
@@ -603,8 +606,22 @@ final class AdminPage
             esc_attr($name),
             esc_attr($type),
             esc_attr((string) $this->options->get($name)),
-            $attributes
+            $this->renderAttributes($attributes)
         );
+    }
+
+    /**
+     * @param array<string, string> $attributes
+     */
+    private function renderAttributes(array $attributes): string
+    {
+        $rendered = '';
+
+        foreach ($attributes as $name => $value) {
+            $rendered .= sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
+        }
+
+        return $rendered;
     }
 
     private function fieldId(string $name): string

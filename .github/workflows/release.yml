@@ -92,7 +92,7 @@ jobs:
                     --prefer-dist \
                     --optimize-autoloader
                 mkdir "${PLUGIN_SLUG}"
-                cp --recursive viktors-consent-tracking-guard.php wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
+                cp --recursive viktors-consent-tracking-guard.php composer.json wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
                 zip --recurse-paths "${ZIP_FILE}" "${PLUGIN_SLUG}"
         -
             name: "Upload ZIP to release"

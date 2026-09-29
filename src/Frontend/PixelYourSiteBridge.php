@@ -269,7 +269,8 @@ final class PixelYourSiteBridge
             return false;
         }
 
-        $consents = json_decode(wp_unslash($_COOKIE['klaro']), true);
+        $klaroCookie = sanitize_text_field(wp_unslash($_COOKIE['klaro']));
+        $consents = json_decode($klaroCookie, true);
 
         if (! is_array($consents)) {
             return false;
