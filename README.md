@@ -1,6 +1,6 @@
-# Viktor's Consent and Tracking Guard for WordPress
+# Viktor's Consent and Tracking Guard
 
-Viktor's Consent and Tracking Guard for WordPress is a consent management platform (CMP) for WordPress.
+Viktor's Consent and Tracking Guard is a consent management platform (CMP) for WordPress.
 It controls consent-aware tracking, service disclosures, blocked embeds, and WP Consent API sync.
 Powered by [Klaro](https://github.com/kiprotect/klaro).
 

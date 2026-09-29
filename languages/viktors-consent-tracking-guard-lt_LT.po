@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.4.9\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard 2.4.9\n"
 "Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-"
 "for-wordpress/issues\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
@@ -13,24 +13,24 @@ msgstr ""
 "POT-Creation-Date: 2026-09-28T17:41:34+00:00\n"
 "PO-Revision-Date: 2026-09-29 00:00+0000\n"
 "X-Generator: Codex\n"
-"X-Domain: consent-tracking-guard-for-wordpress\n"
+"X-Domain: viktors-consent-tracking-guard\n"
 "Language: lt_LT\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
-#: consent-tracking-guard-for-wordpress.php src/AdminPage.php:55
+#: viktors-consent-tracking-guard.php src/AdminPage.php:55
 #: src/AdminPage.php:389
-msgid "Viktor's Consent and Tracking Guard for WordPress"
-msgstr "Viktor's Consent and Tracking Guard for WordPress"
+msgid "Viktor's Consent and Tracking Guard"
+msgstr "Viktor's Consent and Tracking Guard"
 
 #. Plugin URI of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 msgstr "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 
 #. Description of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid ""
 "Controls consent-aware tracking, service disclosures, embeds, and WP Consent "
 "API sync."
@@ -39,12 +39,12 @@ msgstr ""
 "Consent API sinchronizavimą."
 
 #. Author of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "Viktor Szépe"
 msgstr "Viktor Szépe"
 
 #. Author URI of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "https://github.com/szepeviktor"
 msgstr "https://github.com/szepeviktor"
 
@@ -256,10 +256,10 @@ msgstr "Kitas įskiepis jau pateikia WP Consent API sutikimo tipą."
 
 #: src/AdminPage.php:445
 msgid ""
-"Viktor's Consent and Tracking Guard for WordPress preserves that value; "
+"Viktor's Consent and Tracking Guard preserves that value; "
 "verify that only one consent management platform"
 msgstr ""
-"Viktor's Consent and Tracking Guard for WordPress išsaugo šią reikšmę; "
+"Viktor's Consent and Tracking Guard išsaugo šią reikšmę; "
 "patikrinkite, kad tik viena sutikimų valdymo platforma"
 
 #: src/AdminPage.php:449

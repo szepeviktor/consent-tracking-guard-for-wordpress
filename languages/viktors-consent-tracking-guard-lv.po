@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.2.0\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard 2.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-"
 "for-wordpress/issues\n"
 "POT-Creation-Date: 2026-09-29T16:40:25+00:00\n"
@@ -14,21 +14,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Codex\n"
-"X-Domain: consent-tracking-guard-for-wordpress\n"
+"X-Domain: viktors-consent-tracking-guard\n"
 
 #. Plugin Name of the plugin
-#: consent-tracking-guard-for-wordpress.php src/AdminPage.php:55
+#: viktors-consent-tracking-guard.php src/AdminPage.php:55
 #: src/AdminPage.php:389
-msgid "Viktor's Consent and Tracking Guard for WordPress"
-msgstr "Viktor's Consent and Tracking Guard for WordPress"
+msgid "Viktor's Consent and Tracking Guard"
+msgstr "Viktor's Consent and Tracking Guard"
 
 #. Plugin URI of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 msgstr "https://github.com/szepeviktor/consent-tracking-guard-for-wordpress"
 
 #. Description of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid ""
 "Controls consent-aware tracking, service disclosures, embeds, and WP Consent "
 "API sync."
@@ -36,12 +36,12 @@ msgstr ""
 "Uz Klaro balstīts sīkdatņu piekrišanas baneris ar WP Consent API saderību."
 
 #. Author of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "Viktor Szépe"
 msgstr "Viktor Szépe"
 
 #. Author URI of the plugin
-#: consent-tracking-guard-for-wordpress.php
+#: viktors-consent-tracking-guard.php
 msgid "https://github.com/szepeviktor"
 msgstr "https://github.com/szepeviktor"
 
@@ -253,10 +253,10 @@ msgstr "Cits spraudnis jau nodrošina WP Consent API piekrišanas veidu."
 
 #: src/AdminPage.php:445
 msgid ""
-"Viktor's Consent and Tracking Guard for WordPress preserves that value; "
+"Viktor's Consent and Tracking Guard preserves that value; "
 "verify that only one consent management platform"
 msgstr ""
-"Viktor's Consent and Tracking Guard for WordPress saglabā šo vērtību; "
+"Viktor's Consent and Tracking Guard saglabā šo vērtību; "
 "pārbaudiet, vai tikai viena piekrišanas pārvaldības platforma"
 
 #: src/AdminPage.php:449

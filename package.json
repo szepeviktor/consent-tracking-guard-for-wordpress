@@ -1,5 +1,5 @@
 {
-  "name": "consent-tracking-guard-for-wordpress-tests",
+  "name": "viktors-consent-tracking-guard-tests",
   "private": true,
   "scripts": {
     "test:playwright": "playwright test"

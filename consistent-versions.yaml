@@ -3,16 +3,16 @@ checks:
     normalize: version
     expected:
       reader: wordpress-plugin
-      file: consent-tracking-guard-for-wordpress.php
+      file: viktors-consent-tracking-guard.php
       path: $.Version
     values:
       translation-template:
         reader: gettext
-        file: languages/consent-tracking-guard-for-wordpress.pot
+        file: languages/viktors-consent-tracking-guard.pot
         path: $.project.version
       config-init:
         reader: php
-        file: consent-tracking-guard-for-wordpress.php
+        file: viktors-consent-tracking-guard.php
         path: $.constants['SzepeViktor\\ConsentTrackingGuard\\VERSION']
       release-tag:
         reader: env
@@ -29,7 +29,7 @@ checks:
     values:
       plugin-header:
         reader: wordpress-plugin
-        file: consent-tracking-guard-for-wordpress.php
+        file: viktors-consent-tracking-guard.php
         path: $['Requires PHP']
       github-actions:
         reader: yaml

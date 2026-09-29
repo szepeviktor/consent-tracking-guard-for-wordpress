@@ -26,12 +26,12 @@ use function submit_button;
 
 final class AdminPage
 {
-    public const MENU_SLUG = 'consent-tracking-guard-for-wordpress';
-    public const PAGE_SLUG = 'consent-tracking-guard-for-wordpress-page';
-    public const OPTION_GROUP = 'consent_tracking_guard_for_wordpress';
-    public const BANNER_SECTION = 'consent-tracking-guard-for-wordpress-banner';
-    public const DISPLAY_SECTION = 'consent-tracking-guard-for-wordpress-display';
-    public const INTEGRATIONS_SECTION = 'consent-tracking-guard-for-wordpress-integrations';
+    public const MENU_SLUG = 'viktors-consent-tracking-guard';
+    public const PAGE_SLUG = 'viktors-consent-tracking-guard-page';
+    public const OPTION_GROUP = 'viktors_consent_tracking_guard';
+    public const BANNER_SECTION = 'viktors-consent-tracking-guard-banner';
+    public const DISPLAY_SECTION = 'viktors-consent-tracking-guard-display';
+    public const INTEGRATIONS_SECTION = 'viktors-consent-tracking-guard-integrations';
 
     private Options $options;
 
@@ -52,8 +52,8 @@ final class AdminPage
     public function addSettingsPage(): void
     {
         add_options_page(
-            __('Viktor\'s Consent and Tracking Guard for WordPress', 'consent-tracking-guard-for-wordpress'),
-            __('Consent & Tracking', 'consent-tracking-guard-for-wordpress'),
+            __('Viktor\'s Consent and Tracking Guard', 'viktors-consent-tracking-guard'),
+            __('Consent & Tracking', 'viktors-consent-tracking-guard'),
             'manage_options',
             self::MENU_SLUG,
             [$this, 'renderSettingsPage']
@@ -86,19 +86,19 @@ final class AdminPage
     {
         add_settings_section(
             self::BANNER_SECTION,
-            __('Banner copy', 'consent-tracking-guard-for-wordpress'),
+            __('Banner copy', 'viktors-consent-tracking-guard'),
             [$this, 'renderBannerSection'],
             self::PAGE_SLUG
         );
         add_settings_section(
             self::DISPLAY_SECTION,
-            __('Display', 'consent-tracking-guard-for-wordpress'),
+            __('Display', 'viktors-consent-tracking-guard'),
             [$this, 'renderDisplaySection'],
             self::PAGE_SLUG
         );
         add_settings_section(
             self::INTEGRATIONS_SECTION,
-            __('Integrations', 'consent-tracking-guard-for-wordpress'),
+            __('Integrations', 'viktors-consent-tracking-guard'),
             [$this, 'renderIntegrationsSection'],
             self::PAGE_SLUG
         );
@@ -108,22 +108,22 @@ final class AdminPage
     {
         $this->addTextField(
             'notice_title',
-            __('Notice title', 'consent-tracking-guard-for-wordpress'),
+            __('Notice title', 'viktors-consent-tracking-guard'),
             self::BANNER_SECTION
         );
         $this->addTextareaField(
             'notice_description',
-            __('Notice description', 'consent-tracking-guard-for-wordpress'),
+            __('Notice description', 'viktors-consent-tracking-guard'),
             self::BANNER_SECTION
         );
         $this->addTextField(
             'modal_title',
-            __('Modal title', 'consent-tracking-guard-for-wordpress'),
+            __('Modal title', 'viktors-consent-tracking-guard'),
             self::BANNER_SECTION
         );
         $this->addTextareaField(
             'modal_description',
-            __('Modal description', 'consent-tracking-guard-for-wordpress'),
+            __('Modal description', 'viktors-consent-tracking-guard'),
             self::BANNER_SECTION
         );
     }
@@ -131,21 +131,21 @@ final class AdminPage
     private function addDisplayFields(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-modal-style',
-            __('Modal style', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-modal-style',
+            __('Modal style', 'viktors-consent-tracking-guard'),
             [$this, 'renderModalStyleField'],
             self::PAGE_SLUG,
             self::DISPLAY_SECTION
         );
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-floating',
-            __('Floating privacy button', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-floating',
+            __('Floating privacy button', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::DISPLAY_SECTION,
             [
                 'name' => 'enable_floating',
-                'label' => __('Show a floating button that reopens the privacy settings.', 'consent-tracking-guard-for-wordpress'),
+                'label' => __('Show a floating button that reopens the privacy settings.', 'viktors-consent-tracking-guard'),
             ]
         );
     }
@@ -154,32 +154,32 @@ final class AdminPage
     {
         $this->addTextField(
             'gtm_id',
-            __('Google Tag Manager ID', 'consent-tracking-guard-for-wordpress'),
+            __('Google Tag Manager ID', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'clarity_project_id',
-            __('Microsoft Clarity project ID', 'consent-tracking-guard-for-wordpress'),
+            __('Microsoft Clarity project ID', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'hotjar_id',
-            __('Hotjar site ID', 'consent-tracking-guard-for-wordpress'),
+            __('Hotjar site ID', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addNumberField(
             'hotjar_version',
-            __('Hotjar script version', 'consent-tracking-guard-for-wordpress'),
+            __('Hotjar script version', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'meta_pixel_id',
-            __('Meta Pixel ID', 'consent-tracking-guard-for-wordpress'),
+            __('Meta Pixel ID', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTextField(
             'linkedin_partner_id',
-            __('LinkedIn partner ID', 'consent-tracking-guard-for-wordpress'),
+            __('LinkedIn partner ID', 'viktors-consent-tracking-guard'),
             self::INTEGRATIONS_SECTION
         );
         $this->addTripleWhaleField();
@@ -197,8 +197,8 @@ final class AdminPage
     private function addPolylangField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-polylang',
-            __('Polylang disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-polylang',
+            __('Polylang disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -206,7 +206,7 @@ final class AdminPage
                 'name' => 'enable_polylang',
                 'label' => __(
                     'Show the Polylang language cookie for multilingual sites and WooCommerce shops.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -215,8 +215,8 @@ final class AdminPage
     private function addWooCommerceField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-woocommerce',
-            __('WooCommerce disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-woocommerce',
+            __('WooCommerce disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -224,7 +224,7 @@ final class AdminPage
                 'name' => 'enable_woocommerce',
                 'label' => __(
                     'Show WooCommerce cart, checkout, session, and source attribution cookies.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -233,8 +233,8 @@ final class AdminPage
     private function addFacebookForWooCommerceField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-facebook-for-woocommerce',
-            __('Meta for WooCommerce consent bridge', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-facebook-for-woocommerce',
+            __('Meta for WooCommerce consent bridge', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -242,7 +242,7 @@ final class AdminPage
                 'name' => 'enable_facebook_for_woocommerce',
                 'label' => __(
                     'Hold Meta for WooCommerce tracking until marketing consent is granted.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -251,8 +251,8 @@ final class AdminPage
     private function addPixelYourSiteField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-pixelyoursite',
-            __('PixelYourSite consent bridge', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-pixelyoursite',
+            __('PixelYourSite consent bridge', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -260,7 +260,7 @@ final class AdminPage
                 'name' => 'enable_pixelyoursite',
                 'label' => __(
                     'Control PixelYourSite browser pixels, server events, cookies, and Google Consent Mode values from this consent banner.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -269,8 +269,8 @@ final class AdminPage
     private function addGoogleSiteKitSignInField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-google-site-kit-sign-in',
-            __('Site Kit Sign in with Google disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-google-site-kit-sign-in',
+            __('Site Kit Sign in with Google disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -278,7 +278,7 @@ final class AdminPage
                 'name' => 'enable_google_site_kit_sign_in',
                 'label' => __(
                     'Show Site Kit’s Sign in with Google and One Tap cookies as required functional cookies.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -287,8 +287,8 @@ final class AdminPage
     private function addTripleWhaleField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-triple-whale',
-            __('Triple Whale Pixel consent bridge', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-triple-whale',
+            __('Triple Whale Pixel consent bridge', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -296,7 +296,7 @@ final class AdminPage
                 'name' => 'enable_triple_whale',
                 'label' => __(
                     'Control the Triple Whale WooCommerce plugin pixel with marketing consent.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -305,8 +305,8 @@ final class AdminPage
     private function addKlaviyoField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-klaviyo',
-            __('Klaviyo disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-klaviyo',
+            __('Klaviyo disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -314,7 +314,7 @@ final class AdminPage
                 'name' => 'enable_klaviyo',
                 'label' => __(
                     'Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside this plugin’s control.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -323,8 +323,8 @@ final class AdminPage
     private function addWoodMartField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-woodmart',
-            __('WoodMart disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-woodmart',
+            __('WoodMart disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -332,7 +332,7 @@ final class AdminPage
                 'name' => 'enable_woodmart',
                 'label' => __(
                     'Show WoodMart cookies for wishlist, compare, product history, popups, and shop preferences.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -341,8 +341,8 @@ final class AdminPage
     private function addWordfenceField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-wordfence',
-            __('Wordfence disclosure', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-wordfence',
+            __('Wordfence disclosure', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -350,7 +350,7 @@ final class AdminPage
                 'name' => 'enable_wordfence',
                 'label' => __(
                     'Show Wordfence security cookies for the firewall, access controls, login alerts, and linking.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -359,8 +359,8 @@ final class AdminPage
     private function addYouTubeField(): void
     {
         add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-youtube',
-            __('YouTube blocking', 'consent-tracking-guard-for-wordpress'),
+            'viktors-consent-tracking-guard-enable-youtube',
+            __('YouTube blocking', 'viktors-consent-tracking-guard'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
@@ -368,7 +368,7 @@ final class AdminPage
                 'name' => 'enable_youtube',
                 'label' => __(
                     'Block and replace YouTube embeds until marketing consent is granted.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ]
         );
@@ -387,8 +387,8 @@ final class AdminPage
             <h1>
                 <?php
                 esc_html_e(
-                    'Viktor\'s Consent and Tracking Guard for WordPress',
-                    'consent-tracking-guard-for-wordpress'
+                    'Viktor\'s Consent and Tracking Guard',
+                    'viktors-consent-tracking-guard'
                 );
                 ?>
             </h1>
@@ -396,7 +396,7 @@ final class AdminPage
                 <?php
                 esc_html_e(
                     'Configure the consent texts and vendor IDs used by the frontend Klaro banner.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 );
                 ?>
             </p>
@@ -423,12 +423,12 @@ final class AdminPage
         if (! $this->consentApiBridge->is_api_available()) {
             return sprintf(
                 '%s %s %s',
-                __('WP Consent API was not detected.', 'consent-tracking-guard-for-wordpress'),
+                __('WP Consent API was not detected.', 'viktors-consent-tracking-guard'),
                 __(
                     'The consent controls will still render, but the WordPress compatibility bridge will stay inactive',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
-                __('until the API plugin is available.', 'consent-tracking-guard-for-wordpress')
+                __('until the API plugin is available.', 'viktors-consent-tracking-guard')
             );
         }
 
@@ -440,13 +440,13 @@ final class AdminPage
             '%s %s %s',
             __(
                 'Another plugin already provides the WP Consent API consent type.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             ),
             __(
-                'Viktor\'s Consent and Tracking Guard for WordPress preserves that value; verify that only one consent management platform',
-                'consent-tracking-guard-for-wordpress'
+                'Viktor\'s Consent and Tracking Guard preserves that value; verify that only one consent management platform',
+                'viktors-consent-tracking-guard'
             ),
-            __('controls the site.', 'consent-tracking-guard-for-wordpress')
+            __('controls the site.', 'viktors-consent-tracking-guard')
         );
     }
 
@@ -456,23 +456,23 @@ final class AdminPage
             '%s %s',
             esc_html__(
                 'Set the text displayed in the consent notice and preferences dialog.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             ),
             esc_html__(
                 'Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             )
         );
     }
 
     public function renderIntegrationsSection(): void
     {
-        esc_html_e('Enter only the services that this site uses.', 'consent-tracking-guard-for-wordpress');
+        esc_html_e('Enter only the services that this site uses.', 'viktors-consent-tracking-guard');
     }
 
     public function renderDisplaySection(): void
     {
-        esc_html_e('Control how visitors can access their privacy settings.', 'consent-tracking-guard-for-wordpress');
+        esc_html_e('Control how visitors can access their privacy settings.', 'viktors-consent-tracking-guard');
     }
 
     /**
@@ -527,12 +527,12 @@ final class AdminPage
     public function renderModalStyleField(): void
     {
         $styles = [
-            Options::MODAL_STYLE_KLARO_DEFAULT => __('Klaro’s default', 'consent-tracking-guard-for-wordpress'),
-            Options::MODAL_STYLE_VIKTOR_DEFAULT => __('Viktor’s default', 'consent-tracking-guard-for-wordpress'),
-            Options::MODAL_STYLE_LIGHT => __('Light', 'consent-tracking-guard-for-wordpress'),
-            Options::MODAL_STYLE_DARK => __('Dark', 'consent-tracking-guard-for-wordpress'),
-            Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => __('Twenty Twenty-Five', 'consent-tracking-guard-for-wordpress'),
-            Options::MODAL_STYLE_COOKIENO => __('CookieNo', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_KLARO_DEFAULT => __('Klaro’s default', 'viktors-consent-tracking-guard'),
+            Options::MODAL_STYLE_VIKTOR_DEFAULT => __('Viktor’s default', 'viktors-consent-tracking-guard'),
+            Options::MODAL_STYLE_LIGHT => __('Light', 'viktors-consent-tracking-guard'),
+            Options::MODAL_STYLE_DARK => __('Dark', 'viktors-consent-tracking-guard'),
+            Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => __('Twenty Twenty-Five', 'viktors-consent-tracking-guard'),
+            Options::MODAL_STYLE_COOKIENO => __('CookieNo', 'viktors-consent-tracking-guard'),
         ];
 
         printf(
@@ -556,10 +556,10 @@ final class AdminPage
             esc_html(
                 sprintf(
                     '%s %s',
-                    __('Klaro’s default applies no custom modal theme;', 'consent-tracking-guard-for-wordpress'),
+                    __('Klaro’s default applies no custom modal theme;', 'viktors-consent-tracking-guard'),
                     __(
                         'the component stylesheet only positions and styles plugin controls.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 )
             )
@@ -609,6 +609,6 @@ final class AdminPage
 
     private function fieldId(string $name): string
     {
-        return sprintf('consent-tracking-guard-for-wordpress-%s', str_replace('_', '-', $name));
+        return sprintf('viktors-consent-tracking-guard-%s', str_replace('_', '-', $name));
     }
 }

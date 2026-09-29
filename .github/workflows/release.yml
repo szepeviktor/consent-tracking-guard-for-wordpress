@@ -16,7 +16,7 @@ concurrency:
     cancel-in-progress: true
 
 env:
-    PLUGIN_SLUG: "viktors-consent-tracking-guard-for-wordpress"
+    PLUGIN_SLUG: "viktors-consent-tracking-guard"
 
 jobs:
     version_check:
@@ -92,7 +92,7 @@ jobs:
                     --prefer-dist \
                     --optimize-autoloader
                 mkdir "${PLUGIN_SLUG}"
-                cp --recursive consent-tracking-guard-for-wordpress.php wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
+                cp --recursive viktors-consent-tracking-guard.php wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
                 zip --recurse-paths "${ZIP_FILE}" "${PLUGIN_SLUG}"
         -
             name: "Upload ZIP to release"

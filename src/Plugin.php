@@ -54,7 +54,7 @@ final class Plugin
     public static function loadTextDomain(): void
     {
         load_plugin_textdomain(
-            'consent-tracking-guard-for-wordpress',
+            'viktors-consent-tracking-guard',
             false,
             sprintf('%s/%s', dirname(Config::get('baseName')), 'languages')
         );

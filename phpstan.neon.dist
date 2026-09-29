@@ -3,6 +3,6 @@ includes:
 parameters:
     phpVersion: 70400
     paths:
-        - consent-tracking-guard-for-wordpress.php
+        - viktors-consent-tracking-guard.php
         - src/
     level: 5

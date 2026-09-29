@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <ruleset name="Consent Tracking Guard">
-    <description>PHPCS rules for Viktor's Consent and Tracking Guard for WordPress.</description>
+    <description>PHPCS rules for Viktor's Consent and Tracking Guard.</description>
 
-    <file>consent-tracking-guard-for-wordpress.php</file>
+    <file>viktors-consent-tracking-guard.php</file>
     <file>src</file>
     <file>tests/php</file>
 

@@ -1389,7 +1389,7 @@
 
         label = getFloatingButtonLabel();
         container = document.createElement('div');
-        container.className = 'consent-tracking-guard-for-wordpress';
+        container.className = 'viktors-consent-tracking-guard';
         button = document.createElement('button');
         button.id = 'cmp-floating-settings';
         button.className = 'cmp-floating-settings';

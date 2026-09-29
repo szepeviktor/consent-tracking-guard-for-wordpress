@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Viktor's Consent and Tracking Guard for WordPress
+ * Viktor's Consent and Tracking Guard
  *
  * @author            Viktor Szépe <viktor@szepe.net>
  * @license           GNU General Public License v2 or later
  * @link              https://github.com/szepeviktor/consent-tracking-guard-for-wordpress
  *
  * @wordpress-plugin
- * Plugin Name:       Viktor's Consent and Tracking Guard for WordPress
+ * Plugin Name:       Viktor's Consent and Tracking Guard
  * Plugin URI:        https://github.com/szepeviktor/consent-tracking-guard-for-wordpress
  * Description:       Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync.
  * Version:           2.4.10
@@ -16,7 +16,7 @@
  * Requires PHP:      7.4
  * Author:            Viktor Szépe
  * Author URI:        https://github.com/szepeviktor
- * Text Domain:       consent-tracking-guard-for-wordpress
+ * Text Domain:       viktors-consent-tracking-guard
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        false
@@ -41,7 +41,7 @@ Config::init(
     [
     'filePath' => __FILE__,
     'baseName' => plugin_basename(__FILE__),
-    'slug' => 'consent-tracking-guard-for-wordpress',
+    'slug' => 'viktors-consent-tracking-guard',
     'version' => VERSION,
     ]
 );

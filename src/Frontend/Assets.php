@@ -60,22 +60,22 @@ final class Assets
     private function enqueueStyles(string $modalStyle): void
     {
         wp_enqueue_style(
-            'consent-tracking-guard-for-wordpress-klaro',
+            'viktors-consent-tracking-guard-klaro',
             plugins_url('assets/css/klaro.css', Config::get('filePath')),
             [],
             Config::get('version')
         );
 
         wp_enqueue_style(
-            'consent-tracking-guard-for-wordpress-components',
+            'viktors-consent-tracking-guard-components',
             plugins_url('assets/css/components.css', Config::get('filePath')),
-            ['consent-tracking-guard-for-wordpress-klaro'],
+            ['viktors-consent-tracking-guard-klaro'],
             Config::get('version')
         );
 
         if (isset(self::MODAL_STYLE_STYLESHEETS[$modalStyle])) { // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed -- Conditional enqueue reads clearer here.
             wp_enqueue_style(
-                'consent-tracking-guard-for-wordpress-modal-style',
+                'viktors-consent-tracking-guard-modal-style',
                 plugins_url(
                     sprintf(
                         'assets/css/modal-styles/%s',
@@ -83,7 +83,7 @@ final class Assets
                     ),
                     Config::get('filePath')
                 ),
-                ['consent-tracking-guard-for-wordpress-components'],
+                ['viktors-consent-tracking-guard-components'],
                 Config::get('version')
             );
         }
@@ -95,7 +95,7 @@ final class Assets
     private function enqueueScripts(array $klaroConfig): void
     {
         wp_enqueue_script(
-            'consent-tracking-guard-for-wordpress-bootstrap',
+            'viktors-consent-tracking-guard-bootstrap',
             plugins_url('assets/js/cmp-bootstrap.js', Config::get('filePath')),
             [],
             Config::get('version'),
@@ -103,17 +103,17 @@ final class Assets
         );
 
         wp_enqueue_script(
-            'consent-tracking-guard-for-wordpress-klaro',
+            'viktors-consent-tracking-guard-klaro',
             plugins_url('assets/js/klaro.js', Config::get('filePath')),
             [],
             Config::get('version'),
             false
         );
 
-        wp_script_add_data('consent-tracking-guard-for-wordpress-klaro', 'defer', true);
+        wp_script_add_data('viktors-consent-tracking-guard-klaro', 'defer', true);
 
         wp_add_inline_script(
-            'consent-tracking-guard-for-wordpress-klaro',
+            'viktors-consent-tracking-guard-klaro',
             sprintf('window.klaroConfig = %s;', wp_json_encode($klaroConfig)),
             'before'
         );
@@ -123,9 +123,9 @@ final class Assets
         }
 
         wp_enqueue_script(
-            'consent-tracking-guard-for-wordpress-consent-api-bridge',
+            'viktors-consent-tracking-guard-consent-api-bridge',
             plugins_url('assets/js/wp-consent-api-bridge.js', Config::get('filePath')),
-            ['consent-tracking-guard-for-wordpress-klaro', 'wp-consent-api'],
+            ['viktors-consent-tracking-guard-klaro', 'wp-consent-api'],
             Config::get('version'),
             true
         );
@@ -206,7 +206,7 @@ JS,
     {
         $attributes = [];
 
-        if ($handle !== 'consent-tracking-guard-for-wordpress-bootstrap') {
+        if ($handle !== 'viktors-consent-tracking-guard-bootstrap') {
             return $tag;
         }
 
@@ -331,10 +331,10 @@ JS,
                 ),
                 'changeDescription' => __(
                     'There were changes since your last visit, please renew your consent.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
-                'learnMore' => __('Learn more', 'consent-tracking-guard-for-wordpress'),
-                'testing' => __('Testing mode!', 'consent-tracking-guard-for-wordpress'),
+                'learnMore' => __('Learn more', 'viktors-consent-tracking-guard'),
+                'testing' => __('Testing mode!', 'viktors-consent-tracking-guard'),
             ],
             'consentModal' => [
                 'title' => (string) $this->options->get('modal_title'),
@@ -343,31 +343,31 @@ JS,
                 ),
             ],
             'contextualConsent' => [
-                'acceptAlways' => __('Always', 'consent-tracking-guard-for-wordpress'),
-                'acceptOnce' => __('Yes', 'consent-tracking-guard-for-wordpress'),
+                'acceptAlways' => __('Always', 'viktors-consent-tracking-guard'),
+                'acceptOnce' => __('Yes', 'viktors-consent-tracking-guard'),
                 'description' => __(
                     'Do you want to load external content supplied by {title}?',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
                 'descriptionEmptyStore' => __(
                     'To agree to this service permanently, you must accept {title} in the {link}.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
-                'modalLinkText' => __('Consent Manager', 'consent-tracking-guard-for-wordpress'),
+                'modalLinkText' => __('Consent Manager', 'viktors-consent-tracking-guard'),
             ],
             'purposes' => $this->buildPurposeTranslations(),
             'purposeItem' => [
-                'service' => __('service', 'consent-tracking-guard-for-wordpress'),
-                'services' => __('services', 'consent-tracking-guard-for-wordpress'),
+                'service' => __('service', 'viktors-consent-tracking-guard'),
+                'services' => __('services', 'viktors-consent-tracking-guard'),
             ],
-            'ok' => __('OK', 'consent-tracking-guard-for-wordpress'),
-            'save' => __('Save', 'consent-tracking-guard-for-wordpress'),
-            'acceptAll' => __('Accept all', 'consent-tracking-guard-for-wordpress'),
-            'acceptSelected' => __('Accept selected', 'consent-tracking-guard-for-wordpress'),
-            'declineAll' => __('Decline all', 'consent-tracking-guard-for-wordpress'),
-            'decline' => __('Decline', 'consent-tracking-guard-for-wordpress'),
-            'close' => __('Close', 'consent-tracking-guard-for-wordpress'),
-            'poweredBy' => __('Realized with Klaro!', 'consent-tracking-guard-for-wordpress'),
+            'ok' => __('OK', 'viktors-consent-tracking-guard'),
+            'save' => __('Save', 'viktors-consent-tracking-guard'),
+            'acceptAll' => __('Accept all', 'viktors-consent-tracking-guard'),
+            'acceptSelected' => __('Accept selected', 'viktors-consent-tracking-guard'),
+            'declineAll' => __('Decline all', 'viktors-consent-tracking-guard'),
+            'decline' => __('Decline', 'viktors-consent-tracking-guard'),
+            'close' => __('Close', 'viktors-consent-tracking-guard'),
+            'poweredBy' => __('Realized with Klaro!', 'viktors-consent-tracking-guard'),
             'service' => $this->buildServiceTranslations(),
         ];
     }
@@ -383,11 +383,11 @@ JS,
     private function buildPurposeTranslations(): array
     {
         return [
-            'functional' => __('Functional', 'consent-tracking-guard-for-wordpress'),
-            'preferences' => __('Preferences', 'consent-tracking-guard-for-wordpress'),
-            'statistics-anonymous' => __('Anonymous statistics', 'consent-tracking-guard-for-wordpress'),
-            'statistics' => __('Statistics', 'consent-tracking-guard-for-wordpress'),
-            'marketing' => __('Marketing', 'consent-tracking-guard-for-wordpress'),
+            'functional' => __('Functional', 'viktors-consent-tracking-guard'),
+            'preferences' => __('Preferences', 'viktors-consent-tracking-guard'),
+            'statistics-anonymous' => __('Anonymous statistics', 'viktors-consent-tracking-guard'),
+            'statistics' => __('Statistics', 'viktors-consent-tracking-guard'),
+            'marketing' => __('Marketing', 'viktors-consent-tracking-guard'),
         ];
     }
 
@@ -398,28 +398,28 @@ JS,
     {
         return [
             'disableAll' => [
-                'title' => __('Enable or disable all services', 'consent-tracking-guard-for-wordpress'),
+                'title' => __('Enable or disable all services', 'viktors-consent-tracking-guard'),
                 'description' => __(
                     'Use this switch to change all optional services at once.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ],
             'optOut' => [
-                'title' => __('(opt-out)', 'consent-tracking-guard-for-wordpress'),
+                'title' => __('(opt-out)', 'viktors-consent-tracking-guard'),
                 'description' => __(
                     'This service loads by default, but can be disabled later.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ],
             'required' => [
-                'title' => __('(required)', 'consent-tracking-guard-for-wordpress'),
+                'title' => __('(required)', 'viktors-consent-tracking-guard'),
                 'description' => __(
                     'This service is required for the site to function.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
             ],
-            'purposes' => __('Purposes', 'consent-tracking-guard-for-wordpress'),
-            'purpose' => __('Purpose', 'consent-tracking-guard-for-wordpress'),
+            'purposes' => __('Purposes', 'viktors-consent-tracking-guard'),
+            'purpose' => __('Purpose', 'viktors-consent-tracking-guard'),
         ];
     }
 
@@ -522,7 +522,7 @@ JS,
     {
         return [
             'name' => 'klaro',
-            'title' => __('Cookie consent settings', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('Cookie consent settings', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -533,14 +533,14 @@ JS,
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     'klaro',
-                    __('365 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the visitor’s consent choices.', 'consent-tracking-guard-for-wordpress')
+                    __('365 days', 'viktors-consent-tracking-guard'),
+                    __('Stores the visitor’s consent choices.', 'viktors-consent-tracking-guard')
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Cookie consent settings', 'consent-tracking-guard-for-wordpress'),
-                    'description' => __('Stores the visitor’s consent choice.', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('Cookie consent settings', 'viktors-consent-tracking-guard'),
+                    'description' => __('Stores the visitor’s consent choice.', 'viktors-consent-tracking-guard'),
                 ],
             ],
         ];
@@ -553,22 +553,22 @@ JS,
     {
         return $this->buildOptionalService(
             'google-tag-manager',
-            __('Google Tag Manager', 'consent-tracking-guard-for-wordpress'),
+            __('Google Tag Manager', 'viktors-consent-tracking-guard'),
             'statistics',
             ['_ga', '^_ga_.*', '_gid', '^_gat.*'],
             [
                 $this->buildCookieInfo(
                     '_ga',
-                    __('2 years', 'consent-tracking-guard-for-wordpress'),
-                    __('Distinguishes visitors for analytics reporting.', 'consent-tracking-guard-for-wordpress')
+                    __('2 years', 'viktors-consent-tracking-guard'),
+                    __('Distinguishes visitors for analytics reporting.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     '_gid',
-                    __('24 hours', 'consent-tracking-guard-for-wordpress'),
-                    __('Distinguishes visitors for daily analytics reporting.', 'consent-tracking-guard-for-wordpress')
+                    __('24 hours', 'viktors-consent-tracking-guard'),
+                    __('Distinguishes visitors for daily analytics reporting.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Loads analytics tags managed through Google Tag Manager.', 'consent-tracking-guard-for-wordpress'),
+            __('Loads analytics tags managed through Google Tag Manager.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -580,22 +580,22 @@ JS,
     {
         return $this->buildOptionalService(
             'microsoft-clarity',
-            __('Microsoft Clarity', 'consent-tracking-guard-for-wordpress'),
+            __('Microsoft Clarity', 'viktors-consent-tracking-guard'),
             'statistics',
             ['_clck', '_clsk'],
             [
                 $this->buildCookieInfo(
                     '_clck',
-                    __('1 year', 'consent-tracking-guard-for-wordpress'),
-                    __('Persists the Clarity visitor identifier and preferences.', 'consent-tracking-guard-for-wordpress')
+                    __('1 year', 'viktors-consent-tracking-guard'),
+                    __('Persists the Clarity visitor identifier and preferences.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     '_clsk',
-                    __('1 day', 'consent-tracking-guard-for-wordpress'),
-                    __('Groups Clarity page views into a recording session.', 'consent-tracking-guard-for-wordpress')
+                    __('1 day', 'viktors-consent-tracking-guard'),
+                    __('Groups Clarity page views into a recording session.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Measures how visitors use the site through session analytics.', 'consent-tracking-guard-for-wordpress'),
+            __('Measures how visitors use the site through session analytics.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -607,11 +607,11 @@ JS,
     {
         return $this->buildOptionalService(
             'hotjar',
-            __('Hotjar', 'consent-tracking-guard-for-wordpress'),
+            __('Hotjar', 'viktors-consent-tracking-guard'),
             'statistics',
             $this->buildHotjarCookies(),
             $this->buildHotjarCookieInfo(),
-            __('Measures visitor behavior and collects usability feedback.', 'consent-tracking-guard-for-wordpress'),
+            __('Measures visitor behavior and collects usability feedback.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -647,23 +647,23 @@ JS,
         return [
             $this->buildCookieInfo(
                 '_hjClosedSurveyInvites',
-                __('1 year', 'consent-tracking-guard-for-wordpress'),
-                __('Prevents a dismissed Hotjar survey invitation from reappearing.', 'consent-tracking-guard-for-wordpress')
+                __('1 year', 'viktors-consent-tracking-guard'),
+                __('Prevents a dismissed Hotjar survey invitation from reappearing.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 '_hjDonePolls',
-                __('1 year', 'consent-tracking-guard-for-wordpress'),
-                __('Prevents a completed Hotjar poll from reappearing.', 'consent-tracking-guard-for-wordpress')
+                __('1 year', 'viktors-consent-tracking-guard'),
+                __('Prevents a completed Hotjar poll from reappearing.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 '_hjMinimizedPolls',
-                __('1 year', 'consent-tracking-guard-for-wordpress'),
-                __('Keeps a minimized Hotjar poll minimized.', 'consent-tracking-guard-for-wordpress')
+                __('1 year', 'viktors-consent-tracking-guard'),
+                __('Keeps a minimized Hotjar poll minimized.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 '_hjShownFeedbackMessage',
-                __('1 day', 'consent-tracking-guard-for-wordpress'),
-                __('Prevents repeated display of Hotjar feedback messaging.', 'consent-tracking-guard-for-wordpress')
+                __('1 day', 'viktors-consent-tracking-guard'),
+                __('Prevents repeated display of Hotjar feedback messaging.', 'viktors-consent-tracking-guard')
             ),
         ];
     }
@@ -675,28 +675,28 @@ JS,
     {
         return $this->buildOptionalService(
             'meta-pixel',
-            __('Meta Pixel', 'consent-tracking-guard-for-wordpress'),
+            __('Meta Pixel', 'viktors-consent-tracking-guard'),
             'marketing',
             ['_fbp', '_fbc'],
             [
                 $this->buildCookieInfo(
                     '_fbp',
-                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('90 days', 'viktors-consent-tracking-guard'),
                     __(
                         'Identifies browsers for Meta advertising measurement.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
                 $this->buildCookieInfo(
                     '_fbc',
-                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('90 days', 'viktors-consent-tracking-guard'),
                     __(
                         'Stores the Meta advertising click identifier.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
             ],
-            __('Measures advertising performance and visitor actions for Meta.', 'consent-tracking-guard-for-wordpress'),
+            __('Measures advertising performance and visitor actions for Meta.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -708,38 +708,38 @@ JS,
     {
         return $this->buildOptionalService(
             'facebook-for-woocommerce',
-            __('Meta for WooCommerce', 'consent-tracking-guard-for-wordpress'),
+            __('Meta for WooCommerce', 'viktors-consent-tracking-guard'),
             'marketing',
             ['_fbp', '_fbc', 'wc_facebook_signals_state'],
             [
                 $this->buildCookieInfo(
                     '_fbp',
-                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('90 days', 'viktors-consent-tracking-guard'),
                     __(
                         'Identifies browsers for Meta advertising measurement.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
                 $this->buildCookieInfo(
                     '_fbc',
-                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('90 days', 'viktors-consent-tracking-guard'),
                     __(
                         'Stores the Meta advertising click identifier.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
                 $this->buildCookieInfo(
                     'wc_facebook_signals_state',
-                    __('1 year', 'consent-tracking-guard-for-wordpress'),
+                    __('1 year', 'viktors-consent-tracking-guard'),
                     __(
                         'Stores whether Meta for WooCommerce browser signals are held or released.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
             ],
             __(
                 'Measures WooCommerce product views, cart actions, and purchases for Meta advertising.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             ),
             $lang
         );
@@ -752,7 +752,7 @@ JS,
     {
         return $this->buildOptionalService(
             self::PIXELYOURSITE_STATISTICS_SERVICE_NAME,
-            __('PixelYourSite analytics', 'consent-tracking-guard-for-wordpress'),
+            __('PixelYourSite analytics', 'viktors-consent-tracking-guard'),
             'statistics',
             [
                 'pys_first_visit',
@@ -768,21 +768,21 @@ JS,
             [
                 $this->buildCookieInfo(
                     'pys_first_visit',
-                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores whether this is the visitor’s first tracked visit.', 'consent-tracking-guard-for-wordpress')
+                    __('Configured in PixelYourSite', 'viktors-consent-tracking-guard'),
+                    __('Stores whether this is the visitor’s first tracked visit.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'pys_landing_page',
-                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the landing page for analytics attribution.', 'consent-tracking-guard-for-wordpress')
+                    __('Configured in PixelYourSite', 'viktors-consent-tracking-guard'),
+                    __('Stores the landing page for analytics attribution.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'pysTrafficSource',
-                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the traffic source for analytics attribution.', 'consent-tracking-guard-for-wordpress')
+                    __('Configured in PixelYourSite', 'viktors-consent-tracking-guard'),
+                    __('Stores the traffic source for analytics attribution.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Allows PixelYourSite analytics tags and attribution cookies.', 'consent-tracking-guard-for-wordpress'),
+            __('Allows PixelYourSite analytics tags and attribution cookies.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -794,7 +794,7 @@ JS,
     {
         return $this->buildOptionalService(
             self::PIXELYOURSITE_MARKETING_SERVICE_NAME,
-            __('PixelYourSite advertising', 'consent-tracking-guard-for-wordpress'),
+            __('PixelYourSite advertising', 'viktors-consent-tracking-guard'),
             'marketing',
             [
                 '_fbp',
@@ -807,21 +807,21 @@ JS,
             [
                 $this->buildCookieInfo(
                     '_fbp',
-                    __('90 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Identifies browsers for Meta advertising measurement.', 'consent-tracking-guard-for-wordpress')
+                    __('90 days', 'viktors-consent-tracking-guard'),
+                    __('Identifies browsers for Meta advertising measurement.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'pbid',
-                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores a PixelYourSite external identifier for advertising events.', 'consent-tracking-guard-for-wordpress')
+                    __('Configured in PixelYourSite', 'viktors-consent-tracking-guard'),
+                    __('Stores a PixelYourSite external identifier for advertising events.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'pys_advanced_form_data',
-                    __('Configured in PixelYourSite', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores form-derived data used to improve advertising event matching.', 'consent-tracking-guard-for-wordpress')
+                    __('Configured in PixelYourSite', 'viktors-consent-tracking-guard'),
+                    __('Stores form-derived data used to improve advertising event matching.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Allows PixelYourSite advertising pixels, server events, and matching cookies.', 'consent-tracking-guard-for-wordpress'),
+            __('Allows PixelYourSite advertising pixels, server events, and matching cookies.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -833,7 +833,7 @@ JS,
     {
         return [
             'name' => self::GOOGLE_SITE_KIT_SIGN_IN_SERVICE_NAME,
-            'title' => __('Site Kit Sign in with Google', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('Site Kit Sign in with Google', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -844,26 +844,26 @@ JS,
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     'g_state',
-                    __('Up to 180 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores Google Identity Services prompt and sign-in state.', 'consent-tracking-guard-for-wordpress')
+                    __('Up to 180 days', 'viktors-consent-tracking-guard'),
+                    __('Stores Google Identity Services prompt and sign-in state.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'googlesitekit_auth_nonce',
-                    __('15 minutes', 'consent-tracking-guard-for-wordpress'),
-                    __('Secures the Site Kit Sign in with Google authentication request.', 'consent-tracking-guard-for-wordpress')
+                    __('15 minutes', 'viktors-consent-tracking-guard'),
+                    __('Secures the Site Kit Sign in with Google authentication request.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'googlesitekit_auth_redirect_to',
-                    __('5 minutes', 'consent-tracking-guard-for-wordpress'),
-                    __('Remembers where Site Kit should return the visitor after Google sign-in.', 'consent-tracking-guard-for-wordpress')
+                    __('5 minutes', 'viktors-consent-tracking-guard'),
+                    __('Remembers where Site Kit should return the visitor after Google sign-in.', 'viktors-consent-tracking-guard')
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Site Kit Sign in with Google', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('Site Kit Sign in with Google', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Supports Site Kit’s Google login button and One Tap sign-in.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -877,22 +877,22 @@ JS,
     {
         return $this->buildOptionalService(
             'linkedin-insight-tag',
-            __('LinkedIn Insight Tag', 'consent-tracking-guard-for-wordpress'),
+            __('LinkedIn Insight Tag', 'viktors-consent-tracking-guard'),
             'marketing',
             ['li_fat_id', 'li_giant'],
             [
                 $this->buildCookieInfo(
                     'li_fat_id',
-                    __('30 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the LinkedIn advertising click identifier.', 'consent-tracking-guard-for-wordpress')
+                    __('30 days', 'viktors-consent-tracking-guard'),
+                    __('Stores the LinkedIn advertising click identifier.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'li_giant',
-                    __('7 days', 'consent-tracking-guard-for-wordpress'),
-                    __('Supports LinkedIn conversion attribution.', 'consent-tracking-guard-for-wordpress')
+                    __('7 days', 'viktors-consent-tracking-guard'),
+                    __('Supports LinkedIn conversion attribution.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Measures LinkedIn campaign performance and website conversions.', 'consent-tracking-guard-for-wordpress'),
+            __('Measures LinkedIn campaign performance and website conversions.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -904,27 +904,27 @@ JS,
     {
         return $this->buildOptionalService(
             'triple-whale-pixel',
-            __('Triple Whale Pixel', 'consent-tracking-guard-for-wordpress'),
+            __('Triple Whale Pixel', 'viktors-consent-tracking-guard'),
             'marketing',
             ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel'],
             [
                 $this->buildCookieInfo(
                     'TriplePixel',
-                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores Triple Whale pixel runtime and visit count data.', 'consent-tracking-guard-for-wordpress')
+                    __('Persistent', 'viktors-consent-tracking-guard'),
+                    __('Stores Triple Whale pixel runtime and visit count data.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'TriplePixelU',
-                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores recent page visit details for Triple Whale attribution.', 'consent-tracking-guard-for-wordpress')
+                    __('Persistent', 'viktors-consent-tracking-guard'),
+                    __('Stores recent page visit details for Triple Whale attribution.', 'viktors-consent-tracking-guard')
                 ),
                 $this->buildCookieInfo(
                     'di_pmt_wt',
-                    __('Persistent', 'consent-tracking-guard-for-wordpress'),
-                    __('Stores the Triple Whale browser profile identifier.', 'consent-tracking-guard-for-wordpress')
+                    __('Persistent', 'viktors-consent-tracking-guard'),
+                    __('Stores the Triple Whale browser profile identifier.', 'viktors-consent-tracking-guard')
                 ),
             ],
-            __('Measures visitor journeys, advertising attribution, and ecommerce events for Triple Whale.', 'consent-tracking-guard-for-wordpress'),
+            __('Measures visitor journeys, advertising attribution, and ecommerce events for Triple Whale.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -942,7 +942,7 @@ JS,
 
         return [
             'name' => 'polylang',
-            'title' => __('Polylang', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('Polylang', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -953,19 +953,19 @@ JS,
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     $cookieName,
-                    __('1 year', 'consent-tracking-guard-for-wordpress'),
+                    __('1 year', 'viktors-consent-tracking-guard'),
                     __(
                         'Stores the visitor’s last browsed language for Polylang and Polylang for WooCommerce.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Polylang', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('Polylang', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Remembers the selected language for multilingual content and translated WooCommerce flows.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -979,7 +979,7 @@ JS,
     {
         return [
             'name' => 'woocommerce',
-            'title' => __('WooCommerce', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('WooCommerce', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -990,10 +990,10 @@ JS,
             'wpConsentCookies' => $this->buildWooCommerceFunctionalCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('WooCommerce', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('WooCommerce', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Keeps the shopping cart, checkout, customer session, and store notices working.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -1025,28 +1025,28 @@ JS,
         return [
             $this->buildCookieInfo(
                 'woocommerce_cart_hash',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Helps WooCommerce detect cart changes.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Helps WooCommerce detect cart changes.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woocommerce_items_in_cart',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Helps WooCommerce keep cart data synchronized.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Helps WooCommerce keep cart data synchronized.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'wp_woocommerce_session_*',
-                __('2 days', 'consent-tracking-guard-for-wordpress'),
-                __('Stores a unique customer session identifier for cart and checkout data.', 'consent-tracking-guard-for-wordpress')
+                __('2 days', 'viktors-consent-tracking-guard'),
+                __('Stores a unique customer session identifier for cart and checkout data.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woocommerce_recently_viewed',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products viewed by the visitor.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Stores products viewed by the visitor.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'store_notice*',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers dismissed WooCommerce store notices.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Remembers dismissed WooCommerce store notices.', 'viktors-consent-tracking-guard')
             ),
         ];
     }
@@ -1058,13 +1058,13 @@ JS,
     {
         return $this->buildOptionalService(
             'woocommerce-attribution',
-            __('WooCommerce source attribution', 'consent-tracking-guard-for-wordpress'),
+            __('WooCommerce source attribution', 'viktors-consent-tracking-guard'),
             'statistics',
             $this->buildWooCommerceAttributionCookies(),
             $this->buildWooCommerceAttributionCookieInfo(),
             __(
                 'Stores first-party source attribution data for WooCommerce order reporting.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             ),
             $lang
         );
@@ -1094,52 +1094,52 @@ JS,
         return [
             $this->buildCookieInfo(
                 'sbjs_current',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('6 months', 'viktors-consent-tracking-guard'),
                 __(
                     'Stores the visitor’s current traffic source for WooCommerce order attribution.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_current_add',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('6 months', 'viktors-consent-tracking-guard'),
                 __(
                     'Stores additional current traffic source details for WooCommerce order attribution.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_first',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('6 months', 'viktors-consent-tracking-guard'),
                 __(
                     'Stores the visitor’s first traffic source for WooCommerce order attribution.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_first_add',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('6 months', 'viktors-consent-tracking-guard'),
                 __(
                     'Stores additional first traffic source details for WooCommerce order attribution.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 )
             ),
             $this->buildCookieInfo(
                 'sbjs_migrations',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
-                __('Tracks Sourcebuster cookie format migrations.', 'consent-tracking-guard-for-wordpress')
+                __('6 months', 'viktors-consent-tracking-guard'),
+                __('Tracks Sourcebuster cookie format migrations.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'sbjs_session',
-                __('30 minutes', 'consent-tracking-guard-for-wordpress'),
-                __('Stores the visitor’s current source attribution session.', 'consent-tracking-guard-for-wordpress')
+                __('30 minutes', 'viktors-consent-tracking-guard'),
+                __('Stores the visitor’s current source attribution session.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'sbjs_udata',
-                __('6 months', 'consent-tracking-guard-for-wordpress'),
+                __('6 months', 'viktors-consent-tracking-guard'),
                 __(
                     'Stores visitor user-agent and page attribution details for WooCommerce order reporting.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 )
             ),
         ];
@@ -1152,7 +1152,7 @@ JS,
     {
         return [
             'name' => 'klaviyo',
-            'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('Klaviyo', 'viktors-consent-tracking-guard'),
             'purposes' => ['marketing'],
             'default' => false,
             'required' => false,
@@ -1162,27 +1162,27 @@ JS,
             'wpConsentCookies' => [
                 $this->buildCookieInfo(
                     '__kla_id',
-                    __('2 years', 'consent-tracking-guard-for-wordpress'),
+                    __('2 years', 'viktors-consent-tracking-guard'),
                     __(
                         'Stores Klaviyo visitor identity for email marketing, attribution, and WooCommerce tracking.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
                 $this->buildCookieInfo(
                     '__kla_off',
-                    __('Session', 'consent-tracking-guard-for-wordpress'),
+                    __('Session', 'viktors-consent-tracking-guard'),
                     __(
                         'Disables Klaviyo tracking until marketing consent is granted.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     )
                 ),
             ],
             'translations' => [
                 $lang => [
-                    'title' => __('Klaviyo', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('Klaviyo', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Supports Klaviyo email marketing attribution, forms, and WooCommerce activity tracking.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -1196,7 +1196,7 @@ JS,
     {
         return [
             'name' => 'woodmart',
-            'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('WoodMart', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -1207,10 +1207,10 @@ JS,
             'wpConsentCookies' => $this->buildWoodMartCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('WoodMart', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Keeps WoodMart shop preferences, wishlist, compare, product history, and popups working.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -1247,38 +1247,38 @@ JS,
         return [
             $this->buildCookieInfo(
                 'woodmart_recently_viewed_products',
-                __('7 days', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products recently viewed by the visitor.', 'consent-tracking-guard-for-wordpress')
+                __('7 days', 'viktors-consent-tracking-guard'),
+                __('Stores products recently viewed by the visitor.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_hash',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Checks whether the visitor’s WoodMart wishlist has changed.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Checks whether the visitor’s WoodMart wishlist has changed.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_count',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores the number of products in the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Stores the number of products in the visitor’s WoodMart wishlist.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woodmart_wishlist_products',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products added to the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Stores products added to the visitor’s WoodMart wishlist.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woodmart_compare_list',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products added to the visitor’s WoodMart compare list.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Stores products added to the visitor’s WoodMart compare list.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'shop_view',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers the visitor’s selected shop list or grid view.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Remembers the visitor’s selected shop list or grid view.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'woodmart_age_verify',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers that the visitor passed the WoodMart age verification prompt.', 'consent-tracking-guard-for-wordpress')
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Remembers that the visitor passed the WoodMart age verification prompt.', 'viktors-consent-tracking-guard')
             ),
         ];
     }
@@ -1290,7 +1290,7 @@ JS,
     {
         return [
             'name' => 'wordfence',
-            'title' => __('Wordfence', 'consent-tracking-guard-for-wordpress'),
+            'title' => __('Wordfence', 'viktors-consent-tracking-guard'),
             'purposes' => ['functional'],
             'default' => true,
             'required' => true,
@@ -1301,10 +1301,10 @@ JS,
             'wpConsentCookies' => $this->buildWordfenceCookieInfo(),
             'translations' => [
                 $lang => [
-                    'title' => __('Wordfence', 'consent-tracking-guard-for-wordpress'),
+                    'title' => __('Wordfence', 'viktors-consent-tracking-guard'),
                     'description' => __(
                         'Supports the Wordfence firewall, country blocking bypasses, login alerts, and plugin linking.',
-                        'consent-tracking-guard-for-wordpress'
+                        'viktors-consent-tracking-guard'
                     ),
                 ],
             ],
@@ -1333,28 +1333,28 @@ JS,
         return [
             $this->buildCookieInfo(
                 'wfwaf-authcookie-*',
-                __('12 hours', 'consent-tracking-guard-for-wordpress'),
-                __('Allows the Wordfence firewall to identify logged-in users and their roles.', 'consent-tracking-guard-for-wordpress')
+                __('12 hours', 'viktors-consent-tracking-guard'),
+                __('Allows the Wordfence firewall to identify logged-in users and their roles.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'wfCBLBypass',
-                __('1 year', 'consent-tracking-guard-for-wordpress'),
-                __('Stores a country blocking bypass granted by a hidden access URL.', 'consent-tracking-guard-for-wordpress')
+                __('1 year', 'viktors-consent-tracking-guard'),
+                __('Stores a country blocking bypass granted by a hidden access URL.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'wf_loginalerted_*',
-                __('1 year', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers that a Wordfence new-device login alert has already been sent.', 'consent-tracking-guard-for-wordpress')
+                __('1 year', 'viktors-consent-tracking-guard'),
+                __('Remembers that a Wordfence new-device login alert has already been sent.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'wf-plugin-link-token',
-                __('24 hours', 'consent-tracking-guard-for-wordpress'),
-                __('Tracks a Wordfence plugin license or account linking action.', 'consent-tracking-guard-for-wordpress')
+                __('24 hours', 'viktors-consent-tracking-guard'),
+                __('Tracks a Wordfence plugin license or account linking action.', 'viktors-consent-tracking-guard')
             ),
             $this->buildCookieInfo(
                 'wordfence_verifiedHuman',
-                __('24 hours', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers that Wordfence has verified the visitor as human.', 'consent-tracking-guard-for-wordpress')
+                __('24 hours', 'viktors-consent-tracking-guard'),
+                __('Remembers that Wordfence has verified the visitor as human.', 'viktors-consent-tracking-guard')
             ),
         ];
     }
@@ -1366,11 +1366,11 @@ JS,
     {
         return $this->buildOptionalService(
             'youtube',
-            __('YouTube', 'consent-tracking-guard-for-wordpress'),
+            __('YouTube', 'viktors-consent-tracking-guard'),
             'marketing',
             ['VISITOR_INFO1_LIVE', 'VISITOR_PRIVACY_METADATA', 'YSC', 'PREF'],
             $this->buildYouTubeCookieInfo(),
-            __('Loads embedded videos provided by YouTube.', 'consent-tracking-guard-for-wordpress'),
+            __('Loads embedded videos provided by YouTube.', 'viktors-consent-tracking-guard'),
             $lang
         );
     }
@@ -1385,26 +1385,26 @@ JS,
         return [
             $this->buildCookieInfo(
                 'VISITOR_INFO1_LIVE',
-                __('180 days', 'consent-tracking-guard-for-wordpress'),
-                __('Measures bandwidth and player interface selection.', 'consent-tracking-guard-for-wordpress'),
+                __('180 days', 'viktors-consent-tracking-guard'),
+                __('Measures bandwidth and player interface selection.', 'viktors-consent-tracking-guard'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'VISITOR_PRIVACY_METADATA',
-                __('180 days', 'consent-tracking-guard-for-wordpress'),
-                __('Stores the visitor’s YouTube privacy state.', 'consent-tracking-guard-for-wordpress'),
+                __('180 days', 'viktors-consent-tracking-guard'),
+                __('Stores the visitor’s YouTube privacy state.', 'viktors-consent-tracking-guard'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'YSC',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Maintains YouTube video-view session data.', 'consent-tracking-guard-for-wordpress'),
+                __('Session', 'viktors-consent-tracking-guard'),
+                __('Maintains YouTube video-view session data.', 'viktors-consent-tracking-guard'),
                 $domain
             ),
             $this->buildCookieInfo(
                 'PREF',
-                __('8 months', 'consent-tracking-guard-for-wordpress'),
-                __('Stores YouTube playback and display preferences.', 'consent-tracking-guard-for-wordpress'),
+                __('8 months', 'viktors-consent-tracking-guard'),
+                __('Stores YouTube playback and display preferences.', 'viktors-consent-tracking-guard'),
                 $domain
             ),
         ];

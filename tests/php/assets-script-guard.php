@@ -63,7 +63,7 @@ function assert_same($expected, $actual, string $message): void
 
 $assets = new Assets(
     new Options(),
-    new ConsentApiBridge('consent-tracking-guard-for-wordpress/consent-tracking-guard-for-wordpress.php')
+    new ConsentApiBridge('viktors-consent-tracking-guard/viktors-consent-tracking-guard.php')
 );
 
 $GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [

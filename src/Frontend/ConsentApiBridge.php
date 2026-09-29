@@ -151,7 +151,7 @@ final class ConsentApiBridge
         return [
             'expires' => isset($cookie['expires']) && is_string($cookie['expires'])
                 ? $cookie['expires']
-                : __('Varies', 'consent-tracking-guard-for-wordpress'),
+                : __('Varies', 'viktors-consent-tracking-guard'),
             'function' => isset($cookie['function']) && is_string($cookie['function'])
                 ? $cookie['function']
                 : $description,
@@ -183,6 +183,6 @@ final class ConsentApiBridge
 
         return isset($service['title']) && is_string($service['title'])
             ? $service['title']
-            : __('Configured consent service.', 'consent-tracking-guard-for-wordpress');
+            : __('Configured consent service.', 'viktors-consent-tracking-guard');
     }
 }

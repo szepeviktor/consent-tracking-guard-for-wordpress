@@ -22,10 +22,10 @@
 
     function reportError(message) {
         if (window.console && typeof window.console.error === 'function') {
-            window.console.error('Viktor\'s Consent and Tracking Guard for WordPress: ' + message);
+            window.console.error('Viktor\'s Consent and Tracking Guard: ' + message);
         }
 
-        document.dispatchEvent(createEvent('consent_tracking_guard_for_wordpress_sync_error', {
+        document.dispatchEvent(createEvent('viktors_consent_tracking_guard_sync_error', {
             message: message
         }));
     }

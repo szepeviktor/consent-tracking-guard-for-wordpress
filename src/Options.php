@@ -6,7 +6,7 @@ namespace SzepeViktor\ConsentTrackingGuard;
 
 final class Options
 {
-    public const OPTION_NAME = 'consent_tracking_guard_for_wordpress';
+    public const OPTION_NAME = 'viktors_consent_tracking_guard';
     public const MODAL_STYLE_KLARO_DEFAULT = 'klaro-default';
     public const MODAL_STYLE_VIKTOR_DEFAULT = 'viktor-default';
     public const MODAL_STYLE_LIGHT = 'light';
@@ -59,19 +59,19 @@ final class Options
     public function defaults(): array
     {
         return [
-            'notice_title' => __('Privacy settings', 'consent-tracking-guard-for-wordpress'),
+            'notice_title' => __('Privacy settings', 'viktors-consent-tracking-guard'),
             'notice_description' => sprintf(
                 '%s %s',
                 __(
                     'We use cookies for required functionality, statistics, and marketing.',
-                    'consent-tracking-guard-for-wordpress'
+                    'viktors-consent-tracking-guard'
                 ),
-                __('You can update your choices at any time.', 'consent-tracking-guard-for-wordpress')
+                __('You can update your choices at any time.', 'viktors-consent-tracking-guard')
             ),
-            'modal_title' => __('Privacy preferences', 'consent-tracking-guard-for-wordpress'),
+            'modal_title' => __('Privacy preferences', 'viktors-consent-tracking-guard'),
             'modal_description' => __(
                 'Choose which categories of services may load on this site.',
-                'consent-tracking-guard-for-wordpress'
+                'viktors-consent-tracking-guard'
             ),
             'modal_style' => self::MODAL_STYLE_KLARO_DEFAULT,
             'gtm_id' => '',

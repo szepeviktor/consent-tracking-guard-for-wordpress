@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <wpml-config>
     <admin-texts>
-        <key name="consent_tracking_guard_for_wordpress">
+        <key name="viktors_consent_tracking_guard">
             <key name="notice_title" />
             <key name="notice_description" />
             <key name="modal_title" />

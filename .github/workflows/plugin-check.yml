@@ -32,11 +32,11 @@ jobs:
         -
             name: Build plugin
             run: |
-                mkdir -p build/viktors-consent-tracking-guard-for-wordpress
-                cp -r consent-tracking-guard-for-wordpress.php wpml-config.xml assets languages src vendor build/viktors-consent-tracking-guard-for-wordpress/
+                mkdir -p build/viktors-consent-tracking-guard
+                cp -r viktors-consent-tracking-guard.php wpml-config.xml assets languages src vendor build/viktors-consent-tracking-guard/
         -
             name: Run Plugin Check
             uses: wordpress/plugin-check-action@v1
             with:
-              build-dir: build/viktors-consent-tracking-guard-for-wordpress
+              build-dir: build/viktors-consent-tracking-guard
               repo-token: ''

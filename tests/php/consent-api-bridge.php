@@ -60,7 +60,7 @@ function assert_same($expected, $actual, string $message): void
     }
 }
 
-$bridge = new ConsentApiBridge('consent-tracking-guard-for-wordpress/consent-tracking-guard-for-wordpress.php');
+$bridge = new ConsentApiBridge('viktors-consent-tracking-guard/viktors-consent-tracking-guard.php');
 $bridge->register();
 
 assert_same(
