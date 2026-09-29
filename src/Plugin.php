@@ -16,25 +16,39 @@ use function wp_doing_ajax;
 
 final class Plugin
 {
+    private static ?Options $options = null;
+
+    private static ?ConsentApiBridge $consentApiBridge = null;
+
     private function __construct()
     {
     }
 
     public static function boot(): void
     {
-        add_action('init', [self::class, 'loadTextDomain'], 0, 0);
+        self::$options = new Options();
+        self::$consentApiBridge = new ConsentApiBridge(Config::get('baseName'));
 
-        $options = new Options();
-        $consentApiBridge = new ConsentApiBridge(Config::get('baseName'));
-        $consentApiBridge->register();
-        (new FacebookForWooCommerceBridge($options))->register();
-        (new PixelYourSiteBridge($options))->register();
+        self::$consentApiBridge->register();
+        (new FacebookForWooCommerceBridge(self::$options))->register();
+        (new PixelYourSiteBridge(self::$options))->register();
         (new Shortcodes())->register();
-        (new Assets($options, $consentApiBridge))->register();
+
+        add_action('init', [self::class, 'loadTextDomain'], 0, 0);
+        add_action('init', [self::class, 'registerAssets'], 9, 0);
 
         if (is_admin() && ! wp_doing_ajax()) { // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed -- Admin boot reads clearer as a positive condition.
-            (new AdminPage($options, $consentApiBridge))->boot();
+            (new AdminPage(self::$options, self::$consentApiBridge))->boot();
         }
+    }
+
+    public static function registerAssets(): void
+    {
+        if (self::$options === null || self::$consentApiBridge === null) {
+            return;
+        }
+
+        (new Assets(self::$options, self::$consentApiBridge))->register();
     }
 
     public static function loadTextDomain(): void

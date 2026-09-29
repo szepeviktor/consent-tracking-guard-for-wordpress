@@ -2,19 +2,21 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.2.0\n"
+"Project-Id-Version: Viktor's Consent and Tracking Guard for WordPress 2.4.9\n"
 "Report-Msgid-Bugs-To: https://github.com/szepeviktor/consent-tracking-guard-"
 "for-wordpress/issues\n"
-"POT-Creation-Date: 2026-09-29T16:40:25+00:00\n"
-"PO-Revision-Date: 2026-09-21 14:40+0000\n"
 "Last-Translator: Viktor Szépe <viktor@szepe.net>\n"
-"Language-Team: Russian <ru@li.org>\n"
-"Language: ru_RU\n"
+"Language-Team: Lithuanian <lt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-28T17:41:34+00:00\n"
+"PO-Revision-Date: 2026-09-29 00:00+0000\n"
 "X-Generator: Codex\n"
 "X-Domain: consent-tracking-guard-for-wordpress\n"
+"Language: lt_LT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
 #: consent-tracking-guard-for-wordpress.php src/AdminPage.php:55
@@ -33,8 +35,8 @@ msgid ""
 "Controls consent-aware tracking, service disclosures, embeds, and WP Consent "
 "API sync."
 msgstr ""
-"Баннер согласия на использование файлов cookie на базе Klaro с "
-"совместимостью с WP Consent API."
+"Valdo sekimą pagal sutikimą, informaciją apie paslaugas, įterptą turinį ir WP "
+"Consent API sinchronizavimą."
 
 #. Author of the plugin
 #: consent-tracking-guard-for-wordpress.php
@@ -48,263 +50,255 @@ msgstr "https://github.com/szepeviktor"
 
 #: src/AdminPage.php:56
 msgid "Consent & Tracking"
-msgstr "Consent & Tracking"
+msgstr "Sutikimas ir sekimas"
 
 #: src/AdminPage.php:89
 msgid "Banner copy"
-msgstr "Текст баннера"
+msgstr "Banerio tekstas"
 
 #: src/AdminPage.php:95
 msgid "Display"
-msgstr "Отображение"
+msgstr "Rodymas"
 
 #: src/AdminPage.php:101
 msgid "Integrations"
-msgstr "Интеграции"
+msgstr "Integracijos"
 
 #: src/AdminPage.php:111
 msgid "Notice title"
-msgstr "Заголовок уведомления"
+msgstr "Pranešimo antraštė"
 
 #: src/AdminPage.php:116
 msgid "Notice description"
-msgstr "Описание уведомления"
+msgstr "Pranešimo aprašymas"
 
 #: src/AdminPage.php:121
 msgid "Modal title"
-msgstr "Заголовок модального окна"
+msgstr "Modalinio lango antraštė"
 
 #: src/AdminPage.php:126
 msgid "Modal description"
-msgstr "Описание модального окна"
+msgstr "Modalinio lango aprašymas"
 
 #: src/AdminPage.php:135
 msgid "Modal style"
-msgstr "Стиль модального окна"
+msgstr "Modalinio lango stilius"
 
 #: src/AdminPage.php:142
 msgid "Floating privacy button"
-msgstr "Плавающая кнопка приватности"
+msgstr "Plaukiojantis privatumo mygtukas"
 
 #: src/AdminPage.php:148
 msgid "Show a floating button that reopens the privacy settings."
-msgstr ""
-"Показывать плавающую кнопку, которая повторно открывает настройки "
-"приватности."
+msgstr "Rodyti plaukiojantį mygtuką, kuris vėl atidaro privatumo nustatymus."
 
 #: src/AdminPage.php:157
 msgid "Google Tag Manager ID"
-msgstr "ID Google Tag Manager"
+msgstr "Google Tag Manager ID"
 
 #: src/AdminPage.php:162
 msgid "Microsoft Clarity project ID"
-msgstr "ID проекта Microsoft Clarity"
+msgstr "Microsoft Clarity projekto ID"
 
 #: src/AdminPage.php:167
 msgid "Hotjar site ID"
-msgstr "ID сайта Hotjar"
+msgstr "Hotjar svetainės ID"
 
 #: src/AdminPage.php:172
 msgid "Hotjar script version"
-msgstr "Версия скрипта Hotjar"
+msgstr "Hotjar scenarijaus versija"
 
 #: src/AdminPage.php:177
 msgid "Meta Pixel ID"
-msgstr "ID Meta Pixel"
+msgstr "Meta Pixel ID"
 
 #: src/AdminPage.php:182
 msgid "LinkedIn partner ID"
-msgstr "ID партнера LinkedIn"
+msgstr "LinkedIn partnerio ID"
 
 #: src/AdminPage.php:201
 msgid "Polylang disclosure"
-msgstr "Информация о Polylang"
+msgstr "Polylang informacija"
 
 #: src/AdminPage.php:207
 msgid ""
 "Show the Polylang language cookie for multilingual sites and WooCommerce "
 "shops."
 msgstr ""
-"Показывать языковой cookie Polylang для многоязычных сайтов и магазинов "
-"WooCommerce."
+"Rodyti Polylang kalbos slapuką daugiakalbėms svetainėms ir WooCommerce "
+"parduotuvėms."
 
 #: src/AdminPage.php:219
 msgid "WooCommerce disclosure"
-msgstr "Информация о WooCommerce"
+msgstr "WooCommerce informacija"
 
 #: src/AdminPage.php:225
 msgid ""
 "Show WooCommerce cart, checkout, session, and source attribution cookies."
 msgstr ""
-"Показывать cookie корзины, оформления заказа, сеанса и атрибуции источника "
-"WooCommerce."
+"Rodyti WooCommerce krepšelio, atsiskaitymo, seanso ir šaltinio priskyrimo "
+"slapukus."
 
 #: src/AdminPage.php:237
 msgid "Meta for WooCommerce consent bridge"
-msgstr "Мост согласия Meta for WooCommerce"
+msgstr "Meta for WooCommerce sutikimo integracija"
 
 #: src/AdminPage.php:243
 msgid "Hold Meta for WooCommerce tracking until marketing consent is granted."
 msgstr ""
-"Удерживать отслеживание Meta for WooCommerce, пока не получено согласие на "
-"маркетинг."
+"Sulaikyti Meta for WooCommerce sekimą, kol suteikiamas rinkodaros sutikimas."
 
 #: src/AdminPage.php:255
 msgid "PixelYourSite consent bridge"
-msgstr "Мост согласия PixelYourSite"
+msgstr "PixelYourSite sutikimo integracija"
 
 #: src/AdminPage.php:261
 msgid ""
 "Control PixelYourSite browser pixels, server events, cookies, and Google "
 "Consent Mode values from this consent banner."
 msgstr ""
-"Управлять браузерными пикселями PixelYourSite, серверными событиями, "
-"файлами cookie и значениями Google Consent Mode из этого баннера согласия."
+"Valdyti PixelYourSite naršyklės pikselius, serverio įvykius, slapukus ir "
+"Google Consent Mode reikšmes iš šio sutikimo banerio."
 
 #: src/AdminPage.php:273
 msgid "Site Kit Sign in with Google disclosure"
-msgstr "Информация о Site Kit Sign in with Google"
+msgstr "Site Kit Sign in with Google informacija"
 
 #: src/AdminPage.php:279
 msgid ""
 "Show Site Kit’s Sign in with Google and One Tap cookies as required "
 "functional cookies."
 msgstr ""
-"Показывать файлы cookie Site Kit Sign in with Google и One Tap как "
-"необходимые функциональные файлы cookie."
+"Rodyti Site Kit Sign in with Google ir One Tap slapukus kaip būtinus "
+"funkcinius slapukus."
 
 #: src/AdminPage.php:291
 msgid "Triple Whale Pixel consent bridge"
-msgstr "Мост согласия Triple Whale Pixel"
+msgstr "Triple Whale Pixel sutikimo integracija"
 
 #: src/AdminPage.php:297
 msgid ""
 "Control the Triple Whale WooCommerce plugin pixel with marketing consent."
 msgstr ""
-"Управлять пикселем плагина Triple Whale WooCommerce с учетом согласия на "
-"маркетинг."
+"Valdyti Triple Whale WooCommerce įskiepio pikselį pagal rinkodaros sutikimą."
 
 #: src/AdminPage.php:309
 msgid "Klaviyo disclosure"
-msgstr "Информация о Klaviyo"
+msgstr "Klaviyo informacija"
 
 #: src/AdminPage.php:315
 msgid ""
 "Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking "
 "outside this plugin’s control."
 msgstr ""
-"Показывать cookie Klaviyo, когда плагин Klaviyo WooCommerce загружает "
-"отслеживание вне контроля этого плагина."
+"Rodyti Klaviyo slapukus, kai Klaviyo WooCommerce įskiepis įkelia sekimą už "
+"šio įskiepio kontrolės ribų."
 
 #: src/AdminPage.php:327
 msgid "WoodMart disclosure"
-msgstr "Информация о WoodMart"
+msgstr "WoodMart informacija"
 
 #: src/AdminPage.php:333
 msgid ""
 "Show WoodMart cookies for wishlist, compare, product history, popups, and "
 "shop preferences."
 msgstr ""
-"Показывать cookie WoodMart для списка желаний, сравнения, истории товаров, "
-"всплывающих окон и предпочтений магазина."
+"Rodyti WoodMart slapukus pageidavimų sąrašui, palyginimui, produktų "
+"istorijai, iššokantiesiems langams ir parduotuvės nuostatoms."
 
 #: src/AdminPage.php:345
 msgid "Wordfence disclosure"
-msgstr "Информация о Wordfence"
+msgstr "Wordfence informacija"
 
 #: src/AdminPage.php:351
 msgid ""
 "Show Wordfence security cookies for the firewall, access controls, login "
 "alerts, and linking."
 msgstr ""
-"Показывать cookie безопасности Wordfence для файрвола, контроля доступа, "
-"уведомлений о входе и связывания."
+"Rodyti Wordfence saugumo slapukus užkardai, prieigos valdikliams, "
+"prisijungimo įspėjimams ir susiejimui."
 
 #: src/AdminPage.php:363
 msgid "YouTube blocking"
-msgstr "Блокировка YouTube"
+msgstr "YouTube blokavimas"
 
 #: src/AdminPage.php:369
 msgid "Block and replace YouTube embeds until marketing consent is granted."
 msgstr ""
-"Блокировать и заменять встраивания YouTube, пока не получено согласие на "
-"маркетинг."
+"Blokuoti ir pakeisti YouTube įterpinius, kol suteikiamas rinkodaros sutikimas."
 
 #: src/AdminPage.php:397
 msgid ""
 "Configure the consent texts and vendor IDs used by the frontend Klaro banner."
 msgstr ""
-"Настройте тексты согласия и ID поставщиков, используемые фронтенд-баннером "
-"Klaro."
+"Konfigūruokite sutikimo tekstus ir tiekėjų ID, naudojamus lankytojams "
+"rodomame Klaro baneryje."
 
 #: src/AdminPage.php:426
 msgid "WP Consent API was not detected."
-msgstr "WP Consent API не обнаружен."
+msgstr "WP Consent API neaptikta."
 
 #: src/AdminPage.php:427
 msgid ""
 "The consent controls will still render, but the WordPress compatibility "
 "bridge will stay inactive"
 msgstr ""
-"CMP все равно будет отображаться, но мост совместимости WordPress останется "
-"неактивным"
+"Sutikimo valdikliai vis tiek bus rodomi, tačiau WordPress suderinamumo tiltas "
+"liks neaktyvus"
 
 #: src/AdminPage.php:431
 msgid "until the API plugin is available."
-msgstr "пока плагин API не станет доступен."
+msgstr "kol API įskiepis bus pasiekiamas."
 
 #: src/AdminPage.php:441
 msgid "Another plugin already provides the WP Consent API consent type."
-msgstr "Другой плагин уже предоставляет тип согласия WP Consent API."
+msgstr "Kitas įskiepis jau pateikia WP Consent API sutikimo tipą."
 
 #: src/AdminPage.php:445
 msgid ""
 "Viktor's Consent and Tracking Guard for WordPress preserves that value; "
 "verify that only one consent management platform"
 msgstr ""
-"Viktor's Consent and Tracking Guard for WordPress сохраняет это значение; "
-"проверьте, что только одна платформа управления согласием"
+"Viktor's Consent and Tracking Guard for WordPress išsaugo šią reikšmę; "
+"patikrinkite, kad tik viena sutikimų valdymo platforma"
 
 #: src/AdminPage.php:449
 msgid "controls the site."
-msgstr "управляет сайтом."
+msgstr "valdytų svetainę."
 
 #: src/AdminPage.php:457
 msgid "Set the text displayed in the consent notice and preferences dialog."
-msgstr ""
-"Задайте текст, отображаемый в уведомлении о согласии и диалоге предпочтений."
+msgstr "Nustatykite tekstą, rodomą sutikimo pranešime ir nuostatų dialoge."
 
 #: src/AdminPage.php:461
-msgid ""
-"Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL."
+msgid "Use [privacy-policy] to insert WordPress’ configured Privacy Policy URL."
 msgstr ""
-"Используйте [privacy-policy], чтобы вставить настроенный в WordPress URL "
-"политики конфиденциальности."
+"Naudokite [privacy-policy], kad įterptumėte WordPress sukonfigūruotą "
+"privatumo politikos URL."
 
 #: src/AdminPage.php:470
 msgid "Enter only the services that this site uses."
-msgstr "Укажите только те сервисы, которые использует этот сайт."
+msgstr "Įveskite tik tas paslaugas, kurias ši svetainė naudoja."
 
 #: src/AdminPage.php:475
 msgid "Control how visitors can access their privacy settings."
-msgstr ""
-"Управляйте тем, как посетители получают доступ к настройкам приватности."
+msgstr "Valdykite, kaip lankytojai gali pasiekti savo privatumo nustatymus."
 
 #: src/AdminPage.php:530
 msgid "Klaro’s default"
-msgstr "По умолчанию Klaro"
+msgstr "Klaro numatytasis"
 
 #: src/AdminPage.php:531
 msgid "Viktor’s default"
-msgstr "По умолчанию Viktor"
+msgstr "Viktor numatytasis"
 
 #: src/AdminPage.php:532
 msgid "Light"
-msgstr "Светлый"
+msgstr "Šviesus"
 
 #: src/AdminPage.php:533
 msgid "Dark"
-msgstr "Темный"
+msgstr "Tamsus"
 
 #: src/AdminPage.php:534
 msgid "Twenty Twenty-Five"
@@ -316,162 +310,159 @@ msgstr "CookieNo"
 
 #: src/AdminPage.php:559
 msgid "Klaro’s default applies no custom modal theme;"
-msgstr ""
-"Настройка Klaro по умолчанию не применяет пользовательскую тему модального "
-"окна;"
+msgstr "Klaro numatytasis stilius netaiko pasirinktinės modalinio lango temos;"
 
 #: src/AdminPage.php:560
 msgid "the component stylesheet only positions and styles plugin controls."
-msgstr ""
-"таблица стилей компонентов только размещает и оформляет элементы управления "
-"плагина."
+msgstr "komponentų stilių failas tik išdėsto ir stilizuoja įskiepio valdiklius."
 
 #: src/Frontend/Assets.php:332
 msgid "There were changes since your last visit, please renew your consent."
 msgstr ""
-"Со времени вашего последнего посещения произошли изменения, обновите свое "
-"согласие."
+"Nuo paskutinio jūsų apsilankymo buvo pakeitimų, prašome atnaujinti sutikimą."
 
 #: src/Frontend/Assets.php:336
 msgid "Learn more"
-msgstr "Подробнее"
+msgstr "Sužinoti daugiau"
 
 #: src/Frontend/Assets.php:337
 msgid "Testing mode!"
-msgstr "Режим тестирования!"
+msgstr "Testavimo režimas!"
 
 #: src/Frontend/Assets.php:346
 msgid "Always"
-msgstr "Всегда"
+msgstr "Visada"
 
 #: src/Frontend/Assets.php:347
 msgid "Yes"
-msgstr "Да"
+msgstr "Taip"
 
 #: src/Frontend/Assets.php:348
 msgid "Do you want to load external content supplied by {title}?"
-msgstr "Хотите загрузить внешний контент, предоставленный {title}?"
+msgstr "Ar norite įkelti išorinį turinį, kurį teikia {title}?"
 
 #: src/Frontend/Assets.php:352
 msgid ""
 "To agree to this service permanently, you must accept {title} in the {link}."
 msgstr ""
-"Чтобы постоянно согласиться на этот сервис, необходимо принять {title} в "
+"Norėdami nuolat sutikti su šia paslauga, turite sutikti su {title} skiltyje "
 "{link}."
 
 #: src/Frontend/Assets.php:356
 msgid "Consent Manager"
-msgstr "Менеджер согласия"
+msgstr "Sutikimų tvarkyklė"
 
 #: src/Frontend/Assets.php:360
 msgid "service"
-msgstr "сервис"
+msgstr "paslauga"
 
 #: src/Frontend/Assets.php:361
 msgid "services"
-msgstr "сервисы"
+msgstr "paslaugos"
 
 #: src/Frontend/Assets.php:363
 msgid "OK"
-msgstr "ОК"
+msgstr "Gerai"
 
 #: src/Frontend/Assets.php:364
 msgid "Save"
-msgstr "Сохранить"
+msgstr "Išsaugoti"
 
 #: src/Frontend/Assets.php:365
 msgid "Accept all"
-msgstr "Принять все"
+msgstr "Priimti viską"
 
 #: src/Frontend/Assets.php:366
 msgid "Accept selected"
-msgstr "Принять выбранные"
+msgstr "Patvirtinti pasirinkimus"
 
 #: src/Frontend/Assets.php:367
 msgid "Decline all"
-msgstr "Отклонить все"
+msgstr "Atmesti viską"
 
 #: src/Frontend/Assets.php:368
 msgid "Decline"
-msgstr "Отклонить"
+msgstr "Atmesti"
 
 #: src/Frontend/Assets.php:369
 msgid "Close"
-msgstr "Закрыть"
+msgstr "Uždaryti"
 
 #: src/Frontend/Assets.php:370
 msgid "Realized with Klaro!"
-msgstr "Работает на Klaro!"
+msgstr "Įgyvendinta su Klaro!"
 
 #: src/Frontend/Assets.php:386
 msgid "Functional"
-msgstr "Функциональные"
+msgstr "Funkciniai"
 
 #: src/Frontend/Assets.php:387
 msgid "Preferences"
-msgstr "Предпочтения"
+msgstr "Nuostatos"
 
 #: src/Frontend/Assets.php:388
 msgid "Anonymous statistics"
-msgstr "Анонимная статистика"
+msgstr "Anoniminė statistika"
 
 #: src/Frontend/Assets.php:389
 msgid "Statistics"
-msgstr "Статистика"
+msgstr "Statistika"
 
 #: src/Frontend/Assets.php:390
 msgid "Marketing"
-msgstr "Маркетинг"
+msgstr "Rinkodara"
 
 #: src/Frontend/Assets.php:401
 msgid "Enable or disable all services"
-msgstr "Включить или отключить все сервисы"
+msgstr "Įjungti arba išjungti visas paslaugas"
 
 #: src/Frontend/Assets.php:402
 msgid "Use this switch to change all optional services at once."
 msgstr ""
-"Используйте этот переключатель, чтобы изменить все необязательные сервисы "
-"сразу."
+"Naudokite šį jungiklį, kad vienu metu pakeistumėte visas pasirenkamas "
+"paslaugas."
 
 #: src/Frontend/Assets.php:408
 msgid "(opt-out)"
-msgstr "(отказ)"
+msgstr "(atsisakoma)"
 
 #: src/Frontend/Assets.php:409
 msgid "This service loads by default, but can be disabled later."
-msgstr "Этот сервис загружается по умолчанию, но позже его можно отключить."
+msgstr ""
+"Ši paslauga įkeliama pagal numatytuosius nustatymus, bet vėliau gali būti "
+"išjungta."
 
 #: src/Frontend/Assets.php:415
 msgid "(required)"
-msgstr "(обязательно)"
+msgstr "(būtina)"
 
 #: src/Frontend/Assets.php:416
 msgid "This service is required for the site to function."
-msgstr "Этот сервис необходим для работы сайта."
+msgstr "Ši paslauga būtina, kad svetainė veiktų."
 
 #: src/Frontend/Assets.php:421
 msgid "Purposes"
-msgstr "Цели"
+msgstr "Tikslai"
 
 #: src/Frontend/Assets.php:422
 msgid "Purpose"
-msgstr "Цель"
+msgstr "Tikslas"
 
 #: src/Frontend/Assets.php:525 src/Frontend/Assets.php:542
 msgid "Cookie consent settings"
-msgstr "Настройки согласия на cookie"
+msgstr "Slapukų sutikimo nustatymai"
 
 #: src/Frontend/Assets.php:536
 msgid "365 days"
-msgstr "365 дней"
+msgstr "365 dienos"
 
 #: src/Frontend/Assets.php:537
 msgid "Stores the visitor’s consent choices."
-msgstr "Сохраняет варианты согласия посетителя."
+msgstr "Saugo lankytojo sutikimo pasirinkimus."
 
 #: src/Frontend/Assets.php:543
 msgid "Stores the visitor’s consent choice."
-msgstr "Сохраняет выбор согласия посетителя."
+msgstr "Saugo lankytojo sutikimo pasirinkimą."
 
 #: src/Frontend/Assets.php:556
 msgid "Google Tag Manager"
@@ -479,24 +470,24 @@ msgstr "Google Tag Manager"
 
 #: src/Frontend/Assets.php:562 src/Frontend/Assets.php:1165
 msgid "2 years"
-msgstr "2 года"
+msgstr "2 metai"
 
 #: src/Frontend/Assets.php:563
 msgid "Distinguishes visitors for analytics reporting."
-msgstr "Различает посетителей для аналитической отчетности."
+msgstr "Atskiria lankytojus analizės ataskaitoms."
 
 #: src/Frontend/Assets.php:567 src/Frontend/Assets.php:1351
 #: src/Frontend/Assets.php:1356
 msgid "24 hours"
-msgstr "24 часа"
+msgstr "24 valandos"
 
 #: src/Frontend/Assets.php:568
 msgid "Distinguishes visitors for daily analytics reporting."
-msgstr "Различает посетителей для ежедневной аналитической отчетности."
+msgstr "Atskiria lankytojus dienos analizės ataskaitoms."
 
 #: src/Frontend/Assets.php:571
 msgid "Loads analytics tags managed through Google Tag Manager."
-msgstr "Загружает аналитические теги, управляемые через Google Tag Manager."
+msgstr "Įkelia analizės žymas, valdomas per Google Tag Manager."
 
 #: src/Frontend/Assets.php:583
 msgid "Microsoft Clarity"
@@ -507,24 +498,23 @@ msgstr "Microsoft Clarity"
 #: src/Frontend/Assets.php:733 src/Frontend/Assets.php:956
 #: src/Frontend/Assets.php:1341 src/Frontend/Assets.php:1346
 msgid "1 year"
-msgstr "1 год"
+msgstr "1 metai"
 
 #: src/Frontend/Assets.php:590
 msgid "Persists the Clarity visitor identifier and preferences."
-msgstr "Сохраняет идентификатор посетителя Clarity и предпочтения."
+msgstr "Išsaugo Clarity lankytojo identifikatorių ir nuostatas."
 
 #: src/Frontend/Assets.php:594 src/Frontend/Assets.php:665
 msgid "1 day"
-msgstr "1 день"
+msgstr "1 diena"
 
 #: src/Frontend/Assets.php:595
 msgid "Groups Clarity page views into a recording session."
-msgstr "Группирует просмотры страниц Clarity в сеанс записи."
+msgstr "Sugrupuoja Clarity puslapių peržiūras į įrašymo seansą."
 
 #: src/Frontend/Assets.php:598
 msgid "Measures how visitors use the site through session analytics."
-msgstr ""
-"Измеряет, как посетители используют сайт, с помощью сеансовой аналитики."
+msgstr "Matuoja, kaip lankytojai naudoja svetainę, taikant seanso analizę."
 
 #: src/Frontend/Assets.php:610
 msgid "Hotjar"
@@ -532,25 +522,23 @@ msgstr "Hotjar"
 
 #: src/Frontend/Assets.php:614
 msgid "Measures visitor behavior and collects usability feedback."
-msgstr ""
-"Измеряет поведение посетителей и собирает отзывы об удобстве использования."
+msgstr "Matuoja lankytojų elgseną ir renka naudojamumo atsiliepimus."
 
 #: src/Frontend/Assets.php:651
 msgid "Prevents a dismissed Hotjar survey invitation from reappearing."
-msgstr ""
-"Предотвращает повторное появление отклоненного приглашения к опросу Hotjar."
+msgstr "Neleidžia vėl rodyti atmesto Hotjar apklausos kvietimo."
 
 #: src/Frontend/Assets.php:656
 msgid "Prevents a completed Hotjar poll from reappearing."
-msgstr "Предотвращает повторное появление завершенного опроса Hotjar."
+msgstr "Neleidžia vėl rodyti užbaigtos Hotjar apklausos."
 
 #: src/Frontend/Assets.php:661
 msgid "Keeps a minimized Hotjar poll minimized."
-msgstr "Сохраняет опрос Hotjar в свернутом состоянии."
+msgstr "Išlaiko Hotjar apklausą sumažintą."
 
 #: src/Frontend/Assets.php:666
 msgid "Prevents repeated display of Hotjar feedback messaging."
-msgstr "Предотвращает повторный показ сообщений обратной связи Hotjar."
+msgstr "Neleidžia pakartotinai rodyti Hotjar atsiliepimų pranešimų."
 
 #: src/Frontend/Assets.php:678
 msgid "Meta Pixel"
@@ -560,20 +548,20 @@ msgstr "Meta Pixel"
 #: src/Frontend/Assets.php:717 src/Frontend/Assets.php:725
 #: src/Frontend/Assets.php:810
 msgid "90 days"
-msgstr "90 дней"
+msgstr "90 dienų"
 
 #: src/Frontend/Assets.php:685 src/Frontend/Assets.php:718
 #: src/Frontend/Assets.php:811
 msgid "Identifies browsers for Meta advertising measurement."
-msgstr "Идентифицирует браузеры для измерения рекламы Meta."
+msgstr "Identifikuoja naršykles Meta reklamos matavimui."
 
 #: src/Frontend/Assets.php:693 src/Frontend/Assets.php:726
 msgid "Stores the Meta advertising click identifier."
-msgstr "Сохраняет идентификатор рекламного клика Meta."
+msgstr "Saugo Meta reklamos paspaudimo identifikatorių."
 
 #: src/Frontend/Assets.php:699
 msgid "Measures advertising performance and visitor actions for Meta."
-msgstr "Измеряет эффективность рекламы и действия посетителей для Meta."
+msgstr "Matuoja Meta reklamos našumą ir lankytojų veiksmus."
 
 #: src/Frontend/Assets.php:711
 msgid "Meta for WooCommerce"
@@ -583,64 +571,61 @@ msgstr "Meta for WooCommerce"
 msgid ""
 "Stores whether Meta for WooCommerce browser signals are held or released."
 msgstr ""
-"Сохраняет, удерживаются или передаются браузерные сигналы Meta for "
-"WooCommerce."
+"Saugo, ar Meta for WooCommerce naršyklės signalai sulaikyti, ar paleisti."
 
 #: src/Frontend/Assets.php:740
 msgid ""
 "Measures WooCommerce product views, cart actions, and purchases for Meta "
 "advertising."
 msgstr ""
-"Измеряет просмотры товаров WooCommerce, действия с корзиной и покупки для "
-"рекламы Meta."
+"Matuoja WooCommerce produktų peržiūras, krepšelio veiksmus ir pirkimus Meta "
+"reklamai."
 
 #: src/Frontend/Assets.php:755
 msgid "PixelYourSite analytics"
-msgstr "Аналитика PixelYourSite"
+msgstr "PixelYourSite analitika"
 
 #: src/Frontend/Assets.php:771 src/Frontend/Assets.php:776
 #: src/Frontend/Assets.php:781 src/Frontend/Assets.php:815
 #: src/Frontend/Assets.php:820
 msgid "Configured in PixelYourSite"
-msgstr "Настроено в PixelYourSite"
+msgstr "Sukonfigūruota PixelYourSite"
 
 #: src/Frontend/Assets.php:772
 msgid "Stores whether this is the visitor’s first tracked visit."
-msgstr ""
-"Сохраняет, является ли это первым отслеживаемым посещением посетителя."
+msgstr "Saugo, ar tai pirmasis stebimas lankytojo apsilankymas."
 
 #: src/Frontend/Assets.php:777
 msgid "Stores the landing page for analytics attribution."
-msgstr "Сохраняет целевую страницу для аналитической атрибуции."
+msgstr "Saugo nukreipimo puslapį analizės priskyrimui."
 
 #: src/Frontend/Assets.php:782
 msgid "Stores the traffic source for analytics attribution."
-msgstr "Сохраняет источник трафика для аналитической атрибуции."
+msgstr "Saugo srauto šaltinį analizės priskyrimui."
 
 #: src/Frontend/Assets.php:785
 msgid "Allows PixelYourSite analytics tags and attribution cookies."
-msgstr "Разрешает аналитические теги PixelYourSite и cookie атрибуции."
+msgstr "Leidžia PixelYourSite analizės žymas ir priskyrimo slapukus."
 
 #: src/Frontend/Assets.php:797
 msgid "PixelYourSite advertising"
-msgstr "Реклама PixelYourSite"
+msgstr "PixelYourSite reklama"
 
 #: src/Frontend/Assets.php:816
 msgid "Stores a PixelYourSite external identifier for advertising events."
-msgstr "Сохраняет внешний идентификатор PixelYourSite для рекламных событий."
+msgstr "Saugo PixelYourSite išorinį identifikatorių reklamos įvykiams."
 
 #: src/Frontend/Assets.php:821
 msgid "Stores form-derived data used to improve advertising event matching."
 msgstr ""
-"Сохраняет данные, полученные из форм, которые используются для улучшения "
-"сопоставления рекламных событий."
+"Saugo iš formų gautus duomenis, naudojamus reklamos įvykių atitikimui gerinti."
 
 #: src/Frontend/Assets.php:824
 msgid ""
 "Allows PixelYourSite advertising pixels, server events, and matching cookies."
 msgstr ""
-"Разрешает рекламные пиксели PixelYourSite, серверные события и cookie "
-"сопоставления."
+"Leidžia PixelYourSite reklamos pikselius, serverio įvykius ir atitikimo "
+"slapukus."
 
 #: src/Frontend/Assets.php:836 src/Frontend/Assets.php:863
 msgid "Site Kit Sign in with Google"
@@ -648,34 +633,32 @@ msgstr "Site Kit Sign in with Google"
 
 #: src/Frontend/Assets.php:847
 msgid "Up to 180 days"
-msgstr "До 180 дней"
+msgstr "Iki 180 dienų"
 
 #: src/Frontend/Assets.php:848
 msgid "Stores Google Identity Services prompt and sign-in state."
-msgstr "Сохраняет состояние приглашения и входа Google Identity Services."
+msgstr "Saugo Google Identity Services raginimo ir prisijungimo būseną."
 
 #: src/Frontend/Assets.php:852
 msgid "15 minutes"
-msgstr "15 минут"
+msgstr "15 minučių"
 
 #: src/Frontend/Assets.php:853
 msgid "Secures the Site Kit Sign in with Google authentication request."
-msgstr "Защищает запрос аутентификации Site Kit Sign in with Google."
+msgstr "Apsaugo Site Kit Sign in with Google autentifikavimo užklausą."
 
 #: src/Frontend/Assets.php:857
 msgid "5 minutes"
-msgstr "5 минут"
+msgstr "5 minutės"
 
 #: src/Frontend/Assets.php:858
-msgid ""
-"Remembers where Site Kit should return the visitor after Google sign-in."
+msgid "Remembers where Site Kit should return the visitor after Google sign-in."
 msgstr ""
-"Запоминает, куда Site Kit должен вернуть посетителя после входа через "
-"Google."
+"Įsimena, kur Site Kit turi grąžinti lankytoją po prisijungimo per Google."
 
 #: src/Frontend/Assets.php:864
 msgid "Supports Site Kit’s Google login button and One Tap sign-in."
-msgstr "Поддерживает кнопку входа Google в Site Kit и вход One Tap."
+msgstr "Palaiko Site Kit Google prisijungimo mygtuką ir One Tap prisijungimą."
 
 #: src/Frontend/Assets.php:880
 msgid "LinkedIn Insight Tag"
@@ -683,23 +666,23 @@ msgstr "LinkedIn Insight Tag"
 
 #: src/Frontend/Assets.php:886
 msgid "30 days"
-msgstr "30 дней"
+msgstr "30 dienų"
 
 #: src/Frontend/Assets.php:887
 msgid "Stores the LinkedIn advertising click identifier."
-msgstr "Сохраняет идентификатор рекламного клика LinkedIn."
+msgstr "Saugo LinkedIn reklamos paspaudimo identifikatorių."
 
 #: src/Frontend/Assets.php:891 src/Frontend/Assets.php:1250
 msgid "7 days"
-msgstr "7 дней"
+msgstr "7 dienos"
 
 #: src/Frontend/Assets.php:892
 msgid "Supports LinkedIn conversion attribution."
-msgstr "Поддерживает атрибуцию конверсий LinkedIn."
+msgstr "Palaiko LinkedIn konversijų priskyrimą."
 
 #: src/Frontend/Assets.php:895
 msgid "Measures LinkedIn campaign performance and website conversions."
-msgstr "Измеряет эффективность кампаний LinkedIn и конверсии на сайте."
+msgstr "Matuoja LinkedIn kampanijų našumą ir svetainės konversijas."
 
 #: src/Frontend/Assets.php:907
 msgid "Triple Whale Pixel"
@@ -708,28 +691,28 @@ msgstr "Triple Whale Pixel"
 #: src/Frontend/Assets.php:913 src/Frontend/Assets.php:918
 #: src/Frontend/Assets.php:923
 msgid "Persistent"
-msgstr "Постоянно"
+msgstr "Nuolatinis"
 
 #: src/Frontend/Assets.php:914
 msgid "Stores Triple Whale pixel runtime and visit count data."
-msgstr "Сохраняет данные выполнения пикселя Triple Whale и счетчика посещений."
+msgstr "Saugo Triple Whale pikselio veikimo ir apsilankymų skaičiaus duomenis."
 
 #: src/Frontend/Assets.php:919
 msgid "Stores recent page visit details for Triple Whale attribution."
 msgstr ""
-"Сохраняет сведения о недавних посещениях страниц для атрибуции Triple Whale."
+"Saugo naujausių puslapio apsilankymų informaciją Triple Whale priskyrimui."
 
 #: src/Frontend/Assets.php:924
 msgid "Stores the Triple Whale browser profile identifier."
-msgstr "Сохраняет идентификатор профиля браузера Triple Whale."
+msgstr "Saugo Triple Whale naršyklės profilio identifikatorių."
 
 #: src/Frontend/Assets.php:927
 msgid ""
 "Measures visitor journeys, advertising attribution, and ecommerce events for "
 "Triple Whale."
 msgstr ""
-"Измеряет пути посетителей, рекламную атрибуцию и события электронной "
-"торговли для Triple Whale."
+"Matuoja lankytojų keliones, reklamos priskyrimą ir el. prekybos įvykius "
+"Triple Whale."
 
 #: src/Frontend/Assets.php:945 src/Frontend/Assets.php:965
 msgid "Polylang"
@@ -740,16 +723,15 @@ msgid ""
 "Stores the visitor’s last browsed language for Polylang and Polylang for "
 "WooCommerce."
 msgstr ""
-"Сохраняет последний просмотренный посетителем язык для Polylang и Polylang "
-"for WooCommerce."
+"Saugo paskutinę lankytojo naršytą kalbą Polylang ir Polylang for WooCommerce."
 
 #: src/Frontend/Assets.php:966
 msgid ""
 "Remembers the selected language for multilingual content and translated "
 "WooCommerce flows."
 msgstr ""
-"Запоминает выбранный язык для многоязычного контента и переведенных "
-"сценариев WooCommerce."
+"Įsimena pasirinktą kalbą daugiakalbiam turiniui ir išverstiems WooCommerce "
+"procesams."
 
 #: src/Frontend/Assets.php:982 src/Frontend/Assets.php:993
 msgid "WooCommerce"
@@ -760,8 +742,8 @@ msgid ""
 "Keeps the shopping cart, checkout, customer session, and store notices "
 "working."
 msgstr ""
-"Обеспечивает работу корзины, оформления заказа, сеанса клиента и уведомлений "
-"магазина."
+"Užtikrina krepšelio, atsiskaitymo, kliento seanso ir parduotuvės pranešimų "
+"veikimą."
 
 #: src/Frontend/Assets.php:1028 src/Frontend/Assets.php:1033
 #: src/Frontend/Assets.php:1043 src/Frontend/Assets.php:1048
@@ -770,101 +752,98 @@ msgstr ""
 #: src/Frontend/Assets.php:1270 src/Frontend/Assets.php:1275
 #: src/Frontend/Assets.php:1280 src/Frontend/Assets.php:1400
 msgid "Session"
-msgstr "Сеанс"
+msgstr "Seansas"
 
 #: src/Frontend/Assets.php:1029
 msgid "Helps WooCommerce detect cart changes."
-msgstr "Помогает WooCommerce обнаруживать изменения в корзине."
+msgstr "Padeda WooCommerce aptikti krepšelio pakeitimus."
 
 #: src/Frontend/Assets.php:1034
 msgid "Helps WooCommerce keep cart data synchronized."
-msgstr "Помогает WooCommerce синхронизировать данные корзины."
+msgstr "Padeda WooCommerce sinchronizuoti krepšelio duomenis."
 
 #: src/Frontend/Assets.php:1038
 msgid "2 days"
-msgstr "2 дня"
+msgstr "2 dienos"
 
 #: src/Frontend/Assets.php:1039
 msgid "Stores a unique customer session identifier for cart and checkout data."
 msgstr ""
-"Сохраняет уникальный идентификатор сеанса клиента для данных корзины и "
-"оформления заказа."
+"Saugo unikalų kliento seanso identifikatorių krepšelio ir atsiskaitymo "
+"duomenims."
 
 #: src/Frontend/Assets.php:1044
 msgid "Stores products viewed by the visitor."
-msgstr "Сохраняет товары, просмотренные посетителем."
+msgstr "Saugo lankytojo peržiūrėtus produktus."
 
 #: src/Frontend/Assets.php:1049
 msgid "Remembers dismissed WooCommerce store notices."
-msgstr "Запоминает закрытые уведомления магазина WooCommerce."
+msgstr "Įsimena atmestus WooCommerce parduotuvės pranešimus."
 
 #: src/Frontend/Assets.php:1061
 msgid "WooCommerce source attribution"
-msgstr "Атрибуция источника WooCommerce"
+msgstr "WooCommerce šaltinio priskyrimas"
 
 #: src/Frontend/Assets.php:1065
 msgid ""
 "Stores first-party source attribution data for WooCommerce order reporting."
 msgstr ""
-"Сохраняет собственные данные атрибуции источника для отчетов по заказам "
-"WooCommerce."
+"Saugo pirmosios šalies šaltinio priskyrimo duomenis WooCommerce užsakymų "
+"ataskaitoms."
 
 #: src/Frontend/Assets.php:1097 src/Frontend/Assets.php:1105
 #: src/Frontend/Assets.php:1113 src/Frontend/Assets.php:1121
 #: src/Frontend/Assets.php:1129 src/Frontend/Assets.php:1139
 msgid "6 months"
-msgstr "6 месяцев"
+msgstr "6 mėnesiai"
 
 #: src/Frontend/Assets.php:1098
 msgid ""
-"Stores the visitor’s current traffic source for WooCommerce order "
-"attribution."
+"Stores the visitor’s current traffic source for WooCommerce order attribution."
 msgstr ""
-"Сохраняет текущий источник трафика посетителя для атрибуции заказов "
-"WooCommerce."
+"Saugo dabartinį lankytojo srauto šaltinį WooCommerce užsakymų priskyrimui."
 
 #: src/Frontend/Assets.php:1106
 msgid ""
 "Stores additional current traffic source details for WooCommerce order "
 "attribution."
 msgstr ""
-"Сохраняет дополнительные сведения о текущем источнике трафика для атрибуции "
-"заказов WooCommerce."
+"Saugo papildomą dabartinio srauto šaltinio informaciją WooCommerce užsakymų "
+"priskyrimui."
 
 #: src/Frontend/Assets.php:1114
 msgid ""
 "Stores the visitor’s first traffic source for WooCommerce order attribution."
 msgstr ""
-"Сохраняет первый источник трафика посетителя для атрибуции заказов "
-"WooCommerce."
+"Saugo pirmąjį lankytojo srauto šaltinį WooCommerce užsakymų priskyrimui."
 
 #: src/Frontend/Assets.php:1122
 msgid ""
 "Stores additional first traffic source details for WooCommerce order "
 "attribution."
 msgstr ""
-"Сохраняет дополнительные сведения о первом источнике трафика для атрибуции "
-"заказов WooCommerce."
+"Saugo papildomą pirmojo srauto šaltinio informaciją WooCommerce užsakymų "
+"priskyrimui."
 
 #: src/Frontend/Assets.php:1130
 msgid "Tracks Sourcebuster cookie format migrations."
-msgstr "Отслеживает миграции формата cookie Sourcebuster."
+msgstr "Seka Sourcebuster slapukų formato migracijas."
 
 #: src/Frontend/Assets.php:1134
 msgid "30 minutes"
-msgstr "30 минут"
+msgstr "30 minučių"
 
 #: src/Frontend/Assets.php:1135
 msgid "Stores the visitor’s current source attribution session."
-msgstr "Сохраняет текущий сеанс атрибуции источника посетителя."
+msgstr "Saugo dabartinį lankytojo šaltinio priskyrimo seansą."
 
 #: src/Frontend/Assets.php:1140
 msgid ""
 "Stores visitor user-agent and page attribution details for WooCommerce order "
 "reporting."
 msgstr ""
-"Сохраняет user-agent посетителя и сведения об атрибуции страницы для отчетов "
-"по заказам WooCommerce."
+"Saugo lankytojo naudotojo agento ir puslapio priskyrimo informaciją "
+"WooCommerce užsakymų ataskaitoms."
 
 #: src/Frontend/Assets.php:1155 src/Frontend/Assets.php:1182
 msgid "Klaviyo"
@@ -875,21 +854,20 @@ msgid ""
 "Stores Klaviyo visitor identity for email marketing, attribution, and "
 "WooCommerce tracking."
 msgstr ""
-"Сохраняет идентификатор посетителя Klaviyo для email-маркетинга, атрибуции и "
-"отслеживания WooCommerce."
+"Saugo Klaviyo lankytojo tapatybę el. pašto rinkodarai, priskyrimui ir "
+"WooCommerce sekimui."
 
 #: src/Frontend/Assets.php:1174
 msgid "Disables Klaviyo tracking until marketing consent is granted."
-msgstr ""
-"Отключает отслеживание Klaviyo, пока не получено согласие на маркетинг."
+msgstr "Išjungia Klaviyo sekimą, kol suteikiamas rinkodaros sutikimas."
 
 #: src/Frontend/Assets.php:1183
 msgid ""
-"Supports Klaviyo email marketing attribution, forms, and WooCommerce "
-"activity tracking."
+"Supports Klaviyo email marketing attribution, forms, and WooCommerce activity "
+"tracking."
 msgstr ""
-"Поддерживает атрибуцию email-маркетинга Klaviyo, формы и отслеживание "
-"активности WooCommerce."
+"Palaiko Klaviyo el. pašto rinkodaros priskyrimą, formas ir WooCommerce "
+"veiklos sekimą."
 
 #: src/Frontend/Assets.php:1199 src/Frontend/Assets.php:1210
 msgid "WoodMart"
@@ -900,37 +878,36 @@ msgid ""
 "Keeps WoodMart shop preferences, wishlist, compare, product history, and "
 "popups working."
 msgstr ""
-"Обеспечивает работу предпочтений магазина WoodMart, списка желаний, "
-"сравнения, истории товаров и всплывающих окон."
+"Užtikrina WoodMart parduotuvės nuostatų, pageidavimų sąrašo, palyginimo, "
+"produktų istorijos ir iššokančiųjų langų veikimą."
 
 #: src/Frontend/Assets.php:1251
 msgid "Stores products recently viewed by the visitor."
-msgstr "Сохраняет товары, недавно просмотренные посетителем."
+msgstr "Saugo produktus, kuriuos lankytojas neseniai peržiūrėjo."
 
 #: src/Frontend/Assets.php:1256
 msgid "Checks whether the visitor’s WoodMart wishlist has changed."
-msgstr "Проверяет, изменился ли список желаний WoodMart у посетителя."
+msgstr "Tikrina, ar pasikeitė lankytojo WoodMart pageidavimų sąrašas."
 
 #: src/Frontend/Assets.php:1261
 msgid "Stores the number of products in the visitor’s WoodMart wishlist."
-msgstr "Сохраняет количество товаров в списке желаний WoodMart у посетителя."
+msgstr "Saugo produktų skaičių lankytojo WoodMart pageidavimų sąraše."
 
 #: src/Frontend/Assets.php:1266
 msgid "Stores products added to the visitor’s WoodMart wishlist."
-msgstr "Сохраняет товары, добавленные в список желаний WoodMart у посетителя."
+msgstr "Saugo produktus, pridėtus prie lankytojo WoodMart pageidavimų sąrašo."
 
 #: src/Frontend/Assets.php:1271
 msgid "Stores products added to the visitor’s WoodMart compare list."
-msgstr ""
-"Сохраняет товары, добавленные в список сравнения WoodMart у посетителя."
+msgstr "Saugo produktus, pridėtus prie lankytojo WoodMart palyginimo sąrašo."
 
 #: src/Frontend/Assets.php:1276
 msgid "Remembers the visitor’s selected shop list or grid view."
-msgstr "Запоминает выбранный посетителем вид магазина: список или сетку."
+msgstr "Įsimena lankytojo pasirinktą parduotuvės sąrašo arba tinklelio rodinį."
 
 #: src/Frontend/Assets.php:1281
 msgid "Remembers that the visitor passed the WoodMart age verification prompt."
-msgstr "Запоминает, что посетитель прошел проверку возраста WoodMart."
+msgstr "Įsimena, kad lankytojas praėjo WoodMart amžiaus patvirtinimo raginimą."
 
 #: src/Frontend/Assets.php:1293 src/Frontend/Assets.php:1304
 msgid "Wordfence"
@@ -938,43 +915,39 @@ msgstr "Wordfence"
 
 #: src/Frontend/Assets.php:1305
 msgid ""
-"Supports the Wordfence firewall, country blocking bypasses, login alerts, "
-"and plugin linking."
+"Supports the Wordfence firewall, country blocking bypasses, login alerts, and "
+"plugin linking."
 msgstr ""
-"Поддерживает файрвол Wordfence, обход блокировки стран, уведомления о входе "
-"и связывание плагина."
+"Palaiko Wordfence užkardą, šalių blokavimo apėjimus, prisijungimo įspėjimus "
+"ir įskiepio susiejimą."
 
 #: src/Frontend/Assets.php:1336
 msgid "12 hours"
-msgstr "12 часов"
+msgstr "12 valandų"
 
 #: src/Frontend/Assets.php:1337
 msgid ""
 "Allows the Wordfence firewall to identify logged-in users and their roles."
 msgstr ""
-"Позволяет файрволу Wordfence идентифицировать вошедших пользователей и их "
-"роли."
+"Leidžia Wordfence užkardai atpažinti prisijungusius naudotojus ir jų roles."
 
 #: src/Frontend/Assets.php:1342
 msgid "Stores a country blocking bypass granted by a hidden access URL."
-msgstr ""
-"Сохраняет обход блокировки страны, предоставленный скрытым URL доступа."
+msgstr "Saugo šalies blokavimo apėjimą, suteiktą per paslėptą prieigos URL."
 
 #: src/Frontend/Assets.php:1347
-msgid ""
-"Remembers that a Wordfence new-device login alert has already been sent."
+msgid "Remembers that a Wordfence new-device login alert has already been sent."
 msgstr ""
-"Запоминает, что уведомление Wordfence о входе с нового устройства уже было "
-"отправлено."
+"Įsimena, kad Wordfence naujo įrenginio prisijungimo įspėjimas jau buvo "
+"išsiųstas."
 
 #: src/Frontend/Assets.php:1352
 msgid "Tracks a Wordfence plugin license or account linking action."
-msgstr ""
-"Отслеживает действие связывания лицензии плагина Wordfence или аккаунта."
+msgstr "Seka Wordfence įskiepio licencijos arba paskyros susiejimo veiksmą."
 
 #: src/Frontend/Assets.php:1357
 msgid "Remembers that Wordfence has verified the visitor as human."
-msgstr "Запоминает, что Wordfence проверил посетителя как человека."
+msgstr "Įsimena, kad Wordfence patvirtino lankytoją kaip žmogų."
 
 #: src/Frontend/Assets.php:1369
 msgid "YouTube"
@@ -982,73 +955,57 @@ msgstr "YouTube"
 
 #: src/Frontend/Assets.php:1373
 msgid "Loads embedded videos provided by YouTube."
-msgstr "Загружает встроенные видео, предоставленные YouTube."
+msgstr "Įkelia įterptus vaizdo įrašus, kuriuos teikia YouTube."
 
 #: src/Frontend/Assets.php:1388 src/Frontend/Assets.php:1394
 msgid "180 days"
-msgstr "180 дней"
+msgstr "180 dienų"
 
 #: src/Frontend/Assets.php:1389
 msgid "Measures bandwidth and player interface selection."
-msgstr "Измеряет пропускную способность и выбор интерфейса проигрывателя."
+msgstr "Matuoja pralaidumą ir grotuvo sąsajos pasirinkimą."
 
 #: src/Frontend/Assets.php:1395
 msgid "Stores the visitor’s YouTube privacy state."
-msgstr "Сохраняет состояние приватности посетителя для YouTube."
+msgstr "Saugo lankytojo YouTube privatumo būseną."
 
 #: src/Frontend/Assets.php:1401
 msgid "Maintains YouTube video-view session data."
-msgstr "Поддерживает данные сеанса просмотра видео YouTube."
+msgstr "Palaiko YouTube vaizdo peržiūros seanso duomenis."
 
 #: src/Frontend/Assets.php:1406
 msgid "8 months"
-msgstr "8 месяцев"
+msgstr "8 mėnesiai"
 
 #: src/Frontend/Assets.php:1407
 msgid "Stores YouTube playback and display preferences."
-msgstr "Сохраняет предпочтения воспроизведения и отображения YouTube."
+msgstr "Saugo YouTube atkūrimo ir rodymo nuostatas."
 
 #: src/Frontend/ConsentApiBridge.php:154
 msgid "Varies"
-msgstr "Зависит"
+msgstr "Skiriasi"
 
 #: src/Frontend/ConsentApiBridge.php:186
 msgid "Configured consent service."
-msgstr "Настроенный сервис согласия."
+msgstr "Sukonfigūruota sutikimo paslauga."
 
 #: src/Options.php:62
 msgid "Privacy settings"
-msgstr "Настройки приватности"
+msgstr "Privatumo nustatymai"
 
 #: src/Options.php:65
 msgid "We use cookies for required functionality, statistics, and marketing."
-msgstr ""
-"Мы используем файлы cookie для необходимой функциональности, статистики и "
-"маркетинга."
+msgstr "Naudojame slapukus būtinam funkcionalumui, statistikai ir rinkodarai."
 
 #: src/Options.php:69
 msgid "You can update your choices at any time."
-msgstr "Вы можете изменить свой выбор в любое время."
+msgstr "Savo pasirinkimus galite bet kada atnaujinti."
 
 #: src/Options.php:71
 msgid "Privacy preferences"
-msgstr "Предпочтения приватности"
+msgstr "Privatumo nuostatos"
 
 #: src/Options.php:72
 msgid "Choose which categories of services may load on this site."
-msgstr "Выберите, какие категории сервисов могут загружаться на этом сайте."
-
-#~ msgid "Preference storage"
-#~ msgstr "Хранение предпочтений"
-
-#~ msgid "Allows services that remember visitor preferences."
-#~ msgstr "Разрешает сервисы, которые запоминают предпочтения посетителя."
-
-#~ msgid "Allows anonymous, first-party audience measurement."
-#~ msgstr "Разрешает анонимное измерение аудитории первой стороной."
-
-#~ msgid "Allows identifiable audience measurement and analytics."
-#~ msgstr "Разрешает идентифицируемое измерение аудитории и аналитику."
-
-#~ msgid "Allows advertising measurement and visitor profiling."
-#~ msgstr "Разрешает измерение рекламы и профилирование посетителей."
+msgstr ""
+"Pasirinkite, kurių kategorijų paslaugos gali būti įkeliamos šioje svetainėje."

@@ -11,7 +11,7 @@
  * Plugin Name:       Viktor's Consent and Tracking Guard for WordPress
  * Plugin URI:        https://github.com/szepeviktor/consent-tracking-guard-for-wordpress
  * Description:       Controls consent-aware tracking, service disclosures, embeds, and WP Consent API sync.
- * Version:           2.4.9
+ * Version:           2.4.10
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Viktor Szépe
@@ -28,7 +28,7 @@ namespace SzepeViktor\ConsentTrackingGuard;
 
 use function plugin_basename;
 
-const VERSION = '2.4.9';
+const VERSION = '2.4.10';
 
 // Prevent direct execution.
 if (! defined('ABSPATH')) {
