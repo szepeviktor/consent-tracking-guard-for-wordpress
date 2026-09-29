@@ -156,16 +156,16 @@
 }
 
 .klaro .cookie-modal .cm-modal .cm-footer-buttons {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: stretch;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
     gap: 12px;
     min-width: 0;
 }
 
 .klaro .cookie-modal .cm-modal .cm-footer-buttons > * {
-    min-width: 0;
-    width: 100%;
+    min-width: 0 !important;
+    width: 100% !important;
 }
 
 .klaro-consent-container,

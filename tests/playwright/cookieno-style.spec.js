@@ -210,6 +210,7 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
             .map((button) => button.getBoundingClientRect());
 
         return {
+            buttonRight: Math.max(...buttons.map((button) => button.right)),
             closeHeight: close.height,
             closePadding: closeStyle.padding,
             closeWidth: close.width,
@@ -220,6 +221,7 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
     });
 
     expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.buttonRight).toBeLessThanOrEqual(layout.modalRight);
     expect(layout.closeWidth).toBe(32);
     expect(layout.closeHeight).toBe(32);
     expect(layout.closePadding).toBe('0px');
@@ -234,6 +236,7 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
             .map((button) => button.getBoundingClientRect());
 
         return {
+            buttonRight: Math.max(...buttons.map((button) => button.right)),
             modalRight: modal.right,
             rows: new Set(buttons.map((button) => Math.round(button.top))).size,
             viewportWidth
@@ -241,6 +244,7 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
     });
 
     expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.buttonRight).toBeLessThanOrEqual(layout.modalRight);
     expect(layout.rows).toBe(3);
 
     await page.setViewportSize({width: 1024, height: 740});
@@ -252,6 +256,7 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
             .map((button) => button.getBoundingClientRect());
 
         return {
+            buttonRight: Math.max(...buttons.map((button) => button.right)),
             modalRight: modal.right,
             rows: new Set(buttons.map((button) => Math.round(button.top))).size,
             viewportWidth
@@ -259,5 +264,6 @@ test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
     });
 
     expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.buttonRight).toBeLessThanOrEqual(layout.modalRight);
     expect(layout.rows).toBe(3);
 });
