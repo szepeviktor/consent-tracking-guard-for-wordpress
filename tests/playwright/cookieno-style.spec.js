@@ -150,7 +150,7 @@ test('lets sites recolor the Cookieno accent with one CSS custom property', asyn
     });
 });
 
-test('wraps Cookieno modal footer buttons only when they do not fit', async ({page}) => {
+test('stacks Cookieno preferences modal footer buttons', async ({page}) => {
     await page.setContent(`
         <!doctype html>
         <html lang="en">
@@ -223,7 +223,25 @@ test('wraps Cookieno modal footer buttons only when they do not fit', async ({pa
     expect(layout.closeWidth).toBe(32);
     expect(layout.closeHeight).toBe(32);
     expect(layout.closePadding).toBe('0px');
-    expect(layout.rows).toBeGreaterThan(1);
+    expect(layout.rows).toBe(3);
+
+    await page.setViewportSize({width: 600, height: 740});
+
+    layout = await page.evaluate(() => {
+        const viewportWidth = document.documentElement.clientWidth;
+        const modal = document.querySelector('.cm-modal').getBoundingClientRect();
+        const buttons = [...document.querySelectorAll('.cm-footer-buttons .cm-btn')]
+            .map((button) => button.getBoundingClientRect());
+
+        return {
+            modalRight: modal.right,
+            rows: new Set(buttons.map((button) => Math.round(button.top))).size,
+            viewportWidth
+        };
+    });
+
+    expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.rows).toBe(3);
 
     await page.setViewportSize({width: 1024, height: 740});
 
@@ -241,5 +259,5 @@ test('wraps Cookieno modal footer buttons only when they do not fit', async ({pa
     });
 
     expect(layout.modalRight).toBeLessThanOrEqual(layout.viewportWidth);
-    expect(layout.rows).toBe(1);
+    expect(layout.rows).toBe(3);
 });
