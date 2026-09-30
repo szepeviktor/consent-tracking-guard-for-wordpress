@@ -14,6 +14,10 @@ checks:
         reader: php
         file: viktors-consent-tracking-guard.php
         path: $.constants['SzepeViktor\\ConsentTrackingGuard\\VERSION']
+      wordpress-readme:
+        reader: wordpress-readme
+        file: readme.txt
+        path: $['Stable tag']
       release-tag:
         reader: env
         variable: RELEASE_TAG
