@@ -490,16 +490,57 @@ JS,
             $services[] = $this->buildPixelYourSiteMarketingService($lang);
         }
 
-        if ($this->options->enabled('enable_woodmart')) {
-            $services[] = $this->buildWoodMartService($lang);
-        }
-
         if ($this->options->enabled('enable_wordfence')) {
             $services[] = $this->buildWordfenceService($lang);
         }
 
         if ($this->options->enabled('enable_youtube')) {
             $services[] = $this->buildYouTubeService($lang);
+        }
+
+        $filteredServices = apply_filters(
+            'consent_tracking_guard_for_wordpress_disclosure_services',
+            $services,
+            $lang
+        );
+
+        if (! is_array($filteredServices)) {
+            return $services;
+        }
+
+        /** @var array<int, array<string, mixed>> $filteredServices */
+        return $this->normalizeDisclosureServices($filteredServices, $lang);
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $services
+     * @return array<int, array<string, mixed>>
+     */
+    private function normalizeDisclosureServices(array $services, string $lang): array
+    {
+        foreach ($services as $index => $service) {
+            if (isset($service['purposes'])) {
+                continue;
+            }
+
+            $services[$index] = [
+                'name' => $service['name'],
+                'title' => $service['title'],
+                'purposes' => [$service['purpose']],
+                'default' => $service['default'],
+                'required' => $service['required'],
+                'optOut' => false,
+                'onlyOnce' => true,
+                'cookies' => $service['cookies'],
+                'wpConsentCategory' => $service['purpose'],
+                'wpConsentCookies' => $service['wp_consent_cookies'],
+                'translations' => [
+                    $lang => [
+                        'title' => $service['title'],
+                        'description' => $service['description'],
+                    ],
+                ],
+            ];
         }
 
         return $services;
@@ -1186,100 +1227,6 @@ JS,
                     ),
                 ],
             ],
-        ];
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function buildWoodMartService(string $lang): array
-    {
-        return [
-            'name' => 'woodmart',
-            'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
-            'purposes' => ['functional'],
-            'default' => true,
-            'required' => true,
-            'optOut' => false,
-            'onlyOnce' => true,
-            'cookies' => $this->buildWoodMartCookies(),
-            'wpConsentCategory' => 'functional',
-            'wpConsentCookies' => $this->buildWoodMartCookieInfo(),
-            'translations' => [
-                $lang => [
-                    'title' => __('WoodMart', 'consent-tracking-guard-for-wordpress'),
-                    'description' => __(
-                        'Keeps WoodMart shop preferences, wishlist, compare, product history, and popups working.',
-                        'consent-tracking-guard-for-wordpress'
-                    ),
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @return array<int, string>
-     */
-    private function buildWoodMartCookies(): array
-    {
-        return [
-            'woodmart_recently_viewed_products',
-            'woodmart_wishlist_hash',
-            'woodmart_wishlist_count',
-            'woodmart_wishlist_products',
-            'wishlist_cleared_time',
-            'woodmart_compare_list',
-            'shop_per_page',
-            'shop_per_row',
-            'shop_view',
-            'woodmart_age_verify',
-            'woodmart_shown_pages',
-            '^woodmart_cookies_.*',
-            '^woodmart_tb_banner_.*',
-        ];
-    }
-
-    /**
-     * @return array<int, array<string, string>>
-     */
-    private function buildWoodMartCookieInfo(): array
-    {
-        return [
-            $this->buildCookieInfo(
-                'woodmart_recently_viewed_products',
-                __('7 days', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products recently viewed by the visitor.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'woodmart_wishlist_hash',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Checks whether the visitor’s WoodMart wishlist has changed.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'woodmart_wishlist_count',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores the number of products in the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'woodmart_wishlist_products',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products added to the visitor’s WoodMart wishlist.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'woodmart_compare_list',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Stores products added to the visitor’s WoodMart compare list.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'shop_view',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers the visitor’s selected shop list or grid view.', 'consent-tracking-guard-for-wordpress')
-            ),
-            $this->buildCookieInfo(
-                'woodmart_age_verify',
-                __('Session', 'consent-tracking-guard-for-wordpress'),
-                __('Remembers that the visitor passed the WoodMart age verification prompt.', 'consent-tracking-guard-for-wordpress')
-            ),
         ];
     }
 

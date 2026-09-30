@@ -30,7 +30,9 @@ It has been checked with these plugin integrations.
 - Polylang (`polylang`)
 - WooCommerce (`woocommerce`)
 - Wordfence (`wordfence`)
-- WoodMart theme
+
+Optional hook-based disclosure examples live in `examples/`, including WoodMart theme cookies.
+Use `consent_tracking_guard_for_wordpress_disclosure_services` to add disclosure-only services.
 
 ## Installation
 

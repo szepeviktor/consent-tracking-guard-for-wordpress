@@ -189,7 +189,6 @@ final class AdminPage
         $this->addGoogleSiteKitSignInField();
         $this->addPixelYourSiteField();
         $this->addKlaviyoField();
-        $this->addWoodMartField();
         $this->addWordfenceField();
         $this->addYouTubeField();
     }
@@ -314,24 +313,6 @@ final class AdminPage
                 'name' => 'enable_klaviyo',
                 'label' => __(
                     'Show Klaviyo cookies when the Klaviyo WooCommerce plugin loads tracking outside this plugin’s control.',
-                    'consent-tracking-guard-for-wordpress'
-                ),
-            ]
-        );
-    }
-
-    private function addWoodMartField(): void
-    {
-        add_settings_field(
-            'consent-tracking-guard-for-wordpress-enable-woodmart',
-            __('WoodMart disclosure', 'consent-tracking-guard-for-wordpress'),
-            [$this, 'renderCheckboxField'],
-            self::PAGE_SLUG,
-            self::INTEGRATIONS_SECTION,
-            [
-                'name' => 'enable_woodmart',
-                'label' => __(
-                    'Show WoodMart cookies for wishlist, compare, product history, popups, and shop preferences.',
                     'consent-tracking-guard-for-wordpress'
                 ),
             ]
