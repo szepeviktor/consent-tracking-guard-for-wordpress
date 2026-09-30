@@ -13,6 +13,7 @@ final class Options
     public const MODAL_STYLE_DARK = 'dark';
     public const MODAL_STYLE_TWENTY_TWENTY_FIVE = 'twenty-twenty-five';
     public const MODAL_STYLE_COOKIENO = 'cookieno';
+    public const MODAL_STYLE_COOKIENO_BUTTON = 'cookieno-button';
 
     private const MODAL_STYLES = [
         self::MODAL_STYLE_KLARO_DEFAULT,
@@ -21,6 +22,7 @@ final class Options
         self::MODAL_STYLE_DARK,
         self::MODAL_STYLE_TWENTY_TWENTY_FIVE,
         self::MODAL_STYLE_COOKIENO,
+        self::MODAL_STYLE_COOKIENO_BUTTON,
     ];
 
     /**

@@ -514,6 +514,7 @@ final class AdminPage
             Options::MODAL_STYLE_DARK => __('Dark', 'consent-tracking-guard-for-wordpress'),
             Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => __('Twenty Twenty-Five', 'consent-tracking-guard-for-wordpress'),
             Options::MODAL_STYLE_COOKIENO => __('CookieNo', 'consent-tracking-guard-for-wordpress'),
+            Options::MODAL_STYLE_COOKIENO_BUTTON => __('CookieNo Button', 'consent-tracking-guard-for-wordpress'),
         ];
 
         printf(

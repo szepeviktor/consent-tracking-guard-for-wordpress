@@ -25,6 +25,7 @@ final class Assets
         Options::MODAL_STYLE_DARK => 'dark.css',
         Options::MODAL_STYLE_TWENTY_TWENTY_FIVE => 'twenty-twenty-five.css',
         Options::MODAL_STYLE_COOKIENO => 'cookieno.css',
+        Options::MODAL_STYLE_COOKIENO_BUTTON => 'cookieno-button.css',
     ];
 
     private Options $options;

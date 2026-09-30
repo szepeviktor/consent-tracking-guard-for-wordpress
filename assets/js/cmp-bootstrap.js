@@ -1381,7 +1381,9 @@
         var floating = script ? script.getAttribute('data-floating') : null;
         var button;
         var container;
+        var icon;
         var label;
+        var labelText;
 
         if (floating === null || floating === 'false' || floating === '0' || document.getElementById('cmp-floating-settings')) {
             return;
@@ -1396,7 +1398,14 @@
         button.type = 'button';
         button.setAttribute('aria-label', label);
         button.setAttribute('title', label);
-        button.appendChild(document.createTextNode(label));
+        icon = document.createElement('span');
+        icon.className = 'cmp-floating-settings-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        labelText = document.createElement('span');
+        labelText.className = 'cmp-floating-settings-label';
+        labelText.appendChild(document.createTextNode(label));
+        button.appendChild(icon);
+        button.appendChild(labelText);
         button.addEventListener('click', function () {
             if (typeof window.klaro !== 'undefined' && typeof window.klaro.show === 'function') {
                 window.klaro.show(window.klaroConfig, true);

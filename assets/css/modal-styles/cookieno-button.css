@@ -1,0 +1,534 @@
+.klaro .cookie-modal,
+.klaro .cookie-notice {
+    --blue1: var(--cookieno-accent-color, #1863dc);
+    --blue2: var(--cookieno-accent-color, #1863dc);
+    --border-radius: 0;
+    --button-text-color: #fff;
+    --dark1: #fff;
+    --dark2: var(--cookieno-accent-color, #1863dc);
+    --dark3: #212121;
+    --font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    --font-size: 15px;
+    --green1: var(--cookieno-accent-color, #1863dc);
+    --green2: var(--cookieno-accent-color, #1863dc);
+    --green3: var(--cookieno-accent-color, #1863dc);
+    --light1: #212121;
+    --light2: #f4f4f4;
+    --light3: #4e4b66;
+    --title-font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    --white2: #d0d5d2;
+    --white3: #fff;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) {
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    border-top: 1px solid #f4f4f4 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -1px 10px 0 #acabab4d !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice),
+.klaro .cookie-notice:not(.cookie-modal-notice) * {
+    box-sizing: border-box !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body {
+    box-sizing: border-box !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    align-items: center !important;
+    gap: 16px 24px !important;
+    width: min(100%, 1180px) !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 18px 24px !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > * {
+    min-width: 0 !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > h2:first-child {
+    display: block !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body > p {
+    grid-column: 1 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body p {
+    margin: 0;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok {
+    display: flex !important;
+    flex: 0 0 auto;
+    grid-column: 2 !important;
+    grid-row: 1 / span 2 !important;
+    justify-self: end !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: max-content;
+    margin: 0;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons {
+    display: flex !important;
+    flex: 0 0 auto;
+    gap: 10px;
+    min-width: max-content;
+    margin: 0;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok a,
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok div,
+.klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons button.cm-btn {
+    margin: 0;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn,
+.klaro .cookie-modal button.cm-btn {
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: 2px solid var(--cookieno-accent-color, #1863dc);
+    border-radius: 0;
+    background: #fff;
+    color: var(--cookieno-accent-color, #1863dc);
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn-success,
+.klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn-success-var,
+.klaro .cookie-modal button.cm-btn-success,
+.klaro .cookie-modal button.cm-btn-success-var {
+    background: var(--cookieno-accent-color, #1863dc);
+    color: #fff;
+}
+
+.klaro .cookie-modal .cm-bg {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.klaro .cookie-modal .cm-modal.cm-klaro {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: min(100%, 640px) !important;
+    border: 1px solid #f4f4f4;
+    border-radius: 0;
+    box-shadow: 0 32px 68px rgba(0, 0, 0, 0.3);
+}
+
+.klaro .cookie-modal .cm-modal .hide {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.klaro .cookie-modal .cm-modal .cm-footer-buttons {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 12px;
+    min-width: 0;
+}
+
+.klaro .cookie-modal .cm-modal .cm-footer-buttons > * {
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+.klaro-consent-container,
+.klaro-consent-container * {
+    box-sizing: border-box !important;
+}
+
+.klaro-consent-container {
+    position: fixed !important;
+    z-index: 9999999 !important;
+}
+
+.klaro-consent-container.klaro-banner-bottom {
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.klaro-consent-container .klaro-consent-bar {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 16.5px 24px !important;
+    border: 1px solid #f4f4f4 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: 0 -1px 10px 0 #acabab4d !important;
+}
+
+.klaro-consent-container .klaro-notice {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.klaro-consent-container .klaro-title,
+.klaro-consent-container .klaro-notice-group > h2:first-child {
+    display: none !important;
+}
+
+.klaro-consent-container .klaro-notice-group {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    align-items: center !important;
+    gap: 16px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+.klaro-consent-container .klaro-notice-group > * {
+    min-width: 0 !important;
+}
+
+.klaro-consent-container .klaro-notice-des {
+    flex: 1 1 auto !important;
+    grid-column: 1 !important;
+    min-width: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    color: #212121 !important;
+    font-size: 14px !important;
+    line-height: 24px !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro-consent-container .klaro-notice-des > p {
+    display: block !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+}
+
+.klaro-consent-container .klaro-notice-des p {
+    margin: 0 !important;
+}
+
+.klaro-consent-container .klaro-notice-des a {
+    color: var(--cookieno-accent-color, #1863dc) !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+}
+
+.klaro-consent-container .klaro-notice-btn-wrapper {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    grid-column: 2 !important;
+    justify-self: end !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: auto !important;
+    min-width: max-content !important;
+    margin: 0 0 0 15px !important;
+    padding: 0 !important;
+}
+
+.klaro-consent-container .klaro-btn.klaro-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 138px !important;
+    min-height: 46px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    order: 0 !important;
+    padding: 8px 27px !important;
+    border: 3px solid var(--cookieno-accent-color, #1863dc) !important;
+    border-radius: 2px !important;
+    background: #fff !important;
+    color: var(--cookieno-accent-color, #1863dc) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+.klaro-consent-container .klaro-btn.klaro-btn-accept {
+    background: var(--cookieno-accent-color, #1863dc) !important;
+    color: #fff !important;
+}
+
+.klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-customize {
+    order: 1 !important;
+}
+
+.klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-reject {
+    order: 2 !important;
+}
+
+.klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-accept {
+    order: 3 !important;
+}
+
+@media (max-width: 900px) {
+    .klaro-consent-container .klaro-notice-group {
+        grid-template-columns: 1fr !important;
+    }
+
+    .klaro-consent-container .klaro-notice-des,
+    .klaro-consent-container .klaro-notice-btn-wrapper {
+        grid-column: 1 !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper {
+        justify-self: stretch !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    .klaro-consent-container .klaro-btn.klaro-btn {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body {
+        grid-template-columns: 1fr !important;
+    }
+
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok,
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        width: 100% !important;
+        justify-content: stretch !important;
+        min-width: 0 !important;
+    }
+
+    .klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body {
+        padding: 16px !important;
+    }
+
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-ok,
+    .klaro .cookie-notice:not(.cookie-modal-notice) .cn-body .cn-buttons {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .klaro .cookie-notice:not(.cookie-modal-notice) button.cm-btn {
+        width: 100% !important;
+        min-height: 44px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .klaro .cookie-modal .cm-modal .cm-header,
+    .klaro .cookie-modal .cm-modal .cm-body,
+    .klaro .cookie-modal .cm-modal .cm-footer {
+        padding-right: 28px !important;
+        padding-left: 28px !important;
+    }
+
+    .klaro .cookie-modal .cm-modal .cm-header h1.title {
+        padding-right: 40px !important;
+    }
+
+    .klaro .cookie-modal .cm-modal .cm-footer-buttons button.cm-btn {
+        max-width: 100% !important;
+    }
+
+    .klaro-consent-container .klaro-consent-bar {
+        padding: 16.5px 0 !important;
+    }
+
+    .klaro-consent-container .klaro-notice-group {
+        display: block !important;
+    }
+
+    .klaro-consent-container .klaro-notice-des {
+        max-height: 40vh !important;
+        overflow-y: scroll !important;
+        padding: 0 28px !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 10px 0 0 !important;
+        padding: 0 28px !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 42.2px !important;
+        padding: 8px !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-accept {
+        order: 1 !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-customize {
+        order: 2 !important;
+    }
+
+    .klaro-consent-container .klaro-notice-btn-wrapper .klaro-btn.klaro-btn-reject {
+        order: 3 !important;
+    }
+}
+
+@media (max-height: 480px) {
+    .klaro-consent-container {
+        max-height: 100vh !important;
+        overflow-y: scroll !important;
+    }
+
+    .klaro-consent-container .klaro-notice-des {
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings {
+    --cookieno-button-background: var(--cookieno-accent-color, #1863dc);
+
+    position: relative;
+    display: inline-grid;
+    width: 64px;
+    height: 64px;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+    place-items: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--cookieno-button-background);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    color: transparent;
+    cursor: pointer;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings:hover {
+    transform: translateY(-1px);
+    background: var(--cookieno-button-background);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings-icon {
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #d6a86a;
+    box-shadow:
+        inset -4px -4px 0 rgba(0, 0, 0, 0.08),
+        inset 3px 3px 0 rgba(255, 255, 255, 0.18);
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings-icon::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cookieno-button-background);
+    box-shadow:
+        -4px 3px 0 -1px var(--cookieno-button-background),
+        -1px 7px 0 -2px var(--cookieno-button-background);
+}
+
+.consent-tracking-guard-for-wordpress .cmp-floating-settings-icon::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #5b3a29;
+    box-shadow:
+        8px 2px 0 #5b3a29,
+        5px 10px 0 #5b3a29,
+        13px 8px 0 #5b3a29,
+        2px 14px 0 #5b3a29;
+}
+
+@media (max-width: 700px) {
+    .consent-tracking-guard-for-wordpress .cmp-floating-settings {
+        width: 58px;
+        height: 58px;
+    }
+}
