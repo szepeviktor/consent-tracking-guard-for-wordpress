@@ -31,7 +31,7 @@ It has been checked with these plugin integrations.
 - WooCommerce (`woocommerce`)
 - Wordfence (`wordfence`)
 
-Optional hook-based disclosure examples live in `examples/`, including WoodMart theme cookies.
+Optional hook-based disclosure examples live in `examples/`, including shorthand, already-normalized Klaro, LiteSpeed Cache, and WoodMart theme cookie examples.
 Use `consent_tracking_guard_for_wordpress_disclosure_services` to add disclosure-only services.
 
 ## Installation
