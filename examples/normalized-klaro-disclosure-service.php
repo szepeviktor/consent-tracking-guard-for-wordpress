@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Already-normalized Klaro disclosure service example.
  *

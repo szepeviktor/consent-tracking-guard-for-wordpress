@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * LiteSpeed Cache disclosure service for Viktor's Consent and Tracking Guard.
  *

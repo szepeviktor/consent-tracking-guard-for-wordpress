@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * General disclosure service example for Viktor's Consent and Tracking Guard.
  *

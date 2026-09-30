@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Example WoodMart disclosure service for Viktor's Consent and Tracking Guard.
  *
