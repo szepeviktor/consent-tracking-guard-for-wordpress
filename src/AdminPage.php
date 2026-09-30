@@ -606,7 +606,7 @@ final class AdminPage
             esc_attr($name),
             esc_attr($type),
             esc_attr((string) $this->options->get($name)),
-            $this->renderAttributes($attributes)
+            $this->renderAttributes($attributes) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Attribute names and values are escaped in renderAttributes().
         );
     }
 
@@ -615,13 +615,13 @@ final class AdminPage
      */
     private function renderAttributes(array $attributes): string
     {
-        $rendered = '';
+        $renderedAttributes = [];
 
-        foreach ($attributes as $name => $value) {
-            $rendered .= sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
+        foreach ($attributes as $name => $attributeValue) {
+            $renderedAttributes[] = sprintf(' %s="%s"', esc_attr($name), esc_attr($attributeValue));
         }
 
-        return $rendered;
+        return implode('', $renderedAttributes);
     }
 
     private function fieldId(string $name): string

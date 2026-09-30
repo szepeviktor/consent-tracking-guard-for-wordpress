@@ -11,7 +11,6 @@ use SzepeViktor\ConsentTrackingGuard\Frontend\PixelYourSiteBridge;
 
 use function add_action;
 use function is_admin;
-use function load_plugin_textdomain;
 use function wp_doing_ajax;
 
 final class Plugin
@@ -34,7 +33,6 @@ final class Plugin
         (new PixelYourSiteBridge(self::$options))->register();
         (new Shortcodes())->register();
 
-        add_action('init', [self::class, 'loadTextDomain'], 0, 0);
         add_action('init', [self::class, 'registerAssets'], 9, 0);
 
         if (is_admin() && ! wp_doing_ajax()) { // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed -- Admin boot reads clearer as a positive condition.
@@ -49,14 +47,5 @@ final class Plugin
         }
 
         (new Assets(self::$options, self::$consentApiBridge))->register();
-    }
-
-    public static function loadTextDomain(): void
-    {
-        load_plugin_textdomain(
-            'viktors-consent-tracking-guard',
-            false,
-            sprintf('%s/%s', dirname(Config::get('baseName')), 'languages')
-        );
     }
 }
