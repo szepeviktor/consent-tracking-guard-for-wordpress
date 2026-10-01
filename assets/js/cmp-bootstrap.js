@@ -965,6 +965,70 @@
         });
     }
 
+    function createGoogleSiteKitSignInVendor(serviceName) {
+        var consentGranted = false;
+
+        function loadInitializers() {
+            var placeholders;
+
+            if (!consentGranted || !window.google || !window.google.accounts || !window.google.accounts.id) {
+                return;
+            }
+
+            placeholders = document.querySelectorAll('script[data-name="' + serviceName + '"][data-siwg-config][data-cmp-src]');
+            Array.prototype.forEach.call(placeholders, function (placeholder) {
+                var initializer;
+
+                if (placeholder.getAttribute('data-cmp-started') === 'true') {
+                    return;
+                }
+
+                // Preserve config and CSP nonce, but do not let Klaro clone
+                // the executable script on subsequent consent changes.
+                placeholder.setAttribute('data-cmp-started', 'true');
+                // A fresh element also works for placeholders inserted through
+                // innerHTML, whose clone would retain the "already started" flag.
+                initializer = document.createElement('script');
+                Array.prototype.forEach.call(placeholder.attributes, function (attribute) {
+                    initializer.setAttribute(attribute.name, attribute.value);
+                });
+                if (placeholder.nonce) {
+                    initializer.nonce = placeholder.nonce;
+                }
+                initializer.removeAttribute('data-name');
+                initializer.removeAttribute('data-type');
+                initializer.removeAttribute('data-cmp-src');
+                initializer.removeAttribute('async');
+                initializer.removeAttribute('defer');
+                initializer.type = placeholder.getAttribute('data-cmp-type') || 'application/javascript';
+                initializer.async = false;
+                initializer.src = placeholder.getAttribute('data-cmp-src');
+                placeholder.parentNode.insertBefore(initializer, placeholder.nextSibling);
+            });
+        }
+
+        return createConsentAwareVendor(serviceName, {
+            init: function () {
+                // Resource load does not bubble; capture catches Klaro's clone.
+                document.addEventListener('load', function (event) {
+                    if (event.target.tagName === 'SCRIPT' && event.target.src === 'https://accounts.google.com/gsi/client') {
+                        loadInitializers();
+                    }
+                }, true);
+
+                // Also handle footer tags arriving after saved consent is applied.
+                new MutationObserver(loadInitializers).observe(document.documentElement, {childList: true, subtree: true});
+            },
+            grant: function () {
+                consentGranted = true;
+                loadInitializers();
+            },
+            revoke: function () {
+                consentGranted = false;
+            }
+        });
+    }
+
     function createYouTubeVendor(options) {
         var serviceName = options.serviceName || SERVICE_NAMES.youtube;
         var consentGranted = false;
@@ -1288,6 +1352,11 @@
         var hotjarId = script ? script.getAttribute('data-hotjar-id') : null;
         var hotjarVersion = script ? script.getAttribute('data-hotjar-version') : null;
         var youtubeServiceName = script ? script.getAttribute('data-youtube-service') : null;
+        var googleSiteKitSignInServiceName = script ? script.getAttribute('data-google-site-kit-sign-in-service') : null;
+
+        if (googleSiteKitSignInServiceName !== null) {
+            registry.register(createGoogleSiteKitSignInVendor(googleSiteKitSignInServiceName));
+        }
 
         if (gtmId !== null) {
             registry.register(createGtmVendor({

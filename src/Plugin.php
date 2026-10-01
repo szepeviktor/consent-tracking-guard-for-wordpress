@@ -7,6 +7,7 @@ namespace SzepeViktor\ConsentTrackingGuard;
 use SzepeViktor\ConsentTrackingGuard\Frontend\Assets;
 use SzepeViktor\ConsentTrackingGuard\Frontend\ConsentApiBridge;
 use SzepeViktor\ConsentTrackingGuard\Frontend\FacebookForWooCommerceBridge;
+use SzepeViktor\ConsentTrackingGuard\Frontend\GoogleSiteKitSignInBridge;
 use SzepeViktor\ConsentTrackingGuard\Frontend\PixelYourSiteBridge;
 
 use function add_action;
@@ -32,6 +33,7 @@ final class Plugin
         self::$consentApiBridge->register();
         (new FacebookForWooCommerceBridge(self::$options))->register();
         (new PixelYourSiteBridge(self::$options))->register();
+        (new GoogleSiteKitSignInBridge(self::$options))->register();
         (new Shortcodes())->register();
 
         add_action('init', [self::class, 'loadTextDomain'], 0, 0);

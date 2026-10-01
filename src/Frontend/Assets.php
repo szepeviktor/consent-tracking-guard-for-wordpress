@@ -44,6 +44,10 @@ final class Assets
         $this->consent_api_bridge->register_services($this->build_services($lang));
 
         add_action('wp_enqueue_scripts', [$this, 'enqueue'], 100);
+        if ($this->options->enabled('enable_google_site_kit_sign_in')) {
+            add_action('login_enqueue_scripts', [$this, 'enqueue'], 100);
+            add_action('admin_enqueue_scripts', [$this, 'enqueue_profile_consent'], 100);
+        }
         add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_handoff'], 101);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
@@ -56,6 +60,15 @@ final class Assets
 
         $this->enqueueStyles($modalStyle);
         $this->enqueueScripts($klaroConfig);
+    }
+
+    public function enqueue_profile_consent(string $hookSuffix): void
+    {
+        if ($hookSuffix !== 'profile.php') {
+            return;
+        }
+
+        $this->enqueue();
     }
 
     private function enqueueStyles(string $modalStyle): void
@@ -250,6 +263,10 @@ JS,
         if ($this->options->enabled('enable_pixelyoursite')) {
             $attributes['data-pixelyoursite-statistics-service'] = self::PIXELYOURSITE_STATISTICS_SERVICE_NAME;
             $attributes['data-pixelyoursite-marketing-service'] = self::PIXELYOURSITE_MARKETING_SERVICE_NAME;
+        }
+
+        if ($this->options->enabled('enable_google_site_kit_sign_in')) {
+            $attributes['data-google-site-kit-sign-in-service'] = self::GOOGLE_SITE_KIT_SIGN_IN_SERVICE_NAME;
         }
 
         if ($facebookForWooCommerceEnabled) {
@@ -877,8 +894,8 @@ JS,
             'name' => self::GOOGLE_SITE_KIT_SIGN_IN_SERVICE_NAME,
             'title' => __('Site Kit Sign in with Google', 'consent-tracking-guard-for-wordpress'),
             'purposes' => ['functional'],
-            'default' => true,
-            'required' => true,
+            'default' => false,
+            'required' => false,
             'optOut' => false,
             'onlyOnce' => true,
             'cookies' => ['g_state', 'googlesitekit_auth_nonce', 'googlesitekit_auth_redirect_to'],

@@ -269,14 +269,14 @@ final class AdminPage
     {
         add_settings_field(
             'consent-tracking-guard-for-wordpress-enable-google-site-kit-sign-in',
-            __('Site Kit Sign in with Google disclosure', 'consent-tracking-guard-for-wordpress'),
+            __('Site Kit Sign in with Google consent bridge', 'consent-tracking-guard-for-wordpress'),
             [$this, 'renderCheckboxField'],
             self::PAGE_SLUG,
             self::INTEGRATIONS_SECTION,
             [
                 'name' => 'enable_google_site_kit_sign_in',
                 'label' => __(
-                    'Show Site Kit’s Sign in with Google and One Tap cookies as required functional cookies.',
+                    'Load Site Kit’s Sign in with Google and One Tap scripts only after consent to this optional functional service.',
                     'consent-tracking-guard-for-wordpress'
                 ),
             ]

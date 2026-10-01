@@ -142,11 +142,11 @@ msgid "Control PixelYourSite browser pixels, server events, cookies, and Google 
 msgstr ""
 
 #: src/AdminPage.php:273
-msgid "Site Kit Sign in with Google disclosure"
+msgid "Site Kit Sign in with Google consent bridge"
 msgstr ""
 
 #: src/AdminPage.php:279
-msgid "Show Site Kit’s Sign in with Google and One Tap cookies as required functional cookies."
+msgid "Load Site Kit’s Sign in with Google and One Tap scripts only after consent to this optional functional service."
 msgstr ""
 
 #: src/AdminPage.php:291
