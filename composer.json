@@ -25,7 +25,7 @@
         "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
     },
     "scripts": {
-        "make-pot": "wp i18n make-pot . languages/consent-tracking-guard-for-wordpress.pot --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\"}'",
+        "make-pot": "wp i18n make-pot . languages/consent-tracking-guard-for-wordpress.pot --exclude=examples --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/szepeviktor/consent-tracking-guard-for-wordpress/issues\"}'",
         "phpcs": "phpcs",
         "phpstan": "phpstan analyze",
         "test:consent-api": [
