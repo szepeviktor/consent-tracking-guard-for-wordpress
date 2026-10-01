@@ -617,6 +617,10 @@ msgstr "Сохраняет целевую страницу для аналити
 msgid "Stores the traffic source for analytics attribution."
 msgstr "Сохраняет источник трафика для аналитической атрибуции."
 
+#: src/Frontend/Assets.php:847
+msgid "Stores the product list name and ID for add-to-cart analytics."
+msgstr "Сохраняет название и ID списка товаров для аналитики добавлений в корзину."
+
 #: src/Frontend/Assets.php:785
 msgid "Allows PixelYourSite analytics tags and attribution cookies."
 msgstr "Разрешает аналитические теги PixelYourSite и cookie атрибуции."

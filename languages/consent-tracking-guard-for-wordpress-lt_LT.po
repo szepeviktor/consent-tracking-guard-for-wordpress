@@ -603,6 +603,10 @@ msgstr "Saugo nukreipimo puslapį analizės priskyrimui."
 msgid "Stores the traffic source for analytics attribution."
 msgstr "Saugo srauto šaltinį analizės priskyrimui."
 
+#: src/Frontend/Assets.php:847
+msgid "Stores the product list name and ID for add-to-cart analytics."
+msgstr "Saugo produktų sąrašo pavadinimą ir ID įdėjimo į krepšelį analitikai."
+
 #: src/Frontend/Assets.php:785
 msgid "Allows PixelYourSite analytics tags and attribution cookies."
 msgstr "Leidžia PixelYourSite analizės žymas ir priskyrimo slapukus."

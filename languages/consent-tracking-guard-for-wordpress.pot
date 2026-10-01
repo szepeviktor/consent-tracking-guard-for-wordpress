@@ -548,6 +548,10 @@ msgstr ""
 msgid "Stores the traffic source for analytics attribution."
 msgstr ""
 
+#: src/Frontend/Assets.php:847
+msgid "Stores the product list name and ID for add-to-cart analytics."
+msgstr ""
+
 #: src/Frontend/Assets.php:844
 msgid "Allows PixelYourSite analytics tags and attribution cookies."
 msgstr ""

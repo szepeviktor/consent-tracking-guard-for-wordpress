@@ -603,6 +603,10 @@ msgstr "Saglabā galamērķa lapu analītikas attiecināšanai."
 msgid "Stores the traffic source for analytics attribution."
 msgstr "Saglabā datplūsmas avotu analītikas attiecināšanai."
 
+#: src/Frontend/Assets.php:847
+msgid "Stores the product list name and ID for add-to-cart analytics."
+msgstr "Saglabā produktu saraksta nosaukumu un ID pievienošanas grozam analītikai."
+
 #: src/Frontend/Assets.php:785
 msgid "Allows PixelYourSite analytics tags and attribution cookies."
 msgstr "Atļauj PixelYourSite analītikas tagus un attiecināšanas sīkdatnes."
