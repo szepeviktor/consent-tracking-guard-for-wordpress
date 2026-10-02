@@ -442,8 +442,8 @@
 
     position: relative;
     display: inline-grid;
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     min-height: 0;
     padding: 0;
     overflow: visible;
@@ -528,7 +528,7 @@
 
 @media (max-width: 700px) {
     .consent-tracking-guard-for-wordpress .cmp-floating-settings {
-        width: 58px;
-        height: 58px;
+        width: 38px;
+        height: 38px;
     }
 }
