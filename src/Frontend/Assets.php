@@ -6,6 +6,7 @@ namespace SzepeViktor\ConsentTrackingGuard\Frontend;
 
 use SzepeViktor\ConsentTrackingGuard\Config;
 use SzepeViktor\ConsentTrackingGuard\Options;
+use twpwe_extension;
 
 final class Assets
 {
@@ -48,7 +49,9 @@ final class Assets
             add_action('login_enqueue_scripts', [$this, 'enqueue'], 100);
             add_action('admin_enqueue_scripts', [$this, 'enqueue_profile_consent'], 100);
         }
-        add_action('wp_enqueue_scripts', [$this, 'add_triple_whale_tracking_consent_handoff'], 101);
+        add_action('wp_head', [$this, 'guard_triple_whale_pending_events'], 0);
+        add_filter('script_loader_tag', [$this, 'filter_triple_whale_script_loader_tag'], 100, 3);
+        add_filter('woocommerce_add_to_cart_fragments', [$this, 'filter_triple_whale_fragments'], PHP_INT_MAX);
         add_filter('script_loader_tag', [$this, 'filter_bootstrap_tag'], 10, 2);
         add_filter('script_loader_tag', [$this, 'filter_klaviyo_script_loader_tag'], 100, 3);
     }
@@ -145,42 +148,74 @@ final class Assets
         );
     }
 
-    public function add_triple_whale_tracking_consent_handoff(): void
+    public function guard_triple_whale_pending_events(): void
     {
-        if (! $this->options->enabled('enable_triple_whale')) {
+        if (! $this->options->enabled('enable_triple_whale') || ! class_exists('twpwe_extension')) {
             return;
         }
 
-        /*
-         * Triple Whale has two different consent surfaces, and their timing is
-         * not equivalent. The public command
-         * `TriplePixel('trackingConsent', false)` is handled by the
-         * `TriplePixel` dispatcher only after the official snippet has loaded
-         * and installed that dispatcher. The vendor script's initial module
-         * body already starts its page-load flow before queued public commands
-         * can be replayed, so using the public command alone is too late for
-         * first-load blocking.
-         *
-         * The vendor script also checks
-         * `window.TriplePixelData.trackingConsent` inside its own tracking
-         * eligibility logic. When that property is exactly `false`, tracking
-         * is treated as disabled before the initial page-load work proceeds.
-         * Publishing this data object immediately before the official
-         * `triplewhale-pixel-snippet` handle runs gives the vendor script the
-         * earliest consent state it understands, without replacing
-         * `window.TriplePixel`, replaying a custom queue, or racing the
-         * official loader.
-         */
-        wp_add_inline_script(
-            'triplewhale-pixel-snippet',
-            <<<'JS'
-(function () {
-    window.TriplePixelData = window.TriplePixelData || {};
-    window.TriplePixelData.trackingConsent = false;
-}());
-JS,
-            'before'
+        remove_action('wp_head', [twpwe_extension::instance(), 'inject_head']);
+        add_action('wp_head', [$this, 'print_triple_whale_pending_events']);
+    }
+
+    public function print_triple_whale_pending_events(): void
+    {
+        if (! function_exists('twpwe_pending_events_get_events_script')) {
+            return;
+        }
+
+        // Consume pending events now: denied events must never be replayed on a later grant.
+        $events = twpwe_pending_events_get_events_script();
+        if ($events === '') {
+            return;
+        }
+
+        wp_print_inline_script_tag($this->guard_triple_whale_events($events));
+    }
+
+    private function guard_triple_whale_events(string $code): string
+    {
+        return str_replace('TriplePixel(', 'window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent(', $code);
+    }
+
+    public function filter_triple_whale_script_loader_tag(string $tag, string $handle, string $src): string
+    {
+        if (! $this->options->enabled('enable_triple_whale') || $handle !== 'triplewhale-pixel-snippet') {
+            return $tag;
+        }
+
+        // Emit the same inert loader and event gates for every visitor, including cache hits.
+        // The browser applies service consent; PHP must not inspect consent cookies.
+        $tag = $this->guard_triple_whale_events($tag);
+        return (string) preg_replace(
+            '/<script\b[^>]*\bsrc=["\'][^"\']*["\'][^>]*><\/script>/i',
+            sprintf(
+                '<script id="triplewhale-pixel-snippet-js" type="text/plain" data-ctg-triple-whale-src="%s"></script>', // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript -- Rewrites the vendor's enqueued loader.
+                esc_url($src)
+            ),
+            $tag
         );
+    }
+
+    /**
+     * @param array<string, string> $fragments
+     * @return array<string, string>
+     */
+    public function filter_triple_whale_fragments(array $fragments): array
+    {
+        if (! $this->options->enabled('enable_triple_whale')) {
+            return $fragments;
+        }
+
+        foreach ($fragments as $selector => $html) {
+            if (strpos($selector, 'triple_pixel_ef_container') === false) {
+                continue;
+            }
+
+            $fragments[$selector] = $this->guard_triple_whale_events($html);
+        }
+
+        return $fragments;
     }
 
     public function filter_klaviyo_script_loader_tag(string $tag, string $handle, string $src): string

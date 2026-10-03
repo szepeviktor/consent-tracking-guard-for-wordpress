@@ -41,6 +41,19 @@ function wp_add_inline_script(string $handle, string $scriptData, string $positi
     return true;
 }
 
+function twpwe_pending_events_get_events_script(): string
+{
+    $events = $GLOBALS['vendor_pending_events'] ?? '';
+    $GLOBALS['vendor_pending_events'] = '';
+
+    return $events;
+}
+
+function wp_print_inline_script_tag(string $code): void
+{
+    $GLOBALS['printed_vendor_events'][] = $code;
+}
+
 require sprintf('%s/src/Options.php', dirname(__DIR__, 2));
 require sprintf('%s/src/Frontend/ConsentApiBridge.php', dirname(__DIR__, 2));
 require sprintf('%s/src/Frontend/Assets.php', dirname(__DIR__, 2));
@@ -104,53 +117,48 @@ assert_same(
     'Disabled Klaviyo disclosure must not alter the script tag.'
 );
 
-$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
-    'enable_triple_whale' => 0,
-];
-$GLOBALS['assets_script_guard_inline_scripts'] = [];
-
-$assets->add_triple_whale_tracking_consent_handoff();
-
+$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = ['enable_triple_whale' => 1];
+$vendorTag = '<script>window.TriplePixelData = {plat: "woocommerce"};</script><script src="/snippet.js"></script><script>TriplePixel("purchase", {order_id: 1});</script>';
+$guarded = $assets->filter_triple_whale_script_loader_tag($vendorTag, 'triplewhale-pixel-snippet', '/snippet.js');
+assert_same(false, strpos($guarded, ' src='), 'The loader must have no executable src.');
+assert_same(true, strpos($guarded, 'data-ctg-triple-whale-src="/snippet.js"') !== false, 'The bridge must retain the loader URL.');
+assert_same(true, strpos($guarded, 'window.TriplePixelData = {plat: "woocommerce"}') !== false, 'Vendor configuration must survive gating.');
+assert_same(true, strpos($guarded, 'window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent("purchase"') !== false, 'Purchase events must use the consent gate.');
+$fragments = ['div.triple_pixel_ef_container' => '<script>TriplePixel("addtocart", {});</script>', 'div.cart' => '<div>cart</div>'];
 assert_same(
-    [],
-    $GLOBALS['assets_script_guard_inline_scripts'],
-    'Disabled Triple Whale bridge must not add a pre-consent handoff.'
+    ['div.triple_pixel_ef_container' => '<script>window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent("addtocart", {});</script>', 'div.cart' => '<div>cart</div>'],
+    $assets->filter_triple_whale_fragments($fragments),
+    'Only Triple Whale AJAX fragments must be gated.'
 );
+foreach ([null, '{"triple-whale-pixel":false}', '{"triple-whale-pixel":true}'] as $consentCookie) {
+    unset($_COOKIE['klaro']);
+    if ($consentCookie !== null) {
+        $_COOKIE['klaro'] = $consentCookie;
+    }
 
-$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = [
-    'enable_triple_whale' => 1,
-];
-
-$assets->add_triple_whale_tracking_consent_handoff();
-
-assert_same(
-    'triplewhale-pixel-snippet',
-    $GLOBALS['assets_script_guard_inline_scripts'][0][0],
-    'Triple Whale bridge must attach the handoff to the official script handle.'
-);
-
-assert_same(
-    'before',
-    $GLOBALS['assets_script_guard_inline_scripts'][0][2],
-    'Triple Whale bridge must publish denied consent before the official snippet runs.'
-);
-
-assert_same(
-    true,
-    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'window.TriplePixelData.trackingConsent = false;') !== false,
-    'Triple Whale bridge must disable tracking before the official snippet reads TriplePixelData.'
-);
-
-assert_same(
-    1,
-    count($GLOBALS['assets_script_guard_inline_scripts']),
-    'Triple Whale bridge must not register a legacy queue replay script.'
-);
-
-assert_same(
-    false,
-    strpos($GLOBALS['assets_script_guard_inline_scripts'][0][1], 'TriplePixel ='),
-    'Triple Whale bridge must not print the legacy queue shim.'
-);
+    assert_same(
+        $guarded,
+        $assets->filter_triple_whale_script_loader_tag($vendorTag, 'triplewhale-pixel-snippet', '/snippet.js'),
+        'Cached loader and event HTML must be identical for unknown, denied, and granted consent.'
+    );
+    assert_same(
+        ['div.triple_pixel_ef_container' => '<script>window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent("addtocart", {});</script>', 'div.cart' => '<div>cart</div>'],
+        $assets->filter_triple_whale_fragments($fragments),
+        'AJAX fragment gates must not depend on server-side consent cookies.'
+    );
+    $GLOBALS['vendor_pending_events'] = 'TriplePixel("addtocart", {item: 1});';
+    $GLOBALS['printed_vendor_events'] = [];
+    $assets->print_triple_whale_pending_events();
+    assert_same('', $GLOBALS['vendor_pending_events'], 'Pending events must be consumed immediately.');
+    assert_same(
+        ['window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent("addtocart", {item: 1});'],
+        $GLOBALS['printed_vendor_events'],
+        'Pending event gates must be identical for every consent state.'
+    );
+}
+unset($_COOKIE['klaro']);
+$GLOBALS['assets_script_guard_options'][Options::OPTION_NAME] = ['enable_triple_whale' => 0];
+assert_same($vendorTag, $assets->filter_triple_whale_script_loader_tag($vendorTag, 'triplewhale-pixel-snippet', '/snippet.js'), 'Disabled integration must preserve vendor output.');
+assert_same($fragments, $assets->filter_triple_whale_fragments($fragments), 'Disabled integration must preserve fragments.');
 
 fwrite(STDOUT, "Assets script guard PHP checks passed.\n"); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- Test runner writes success output to STDOUT.

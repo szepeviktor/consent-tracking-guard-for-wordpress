@@ -785,57 +785,112 @@
         var serviceName = options.serviceName || SERVICE_NAMES.tripleWhalePixel;
         var retryDelay = options.retryDelay || 250;
         var maxAttempts = options.maxAttempts || 40;
+        var allowed = false;
+        var started = false;
+        var generation = 0;
+        var synced = false;
+        var pendingEvents = [];
         var storageKeys = [
-            'TriplePixel',
-            'TriplePixelU',
-            'di_pmt_wt',
-            'configSecurityConfModel',
-            'no_track_triple'
+            'TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'dielahws', 'configSecurityConfModel',
+            'no_track_triple', 'EVENTS_MAP', 'auth-security_rand_salt_',
+            'true_rand_gen_sequence.dat_', 'true_rand_gen_sequence.dat_tmp',
+            'true_rand_gen_sequence.math_', 'beacon'
         ];
-
-        function isTriplePixelReady() {
-            return typeof window.TriplePixel === 'function'
-                && window.TriplePixel.__ctgTriplePixelShim !== true;
-        }
 
         function setInitialConsent(consent) {
             window.TriplePixelData = window.TriplePixelData || {};
             window.TriplePixelData.trackingConsent = consent;
         }
 
-        function updateConsent(consent, attempt) {
-            attempt = attempt || 1;
-            setInitialConsent(consent);
-
-            if (isTriplePixelReady()) {
-                window.TriplePixel('trackingConsent', consent);
+        function dispatch(args, token, attempt) {
+            if (!allowed || token !== generation) {
                 return;
             }
+            if (typeof window.TriplePixel === 'function') {
+                window.TriplePixel.apply(window, args);
+            } else if (attempt < maxAttempts) {
+                window.setTimeout(function () { dispatch(args, token, attempt + 1); }, retryDelay);
+            }
+        }
 
-            if (attempt >= maxAttempts) {
+        function clearTripleWhaleStorage() {
+            storageKeys.forEach(function (key) {
+                deleteCookie(key);
+                clearStorage(window.localStorage, key);
+                clearStorage(window.sessionStorage, key);
+            });
+        }
+
+        function syncRuntimeConsent() {
+            setInitialConsent(allowed);
+            if (typeof window.TriplePixel === 'function') {
+                if (!allowed && window.TriplePixel._q) {
+                    window.TriplePixel._q.length = 0;
+                }
+                window.TriplePixel('trackingConsent', allowed);
+            }
+            if (!allowed) {
+                clearTripleWhaleStorage();
+            }
+        }
+
+        function load() {
+            if (!allowed || started) {
                 return;
             }
-
-            window.setTimeout(function () {
-                updateConsent(consent, attempt + 1);
-            }, retryDelay);
+            var placeholder = document.querySelector('script[data-ctg-triple-whale-src]');
+            if (!placeholder) {
+                return;
+            }
+            // Vendor configuration may be printed after Klaro first supplies consent.
+            setInitialConsent(true);
+            var loader = document.createElement('script');
+            loader.src = placeholder.getAttribute('data-ctg-triple-whale-src');
+            loader.onload = function () {
+                // Consent may have changed while the loader was in flight.
+                syncRuntimeConsent();
+            };
+            started = true;
+            placeholder.parentNode.insertBefore(loader, placeholder);
         }
 
         return createConsentAwareVendor(serviceName, {
             revokeOnInit: true,
             init: function () {
                 setInitialConsent(false);
+                window.ctgTripleWhaleEvent = function () {
+                    var args = Array.prototype.slice.call(arguments);
+                    // Head events can precede deferred Klaro initialization. Preserve
+                    // them only when the saved service consent was already granted.
+                    if (!synced) {
+                        var cookie = document.cookie.match(/(?:^|;\s*)klaro=([^;]*)/);
+                        try {
+                            if (cookie && JSON.parse(decodeURIComponent(cookie[1]))[serviceName] === true) {
+                                pendingEvents.push(args);
+                            }
+                        } catch (error) {
+                        }
+                        return;
+                    }
+                    dispatch(args, generation, 1);
+                };
+                document.addEventListener('DOMContentLoaded', load);
             },
             grant: function () {
-                updateConsent(true);
+                allowed = true;
+                synced = true;
+                generation += 1;
+                syncRuntimeConsent();
+                load();
+                pendingEvents.forEach(function (args) { dispatch(args, generation, 1); });
+                pendingEvents = [];
             },
             revoke: function () {
-                storageKeys.forEach(function (key) {
-                    deleteCookie(key);
-                    clearStorage(window.localStorage, key);
-                    clearStorage(window.sessionStorage, key);
-                });
-                updateConsent(false);
+                allowed = false;
+                synced = true;
+                pendingEvents = [];
+                generation += 1;
+                syncRuntimeConsent();
             }
         });
     }

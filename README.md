@@ -24,7 +24,7 @@ It has been checked with these plugin integrations.
 - Klaviyo 3.8.3+ (`klaviyo`) - bridge implemented
 - Meta for WooCommerce 3.7.0+ (`facebook-for-woocommerce`) - bridge implemented
 - PixelYourSite 12.5.0+ (`pixelyoursite-pro`) - bridge implemented
-- Triple Whale Pixel for WooCommerce 1.0.4+ (`triplewhale-pixel-woo-extension`) - bridge implemented
+- Triple Whale Pixel for WooCommerce 1.0.4+ (`triplewhale-pixel-woo-extension`) - cache-safe HTML with loader and commerce events gated by Marketing consent in the browser; withdrawal and re-granting update the existing runtime without navigation; withdrawal clears known storage
 - Site Kit by Google (`google-site-kit`) - Sign in with Google consent bridge implemented
 - GTM4WP (`duracelltomi-google-tag-manager`)
 - Polylang (`polylang`)

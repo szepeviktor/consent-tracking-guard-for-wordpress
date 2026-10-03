@@ -487,111 +487,205 @@ test('removes Klaviyo browser storage when consent is denied', async ({page}) =>
     });
 });
 
-test('syncs Triple Whale plugin tracking consent', async ({page}) => {
-    await page.goto('http://127.0.0.1:8765/harness.html');
-    await page.setContent(`
-        <!doctype html>
-        <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <title>CMP bootstrap fixture</title>
-            <script>
-                window.bootstrapFixture = {
-                    manager: {
-                        confirmed: true,
-                        consents: {
-                            'triple-whale-pixel': false
-                        },
-                        config: {},
-                        getService: function (serviceName) {
-                            return {
-                                name: serviceName,
-                                purposes: ['marketing'],
-                                required: false,
-                                optOut: false
-                            };
-                        },
-                        watch: function (watcher) {
-                            this.watcher = watcher;
-                        },
-                        trigger: function (type) {
-                            this.watcher.update(this, type);
-                        }
-                    }
-                };
-                window.klaro = {
-                    getManager: function () {
-                        return window.bootstrapFixture.manager;
-                    }
-                };
-            </script>
-        </head>
-        <body>
-            <script
-                src="/assets/js/cmp-bootstrap.js"
-                data-triple-whale-service="triple-whale-pixel"></script>
-        </body>
-        </html>
-    `);
-
+test('gates the real Triple Whale loader and changes consent without navigation', async ({page}) => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const snippet = fs.readFileSync(path.join(__dirname, 'triple-whale-snippet.fixture.js'), 'utf8');
+    const traffic = [];
+    let loads = 0;
+    const html = `<!doctype html><html><head><script>
+        window.bootstrapFixture = {manager: {
+            confirmed: true,
+            consents: {'triple-whale-pixel': localStorage.getItem('twConsent') === 'true'},
+            config: {},
+            getService: function () { return {required: false, optOut: false}; },
+            watch: function (watcher) { this.watcher = watcher; },
+            choose: function (consent) {
+                this.consents['triple-whale-pixel'] = consent;
+                localStorage.setItem('twConsent', String(consent));
+                document.cookie = 'klaro=' + encodeURIComponent(JSON.stringify(this.consents)) + '; path=/';
+                this.watcher.update(this, 'applyConsents');
+            }
+        }};
+        setTimeout(function () { window.klaro = {getManager: function () {return window.bootstrapFixture.manager;}}; }, 50);
+        </script><script src="/assets/js/cmp-bootstrap.js" data-triple-whale-service="triple-whale-pixel"></script>
+        </head><body>
+        <script>window.TriplePixelData = {TripleName: 'example.test', plat: 'woocommerce', ver: '2.17'};</script>
+        <script type="text/plain" data-ctg-triple-whale-src="/tw-snippet.js"></script>
+        <script>window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent('purchase', {order_id: 'denied'});</script>
+        </body></html>`;
+    await page.route('**/tw-consent-fixture', route => route.fulfill({contentType: 'text/html', body: html}));
+    await page.route('**/tw-snippet.js', async route => {
+        loads += 1;
+        await route.fulfill({contentType: 'application/javascript', body: snippet});
+    });
+    await page.route('https://*.config-security.com/**', async route => {
+        traffic.push(route.request().url());
+        await route.fulfill({status: 200, contentType: 'text/plain', body: ''});
+    });
+    await page.goto('http://127.0.0.1:8765/tw-consent-fixture');
     await page.waitForFunction(() => window.bootstrapFixture.manager.watcher);
-    await page.waitForTimeout(300);
-    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(false);
-
-    await page.evaluate(() => {
-        window.TriplePixel = function () {
-            window.TriplePixel._q.push(arguments);
-        };
-        window.TriplePixel._q = [];
-    });
-
-    await expect.poll(() => page.evaluate(() => (
-        window.TriplePixel._q[0] ? Array.from(window.TriplePixel._q[0]) : null
-    )))
-        .toEqual(['trackingConsent', false]);
-
-    await page.evaluate(() => {
-        window.bootstrapFixture.manager.consents['triple-whale-pixel'] = true;
-        window.bootstrapFixture.manager.trigger('applyConsents');
-    });
-
+    await page.waitForTimeout(350);
+    expect(loads).toBe(0);
+    expect(traffic).toEqual([]);
+    expect(await page.evaluate(() => localStorage.getItem('TriplePixelU'))).toBeNull();
+    await page.evaluate(() => window.bootstrapFixture.manager.choose(true));
+    await expect.poll(() => traffic.length).toBe(3);
+    expect(loads).toBe(1);
     expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(true);
-    await expect.poll(() => page.evaluate(() => (
-        window.TriplePixel._q.map(function (entry) {
-            return Array.from(entry);
-        })
-    ))).toEqual([
-        ['trackingConsent', false],
-        ['trackingConsent', true]
-    ]);
-
+    expect(await page.evaluate(() => window.TriplePixel._q.some(entry => entry[1] === 'purchase'))).toBe(false);
     await page.evaluate(() => {
-        ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel', 'no_track_triple'].forEach((key) => {
-            document.cookie = `${encodeURIComponent(key)}=value; path=/; SameSite=Lax`;
-            localStorage.setItem(key, 'value');
-            sessionStorage.setItem(key, 'value');
-        });
-
-        window.bootstrapFixture.manager.consents['triple-whale-pixel'] = false;
-        window.bootstrapFixture.manager.trigger('applyConsents');
+        window.ctgTripleWhaleEvent('addtocart', {item: 123});
+        window.bootstrapFixture.manager.choose(true);
     });
-
-    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(false);
-    await expect.poll(() => page.evaluate(() => (
-        window.TriplePixel._q.map(function (entry) {
-            return Array.from(entry);
-        })
-    ))).toEqual([
-        ['trackingConsent', false],
-        ['trackingConsent', true],
+    expect(loads).toBe(1);
+    expect(await page.evaluate(() => window.TriplePixel._q.some(entry => entry[1] === 'addtocart'))).toBe(true);
+    const navigations = [];
+    page.on('framenavigated', frame => {
+        if (frame === page.mainFrame()) navigations.push(frame.url());
+    });
+    await page.evaluate(() => {
+        window.documentMarker = 'same-document';
+        sessionStorage.setItem('dielahws', 'tw-session-id');
+        sessionStorage.setItem('unrelated-session', 'keep');
+        window.bootstrapFixture.manager.choose(false);
+        window.ctgTripleWhaleEvent('purchase', {order_id: 'withdrawn'});
+    });
+    await page.waitForTimeout(350);
+    expect(loads).toBe(1);
+    expect(traffic.length).toBe(3);
+    expect(await page.evaluate(() => localStorage.getItem('TriplePixelU'))).toBeNull();
+    expect(await page.evaluate(() => sessionStorage.getItem('dielahws'))).toBeNull();
+    expect(await page.evaluate(() => sessionStorage.getItem('unrelated-session'))).toBe('keep');
+    expect(await page.evaluate(() => window.TriplePixel._q.map(entry => entry.slice(1)))).toEqual([
         ['trackingConsent', false]
     ]);
+    await page.evaluate(() => {
+        window.bootstrapFixture.manager.choose(true);
+        window.ctgTripleWhaleEvent('addtocart', {item: 456});
+    });
+    expect(loads).toBe(1);
+    expect(traffic.length).toBe(3);
+    expect(navigations).toEqual([]);
+    expect(await page.evaluate(() => window.documentMarker)).toBe('same-document');
+    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(true);
+    expect(await page.evaluate(() => window.TriplePixel._q.map(entry => entry.slice(1)))).toEqual([
+        ['trackingConsent', false], ['trackingConsent', true], ['addtocart', {item: 456}]
+    ]);
+});
 
-    expect(await page.evaluate(() => (
-        ['TriplePixel', 'TriplePixelU', 'di_pmt_wt', 'configSecurityConfModel', 'no_track_triple'].filter((key) => (
-            document.cookie.indexOf(encodeURIComponent(key) + '=') !== -1
-                || localStorage.getItem(key) !== null
-                || sessionStorage.getItem(key) !== null
-        ))
-    ))).toEqual([]);
+
+test('serves identical Triple Whale HTML across cached consent states', async ({browser}) => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const snippet = fs.readFileSync(path.join(__dirname, 'triple-whale-snippet.fixture.js'), 'utf8');
+    const cachedHtml = `<!doctype html><html><head><meta charset="utf-8">
+        <script>window.klaroConfig = {
+            storageMethod: 'cookie', storageName: 'klaro', default: false,
+            services: [
+                {name: 'triple-whale-pixel', purposes: ['marketing']},
+                {name: 'test-statistics', purposes: ['statistics']}
+            ]
+        };</script>
+        <script src="/assets/js/cmp-bootstrap.js" data-triple-whale-service="triple-whale-pixel"></script>
+        <script src="/assets/js/klaro.js" defer></script>
+        <script>window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent('addtocart', {item: 123});</script>
+        </head><body>
+        <script>window.TriplePixelData = {TripleName: 'example.test', plat: 'woocommerce', ver: '2.17'};</script>
+        <script type="text/plain" data-ctg-triple-whale-src="/cached-tw-snippet.js"></script>
+        <script>window.ctgTripleWhaleEvent && window.ctgTripleWhaleEvent('purchase', {order_id: 456});</script>
+        </body></html>`;
+    for (const savedConsent of [null, false, true]) {
+        const context = await browser.newContext();
+        try {
+            if (savedConsent !== null) {
+                await context.addCookies([{
+                    name: 'klaro',
+                    value: encodeURIComponent(JSON.stringify({
+                        'triple-whale-pixel': savedConsent,
+                        'test-statistics': true
+                    })),
+                    url: 'http://127.0.0.1:8765'
+                }]);
+            }
+            let loads = 0;
+            const requests = [];
+            await context.route('**/cached-tw-page', route => route.fulfill({contentType: 'text/html', body: cachedHtml}));
+            await context.route('**/cached-tw-snippet.js', route => {
+                loads += 1;
+                return route.fulfill({contentType: 'application/javascript', body: snippet});
+            });
+            await context.route('https://*.config-security.com/**', route => {
+                requests.push(route.request().url());
+                return route.fulfill({status: 200, body: ''});
+            });
+            const page = await context.newPage();
+            await page.goto('http://127.0.0.1:8765/cached-tw-page');
+            await page.waitForTimeout(600);
+            if (savedConsent === true) {
+                await expect.poll(() => requests.length).toBe(3);
+                expect(loads).toBe(1);
+                await expect.poll(() => page.evaluate(() => window.TriplePixel._q.map(entry => entry[1]))).toEqual(
+                    expect.arrayContaining(['addtocart', 'purchase'])
+                );
+            } else {
+                expect(loads).toBe(0);
+                expect(requests).toEqual([]);
+                expect(await page.evaluate(() => localStorage.getItem('TriplePixelU'))).toBeNull();
+                await page.evaluate(() => {
+                    const manager = window.klaro.getManager();
+                    manager.updateConsent('triple-whale-pixel', true);
+                    manager.saveAndApplyConsents();
+                });
+                await expect.poll(() => requests.length).toBe(3);
+                expect(await page.evaluate(() => window.TriplePixel._q.some(entry => (
+                    entry[1] === 'addtocart' || entry[1] === 'purchase'
+                )))).toBe(false);
+            }
+        } finally {
+            await context.close();
+        }
+    }
+});
+
+
+test('applies withdrawal when the Triple Whale loader finishes late', async ({page}) => {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    let releaseLoader;
+    const blocked = new Promise(resolve => { releaseLoader = resolve; });
+    let requested = false;
+    await page.route('**/late-tw.js', async route => {
+        requested = true;
+        await blocked;
+        await route.fulfill({contentType: 'application/javascript', body: fs.readFileSync(
+            path.join(__dirname, 'triple-whale-snippet.fixture.js'), 'utf8'
+        )});
+    });
+    await page.route('https://*.config-security.com/**', route => route.fulfill({status: 200, body: ''}));
+    await page.goto('http://127.0.0.1:8765/harness.html');
+    await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><script>
+        window.manager = {
+            confirmed: true, consents: {'triple-whale-pixel': false}, config: {},
+            getService: function () {return {required:false, optOut:false};},
+            watch: function (watcher) {this.watcher = watcher;},
+            choose: function (consent) {this.consents['triple-whale-pixel']=consent;this.watcher.update(this,'applyConsents');}
+        };
+        window.klaro = {getManager:function(){return window.manager;}};
+        </script><script src="/assets/js/cmp-bootstrap.js" data-triple-whale-service="triple-whale-pixel"></script>
+        </head><body><script>window.TriplePixelData={TripleName:'example.test',plat:'woocommerce'};</script>
+        <script type="text/plain" data-ctg-triple-whale-src="/late-tw.js"></script></body></html>`);
+    await page.waitForFunction(() => window.manager.watcher);
+    await page.evaluate(() => window.manager.choose(true));
+    await expect.poll(() => requested).toBe(true);
+    await page.evaluate(() => {
+        window.manager.choose(false);
+        window.ctgTripleWhaleEvent('purchase', {order_id: 'denied'});
+    });
+    releaseLoader();
+    await expect.poll(() => page.evaluate(() => window.TriplePixel && window.TriplePixel._q.map(entry => entry.slice(1)))).toEqual([
+        ['trackingConsent', false]
+    ]);
+    expect(await page.evaluate(() => window.TriplePixelData.trackingConsent)).toBe(false);
+    expect(await page.evaluate(() => localStorage.getItem('di_pmt_wt'))).toBeNull();
 });
