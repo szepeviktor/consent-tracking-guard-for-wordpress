@@ -84,16 +84,22 @@ jobs:
             name: "Validate Composer configuration"
             run: "composer validate --no-interaction --strict"
         -
-            name: "Create plugin ZIP"
+            name: "Install production dependencies"
             run: |
                 composer install \
                     --no-dev \
                     --no-interaction \
                     --prefer-dist \
                     --optimize-autoloader
-                mkdir "${PLUGIN_SLUG}"
-                cp --recursive consent-tracking-guard-for-wordpress.php wpml-config.xml assets/ languages/ src/ vendor/ "${PLUGIN_SLUG}/"
-                zip --recurse-paths "${ZIP_FILE}" "${PLUGIN_SLUG}"
+        -
+            name: "Build plugin"
+            run: |
+                mkdir --parents "dist/${PLUGIN_SLUG}"
+                rsync --archive --include-from=.distinclude --exclude='*' ./ "dist/${PLUGIN_SLUG}/"
+        -
+            name: "Create plugin ZIP"
+            working-directory: "dist"
+            run: zip --recurse-paths "../${ZIP_FILE}" "${PLUGIN_SLUG}"
         -
             name: "Upload ZIP to release"
             env:

@@ -9,6 +9,9 @@ on:
 permissions:
     contents: read
 
+env:
+    PLUGIN_SLUG: "viktors-consent-tracking-guard-for-wordpress"
+
 jobs:
     plugin-check:
         name: Plugin Check
@@ -32,11 +35,11 @@ jobs:
         -
             name: Build plugin
             run: |
-                mkdir -p build/viktors-consent-tracking-guard-for-wordpress
-                cp -r consent-tracking-guard-for-wordpress.php wpml-config.xml assets languages src vendor build/viktors-consent-tracking-guard-for-wordpress/
+                mkdir -p "dist/${PLUGIN_SLUG}"
+                rsync --archive --include-from=.distinclude --exclude='*' ./ "dist/${PLUGIN_SLUG}/"
         -
             name: Run Plugin Check
             uses: wordpress/plugin-check-action@v1
             with:
-              build-dir: build/viktors-consent-tracking-guard-for-wordpress
+              build-dir: "dist/${{ env.PLUGIN_SLUG }}"
               repo-token: ''
