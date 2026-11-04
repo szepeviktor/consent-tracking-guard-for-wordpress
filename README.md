@@ -16,6 +16,14 @@ This CMP is built to work with WordPress consent and tracking compatibility requ
 - Consent-aware script loading for Google Tag Manager, Microsoft Clarity, Hotjar, Meta Pixel, and LinkedIn Insight Tag
 - YouTube embed blocking
 
+When a Google tag ID is configured, analytics and Google advertising appear as separate consent choices.
+Analytics controls `analytics_storage`; Google advertising controls `ad_storage`, `ad_user_data`, and `ad_personalization`.
+Either choice can load the Google tag, and withdrawal or re-granting updates consent without reloading the page.
+YouTube consent does not grant Google advertising consent. Configure tags inside GTM to respect the visitor's choices.
+
+YouTube placeholders preserve the original iframe ID and responsive theme layout.
+Their text uses WordPress translations, with English fallback text when no translation is available.
+
 ## WordPress Plugin Integrations
 
 This plugin includes consent-aware disclosures and bridges for other WordPress plugins.

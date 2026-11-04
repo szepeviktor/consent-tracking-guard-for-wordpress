@@ -377,6 +377,11 @@ final class Assets
     private function buildTranslations(): array
     {
         return [
+            'youtubePlaceholder' => [
+                'title' => __('YouTube video', 'consent-tracking-guard-for-wordpress'),
+                'description' => __('This video loads from YouTube only after consent.', 'consent-tracking-guard-for-wordpress'),
+                'button' => __('Load video', 'consent-tracking-guard-for-wordpress'),
+            ],
             'consentNotice' => [
                 'title' => (string) $this->options->get('notice_title'),
                 'description' => $this->replacePrivacyPolicyShortcode(
@@ -491,6 +496,7 @@ final class Assets
 
         if ($gtmId !== '') {
             $services[] = $this->buildGoogleTagManagerService($lang);
+            $services[] = $this->buildGoogleAdvertisingService($lang);
         }
 
         if ($clarityProjectId !== '') {
@@ -663,6 +669,28 @@ final class Assets
                 ),
             ],
             __('Loads analytics tags managed through Google Tag Manager.', 'consent-tracking-guard-for-wordpress'),
+            $lang
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function buildGoogleAdvertisingService(string $lang): array
+    {
+        return $this->buildOptionalService(
+            'google-advertising',
+            __('Google advertising', 'consent-tracking-guard-for-wordpress'),
+            'marketing',
+            ['^_gcl_.*'],
+            [
+                $this->buildCookieInfo(
+                    '_gcl_au',
+                    __('90 days', 'consent-tracking-guard-for-wordpress'),
+                    __('Stores information for Google advertising measurement.', 'consent-tracking-guard-for-wordpress')
+                ),
+            ],
+            __('Allows Google advertising measurement and personalization through the configured Google tag.', 'consent-tracking-guard-for-wordpress'),
             $lang
         );
     }

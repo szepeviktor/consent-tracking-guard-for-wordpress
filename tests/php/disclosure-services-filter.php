@@ -109,6 +109,20 @@ $GLOBALS['disclosure_services_filter_options'][Options::OPTION_NAME] = [
 $builtInServices = build_services_for_disclosure_test();
 $wordfenceService = find_service($builtInServices, 'wordfence');
 
+assert_same(null, find_service($builtInServices, 'google-advertising'), 'Google advertising requires a configured Google tag.');
+$GLOBALS['disclosure_services_filter_options'][Options::OPTION_NAME]['gtm_id'] = 'GTM-TEST123';
+$googleServices = build_services_for_disclosure_test();
+$googleAdvertising = find_service($googleServices, 'google-advertising');
+assert_same(['marketing'], $googleAdvertising['purposes'], 'Google advertising must be a separate marketing choice.');
+assert_same(false, $googleAdvertising['default'], 'Google advertising must require opt-in.');
+assert_same(false, $googleAdvertising['required'], 'Google advertising must be optional.');
+assert_same(['^_gcl_.*'], $googleAdvertising['cookies'], 'Google advertising must clear its cookies on withdrawal.');
+$googleBridge = new ConsentApiBridge('consent-tracking-guard-for-wordpress/consent-tracking-guard-for-wordpress.php');
+$googleBridge->register_services($googleServices);
+assert_same('marketing', find_registered_cookie('_gcl_au')[2], 'Google advertising cookies must register as marketing.');
+assert_same(['statistics'], find_service($googleServices, 'google-tag-manager')['purposes'], 'Analytics must remain independent.');
+unset($GLOBALS['disclosure_services_filter_options'][Options::OPTION_NAME]['gtm_id']);
+
 assert_same(null, find_service($builtInServices, 'woodmart'), 'WoodMart disclosure must not be built in.');
 assert_same(true, is_array($wordfenceService), 'Wordfence disclosure must be present when enabled.');
 
