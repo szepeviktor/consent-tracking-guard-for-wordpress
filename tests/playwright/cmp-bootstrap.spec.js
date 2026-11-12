@@ -379,6 +379,8 @@ test('refreshes PixelYourSite through its AJAX-aware runtime after consent chang
 });
 
 test('removes Klaviyo browser storage when consent is denied', async ({page}) => {
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
     await page.goto('http://127.0.0.1:8765/harness.html');
     await page.setContent(`
         <!doctype html>
@@ -407,7 +409,9 @@ test('removes Klaviyo browser storage when consent is denied', async ({page}) =>
                 window.bootstrapFixture = {
                     tracker: {
                         account_id: 'PUBLIC_KEY',
-                        is_tracking_on: true,
+                        get is_tracking_on() {
+                            return !document.cookie.split('; ').includes('__kla_off=true');
+                        },
                         clearedIdentity: false,
                         clearIdentity: function () {
                             this.clearedIdentity = true;
@@ -485,6 +489,18 @@ test('removes Klaviyo browser storage when consent is denied', async ({page}) =>
             clearedIdentity: true
         }
     });
+
+    for (const consent of [true, false, true]) {
+        await page.evaluate(consent => {
+            const manager = window.bootstrapFixture.manager;
+            manager.consents.klaviyo = consent;
+            manager.watcher.update(manager, 'applyConsents');
+        }, consent);
+
+        await expect.poll(() => page.evaluate(() => window.bootstrapFixture.tracker.is_tracking_on))
+            .toBe(consent);
+    }
+    expect(errors).toEqual([]);
 });
 
 test('gates the real Triple Whale loader and changes consent without navigation', async ({page}) => {

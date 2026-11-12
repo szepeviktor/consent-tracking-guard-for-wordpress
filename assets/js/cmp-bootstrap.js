@@ -962,8 +962,6 @@
         function restartTracker(tracker) {
             var companyId = getCompanyId(tracker);
 
-            tracker.is_tracking_on = true;
-
             if (companyId && typeof tracker.account === 'function') {
                 tracker.account(companyId);
             }
@@ -976,7 +974,6 @@
         }
 
         function stopTracker(tracker) {
-            tracker.is_tracking_on = false;
             tracker.account_id = null;
 
             if (typeof tracker.clearIdentity === 'function') {
